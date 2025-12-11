@@ -389,4 +389,41 @@ clean:
 	rm -rf $(ZIP) $(OUT) xml/*/docs/dirindex.xml dir.map 		\
 	xml/*/docs/varindex.xml
 
+# Markdown generation targets
+MARKDOWN_OUT = markdown
+
+.PHONY: markdown markdown-en markdown-ru markdown-all markdown-clean help-markdown
+
+markdown: markdown-en
+	@echo "Markdown generation complete! Output in $(MARKDOWN_OUT)/"
+
+markdown-en:
+	@echo "Converting English documentation to Markdown..."
+	@python3 tools/xml2md.py xml/en/ -o $(MARKDOWN_OUT)/en/ --preserve-structure
+
+markdown-ru:
+	@echo "Converting Russian documentation to Markdown..."
+	@python3 tools/xml2md.py xml/ru/ -o $(MARKDOWN_OUT)/ru/ --preserve-structure
+
+markdown-all:
+	@echo "Converting all documentation to Markdown..."
+	@python3 tools/xml2md.py xml/ -o $(MARKDOWN_OUT)/ --preserve-structure
+
+markdown-clean:
+	@echo "Cleaning markdown output directory..."
+	@rm -rf $(MARKDOWN_OUT)
+
+help-markdown:
+	@echo "Markdown Generation Targets:"
+	@echo "  markdown        - Generate Markdown from English XML documentation (default)"
+	@echo "  markdown-en     - Generate Markdown from English XML documentation"
+	@echo "  markdown-ru     - Generate Markdown from Russian XML documentation"
+	@echo "  markdown-all    - Generate Markdown from all XML documentation"
+	@echo "  markdown-clean  - Remove generated markdown files"
+	@echo ""
+	@echo "You can also use the xml2md.py tool directly:"
+	@echo "  python3 tools/xml2md.py xml/en/index.xml          # Print to stdout"
+	@echo "  python3 tools/xml2md.py xml/en/index.xml -o out.md # Save to file"
+	@echo "  python3 tools/xml2md.py xml/en/docs/ -o markdown/  # Convert directory"
+
 .DELETE_ON_ERROR:

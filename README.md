@@ -85,6 +85,49 @@ With the prerequisites installed, run `make` from the top-level directory. This 
 Adapt the [docker-nginx.conf](docker-nginx.conf) file to suit your local `nginx` installation.
 
 
+Generating Markdown from XML
+----------------------------
+The repository includes a tool to convert XML documentation to Markdown format, making the content
+more accessible for various uses (GitHub, static site generators, etc.).
+
+### Quick start
+Generate Markdown for English documentation:
+```shell
+make markdown
+```
+
+The Markdown files will be generated in the `markdown/` directory.
+
+### Available targets
+```shell
+make markdown        # Generate English documentation (default)
+make markdown-en     # Generate English documentation
+make markdown-ru     # Generate Russian documentation
+make markdown-all    # Generate all documentation (all languages)
+make markdown-clean  # Remove generated markdown files
+```
+
+### Using the xml2md.py tool directly
+```shell
+# Convert a single file to stdout
+python3 tools/xml2md.py xml/en/index.xml
+
+# Convert a single file to a file
+python3 tools/xml2md.py xml/en/index.xml -o output/index.md
+
+# Convert a directory with structure preservation
+python3 tools/xml2md.py xml/en/docs/ -o markdown/docs/ --preserve-structure
+
+# Convert specific language only
+python3 tools/xml2md.py xml/ -o markdown/ --lang en
+```
+
+For more options, run:
+```shell
+python3 tools/xml2md.py --help
+```
+
+
 Authoring content
 -----------------
 ### How pages are constructed
