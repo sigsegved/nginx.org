@@ -1,0 +1,221 @@
+# Module ngx_http_image_filter_module
+
+**Revision:** 4  
+**Language:** en
+
+
+The `ngx_http_image_filter_module` module (0.7.54+) is a filter
+that transforms images in JPEG, GIF, PNG, and WebP formats.
+
+This module is not built by default, it should be enabled with the
+`--with-http_image_filter_module`
+configuration parameter.
+
+> **Note:** This module utilizes the
+[libgd](http://libgd.org) library.
+It is recommended to use the latest available version of the library.
+
+
+> **Note:** The WebP format support appeared in version 1.11.6.
+To transform images in this format,
+the `libgd` library must be compiled with the WebP support.
+
+## Example Configuration {#example}
+
+```
+location /img/ {
+    proxy_pass   http://backend;
+    image_filter resize 150 100;
+    image_filter rotate 90;
+    error_page   415 = /empty;
+}
+
+location = /empty {
+    empty_gif;
+}
+```
+
+## Directives {#directives}
+
+
+off
+test
+size
+
+    rotate
+    90 | 180 |
+    270
+
+    resize
+    width
+    height
+
+    crop
+    width
+    height
+off
+location
+
+
+Sets the type of transformation to perform on images:
+
+
+off
+
+turns off module processing in a surrounding location.
+
+
+test
+
+ensures that responses are images in either JPEG, GIF, PNG, or WebP format.
+Otherwise, the
+
+error is returned.
+
+
+size
+
+outputs information about images in a JSON format, e.g.:
+
+{ "img" : { "width": 100, "height": 100, "type": "gif" } }
+
+In case of an error, the output is as follows:
+
+{}
+
+
+
+rotate
+90|180|270
+
+
+rotates images counter-clockwise by the specified number of degrees.
+Parameter value can contain variables.
+This mode can be used either alone or along with the
+resize and crop transformations.
+
+
+resize
+width
+height
+
+
+proportionally reduces an image to the specified sizes.
+To reduce by only one dimension, another dimension can be specified as
+“-”.
+In case of an error, the server will return code
+.
+Parameter values can contain variables.
+When used along with the rotate parameter,
+the rotation happens after reduction.
+
+
+crop
+width
+height
+
+
+proportionally reduces an image to the larger side size
+and crops extraneous edges by another side.
+To reduce by only one dimension, another dimension can be specified as
+“-”.
+In case of an error, the server will return code
+.
+Parameter values can contain variables.
+When used along with the rotate parameter,
+the rotation happens before reduction.
+
+
+
+
+
+
+
+size
+1M
+http
+server
+location
+
+
+Sets the maximum size of the buffer used for reading images.
+When the size is exceeded the server returns error
+.
+
+
+
+
+on | off
+off
+http
+server
+location
+1.3.15
+
+
+If enabled, final images will be interlaced.
+For JPEG, final images will be in “progressive JPEG” format.
+
+
+
+
+quality
+75
+http
+server
+location
+
+
+Sets the desired quality of the transformed JPEG images.
+Acceptable values are in the range from 1 to 100.
+Lesser values usually imply both lower image quality and less data to transfer.
+The maximum recommended value is 95.
+Parameter value can contain variables.
+
+
+
+
+percent
+0
+http
+server
+location
+
+
+Increases sharpness of the final image.
+The sharpness percentage can exceed 100.
+The zero value disables sharpening.
+Parameter value can contain variables.
+
+
+
+
+on|off
+on
+http
+server
+location
+
+
+Defines whether transparency should be preserved when transforming
+GIF images or PNG images with colors specified by a palette.
+The loss of transparency results in images of a better quality.
+The alpha channel transparency in PNG is always preserved.
+
+
+
+
+quality
+80
+http
+server
+location
+1.11.6
+
+
+Sets the desired quality of the transformed WebP images.
+Acceptable values are in the range from 1 to 100.
+Lesser values usually imply both lower image quality and less data to transfer.
+Parameter value can contain variables.
+
+

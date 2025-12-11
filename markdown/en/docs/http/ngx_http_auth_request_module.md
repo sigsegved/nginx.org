@@ -1,0 +1,77 @@
+# Module ngx_http_auth_request_module
+
+**Revision:** 5  
+**Language:** en
+
+
+The `ngx_http_auth_request_module` module (1.5.4+) implements
+client authorization based on the result of a subrequest.
+If the subrequest returns a 2xx response code, the access is allowed.
+If it returns 401 or 403,
+the access is denied with the corresponding error code.
+Any other response code returned by the subrequest is considered an error.
+
+For the 401 error, the client also receives the
+**WWW-Authenticate** header from the subrequest response.
+
+This module is not built by default, it should be enabled with the
+`--with-http_auth_request_module`
+configuration parameter.
+
+The module may be combined with
+other access modules, such as
+[ngx_http_access_module](ngx_http_access_module.html),
+[ngx_http_auth_basic_module](ngx_http_auth_basic_module.html),
+and
+[ngx_http_auth_jwt_module](ngx_http_auth_jwt_module.html),
+via the [](ngx_http_core_module.xml#satisfy) directive.
+
+> **Note:** Before version 1.7.3, responses to authorization subrequests could not be cached
+(using [](ngx_http_proxy_module.xml#proxy_cache),
+[](ngx_http_proxy_module.xml#proxy_store), etc.).
+
+## Example Configuration {#example}
+
+```
+location /private/ {
+    auth_request /auth;
+    ...
+}
+
+location = /auth {
+    proxy_pass ...
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+    proxy_set_header X-Original-URI $request_uri;
+}
+```
+
+## Directives {#directives}
+
+
+uri | off
+off
+http
+server
+location
+
+
+Enables authorization based on the result of a subrequest and sets
+the URI to which the subrequest will be sent.
+
+
+
+
+$variable value
+
+http
+server
+location
+
+
+Sets the request variable to the given
+value after the authorization request completes.
+The value may contain variables from the authorization request,
+such as $upstream_http_*.
+
+
