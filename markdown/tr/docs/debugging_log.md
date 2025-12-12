@@ -2,22 +2,17 @@
 
 **Language:** tr
 
-
 Hata ayıklama kayıt işlemini olanaklı kılmak için, nginxi debug komutu ile yapılandırmalısınız:
-
 
 ```
 ./configure --with-debug ...
 ```
 
-
 ve daha sonra `error_log` ile `debug` dizin yolunu belirtin:
-
 
 ```
 error_log  /path/to/log  debug;
 ```
-
 
 nginx/Windows binary versiyonu, varsayılan olarak hata ayıklama kayıt desteği ile gelir. Bu yüzden yalnızca `debug` dizin yolunu belirtmek yeterlidir.
 
@@ -45,7 +40,6 @@ http {
 
 Hata ayıklama kayıt işlemini belirli adresler için de belirleyebilirsiniz:
 
-
 ```
 error_log  /path/to/log;
 
@@ -54,3 +48,4 @@ events {
     debug_connection   192.168.10.0/24;
 }
 ```
+

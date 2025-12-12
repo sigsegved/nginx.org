@@ -3,20 +3,9 @@
 **Revision:** 3  
 **Language:** ru
 
+Модуль `ngx_stream_ssl_preread_module` (1.11.5) позволяет извлекать информацию из сообщения [ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2) без терминирования SSL/TLS, например имя сервера, запрошенное через [SNI](https://datatracker.ietf.org/doc/html/rfc6066#section-3) или протоколы, указанные в [ALPN](https://datatracker.ietf.org/doc/html/rfc7301) . По умолчанию этот модуль не собирается, его сборку необходимо разрешить с помощью конфигурационного параметра `--with-stream_ssl_preread_module` .
 
-Модуль `ngx_stream_ssl_preread_module` (1.11.5) позволяет
-извлекать информацию из сообщения
-[ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2)
-без терминирования SSL/TLS,
-например имя сервера, запрошенное через
-[SNI](https://datatracker.ietf.org/doc/html/rfc6066#section-3)
-или протоколы, указанные в
-[ALPN](https://datatracker.ietf.org/doc/html/rfc7301).
-По умолчанию этот модуль не собирается, его сборку необходимо
-разрешить с помощью конфигурационного параметра
-`--with-stream_ssl_preread_module`.
-
-## Пример конфигурации {#example}
+# Пример конфигурации {#example}
 
 Выбор сервера по имени:
 
@@ -76,26 +65,27 @@ server {
 }
 ```
 
-## Директивы {#directives}
+# Директивы {#directives}
 
+## ssl_preread
 
-on | off
-off
-stream
-server
+```
+Syntax:  on | off
+Default: off
+Context: server, stream
+```
 
+Разрешает извлечение информации из сообщения ClientHello во время фазы [предварительного чтения](stream_processing.xml#preread_phase) .
 
-Разрешает извлечение информации из сообщения ClientHello во время фазы
-предварительного чтения.
+# Встроенные переменные {#variables}
 
-
-
-## Встроенные переменные {#variables}
-
-***$ssl_preread_protocol***  
+**`$ssl_preread_protocol`**  
   максимальная версия протокола SSL, поддерживаемая клиентом (1.15.2)
-***$ssl_preread_server_name***  
+
+**`$ssl_preread_server_name`**  
   имя сервера, запрошенное через SNI
-***$ssl_preread_alpn_protocols***  
+
+**`$ssl_preread_alpn_protocols`**  
   список протоколов, переданный клиентом через ALPN (1.13.10).
 Значения разделяются запятыми.
+

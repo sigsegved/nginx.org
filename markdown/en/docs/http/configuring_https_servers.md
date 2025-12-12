@@ -5,17 +5,7 @@
 **Revision:** 19  
 **Language:** en
 
-
-To configure an HTTPS server, the `ssl` parameter
-must be enabled on
-[listening sockets](ngx_http_core_module.xml#listen)
-in the [](ngx_http_core_module.xml#server) block,
-and the locations of the
-[server certificate](ngx_http_ssl_module.xml#ssl_certificate)
-and
-[private key](ngx_http_ssl_module.xml#ssl_certificate_key)
-files should be specified:
-
+To configure an HTTPS server, the `ssl` parameter must be enabled on [listening sockets](ngx_http_core_module.xml#listen) in the [server](ngx_http_core_module.xml#server) block, and the locations of the [server certificate](ngx_http_ssl_module.xml#ssl_certificate) and [private key](ngx_http_ssl_module.xml#ssl_certificate_key) files should be specified:
 
 ```
 server {
@@ -29,61 +19,20 @@ server {
 }
 ```
 
-
-The server certificate is a public entity.
-It is sent to every client that connects to the server.
-The private key is a secure entity and should be stored in a file with
-restricted access, however, it must be readable by nginx’s master process.
-The private key may alternately be stored in the same file as the certificate:
-
+The server certificate is a public entity. It is sent to every client that connects to the server. The private key is a secure entity and should be stored in a file with restricted access, however, it must be readable by nginx’s master process. The private key may alternately be stored in the same file as the certificate:
 
 ```
-ssl_certificate     www.example.com.cert;
+    ssl_certificate     www.example.com.cert;
     ssl_certificate_key www.example.com.cert;
 ```
 
+in which case the file access rights should also be restricted. Although the certificate and the key are stored in one file, only the certificate is sent to a client.
 
-in which case the file access rights should also be restricted.
-Although the certificate and the key are stored in one file,
-only the certificate is sent to a client.
+The directives [ssl_protocols](ngx_http_ssl_module.xml#ssl_protocols) and [ssl_ciphers](ngx_http_ssl_module.xml#ssl_ciphers) can be used to limit connections to include only the strong versions and ciphers of SSL/TLS. By default nginx uses “ `ssl_protocols TLSv1.2 TLSv1.3` ” and “ `ssl_ciphers HIGH:!aNULL:!MD5` ”, so configuring them explicitly is generally not needed. Note that default values of these directives were [changed](#compatibility) several times.
 
-The directives [](ngx_http_ssl_module.xml#ssl_protocols) and
-[](ngx_http_ssl_module.xml#ssl_ciphers)
-can be used to limit connections
-to include only the strong versions and ciphers of SSL/TLS.
-By default nginx uses
-“`ssl_protocols TLSv1.2 TLSv1.3`”
-and “`ssl_ciphers HIGH:!aNULL:!MD5`”,
-so configuring them explicitly is generally not needed.
-Note that default values of these directives were
-changed several times.
+# HTTPS server optimization {#optimization}
 
-## HTTPS server optimization {#optimization}
-
-SSL operations consume extra CPU resources.
-On multi-processor systems several
-[worker processes](../ngx_core_module.xml#worker_processes)
-should be run,
-no less than the number of available CPU cores.
-The most CPU-intensive operation is the SSL handshake.
-There are two ways to minimize the number of these operations per client:
-the first is by enabling
-[keepalive](ngx_http_core_module.xml#keepalive_timeout)
-connections to send several
-requests via one connection and the second is to reuse SSL session
-parameters to avoid SSL handshakes for parallel and subsequent connections.
-The sessions are stored in an SSL session cache shared between workers
-and configured by the
-[](ngx_http_ssl_module.xml#ssl_session_cache)
-directive.
-One megabyte of the cache contains about 4000 sessions.
-The default cache timeout is 5 minutes.
-It can be increased by using the
-[](ngx_http_ssl_module.xml#ssl_session_timeout)
-directive.
-Here is a sample configuration optimized for a multi-core system
-with 10 megabyte shared session cache:
-
+SSL operations consume extra CPU resources. On multi-processor systems several [worker processes](../ngx_core_module.xml#worker_processes) should be run, no less than the number of available CPU cores. The most CPU-intensive operation is the SSL handshake. There are two ways to minimize the number of these operations per client: the first is by enabling [keepalive](ngx_http_core_module.xml#keepalive_timeout) connections to send several requests via one connection and the second is to reuse SSL session parameters to avoid SSL handshakes for parallel and subsequent connections. The sessions are stored in an SSL session cache shared between workers and configured by the [ssl_session_cache](ngx_http_ssl_module.xml#ssl_session_cache) directive. One megabyte of the cache contains about 4000 sessions. The default cache timeout is 5 minutes. It can be increased by using the [ssl_session_timeout](ngx_http_ssl_module.xml#ssl_session_timeout) directive. Here is a sample configuration optimized for a multi-core system with 10 megabyte shared session cache:
 
 ```
 worker_processes auto;
@@ -104,29 +53,15 @@ http {
         ...
 ```
 
-## SSL certificate chains {#chains}
+# SSL certificate chains {#chains}
 
-Some browsers may complain about a certificate signed by a well-known
-certificate authority, while other browsers may accept the certificate
-without issues.
-This occurs because the issuing authority has signed the server certificate
-using an intermediate certificate that is not present in the certificate
-base of well-known trusted certificate authorities which is distributed
-with a particular browser.
-In this case the authority provides a bundle of chained certificates
-which should be concatenated to the signed server certificate.
-The server certificate must appear before the chained certificates
-in the combined file:
-
+Some browsers may complain about a certificate signed by a well-known certificate authority, while other browsers may accept the certificate without issues. This occurs because the issuing authority has signed the server certificate using an intermediate certificate that is not present in the certificate base of well-known trusted certificate authorities which is distributed with a particular browser. In this case the authority provides a bundle of chained certificates which should be concatenated to the signed server certificate. The server certificate must appear before the chained certificates in the combined file:
 
 ```
 $ cat www.example.com.crt bundle.crt > www.example.com.chained.crt
 ```
 
-
-The resulting file should be used in the
-[](ngx_http_ssl_module.xml#ssl_certificate) directive:
-
+The resulting file should be used in the [ssl_certificate](ngx_http_ssl_module.xml#ssl_certificate) directive:
 
 ```
 server {
@@ -138,27 +73,16 @@ server {
 }
 ```
 
-
-If the server certificate and the bundle have been concatenated in the wrong
-order, nginx will fail to start and will display the error message:
-
+If the server certificate and the bundle have been concatenated in the wrong order, nginx will fail to start and will display the error message:
 
 ```
 SSL_CTX_use_PrivateKey_file(" ... /www.example.com.key") failed
    (SSL: error:05800074:x509 certificate routines::key values mismatch)
 ```
 
+because nginx has tried to use the private key with the bundle’s first certificate instead of the server certificate.
 
-because nginx has tried to use the private key with the bundle’s
-first certificate instead of the server certificate.
-
-Browsers usually store intermediate certificates which they receive
-and which are signed by trusted authorities, so actively used browsers
-may already have the required intermediate certificates and
-may not complain about a certificate sent without a chained bundle.
-To ensure the server sends the complete certificate chain,
-the `openssl` command-line utility may be used, for example:
-
+Browsers usually store intermediate certificates which they receive and which are signed by trusted authorities, so actively used browsers may already have the required intermediate certificates and may not complain about a certificate sent without a chained bundle. To ensure the server sends the complete certificate chain, the `openssl` command-line utility may be used, for example:
 
 ```
 $ openssl s_client -connect www.godaddy.com:443
@@ -186,23 +110,13 @@ Certificate chain
 ...
 ```
 
+In this example the subject (“ *s* ”) of the `www.GoDaddy.com` server certificate #0 is signed by an issuer (“ *i* ”) which itself is the subject of the certificate #1, which is signed by an issuer which itself is the subject of the certificate #2, which signed by the well-known issuer *ValiCert, Inc.* whose certificate is stored in the browsers’ built-in certificate base (that lay in the house that Jack built).
 
-In this example the subject (“*s*”) of the
-`www.GoDaddy.com` server certificate #0 is signed by an issuer
-(“*i*”) which itself is the subject of the certificate #1,
-which is signed by an issuer which itself is the subject of the certificate #2,
-which signed by the well-known issuer *ValiCert, Inc.*
-whose certificate is stored in the browsers’ built-in
-certificate base (that lay in the house that Jack built).
+If a certificate bundle has not been added, only the server certificate #0 will be shown.
 
-If a certificate bundle has not been added, only the server certificate #0
-will be shown.
+# A single HTTP/HTTPS server {#single_http_https_server}
 
-## A single HTTP/HTTPS server {#single_http_https_server}
-
-It is possible to configure a single server that handles both HTTP
-and HTTPS requests:
-
+It is possible to configure a single server that handles both HTTP and HTTPS requests:
 
 ```
 server {
@@ -215,26 +129,19 @@ server {
 }
 ```
 
-
-
 > **Note:** Prior to 0.7.14 SSL could not be enabled selectively for
 individual listening sockets, as shown above.
-SSL could only be enabled for the entire server using the
-[](ngx_http_ssl_module.xml#ssl) directive,
+SSL could only be enabled for the entire server using the [ssl](ngx_http_ssl_module.xml#ssl) directive,
 making it impossible to set up a single HTTP/HTTPS server.
-The `ssl` parameter of the
-[](ngx_http_core_module.xml#listen) directive
+The `ssl` parameter of the [listen](ngx_http_core_module.xml#listen) directive
 was added to solve this issue.
-The use of the
-[](ngx_http_ssl_module.xml#ssl) directive
+The use of the [ssl](ngx_http_ssl_module.xml#ssl) directive
 in modern versions is thus discouraged;
 it was removed in 1.25.1.
 
-## Name-based HTTPS servers {#name_based_https_servers}
+# Name-based HTTPS servers {#name_based_https_servers}
 
-A common issue arises when configuring two or more HTTPS servers
-listening on a single IP address:
-
+A common issue arises when configuring two or more HTTPS servers listening on a single IP address:
 
 ```
 server {
@@ -252,17 +159,9 @@ server {
 }
 ```
 
+With this configuration a browser receives the default server’s certificate, i.e. `www.example.com` regardless of the requested server name. This is caused by SSL protocol behaviour. The SSL connection is established before the browser sends an HTTP request and nginx does not know the name of the requested server. Therefore, it may only offer the default server’s certificate.
 
-With this configuration a browser receives the default server’s certificate,
-i.e. `www.example.com` regardless of the requested server name.
-This is caused by SSL protocol behaviour.
-The SSL connection is established before the browser sends an HTTP request
-and nginx does not know the name of the requested server.
-Therefore, it may only offer the default server’s certificate.
-
-The oldest and most robust method to resolve the issue
-is to assign a separate IP address for every HTTPS server:
-
+The oldest and most robust method to resolve the issue is to assign a separate IP address for every HTTPS server:
 
 ```
 server {
@@ -280,31 +179,13 @@ server {
 }
 ```
 
-### An SSL certificate with several names {#certificate_with_several_names}
+## An SSL certificate with several names {#certificate_with_several_names}
 
-There are other ways that allow sharing a single IP address
-between several HTTPS servers.
-However, all of them have their drawbacks.
-One way is to use a certificate with several names in
-the SubjectAltName certificate field, for example,
-`www.example.com` and `www.example.org`.
-However, the SubjectAltName field length is limited.
+There are other ways that allow sharing a single IP address between several HTTPS servers. However, all of them have their drawbacks. One way is to use a certificate with several names in the SubjectAltName certificate field, for example, `www.example.com` and `www.example.org` . However, the SubjectAltName field length is limited.
 
-Another way is to use a certificate with a wildcard name, for example,
-`*.example.org`.
-A wildcard certificate secures all subdomains of the specified domain,
-but only on one level.
-This certificate matches `www.example.org`, but does not match
-`example.org` and `www.sub.example.org`.
-These two methods can also be combined.
-A certificate may contain exact and wildcard names in the
-SubjectAltName field, for example,
-`example.org` and `*.example.org`.
+Another way is to use a certificate with a wildcard name, for example, `*.example.org` . A wildcard certificate secures all subdomains of the specified domain, but only on one level. This certificate matches `www.example.org` , but does not match `example.org` and `www.sub.example.org` . These two methods can also be combined. A certificate may contain exact and wildcard names in the SubjectAltName field, for example, `example.org` and `*.example.org` .
 
-It is better to place a certificate file with several names and
-its private key file at the *http* level of configuration
-to inherit their single memory copy in all servers:
-
+It is better to place a certificate file with several names and its private key file at the *http* level of configuration to inherit their single memory copy in all servers:
 
 ```
 ssl_certificate     common.crt;
@@ -323,35 +204,16 @@ server {
 }
 ```
 
-### Server Name Indication {#sni}
+## Server Name Indication {#sni}
 
-A more generic solution for running several HTTPS servers on a single
-IP address is
-[TLS
-Server Name Indication extension](http://en.wikipedia.org/wiki/Server_Name_Indication) (SNI, RFC 6066),
-which allows a browser to pass a requested server name during the SSL handshake
-and, therefore, the server will know which certificate it should use
-for the connection.
-SNI is currently
-[supported](http://en.wikipedia.org/wiki/Server_Name_Indication#Support)
-by most modern browsers
-and is a mandatory-to-implement extension in TLSv1.3,
-though may not be used by some old or special clients.
+A more generic solution for running several HTTPS servers on a single IP address is [TLS Server Name Indication extension](http://en.wikipedia.org/wiki/Server_Name_Indication) (SNI, RFC 6066), which allows a browser to pass a requested server name during the SSL handshake and, therefore, the server will know which certificate it should use for the connection. SNI is currently [supported](http://en.wikipedia.org/wiki/Server_Name_Indication#Support) by most modern browsers and is a mandatory-to-implement extension in TLSv1.3, though may not be used by some old or special clients.
 
 > **Note:** Only domain names can be passed in SNI,
 however some browsers may erroneously pass an IP address of the server
 as its name if a request includes literal IP address.
 One should not rely on this.
 
-In order to use SNI in nginx, it must be supported in both the
-OpenSSL library with which the nginx binary has been built as well as
-the library to which it is being dynamically linked at run time.
-OpenSSL supports SNI since 0.9.8f version if it was built with config option
-“--enable-tlsext”.
-Since OpenSSL 0.9.8j this option is enabled by default.
-If nginx was built with SNI support, then nginx will show this
-when run with the “-V” switch:
-
+In order to use SNI in nginx, it must be supported in both the OpenSSL library with which the nginx binary has been built as well as the library to which it is being dynamically linked at run time. OpenSSL supports SNI since 0.9.8f version if it was built with config option “--enable-tlsext”. Since OpenSSL 0.9.8j this option is enabled by default. If nginx was built with SNI support, then nginx will show this when run with the “-V” switch:
 
 ```
 $ nginx -V
@@ -360,10 +222,7 @@ TLS SNI support enabled
 ...
 ```
 
-
-However, if the SNI-enabled nginx is linked dynamically to
-an OpenSSL library without SNI support, nginx displays the warning:
-
+However, if the SNI-enabled nginx is linked dynamically to an OpenSSL library without SNI support, nginx displays the warning:
 
 ```
 nginx was built with SNI support, however, now it is linked
@@ -371,15 +230,12 @@ dynamically to an OpenSSL library which has no tlsext support,
 therefore SNI is not available
 ```
 
-## Compatibility {#compatibility}
+# Compatibility {#compatibility}
 
 - The SNI support status has been shown by the “-V” switch
 since 0.8.21 and 0.7.62.
-- The `ssl` parameter of the
-[](ngx_http_core_module.xml#listen)
-directive has been supported since 0.7.14.
-Prior to 0.8.21 it could only be specified along with the
-`default` parameter.
+- The `ssl` parameter of the [listen](ngx_http_core_module.xml#listen) directive has been supported since 0.7.14.
+Prior to 0.8.21 it could only be specified along with the `default` parameter.
 - SNI has been supported since 0.5.23.
 - The shared SSL session cache has been supported since 0.5.6.
 
@@ -397,11 +253,10 @@ TLSv1.1, and TLSv1.2 (if supported by the OpenSSL library).
 SSLv3, and TLSv1.
 
 - Version 1.0.5 and later: the default SSL ciphers are
-“`HIGH:!aNULL:!MD5`”.
+“ `HIGH:!aNULL:!MD5` ”.
 - Version 0.7.65, 0.8.20 and later: the default SSL ciphers are
-“`HIGH:!ADH:!MD5`”.
+“ `HIGH:!ADH:!MD5` ”.
 - Version 0.8.19: the default SSL ciphers are
-“`ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM`”.
-- Version 0.7.64, 0.8.18 and earlier: the default SSL ciphers are  
+“ `ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM` ”.
+- Version 0.7.64, 0.8.18 and earlier: the default SSL ciphers are “ `ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP` ”.
 
-“`ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP`”.

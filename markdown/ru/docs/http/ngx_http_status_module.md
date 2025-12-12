@@ -3,18 +3,12 @@
 **Revision:** 19  
 **Language:** ru
 
+Модуль `ngx_http_status_module` предоставляет доступ к информации о состоянии сервера.
 
-Модуль `ngx_http_status_module` предоставляет
-доступ к информации о состоянии сервера.
+> **Note:** Этот модуль был доступен как часть [коммерческой подписки](https://nginx.com/products/) до версии 1.13.10.
+Модуль был заменён модулем [ngx_http_api_module](ngx_http_api_module.xml) в версии 1.13.3.
 
-> **Note:** Этот модуль был доступен как часть
-коммерческой подписки
-до версии 1.13.10.
-Модуль был заменён модулем
-[ngx_http_api_module](ngx_http_api_module.html)
-в версии 1.13.3.
-
-## Пример конфигурации {#example}
+# Пример конфигурации {#example}
 
 ```
 http {
@@ -73,8 +67,7 @@ stream {
 }
 ```
 
-Примеры запросов информации о состоянии,
-возможные с данной конфигурацией:
+Примеры запросов информации о состоянии, возможные с данной конфигурацией:
 
 ```
 http://127.0.0.1/status
@@ -91,520 +84,505 @@ http://127.0.0.1/status/stream/upstreams/backend/peers/1
 http://127.0.0.1/status/stream/upstreams/backend/peers/1/weight
 ```
 
-В составе дистрибутива nginx имеется простая страница мониторинга, доступная
-по запросу “`/status.html`” в стандартной конфигурации.
-Для работы этой страницы требуется настроить location
-“`/status`” и location “`/status.html`”
-как показано выше.
+В составе дистрибутива nginx имеется простая страница мониторинга, доступная по запросу “ `/status.html` ” в стандартной конфигурации. Для работы этой страницы требуется настроить location “ `/status` ” и location “ `/status.html` ” как показано выше.
 
-## Директивы {#directives}
+# Директивы {#directives}
 
+## status
 
+```
+Syntax:  
+Default: 
+Context: location
+```
 
+Информация о состоянии будет доступна из содержащего location. Доступ в location следует [ограничить](ngx_http_core_module.xml#satisfy) .
 
-location
+## status_format
 
-
-Информация о состоянии будет доступна из содержащего location.
-Доступ в location следует
-ограничить.
-
-
-
-
-json
-jsonp [callback]
-json
-http
-server
-location
-
+```
+Syntax:  jsonp [callback]
+Default: json
+Context: location, http, server
+```
 
 По умолчанию информация выводится в формате JSON.
 
+Также данные могут выводиться в формате JSONP. Параметр `callback` задаёт имя callback-функции. В значении параметра можно использовать переменные. Если параметр не задан или вычисленное значение является пустой строкой, используется имя “ `ngx_status_jsonp_callback` ”.
 
+## status_zone
 
-Также данные могут выводиться в формате JSONP.
-Параметр callback задаёт имя callback-функции.
-В значении параметра можно использовать переменные.
-Если параметр не задан или вычисленное значение является пустой строкой,
-используется имя “ngx_status_jsonp_callback”.
+```
+Syntax:  зона
+Default: 
+Context: server
+```
 
+Включает сбор информации о состоянии виртуального сервера группы [http](ngx_http_core_module.xml#server) или [stream](../stream/ngx_stream_core_module.xml#server) (1.7.11) в указанной `зоне` . В одной и той же зоне может одновременно собираться информация сразу по нескольким серверам.
 
-
-
-зона
-
-server
-
-
-Включает сбор информации о состоянии виртуального сервера группы
-http
-или
-stream
-(1.7.11) в указанной зоне.
-В одной и той же зоне может одновременно собираться информация
-сразу по нескольким серверам.
-
-
-
-## Данные {#data}
+# Данные {#data}
 
 Доступна следующая информация:
 
 **`version`**  
   Версия предоставляемого набора данных.
 Текущей является версия 8.
+
 **`nginx_version`**  
   Версия nginx.
+
 **`nginx_build`**  
   Название сборки nginx.
+
 **`address`**  
   Адрес сервера, принявшего запрос на получение информации о состоянии.
+
 **`generation`**  
-  Суммарное число
-[перезагрузок](../control.xml#reconfiguration)
-конфигурации.
+  Суммарное число [перезагрузок](../control.xml#reconfiguration) конфигурации.
+
 **`load_timestamp`**  
   Время последней перезагрузки конфигурации, в миллисекундах с начала эпохи.
+
 **`timestamp`**  
   Текущее время в миллисекундах с начала эпохи.
+
 **`pid`**  
   Идентификатор рабочего процесса,
 обработавшего запрос на получение информации о состоянии.
+
 **`ppid`**  
   Идентификатор главного процесса,
-запустившего рабочий процесс.
+запустившего [рабочий процесс](#pid) .
+
 **`processes`**  
-  **`respawned`**  
+**`respawned`**  
   Суммарное число перезапусков аварийно завершённых
 дочерних процессов.
+
 **`connections`**  
-  **`accepted`**  
+**`accepted`**  
   Суммарное число принятых клиентских соединений.
+
 **`dropped`**  
   Суммарное число отвергнутых клиентских соединений.
+
 **`active`**  
   Текущее число активных клиентских соединений.
+
 **`idle`**  
   Текущее число бездействующих клиентских соединений.
+
 **`ssl`**  
-  **`handshakes`**  
+**`handshakes`**  
   Суммарное число успешных операций SSL handshake.
+
 **`handshakes_failed`**  
   Суммарное число неуспешных операций SSL handshake.
+
 **`session_reuses`**  
   Суммарное число повторных использований SSL-сессий
 во время операций SSL handshake.
+
 **`requests`**  
-  **`total`**  
+**`total`**  
   Суммарное число клиентских запросов.
+
 **`current`**  
   Текущее число клиентских запросов.
+
 **`server_zones`**  
-  Для каждой :
+  Для каждой [status_zone](#status_zone) :
 
 **`processing`**  
   Число обрабатываемых в настоящий момент
 клиентских запросов.
+
 **`requests`**  
   Суммарное число
 запросов, полученных от клиентов.
+
 **`responses`**  
-  **`total`**  
+**`total`**  
   Суммарное число
 ответов, отправленных клиентам.
-**`1xx`,
-`2xx`,
-`3xx`,
-`4xx`,
-`5xx`**  
+
+**`1xx` , `2xx` , `3xx` , `4xx` , `5xx`**  
   Число ответов со статусами 1xx, 2xx, 3xx, 4xx и 5xx.
+
 **`discarded`**  
   Суммарное число запросов, завершившихся без отправки ответа.
+
 **`received`**  
   Суммарное число байт, полученных от клиентов.
+
 **`sent`**  
   Суммарное число байт, отправленных клиентам.
+
 **`slabs`**  
   Для каждой зоны разделяемой памяти, в которой используется распределение slab:
 
 **`pages`**  
-  **`used`**  
+**`used`**  
   Текущее число занятых страниц памяти.
+
 **`free`**  
   Текущее число свободных страниц памяти.
+
 **`slots`**  
   Для каждого размера слота памяти (8, 16, 32, 64, 128 и т.д.)
 доступны следующие данные:
 
 **`used`**  
   Текущее число занятых слотов памяти.
+
 **`free`**  
   Текущее число свободных слотов памяти.
+
 **`reqs`**  
   Суммарное число попыток выделения памяти указанного размера.
+
 **`fails`**  
   Число неудачных попыток выделения памяти указанного размера.
+
 **`upstreams`**  
-  Для каждой
-[динамически
-настраиваемой](ngx_http_upstream_module.xml#zone)
-[группы](ngx_http_upstream_module.xml#upstream)
-доступны следующие данные:
+  Для каждой [динамически
+настраиваемой](ngx_http_upstream_module.xml#zone) [группы](ngx_http_upstream_module.xml#upstream) доступны следующие данные:
 
 **`peers`**  
-  Для каждого
-[сервера](ngx_http_upstream_module.xml#server)
-доступны следующие данные:
+  Для каждого [сервера](ngx_http_upstream_module.xml#server) доступны следующие данные:
 
 **`id`**  
   Идентификатор сервера.
+
 **`server`**  
-  [Адрес](ngx_http_upstream_module.xml#server)
-сервера.
+  [Адрес](ngx_http_upstream_module.xml#server) сервера.
+
 **`name`**  
-  Имя сервера, указанное в директиве
-[](ngx_http_upstream_module.xml#server).
+  Имя сервера, указанное в директиве [server](ngx_http_upstream_module.xml#server) .
+
 **`service`**  
-  Значение параметра
-[](ngx_http_upstream_module.xml#service)
-директивы [](ngx_http_upstream_module.xml#server).
+  Значение параметра [service](ngx_http_upstream_module.xml#service) директивы [server](ngx_http_upstream_module.xml#server) .
+
 **`backup`**  
-  Логическое значение, означающее, является ли сервер
-[запасным](ngx_http_upstream_module.xml#backup).
+  Логическое значение, означающее, является ли сервер [запасным](ngx_http_upstream_module.xml#backup) .
+
 **`weight`**  
-  [Вес](ngx_http_upstream_module.xml#weight)
-сервера.
+  [Вес](ngx_http_upstream_module.xml#weight) сервера.
+
 **`state`**  
   Текущее состояние, которое может быть одним из
-“`up`”,
-“`draining`”,
-“`down`”,
-“`unavail`”,
-“`checking`”
+“ `up` ”,
+“ `draining` ”,
+“ `down` ”,
+“ `unavail` ”,
+“ `checking` ”
 или
-“`unhealthy`”.
+“ `unhealthy` ”.
+
 **`active`**  
   Текущее число активных соединений.
+
 **`max_conns`**  
-  Ограничение [](ngx_http_upstream_module.xml#max_conns)
-для сервера.
+  Ограничение [max_conns](ngx_http_upstream_module.xml#max_conns) для сервера.
+
 **`requests`**  
   Суммарное число
 клиентских запросов, перенаправленных на этот сервер.
+
 **`responses`**  
-  **`total`**  
+**`total`**  
   Суммарное число
 ответов, полученных от этого сервера.
-**`1xx`,
-`2xx`,
-`3xx`,
-`4xx`,
-`5xx`**  
+
+**`1xx` , `2xx` , `3xx` , `4xx` , `5xx`**  
   Число ответов со статусами 1xx, 2xx, 3xx, 4xx и 5xx.
+
 **`sent`**  
   Суммарное число байт, отправленных на этот сервер.
+
 **`received`**  
   Суммарное число байт, полученных с этого сервера.
+
 **`fails`**  
   Суммарное число
 неудачных попыток работы с этим сервером.
+
 **`unavail`**  
   Количество раз, когда
 сервер становился недоступным для клиентских запросов
-(состояние “`unavail`”)
-из-за достижения порогового числа неудачных попыток
-[](ngx_http_upstream_module.xml#max_fails).
+(состояние “ `unavail` ”)
+из-за достижения порогового числа неудачных попыток [max_fails](ngx_http_upstream_module.xml#max_fails) .
+
 **`health_checks`**  
-  **`checks`**  
-  Суммарное число запросов
-[проверки
-работоспособности](ngx_http_upstream_hc_module.xml#health_check).
+**`checks`**  
+  Суммарное число запросов [проверки
+работоспособности](ngx_http_upstream_hc_module.xml#health_check) .
+
 **`fails`**  
   Число неудачных проверок работоспособности.
+
 **`unhealthy`**  
   Количество раз, когда
-сервер становился неработоспособным (состояние “`unhealthy`”).
+сервер становился неработоспособным (состояние “ `unhealthy` ”).
+
 **`last_passed`**  
   Логическое значение, означающее, была ли последняя проверка
-работоспособности удачной и удовлетворял ли ответ заданным
-[тестам](ngx_http_upstream_hc_module.xml#match).
+работоспособности удачной и удовлетворял ли ответ заданным [тестам](ngx_http_upstream_hc_module.xml#match) .
+
 **`downtime`**  
   Суммарное время,
-когда сервер находился в состояниях “`unavail`”,
-“`checking`” и “`unhealthy`”.
+когда сервер находился в состояниях “ `unavail` ”,
+“ `checking` ” и “ `unhealthy` ”.
+
 **`downstart`**  
   Время (в миллисекундах с начала эпохи),
 когда сервер стал
-“`unavail`”,
-“`checking`” или “`unhealthy`”.
+“ `unavail` ”,
+“ `checking` ” или “ `unhealthy` ”.
+
 **`selected`**  
   Время (в миллисекундах с начала эпохи),
 когда сервер в последний раз был выбран для обработки запроса (1.7.5).
+
 **`header_time`**  
-  Среднее время получения
-[заголовка
+  Среднее время получения [заголовка
 ответа](ngx_http_upstream_module.xml#var_upstream_header_time) от сервера (1.7.10).
 До версии 1.11.6
-поле было доступно только при использовании метода балансировки
-[](ngx_http_upstream_module.xml#least_time).
+поле было доступно только при использовании метода балансировки [least_time](ngx_http_upstream_module.xml#least_time) .
+
 **`response_time`**  
-  Среднее время получения
-[всего
+  Среднее время получения [всего
 ответа](ngx_http_upstream_module.xml#var_upstream_response_time) от сервера (1.7.10).
 До версии 1.11.6
-поле было доступно только при использовании метода балансировки
-[](ngx_http_upstream_module.xml#least_time).
+поле было доступно только при использовании метода балансировки [least_time](ngx_http_upstream_module.xml#least_time) .
+
 **`keepalive`**  
-  Текущее число бездействующих
-[](ngx_http_upstream_module.xml#keepalive)-соединений.
+  Текущее число бездействующих [keepalive](ngx_http_upstream_module.xml#keepalive) -соединений.
+
 **`zombies`**  
   Текущее число серверов, удалённых
 из группы, но всё ещё обрабатывающих активные клиентские запросы.
+
 **`zone`**  
-  Имя [зоны](ngx_http_upstream_module.xml#zone)
-разделяемой памяти,
+  Имя [зоны](ngx_http_upstream_module.xml#zone) разделяемой памяти,
 в которой хранятся конфигурация группы и её рабочее состояние.
+
 **`queue`**  
   Для [очереди](ngx_http_upstream_module.xml#queue) запросов
 доступны следующие данные:
 
 **`size`**  
   Текущее число запросов в очереди.
+
 **`max_size`**  
   Максимальное число запросов, которые могут одновременно находиться в очереди.
+
 **`overflows`**  
   Суммарное число запросов, отклонённых из-за переполнения очереди.
+
 **`caches`**  
-  Для каждого кэша, сконфигурированного при помощи
-[](ngx_http_proxy_module.xml#proxy_cache_path)
-и аналогичных директив:
+  Для каждого кэша, сконфигурированного при помощи [proxy_cache_path](ngx_http_proxy_module.xml#proxy_cache_path) и аналогичных директив:
 
 **`size`**  
   Текущий размер кэша.
+
 **`max_size`**  
   Ограничение на максимальный размер кэша, заданное в конфигурации.
+
 **`cold`**  
   Логическое значение, указывающее, продолжается ли загрузка
 данных процессом “cache loader” с диска в кэш.
-**`hit`,
-    `stale`,
-    `updating`,
-    `revalidated`**  
-  **`responses`**  
+
+**`hit` , `stale` , `updating` , `revalidated`**  
+**`responses`**  
   Суммарное число ответов, прочитанных из кэша (попадания в кэш
-или просроченные ответы вследствие
-[](ngx_http_proxy_module.xml#proxy_cache_use_stale)
-и аналогичных директив).
+или просроченные ответы вследствие [proxy_cache_use_stale](ngx_http_proxy_module.xml#proxy_cache_use_stale) и аналогичных директив).
+
 **`bytes`**  
   Суммарное число байт, прочитанных из кэша.
-**`miss`,
-    `expired`,
-    `bypass`**  
-  **`responses`**  
-  Суммарное число ответов, взятых не из кэша (`miss` —
-отсутствие данных в кэше, `expired` — просроченные ответы,
-`bypass` — ответ не был взят из кэша
-вследствие [](ngx_http_proxy_module.xml#proxy_cache_bypass)
-и аналогичных директив).
+
+**`miss` , `expired` , `bypass`**  
+**`responses`**  
+  Суммарное число ответов, взятых не из кэша ( `miss` —
+отсутствие данных в кэше, `expired` — просроченные ответы, `bypass` — ответ не был взят из кэша
+вследствие [proxy_cache_bypass](ngx_http_proxy_module.xml#proxy_cache_bypass) и аналогичных директив).
+
 **`bytes`**  
   Суммарное число байт, прочитанных с проксируемого сервера.
+
 **`responses_written`**  
   Суммарное число ответов, записанных в кэш.
+
 **`bytes_written`**  
   Суммарное число байт, записанных в кэш.
+
 **`stream`**  
-  **`server_zones`**  
-  Для каждой :
+**`server_zones`**  
+  Для каждой [status_zone](#status_zone) :
 
 **`processing`**  
   Число обрабатываемых в настоящий момент
 клиентских соединений.
+
 **`connections`**  
   Суммарное число
 соединений, полученных от клиентов.
+
 **`sessions`**  
-  **`total`**  
+**`total`**  
   Суммарное число завершённых клиентских сессий.
-**`2xx`,
-`4xx`,
-`5xx`**  
-  Число завершённых сессий со
-[статусами](../stream/ngx_stream_core_module.xml#var_status)
-2xx, 4xx или 5xx.
+
+**`2xx` , `4xx` , `5xx`**  
+  Число завершённых сессий со [статусами](../stream/ngx_stream_core_module.xml#var_status) 2xx, 4xx или 5xx.
+
 **`discarded`**  
   Суммарное число соединений, завершённых без создания сессии.
+
 **`received`**  
   Суммарное число байт, полученных от клиентов.
+
 **`sent`**  
   Суммарное число байт, отправленных клиентам.
+
 **`upstreams`**  
-  Для каждого
-[сервера](../stream/ngx_stream_upstream_module.xml#server)
-в
-[динамически
-настраиваемой](../stream/ngx_stream_upstream_module.xml#zone)
-[группе](../stream/ngx_stream_upstream_module.xml#upstream)
-доступны следующие данные:
+  Для каждого [сервера](../stream/ngx_stream_upstream_module.xml#server) в [динамически
+настраиваемой](../stream/ngx_stream_upstream_module.xml#zone) [группе](../stream/ngx_stream_upstream_module.xml#upstream) доступны следующие данные:
 
 **`id`**  
   Идентификатор сервера.
+
 **`server`**  
-  [Адрес](../stream/ngx_stream_upstream_module.xml#server)
-сервера.
+  [Адрес](../stream/ngx_stream_upstream_module.xml#server) сервера.
+
 **`name`**  
-  Имя сервера, указанное в директиве
-[](../stream/ngx_stream_upstream_module.xml#server).
+  Имя сервера, указанное в директиве [server](../stream/ngx_stream_upstream_module.xml#server) .
+
 **`service`**  
-  Значение параметра
-[](ngx_http_upstream_module.xml#service)
-директивы [](ngx_http_upstream_module.xml#server).
+  Значение параметра [service](ngx_http_upstream_module.xml#service) директивы [server](ngx_http_upstream_module.xml#server) .
+
 **`backup`**  
-  Логическое значение, означающее, является ли сервер
-[запасным](../stream/ngx_stream_upstream_module.xml#backup).
+  Логическое значение, означающее, является ли сервер [запасным](../stream/ngx_stream_upstream_module.xml#backup) .
+
 **`weight`**  
-  [Вес](../stream/ngx_stream_upstream_module.xml#weight)
-сервера.
+  [Вес](../stream/ngx_stream_upstream_module.xml#weight) сервера.
+
 **`state`**  
   Текущее состояние, которое может быть одним из
-“`up`”,
-“`down`”,
-“`unavail`”,
-“`checking`”
+“ `up` ”,
+“ `down` ”,
+“ `unavail` ”,
+“ `checking` ”
 или
-“`unhealthy`”.
+“ `unhealthy` ”.
+
 **`active`**  
   Текущее число соединений.
+
 **`max_conns`**  
-  Ограничение
-[](../stream/ngx_stream_upstream_module.xml#max_conns)
-для сервера.
+  Ограничение [max_conns](../stream/ngx_stream_upstream_module.xml#max_conns) для сервера.
+
 **`connections`**  
   Суммарное число
 клиентских соединений, перенаправленных на этот сервер.
+
 **`connect_time`**  
   Среднее время установки соединения с сервером группы.
 До версии 1.11.6
-поле было доступно только при использовании метода балансировки
-[](../stream/ngx_stream_upstream_module.xml#least_time).
+поле было доступно только при использовании метода балансировки [least_time](../stream/ngx_stream_upstream_module.xml#least_time) .
+
 **`first_byte_time`**  
   Среднее время получения первого байта данных.
 До версии 1.11.6
-поле было доступно только при использовании метода балансировки
-[](../stream/ngx_stream_upstream_module.xml#least_time).
+поле было доступно только при использовании метода балансировки [least_time](../stream/ngx_stream_upstream_module.xml#least_time) .
+
 **`response_time`**  
   Среднее время получения последнего байта данных.
 До версии 1.11.6
-поле было доступно только при использовании метода балансировки
-[](../stream/ngx_stream_upstream_module.xml#least_time).
+поле было доступно только при использовании метода балансировки [least_time](../stream/ngx_stream_upstream_module.xml#least_time) .
+
 **`sent`**  
   Суммарное число байт, отправленных на этот сервер.
+
 **`received`**  
   Суммарное число байт, полученных с этого сервера.
+
 **`fails`**  
   Суммарное число
 неудачных попыток работы с этим сервером.
+
 **`unavail`**  
   Количество раз, когда
 сервер становился недоступным для клиентских соединений
-(состояние “`unavail`”)
-из-за достижения порогового числа неудачных попыток
-[](../stream/ngx_stream_upstream_module.xml#max_fails).
+(состояние “ `unavail` ”)
+из-за достижения порогового числа неудачных попыток [max_fails](../stream/ngx_stream_upstream_module.xml#max_fails) .
+
 **`health_checks`**  
-  **`checks`**  
-  Суммарное число запросов
-[проверки
-работоспособности](../stream/ngx_stream_upstream_hc_module.xml#health_check).
+**`checks`**  
+  Суммарное число запросов [проверки
+работоспособности](../stream/ngx_stream_upstream_hc_module.xml#health_check) .
+
 **`fails`**  
   Число неудачных проверок работоспособности.
+
 **`unhealthy`**  
   Количество раз, когда
-сервер становился неработоспособным (состояние “`unhealthy`”).
+сервер становился неработоспособным (состояние “ `unhealthy` ”).
+
 **`last_passed`**  
   Логическое значение, означающее, была ли последняя проверка
-работоспособности удачной и удовлетворял ли ответ заданным
-[тестам](../stream/ngx_stream_upstream_hc_module.xml#match).
+работоспособности удачной и удовлетворял ли ответ заданным [тестам](../stream/ngx_stream_upstream_hc_module.xml#match) .
+
 **`downtime`**  
   Суммарное время,
-когда сервер находился в состояниях “`unavail`”,
-“`checking`” и “`unhealthy`”.
+когда сервер находился в состояниях “ `unavail` ”,
+“ `checking` ” и “ `unhealthy` ”.
+
 **`downstart`**  
   Время (в миллисекундах с начала эпохи),
 когда сервер стал
-“`unavail`”,
-“`checking`” или “`unhealthy`”.
+“ `unavail` ”,
+“ `checking` ” или “ `unhealthy` ”.
+
 **`selected`**  
   Время (в миллисекундах с начала эпохи),
 когда сервер в последний раз был выбран для обработки соединения.
+
 **`zombies`**  
   Текущее число серверов, удалённых
 из группы, но всё ещё обрабатывающих активные клиентские соединения.
+
 **`zone`**  
-  Имя [зоны](../stream/ngx_stream_upstream_module.xml#zone)
-разделяемой памяти,
+  Имя [зоны](../stream/ngx_stream_upstream_module.xml#zone) разделяемой памяти,
 в которой хранятся конфигурация группы и её рабочее состояние.
 
-## Совместимость {#compatibility}
+# Совместимость {#compatibility}
 
-- Поле  в
-http и stream
-upstreams
-было добавлено в версии 8.
-- Поля 
-были добавлены в версии 8.
-- Состояние
-checking
-было добавлено в версии 8.
-- Поля
- и  в
-http и stream
-upstreams
-были добавлены в версии 8.
-- Поля  и 
-были добавлены в версии 8.
-- Поля 
-и поле discarded в
-stream server_zones
-были добавлены в версии 7.
-- Поле 
-было перемещено из [debug](../debugging_log.html)-версии nginx
-в версии 6.
-- Поля 
-были добавлены в версии 6.
-- Поле  в
-
-было добавлено в версии 6.
-- Поля 
-были добавлены в версии 6.
-- Поле 
-было добавлено в версии 6.
-- Список серверов в  был
-перемещён в  в
-версии 6.
+- Поле [zone](#zone) в [http](#upstreams) и [stream](#stream_upstreams) upstreams
+было добавлено в [версии](#version) 8.
+- Поля [slabs](#slabs) были добавлены в [версии](#version) 8.
+- Состояние [checking](#state) было добавлено в [версии](#version) 8.
+- Поля [name](#name) и [service](#service) в [http](#upstreams) и [stream](#stream_upstreams) upstreams
+были добавлены в [версии](#version) 8.
+- Поля [nginx_build](#nginx_build) и [ppid](#ppid) были добавлены в [версии](#version) 8.
+- Поля [sessions](#sessions) и поле [discarded](#stream_discarded) в
+stream [server_zones](#stream_server_zones) были добавлены в [версии](#version) 7.
+- Поле [zombies](#zombies) было перемещено из [debug](../debugging_log.xml) -версии nginx
+в [версии](#version) 6.
+- Поля [ssl](#ssl) были добавлены в [версии](#version) 6.
+- Поле [discarded](#discarded) в [server_zones](#server_zones) было добавлено в [версии](#version) 6.
+- Поля [queue](#queue) были добавлены в [версии](#version) 6.
+- Поле [pid](#pid) было добавлено в [версии](#version) 6.
+- Список серверов в [upstreams](#upstreams) был
+перемещён в [peers](#peers) в [версии](#version) 6.
 - Поле `keepalive` сервера группы
-было удалено в версии 5.
-- stream
-был добавлен в версии 5.
-- Поле 
-было добавлено в версии 5.
-- Поле  в
+было удалено в [версии](#version) 5.
+- [stream](#stream) был добавлен в [версии](#version) 5.
+- Поле [generation](#generation) было добавлено в [версии](#version) 5.
+- Поле [respawned](#respawned) в [processes](#processes) было добавлено в [версии](#version) 5.
+- Поля [header_time](#header_time) и [response_time](#response_time) в [upstreams](#upstreams) были добавлены в [версии](#version) 5.
+- Поле [selected](#selected) в [upstreams](#upstreams) было добавлено в [версии](#version) 4.
+- Состояние [draining](#state) в [upstreams](#upstreams) было добавлено в [версии](#version) 4.
+- Поля [id](#id) и [max_conns](#max_conns) в [upstreams](#upstreams) были добавлены в [версии](#version) 3.
+- Поле `revalidated` в [caches](#caches) было добавлено в [версии](#version) 3.
+- [server_zones](#server_zones) , [caches](#caches) и [load_timestamp](#load_timestamp) были добавлены в [версии](#version) 2.
 
-было добавлено в версии 5.
-- Поля  и  в
-
-были добавлены в версии 5.
-- Поле  в
-
-было добавлено в версии 4.
-- Состояние draining в
-
-было добавлено в версии 4.
-- Поля  и  в
-
-были добавлены в версии 3.
-- Поле `revalidated` в 
-было добавлено в версии 3.
-- , 
-и 
-были добавлены в версии 2.

@@ -3,17 +3,7 @@
 **Revision:** 4  
 **Language:** ru
 
-
-Создание и отладка njs-скриптов может осуществляться
-в командной строке.
-Утилита командной строки доступна после установки
-[пакета](install.xml#install_package) Linux
-или после сборки из
-[исходных файлов](install.xml#install_sources).
-В отличие от njs, запущенном внутри nginx,
-в утилите недоступны объекты nginx
-([HTTP](reference.xml#http) и
-[Stream](reference.xml#stream)).
+Создание и отладка njs-скриптов может осуществляться в командной строке. Утилита командной строки доступна после установки [пакета](install.xml#install_package) Linux или после сборки из [исходных файлов](install.xml#install_sources) . В отличие от njs, запущенном внутри nginx, в утилите недоступны объекты nginx ( [HTTP](reference.xml#http) и [Stream](reference.xml#stream) ).
 
 ```
 $ echo "2**3" | njs -q
@@ -50,3 +40,4 @@ global {
 }
 >>
 ```
+

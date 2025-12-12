@@ -3,17 +3,13 @@
 **Revision:** 4  
 **Language:** en
 
+# Mainline version
 
-## Mainline version
+# Stable version
 
+# Legacy versions
 
-## Stable version
-
-
-## Legacy versions
-
-
-## Source Code
+# Source Code
 
 GitHub repositories:
 
@@ -25,7 +21,7 @@ Mercurial mirrors:
 - code: `http://hg.nginx.org/nginx`
 - website: `http://hg.nginx.org/nginx.org`
 
-## Pre-Built Packages
+# Pre-Built Packages
 
-Linux packages for
-[stable and mainline](linux_packages.html) versions.
+Linux packages for [stable and mainline](linux_packages.xml) versions.
+

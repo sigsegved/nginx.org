@@ -4,22 +4,16 @@
 **Translator:** מבזקים.נט  
 **Language:** he
 
+# הפנייה לאתר ראשי
 
-## הפנייה לאתר ראשי
-
-משתמשים שבמהלך חיי האירוח המשותף נהגו להגדיר *הכל* באמצעות
-שימוש *רק* בקובצי htaccess. של Apache, יתרגמו בדרך כלל את
-הכללים הבאים:
-
+משתמשים שבמהלך חיי האירוח המשותף נהגו להגדיר *הכל* באמצעות שימוש *רק* בקובצי htaccess. של Apache, יתרגמו בדרך כלל את הכללים הבאים:
 
 ```
 RewriteCond  %{HTTP_HOST}  example.org
 RewriteRule  (.*)          http://www.example.org$1
 ```
 
-
 למשהו כזה:
-
 
 ```
 server {
@@ -32,9 +26,7 @@ server {
 }
 ```
 
-צורה זו היא שגוייה, מסובכת, ולא יעילה.
-הדרך הנכונה היא להגדיר שרת נפרד עבור `example.org`:
-
+צורה זו היא שגוייה, מסובכת, ולא יעילה. הדרך הנכונה היא להגדיר שרת נפרד עבור `example.org` :
 
 ```
 server {
@@ -50,9 +42,7 @@ server {
 }
 ```
 
-דוגמה נוספת, במקום הגיון הפוך: כל מה שהוא לא
-`example.com` וגם לא `www.example.com`:
-
+דוגמה נוספת, במקום הגיון הפוך: כל מה שהוא לא `example.com` וגם לא `www.example.com` :
 
 ```
 RewriteCond  %{HTTP_HOST}  !example.com
@@ -60,10 +50,7 @@ RewriteCond  %{HTTP_HOST}  !www.example.com
 RewriteRule  (.*)          http://www.example.com$1
 ```
 
-
-עלייך רק להגדיר את `example.com`, `www.example.com`,
-וכל דבר אחר:
-
+עלייך רק להגדיר את `example.com` , `www.example.com` , וכל דבר אחר:
 
 ```
 server {
@@ -79,10 +66,9 @@ server {
 }
 ```
 
-## המרת כללי Mongrel {#converting_mongrel_rules}
+# המרת כללי Mongrel {#converting_mongrel_rules}
 
 כללי Mongrel טיפוסיים:
-
 
 ```
 DocumentRoot /var/www/myapp.com/current/public
@@ -103,9 +89,7 @@ RewriteRule ^(.*)$ $1/index.html [QSA,L]
 RewriteRule ^/(.*)$ balancer://mongrel_cluster%{REQUEST_URI} [P,QSA,L]
 ```
 
-
 יש להמיר כך
-
 
 ```
 location / {
@@ -120,3 +104,4 @@ location @mongrel {
     proxy_pass  http://mongrel;
 }
 ```
+

@@ -3,56 +3,34 @@
 **Revision:** 6  
 **Language:** en
 
-
-To enable a debugging log, nginx needs to be configured to support
-debugging during the build:
-
+To enable a debugging log, nginx needs to be configured to support debugging during the build:
 
 ```
 ./configure --with-debug ...
 ```
 
-
-Then the `debug` level should be set with the
-[](ngx_core_module.xml#error_log) directive:
-
+Then the `debug` level should be set with the [error_log](ngx_core_module.xml#error_log) directive:
 
 ```
 error_log /path/to/log debug;
 ```
 
-
-To verify that nginx is configured to support debugging,
-run the `nginx -V` command:
-
+To verify that nginx is configured to support debugging, run the `nginx -V` command:
 
 ```
 configure arguments: --with-debug ...
 ```
 
-
-Pre-built [Linux](../linux_packages.html) packages
-provide out-of-the-box support for debugging log with
-the `nginx-debug` binary (1.9.8)
-which can be run using commands
-
+Pre-built [Linux](../linux_packages.xml) packages provide out-of-the-box support for debugging log with the `nginx-debug` binary (1.9.8) which can be run using commands
 
 ```
 service nginx stop
 service nginx-debug start
 ```
 
+and then set the `debug` level. The nginx binary version for Windows is always built with the debugging log support, so only setting the `debug` level will suffice.
 
-and then set the `debug` level.
-The nginx binary version for Windows is always built with the debugging log
-support, so only setting the `debug` level will suffice.
-
-Note that redefining the log without also specifying the
-`debug`
-level will disable the debugging log.
-In the example below, redefining the log on the
-[](http/ngx_http_core_module.xml#server)
-level disables the debugging log for this server:
+Note that redefining the log without also specifying the `debug` level will disable the debugging log. In the example below, redefining the log on the [server](http/ngx_http_core_module.xml#server) level disables the debugging log for this server:
 
 ```
 error_log /path/to/log debug;
@@ -63,9 +41,7 @@ http {
         ...
 ```
 
-To avoid this, either the line redefining the log should be
-commented out, or the `debug` level specification should
-also be added:
+To avoid this, either the line redefining the log should be commented out, or the `debug` level specification should also be added:
 
 ```
 error_log /path/to/log debug;
@@ -76,12 +52,9 @@ http {
         ...
 ```
 
-## Debugging log for selected clients {#clients}
+# Debugging log for selected clients {#clients}
 
-It is also possible to enable the debugging log for
-[selected
-client addresses](ngx_core_module.xml#debug_connection) only:
-
+It is also possible to enable the debugging log for [selected client addresses](ngx_core_module.xml#debug_connection) only:
 
 ```
 error_log /path/to/log;
@@ -92,7 +65,7 @@ events {
 }
 ```
 
-## Logging to a cyclic memory buffer {#memory}
+# Logging to a cyclic memory buffer {#memory}
 
 The debugging log can be written to a cyclic memory buffer:
 
@@ -100,10 +73,7 @@ The debugging log can be written to a cyclic memory buffer:
 error_log memory:32m debug;
 ```
 
-Logging to the memory buffer on the `debug` level
-does not have significant impact on performance even under high load.
-In this case, the log can be extracted using
-a `gdb` script like the following one:
+Logging to the memory buffer on the `debug` level does not have significant impact on performance even under high load. In this case, the log can be extracted using a `gdb` script like the following one:
 
 ```
 set $log = ngx_cycle->log
@@ -124,3 +94,4 @@ expr while ($log->writer != ngx_log_memory_writer) { $log = $log->next; }
 expr ngx_log_memory_buf_t *$buf = (ngx_log_memory_buf_t *) $log->wdata
 memory read --force --outfile debug_log.txt --binary $buf->start $buf->end
 ```
+

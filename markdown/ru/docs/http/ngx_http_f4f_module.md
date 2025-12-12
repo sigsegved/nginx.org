@@ -3,24 +3,15 @@
 **Revision:** 1  
 **Language:** ru
 
+Модуль `ngx_http_f4f_module` обеспечивает серверную поддержку протокола Adobe HTTP Dynamic Streaming (HDS).
 
-Модуль `ngx_http_f4f_module` обеспечивает
-серверную поддержку протокола Adobe HTTP Dynamic Streaming (HDS).
+Модуль предоставляет возможность обработки запросов HTTP Dynamic Streaming в виде “ `/videoSeg1-Frag1` ”, т.е. извлечения необходимого фрагмента из `videoSeg1.f4f` при помощи индексного файла `videoSeg1.f4x` . Модуль является альтернативой модулю Adobe f4f (HTTP Origin Module) для Apache.
 
-Модуль предоставляет возможность обработки запросов HTTP Dynamic Streaming в
-виде “`/videoSeg1-Frag1`”, т.е. извлечения необходимого фрагмента
-из `videoSeg1.f4f` при помощи
-индексного файла `videoSeg1.f4x`.
-Модуль является альтернативой модулю Adobe f4f (HTTP Origin Module)
-для Apache.
+Необходима предварительная обработка данных при помощи Adobe f4fpackager, дополнительную информацию см. в соответствующей документации.
 
-Необходима предварительная обработка данных при помощи Adobe f4fpackager,
-дополнительную информацию см. в соответствующей документации.
+> **Note:** Модуль доступен как часть [коммерческой подписки](https://nginx.com/products/) .
 
-> **Note:** Модуль доступен как часть
-коммерческой подписки.
-
-## Пример конфигурации {#example}
+# Пример конфигурации {#example}
 
 ```
 location /video/ {
@@ -29,27 +20,25 @@ location /video/ {
 }
 ```
 
-## Директивы {#directives}
+# Директивы {#directives}
 
+## f4f
 
-
-
-location
-
+```
+Syntax:  
+Default: 
+Context: location
+```
 
 Включает обработку данным модулем во вложенном location.
 
+## f4f_buffer_size
 
+```
+Syntax:  размер
+Default: 512k
+Context: location, http, server
+```
 
-
-размер
-512k
-http
-server
-location
-
-
-Задаёт размер буфера, в который будет
-читаться индексный файл .f4x.
-
+Задаёт `размер` буфера, в который будет читаться индексный файл `.f4x` .
 

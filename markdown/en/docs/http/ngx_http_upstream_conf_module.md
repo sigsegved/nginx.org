@@ -3,24 +3,13 @@
 **Revision:** 6  
 **Language:** en
 
+The `ngx_http_upstream_conf_module` module allows configuring upstream server groups on-the-fly via a simple HTTP interface without the need of restarting nginx. The [http](ngx_http_upstream_module.xml#zone) or [stream](../stream/ngx_stream_upstream_module.xml#zone) server group must reside in the shared memory.
 
-The `ngx_http_upstream_conf_module` module
-allows configuring upstream server groups on-the-fly
-via a simple HTTP interface without the need of restarting nginx.
-The
-[http](ngx_http_upstream_module.xml#zone)
-or
-[stream](../stream/ngx_stream_upstream_module.xml#zone)
-server group must reside in the shared memory.
-
-> **Note:** This module was available as part of our
-commercial subscription
-until 1.13.10.
-It was superseded by the
-[ngx_http_api_module](ngx_http_api_module.html) module
+> **Note:** This module was available as part of our [commercial subscription](https://nginx.com/products/) until 1.13.10.
+It was superseded by the [ngx_http_api_module](ngx_http_api_module.xml) module
 in 1.13.3.
 
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 upstream backend {
@@ -38,307 +27,162 @@ server {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## upstream_conf
 
+```
+Syntax:  
+Default: 
+Context: location
+```
 
-
-location
-
-
-Turns on the HTTP interface of upstream configuration in the surrounding
-location.
-Access to this location should be
-limited.
-
-
+Turns on the HTTP interface of upstream configuration in the surrounding location. Access to this location should be [limited](ngx_http_core_module.xml#satisfy) .
 
 Configuration commands can be used to:
 
+- view the group configuration;
+- view, modify, or remove a server;
+- add a new server.
 
-view the group configuration;
-
-view, modify, or remove a server;
-
-add a new server.
-
-
-
-Since addresses in a group are not required to be unique, specific
+> **Note:** Since addresses in a group are not required to be unique, specific
 servers in a group are referenced by their IDs.
 IDs are assigned automatically and shown when adding a new server
 or viewing the group configuration.
 
+A configuration command consists of parameters passed as request arguments, for example:
 
-
-
-A configuration command consists of parameters passed as request arguments,
-for example:
-
+```
 http://127.0.0.1/upstream_conf?upstream=backend
-
-
-
+```
 
 The following parameters are supported:
 
+**`stream=`**  
+  Selects a [stream](../stream/ngx_stream_upstream_module.xml) upstream server group.
+Without this parameter, selects an [http](ngx_http_upstream_module.xml) upstream server group.
 
-
-
-stream=
-
-Selects a
-stream
-upstream server group.
-Without this parameter, selects an
-http
-upstream server group.
-
-
-
-upstream=name
-
-Selects a group to work with.
+**`upstream=` `name`**  
+  Selects a group to work with.
 This parameter is mandatory.
 
+**`id=` `number`**  
+  Selects a server for viewing, modifying, or removing.
 
+**`remove=`**  
+  Removes a server from the group.
 
-id=number
+**`add=`**  
+  Adds a new server to the group.
 
-Selects a server for viewing, modifying, or removing.
+**`backup=`**  
+  Required to add a backup server.
 
+> **Note:** Before version 1.7.2, `backup=` was also required to view, modify, or remove existing backup servers.
 
+**`server=` `address`**  
+  Same as the “ `address` ” parameter
+of the [http](ngx_http_upstream_module.xml#server) or [stream](../stream/ngx_stream_upstream_module.xml#server) upstream server.
 
-remove=
+When adding a server, it is possible to specify it as a domain name. In this case, changes of the IP addresses that correspond to a domain name will be monitored and automatically applied to the upstream configuration without the need of restarting nginx (1.7.2). This requires the “ `resolver` ” directive in the [http](ngx_http_core_module.xml#resolver) or [stream](../stream/ngx_stream_core_module.xml#resolver) block. See also the “ `resolve` ” parameter of the [http](ngx_http_upstream_module.xml#resolve) or [stream](../stream/ngx_stream_upstream_module.xml#resolve) upstream server.
 
-Removes a server from the group.
+**`service=` `name`**  
+  Same as the “ `service` ” parameter
+of the [http](ngx_http_upstream_module.xml#service) or [stream](../stream/ngx_stream_upstream_module.xml#service) upstream server (1.9.13).
 
+**`weight=` `number`**  
+  Same as the “ `weight` ” parameter
+of the [http](ngx_http_upstream_module.xml#weight) or [stream](../stream/ngx_stream_upstream_module.xml#weight) upstream server.
 
+**`max_conns=` `number`**  
+  Same as the “ `max_conns` ” parameter
+of the [http](ngx_http_upstream_module.xml#max_conns) or [stream](../stream/ngx_stream_upstream_module.xml#max_conns) upstream server.
 
-add=
+**`max_fails=` `number`**  
+  Same as the “ `max_fails` ” parameter
+of the [http](ngx_http_upstream_module.xml#max_fails) or [stream](../stream/ngx_stream_upstream_module.xml#max_fails) upstream server.
 
-Adds a new server to the group.
+**`fail_timeout=` `time`**  
+  Same as the “ `fail_timeout` ” parameter
+of the [http](ngx_http_upstream_module.xml#fail_timeout) or [stream](../stream/ngx_stream_upstream_module.xml#fail_timeout) upstream server.
 
+**`slow_start=` `time`**  
+  Same as the “ `slow_start` ” parameter
+of the [http](ngx_http_upstream_module.xml#slow_start) or [stream](../stream/ngx_stream_upstream_module.xml#slow_start) upstream server.
 
+**`down=`**  
+  Same as the “ `down` ” parameter
+of the [http](ngx_http_upstream_module.xml#down) or [stream](../stream/ngx_stream_upstream_module.xml#down) upstream server.
 
-backup=
-
-Required to add a backup server.
-
-Before version 1.7.2, backup=
-was also required to view, modify, or remove existing backup servers.
-
-
-
-
-server=address
-
-Same as the “address” parameter
-of the
-http
-or
-stream
-upstream server.
-
-When adding a server, it is possible to specify it as a domain name.
-In this case, changes of the IP addresses that correspond to a domain name
-will be monitored and automatically applied to the upstream
-configuration without the need of restarting nginx (1.7.2).
-This requires the “resolver” directive in the
-http
-or
-stream
-block.
-See also the “resolve” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-
-service=name
-
-Same as the “service” parameter
-of the
-http
-or
-stream
-upstream server (1.9.13).
-
-
-
-weight=number
-
-Same as the “weight” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-max_conns=number
-
-Same as the “max_conns” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-max_fails=number
-
-Same as the “max_fails” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-fail_timeout=time
-
-Same as the “fail_timeout” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-slow_start=time
-
-Same as the “slow_start” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-down=
-
-Same as the “down” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-drain=
-
-Puts the
-http
-upstream server into the “draining” mode (1.7.5).
-In this mode, only requests
-bound to the server
+**`drain=`**  
+  Puts the [http](ngx_http_upstream_module.xml) upstream server into the “draining” mode (1.7.5).
+In this mode, only requests [bound](ngx_http_upstream_module.xml#sticky) to the server
 will be proxied to it.
 
+**`up=`**  
+  The opposite of the “ `down` ” parameter
+of the [http](ngx_http_upstream_module.xml#down) or [stream](../stream/ngx_stream_upstream_module.xml#down) upstream server.
 
+**`route=` `string`**  
+  Same as the “ `route` ” parameter of the [http](ngx_http_upstream_module.xml#route) upstream server.
 
-up=
-
-The opposite of the “down” parameter
-of the
-http
-or
-stream
-upstream server.
-
-
-
-route=string
-
-Same as the “route” parameter of the
-http
-upstream server.
-
-
-
-
-The first three parameters select an object.
-This can be either the whole http or stream upstream server group,
-or a specific server.
-Without other parameters, the configuration of the selected
-group or server is shown.
-
-
+The first three parameters select an object. This can be either the whole http or stream upstream server group, or a specific server. Without other parameters, the configuration of the selected group or server is shown.
 
 For example, to view the configuration of the whole group, send:
 
+```
 http://127.0.0.1/upstream_conf?upstream=backend
-
+```
 
 To view the configuration of a specific server, also specify its ID:
 
+```
 http://127.0.0.1/upstream_conf?upstream=backend&id=42
+```
 
-
-
-
-To add a new server,
-specify its address in the “server=” parameter.
-Without other parameters specified, a server will be added with other
-parameters set to their default values (see the
-http
-or
-stream
-“server” directive).
-
-
+To add a new server, specify its address in the “ `server=` ” parameter. Without other parameters specified, a server will be added with other parameters set to their default values (see the [http](ngx_http_upstream_module.xml#server) or [stream](../stream/ngx_stream_upstream_module.xml#server) “ `server` ” directive).
 
 For example, to add a new primary server, send:
 
+```
 http://127.0.0.1/upstream_conf?add=&upstream=backend&server=127.0.0.1:8080
-
+```
 
 To add a new backup server, send:
 
+```
 http://127.0.0.1/upstream_conf?add=&upstream=backend&backup=&server=127.0.0.1:8080
+```
 
+To add a new primary server, set its parameters to non-default values and mark it as “ `down` ”, send:
 
-To add a new primary server,
-set its parameters to non-default values
-and mark it as “down”, send:
-
+```
 http://127.0.0.1/upstream_conf?add=&upstream=backend&server=127.0.0.1:8080&weight=2&down=
-
+```
 
 To remove a server, specify its ID:
 
+```
 http://127.0.0.1/upstream_conf?remove=&upstream=backend&id=42
+```
 
+To mark an existing server as “ `down` ”, send:
 
-To mark an existing server as “down”, send:
-
+```
 http://127.0.0.1/upstream_conf?upstream=backend&id=42&down=
-
+```
 
 To modify the address of an existing server, send:
 
+```
 http://127.0.0.1/upstream_conf?upstream=backend&id=42&server=192.0.2.3:8123
-
+```
 
 To modify other parameters of an existing server, send:
 
+```
 http://127.0.0.1/upstream_conf?upstream=backend&id=42&max_fails=3&weight=4
+```
 
-
-The above examples are for an
-http
-upstream server group.
-Similar examples for a
-stream
-upstream server group require the “stream=” parameter.
-
+The above examples are for an [http](ngx_http_upstream_module.xml) upstream server group. Similar examples for a [stream](../stream/ngx_stream_upstream_module.xml) upstream server group require the “ `stream=` ” parameter.
 

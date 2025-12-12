@@ -3,22 +3,15 @@
 **Revision:** 1  
 **Language:** en
 
+The `ngx_stream_geoip_module` module (1.11.3) creates variables with values depending on the client IP address, using the precompiled [MaxMind](http://www.maxmind.com) databases.
 
-The `ngx_stream_geoip_module` module (1.11.3) creates variables
-with values depending on the client IP address, using the precompiled
-[MaxMind](http://www.maxmind.com) databases.
+When using the databases with IPv6 support, IPv4 addresses are looked up as IPv4-mapped IPv6 addresses.
 
-When using the databases with IPv6 support,
-IPv4 addresses are looked up as IPv4-mapped IPv6 addresses.
+This module is not built by default, it should be enabled with the `--with-stream_geoip_module` configuration parameter.
 
-This module is not built by default, it should be enabled with the
-`--with-stream_geoip_module`
-configuration parameter.
+> **Note:** This module requires the [MaxMind GeoIP](http://www.maxmind.com/app/c) library.
 
-> **Note:** This module requires the
-[MaxMind GeoIP](http://www.maxmind.com/app/c) library.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 stream {
@@ -35,146 +28,98 @@ stream {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## geoip_country
 
-file
+```
+Syntax:  file
+Default: 
+Context: stream
+```
 
-stream
+Specifies a database used to determine the country depending on the client IP address. The following variables are available when using this database:
 
+**`$geoip_country_code`**  
+  two-letter country code, for example,
+“ `RU` ”, “ `US` ”.
 
-Specifies a database used to determine the country
-depending on the client IP address.
-The following variables are available when using this database:
+**`$geoip_country_code3`**  
+  three-letter country code, for example,
+“ `RUS` ”, “ `USA` ”.
 
+**`$geoip_country_name`**  
+  country name, for example,
+“ `Russian Federation` ”, “ `United States` ”.
 
-$geoip_country_code
+## geoip_city
 
-two-letter country code, for example,
-“RU”, “US”.
+```
+Syntax:  file
+Default: 
+Context: stream
+```
 
+Specifies a database used to determine the country, region, and city depending on the client IP address. The following variables are available when using this database:
 
-$geoip_country_code3
+**`$geoip_area_code`**  
+  telephone area code (US only).
 
-
-three-letter country code, for example,
-“RUS”, “USA”.
-
-
-$geoip_country_name
-
-country name, for example,
-“Russian Federation”, “United States”.
-
-
-
-
-
-
-
-file
-
-stream
-
-
-Specifies a database used to determine the country, region, and city
-depending on the client IP address.
-The following variables are available when using this database:
-
-
-$geoip_area_code
-telephone area code (US only).
-
-This variable may contain outdated information since
+> **Note:** This variable may contain outdated information since
 the corresponding database field is deprecated.
 
+**`$geoip_city_continent_code`**  
+  two-letter continent code, for example,
+“ `EU` ”, “ `NA` ”.
 
+**`$geoip_city_country_code`**  
+  two-letter country code, for example,
+“ `RU` ”, “ `US` ”.
 
+**`$geoip_city_country_code3`**  
+  three-letter country code, for example,
+“ `RUS` ”, “ `USA` ”.
 
-$geoip_city_continent_code
-two-letter continent code, for example,
-“EU”, “NA”.
+**`$geoip_city_country_name`**  
+  country name, for example,
+“ `Russian Federation` ”, “ `United States` ”.
 
+**`$geoip_dma_code`**  
+  DMA region code in US (also known as “metro code”), according to the [geotargeting](https://developers.google.com/adwords/api/docs/appendix/cities-DMAregions) in Google AdWords API.
 
-$geoip_city_country_code
+**`$geoip_latitude`**  
+  latitude.
 
+**`$geoip_longitude`**  
+  longitude.
 
-two-letter country code, for example,
-“RU”, “US”.
-
-
-$geoip_city_country_code3
-
-
-three-letter country code, for example,
-“RUS”, “USA”.
-
-
-$geoip_city_country_name
-
-
-country name, for example,
-“Russian Federation”, “United States”.
-
-
-$geoip_dma_code
-
-DMA region code in US (also known as “metro code”), according to the
-geotargeting
-in Google AdWords API.
-
-
-$geoip_latitude
-latitude.
-
-$geoip_longitude
-longitude.
-
-$geoip_region
-
-two-symbol country region code (region, territory, state, province, federal land
+**`$geoip_region`**  
+  two-symbol country region code (region, territory, state, province, federal land
 and the like), for example,
-“48”, “DC”.
+“ `48` ”, “ `DC` ”.
 
-
-$geoip_region_name
-
-country region name (region, territory, state, province, federal land
+**`$geoip_region_name`**  
+  country region name (region, territory, state, province, federal land
 and the like), for example,
-“Moscow City”, “District of Columbia”.
+“ `Moscow City` ”, “ `District of Columbia` ”.
 
+**`$geoip_city`**  
+  city name, for example,
+“ `Moscow` ”, “ `Washington` ”.
 
-$geoip_city
+**`$geoip_postal_code`**  
+  postal code.
 
-city name, for example,
-“Moscow”, “Washington”.
+## geoip_org
 
+```
+Syntax:  file
+Default: 
+Context: stream
+```
 
-$geoip_postal_code
+Specifies a database used to determine the organization depending on the client IP address. The following variable is available when using this database:
 
-postal code.
-
-
-
-
-
-
-
-file
-
-stream
-
-
-Specifies a database used to determine the organization
-depending on the client IP address.
-The following variable is available when using this database:
-
-
-$geoip_org
-
-organization name, for example, “The University of Melbourne”.
-
-
-
-
+**`$geoip_org`**  
+  organization name, for example, “The University of Melbourne”.
 

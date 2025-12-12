@@ -3,31 +3,18 @@
 **Revision:** 7  
 **Language:** en
 
+The `ngx_http_perl_module` module is used to implement location and variable handlers in Perl and insert Perl calls into SSI.
 
-The `ngx_http_perl_module` module is used to implement
-location and variable handlers in Perl and insert Perl calls into SSI.
+This module is not built by default, it should be enabled with the `--with-http_perl_module` configuration parameter.
 
-This module is not built by default, it should be enabled with the
-`--with-http_perl_module`
-configuration parameter.
-
-> **Note:** This module requires
-[Perl](https://www.perl.org/get.html) version 5.6.1 or higher.
+> **Note:** This module requires [Perl](https://www.perl.org/get.html) version 5.6.1 or higher.
 The C compiler should be compatible with the one used to build Perl.
 
-## Known Issues {#issues}
+# Known Issues {#issues}
 
 The module is experimental, caveat emptor applies.
 
-In order for Perl to recompile the modified modules during
-reconfiguration, it should be built with the
-`-Dusemultiplicity=yes` or
-`-Dusethreads=yes` parameters.
-Also, to make Perl leak less memory at run time,
-it should be built with the
-`-Dusemymalloc=no` parameter.
-To check the values of these parameters in an already built
-Perl (preferred values are specified in the example), run:
+In order for Perl to recompile the modified modules during reconfiguration, it should be built with the `-Dusemultiplicity=yes` or `-Dusethreads=yes` parameters. Also, to make Perl leak less memory at run time, it should be built with the `-Dusemymalloc=no` parameter. To check the values of these parameters in an already built Perl (preferred values are specified in the example), run:
 
 ```
 $ perl -V:usemultiplicity -V:usemymalloc
@@ -35,26 +22,13 @@ usemultiplicity='define';
 usemymalloc='n';
 ```
 
-Note that after rebuilding Perl with the new
-`-Dusemultiplicity=yes` or
-`-Dusethreads=yes` parameters,
-all binary Perl modules will have to be rebuilt as well —
-they will just stop working with the new Perl.
+Note that after rebuilding Perl with the new `-Dusemultiplicity=yes` or `-Dusethreads=yes` parameters, all binary Perl modules will have to be rebuilt as well — they will just stop working with the new Perl.
 
-There is a possibility that the main process and then worker processes will
-grow in size after every reconfiguration.
-If the main process grows to an unacceptable size, the
-[live upgrade](../control.xml#upgrade)
-procedure can be applied without changing the executable file.
+There is a possibility that the main process and then worker processes will grow in size after every reconfiguration. If the main process grows to an unacceptable size, the [live upgrade](../control.xml#upgrade) procedure can be applied without changing the executable file.
 
-While the Perl module is performing a long-running operation, such as
-resolving a domain name, connecting to another server, or querying a database,
-other requests assigned to the current worker process will not be processed.
-It is thus recommended to perform only such operations
-that have predictable and short execution time, such as
-accessing the local file system.
+While the Perl module is performing a long-running operation, such as resolving a domain name, connecting to another server, or querying a database, other requests assigned to the current worker process will not be processed. It is thus recommended to perform only such operations that have predictable and short execution time, such as accessing the local file system.
 
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 http {
@@ -108,54 +82,49 @@ sub handler {
 __END__
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## perl
 
-module::function|'sub { ... }'
-
-location
-limit_except
-
+```
+Syntax:  module::function|'sub { ... }'
+Default: 
+Context: limit_except, location
+```
 
 Sets a Perl handler for the given location.
 
+## perl_modules
 
-
-
-path
-
-http
-
+```
+Syntax:  path
+Default: 
+Context: http
+```
 
 Sets an additional path for Perl modules.
 
+## perl_require
 
+```
+Syntax:  module
+Default: 
+Context: http
+```
 
+Defines the name of a module that will be loaded during each reconfiguration. Several `perl_require` directives can be present.
 
-module
+## perl_set
 
-http
-
-
-Defines the name of a module that will be loaded during each
-reconfiguration.
-Several perl_require directives can be present.
-
-
-
-
-
-    $variable
-    module::function|'sub { ... }'
-
-http
-
+```
+Syntax:  $variable module::function|'sub { ... }'
+Default: 
+Context: http
+```
 
 Installs a Perl handler for the specified variable.
 
-
-
-## Calling Perl from SSI {#ssi}
+# Calling Perl from SSI {#ssi}
 
 An SSI command calling Perl has the following format:
 
@@ -164,13 +133,15 @@ An SSI command calling Perl has the following format:
 -->
 ```
 
-## The $r Request Object Methods {#methods}
+# The $r Request Object Methods {#methods}
 
 **`$r->args`**  
   returns request arguments.
+
 **`$r->filename`**  
   returns a filename corresponding to the request URI.
-**`$r->has_request_body(handler)`**  
+
+**`$r->has_request_body(`**  
   returns 0 if there is no body in a request.
 If there is a body, the specified handler is set for the request
 and 1 is returned.
@@ -212,77 +183,82 @@ sub post {
 
 __END__
 ```
+
 **`$r->allow_ranges`**  
   enables the use of byte ranges when sending responses.
+
 **`$r->discard_request_body`**  
   instructs nginx to discard the request body.
-**`$r->header_in(field)`**  
+
+**`$r->header_in(`**  
   returns the value of the specified client request header field.
+
 **`$r->header_only`**  
   determines whether the whole response or only its header should be sent to
 the client.
-**`$r->header_out(field,
-    value)`**  
+
+**`$r->header_out(`**  
   sets a value for the specified response header field.
-**`$r->internal_redirect(uri)`**  
-  does an internal redirect to the specified *uri*.
+
+**`$r->internal_redirect(`**  
+  does an internal redirect to the specified `uri` .
 An actual redirect happens after the Perl handler execution is completed.
 
 > **Note:** Since version 1.17.2, the method accepts escaped URIs and
 supports redirections to named locations.
-**`$r->log_error(errno,
-message)`**  
-  writes the specified *message* into the
-[](../ngx_core_module.xml#error_log).
-If *errno* is non-zero, an error code and its description
+
+**`$r->log_error(`**  
+  writes the specified `message` into the [error_log](../ngx_core_module.xml#error_log) .
+If `errno` is non-zero, an error code and its description
 will be appended to the message.
-**`$r->print(text, ...)`**  
+
+**`$r->print(`**  
   passes data to a client.
+
 **`$r->request_body`**  
   returns the client request body if it has not been
 written to a temporary file.
 To ensure that the client request body is in memory,
-its size should be limited by
-[](ngx_http_core_module.xml#client_max_body_size),
-and a sufficient buffer size should be set using
-[](ngx_http_core_module.xml#client_body_buffer_size).
+its size should be limited by [client_max_body_size](ngx_http_core_module.xml#client_max_body_size) ,
+and a sufficient buffer size should be set using [client_body_buffer_size](ngx_http_core_module.xml#client_body_buffer_size) .
+
 **`$r->request_body_file`**  
   returns the name of the file with the client request body.
 After the processing, the file should be removed.
-To always write a request body to a file,
-[](ngx_http_core_module.xml#client_body_in_file_only)
-should be enabled.
+To always write a request body to a file, [client_body_in_file_only](ngx_http_core_module.xml#client_body_in_file_only) should be enabled.
+
 **`$r->request_method`**  
   returns the client request HTTP method.
+
 **`$r->remote_addr`**  
   returns the client IP address.
+
 **`$r->flush`**  
   immediately sends data to the client.
-**`$r->sendfile(name[,
-    offset[,
-    length]])`**  
+
+**`$r->sendfile(`**  
   sends the specified file content to the client.
 Optional parameters
 specify the initial offset and length of the data to be transmitted.
 The actual data transmission happens after the Perl handler
 has completed.
-**`$r->send_http_header([type])`**  
+
+**`$r->send_http_header([`**  
   sends the response header to the client.
-The optional *type* parameter sets the value of
-the **Content-Type** response header field.
-If the value is an empty string, the **Content-Type**
-header field will not be sent.
-**`$r->status(code)`**  
+The optional `type` parameter sets the value of
+the `Content-Type` response header field.
+If the value is an empty string, the `Content-Type` header field will not be sent.
+
+**`$r->status(`**  
   sets a response code.
-**`$r->sleep(milliseconds,
-    handler)`**  
+
+**`$r->sleep(`**  
   sets the specified handler
 and stops request processing for the specified time.
 In the meantime, nginx continues to process other requests.
 After the specified time has elapsed, nginx will call the installed handler.
 Note that the handler function should be passed by reference.
-In order to pass data between handlers,
-`$r->variable()` should be used.
+In order to pass data between handlers, `$r->variable()` should be used.
 Example:
 
 ```
@@ -313,11 +289,14 @@ sub next {
 
 __END__
 ```
-**`$r->unescape(text)`**  
+
+**`$r->unescape(`**  
   decodes a text encoded in the “%XX” form.
+
 **`$r->uri`**  
   returns a request URI.
-**`$r->variable(name[,
-    value])`**  
+
+**`$r->variable(`**  
   returns or sets the value of the specified variable.
 Variables are local to each request.
+

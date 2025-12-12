@@ -3,75 +3,29 @@
 **Revision:** 113  
 **Language:** en
 
+# Supported distributions and versions {#distributions}
 
-## Supported distributions and versions {#distributions}
+nginx packages are available for the following Linux distributions and versions:
 
-nginx packages are available for the following Linux distributions and
-versions:
+[RHEL and derivatives](#RHEL) 
 
-RHEL and derivatives
+[Debian](#Debian) 
 
+[Ubuntu](#Ubuntu) 
 
-| Version | Supported Platforms |
-| --- | --- |
-| 8.x | x86_64, aarch64/arm64 |
-| 9.x | x86_64, aarch64/arm64 |
-| 10.x | x86_64, aarch64/arm64 |
+[SLES](#SLES) 
 
-Debian
+[Alpine](#Alpine) 
 
+[Amazon Linux](#Amazon-Linux) 
 
-| Version | Supported Platforms |
-| --- | --- |
-| 11.x “bullseye” | x86_64, aarch64/arm64 |
-| 12.x “bookworm” | x86_64, aarch64/arm64 |
-| 13.x “trixie” | x86_64, aarch64/arm64 |
+# Installation instructions {#instructions}
 
-Ubuntu
+Before you install nginx for the first time on a new machine, you need to set up the nginx packages repository. Afterward, you can install and update nginx from the repository.
 
+## RHEL and derivatives {#RHEL}
 
-| Version | Supported Platforms |
-| --- | --- |
-| 22.04 “jammy” | x86_64, aarch64/arm64 |
-| 24.04 “noble” | x86_64, aarch64/arm64 |
-| 25.04 “plucky” | x86_64, aarch64/arm64 |
-| 25.10 “questing” | x86_64, aarch64/arm64 |
-
-SLES
-
-
-| Version | Supported Platforms |
-| --- | --- |
-| 15 SP6+ | x86_64 |
-| 16 | x86_64, aarch64/arm64 |
-
-Alpine
-
-
-| Version | Supported platforms |
-| --- | --- |
-| 3.20 | x86_64, aarch64/arm64 |
-| 3.21 | x86_64, aarch64/arm64 |
-| 3.22 | x86_64, aarch64/arm64 |
-
-Amazon Linux
-
-
-| Version | Supported platforms |
-| --- | --- |
-| 2 (LTS) | x86_64, aarch64/arm64 |
-| 2023 | x86_64, aarch64/arm64 |
-
-## Installation instructions {#instructions}
-
-Before you install nginx for the first time on a new machine, you need to
-set up the nginx packages repository.
-Afterward, you can install and update nginx from the repository.
-
-### RHEL and derivatives {#RHEL}
-
-This section applies to Red Hat Enterprise Linux and its derivatives such as
-CentOS, Oracle Linux, Rocky Linux, AlmaLinux.
+This section applies to Red Hat Enterprise Linux and its derivatives such as CentOS, Oracle Linux, Rocky Linux, AlmaLinux.
 
 Install the prerequisites:
 
@@ -79,11 +33,7 @@ Install the prerequisites:
 sudo yum install yum-utils
 ```
 
-
-To set up the yum repository, create the file named
-`/etc/yum.repos.d/nginx.repo`
-with the following contents:
-
+To set up the yum repository, create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
 
 ```
 [nginx-stable]
@@ -103,15 +53,11 @@ gpgkey=https://nginx.org/keys/nginx_signing.key
 module_hotfixes=true
 ```
 
-
-By default, the repository for stable nginx packages is used.
-If you would like to use mainline nginx packages,
-run the following command:
+By default, the repository for stable nginx packages is used. If you would like to use mainline nginx packages, run the following command:
 
 ```
 sudo yum-config-manager --enable nginx-mainline
 ```
-
 
 To install nginx, run the following command:
 
@@ -119,12 +65,9 @@ To install nginx, run the following command:
 sudo yum install nginx
 ```
 
+When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62` , and if so, accept it.
 
-When prompted to accept the GPG key, verify that the fingerprint matches
-`573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`,
-and if so, accept it.
-
-### Debian {#Debian}
+## Debian {#Debian}
 
 Install the prerequisites:
 
@@ -132,15 +75,12 @@ Install the prerequisites:
 sudo apt install curl gnupg2 ca-certificates lsb-release debian-archive-keyring
 ```
 
-Import an official nginx signing key so apt could verify the packages
-authenticity.
-Fetch the key:
+Import an official nginx signing key so apt could verify the packages authenticity. Fetch the key:
 
 ```
 curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
     | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 ```
-
 
 Verify that the downloaded file contains the proper key:
 
@@ -148,10 +88,7 @@ Verify that the downloaded file contains the proper key:
 gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
 ```
 
-
-The output should contain the full fingerprint
-`573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62`
-as follows:
+The output should contain the full fingerprint `573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62` as follows:
 
 ```
 pub   rsa2048 2011-08-19 [SC] [expires: 2027-05-24]
@@ -161,8 +98,7 @@ uid                      nginx signing key <signing-key@nginx.com>
 
 Note that the output can contain other keys used to sign the packages.
 
-To set up the apt repository for stable nginx packages,
-run the following command:
+To set up the apt repository for stable nginx packages, run the following command:
 
 ```
 echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -170,9 +106,7 @@ https://nginx.org/packages/debian `lsb_release -cs` nginx" \
     | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
-
-If you would like to use mainline nginx packages,
-run the following command instead:
+If you would like to use mainline nginx packages, run the following command instead:
 
 ```
 echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -180,8 +114,7 @@ https://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" \
     | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
-Set up repository pinning to prefer our packages over
-distribution-provided ones:
+Set up repository pinning to prefer our packages over distribution-provided ones:
 
 ```
 echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
@@ -195,7 +128,7 @@ sudo apt update
 sudo apt install nginx
 ```
 
-### Ubuntu {#Ubuntu}
+## Ubuntu {#Ubuntu}
 
 Install the prerequisites:
 
@@ -203,15 +136,12 @@ Install the prerequisites:
 sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
 ```
 
-Import an official nginx signing key so apt could verify the packages
-authenticity.
-Fetch the key:
+Import an official nginx signing key so apt could verify the packages authenticity. Fetch the key:
 
 ```
 curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
     | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 ```
-
 
 Verify that the downloaded file contains the proper key:
 
@@ -219,10 +149,7 @@ Verify that the downloaded file contains the proper key:
 gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
 ```
 
-
-The output should contain the full fingerprint
-`573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62`
-as follows:
+The output should contain the full fingerprint `573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62` as follows:
 
 ```
 pub   rsa2048 2011-08-19 [SC] [expires: 2027-05-24]
@@ -232,8 +159,7 @@ uid                      nginx signing key <signing-key@nginx.com>
 
 Note that the output can contain other keys used to sign the packages.
 
-To set up the apt repository for stable nginx packages,
-run the following command:
+To set up the apt repository for stable nginx packages, run the following command:
 
 ```
 echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -241,9 +167,7 @@ https://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
     | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
-
-If you would like to use mainline nginx packages,
-run the following command instead:
+If you would like to use mainline nginx packages, run the following command instead:
 
 ```
 echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -251,8 +175,7 @@ https://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
     | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
-Set up repository pinning to prefer our packages over
-distribution-provided ones:
+Set up repository pinning to prefer our packages over distribution-provided ones:
 
 ```
 echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
@@ -266,7 +189,7 @@ sudo apt update
 sudo apt install nginx
 ```
 
-### SLES {#SLES}
+## SLES {#SLES}
 
 Install the prerequisites:
 
@@ -274,33 +197,25 @@ Install the prerequisites:
 sudo zypper install curl ca-certificates gpg2
 ```
 
-
-To set up the zypper repository for stable nginx packages,
-run the following command:
+To set up the zypper repository for stable nginx packages, run the following command:
 
 ```
 sudo zypper addrepo --gpgcheck --type yum --refresh --check \
     'https://nginx.org/packages/sles/$releasever_major' nginx-stable
 ```
 
-
-If you would like to use mainline nginx packages,
-run the following command instead:
+If you would like to use mainline nginx packages, run the following command instead:
 
 ```
 sudo zypper addrepo --gpgcheck --type yum --refresh --check \
     'https://nginx.org/packages/mainline/sles/$releasever_major' nginx-mainline
 ```
 
-
-Next, import an official nginx signing key so zypper/rpm could verify
-the packages authenticity.
-Fetch the key:
+Next, import an official nginx signing key so zypper/rpm could verify the packages authenticity. Fetch the key:
 
 ```
 curl -o /tmp/nginx_signing.key https://nginx.org/keys/nginx_signing.key
 ```
-
 
 Verify that the downloaded file contains the proper key:
 
@@ -308,10 +223,7 @@ Verify that the downloaded file contains the proper key:
 gpg --with-fingerprint /tmp/nginx_signing.key
 ```
 
-
-The output should contain the full fingerprint
-`573B FD6B 3D8F BC64 1079  A6AB ABF5 BD82 7BD9 BF62`
-as follows:
+The output should contain the full fingerprint `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62` as follows:
 
 ```
 pub  2048R/7BD9BF62 2011-08-19 [expires: 2027-05-24]
@@ -319,13 +231,11 @@ pub  2048R/7BD9BF62 2011-08-19 [expires: 2027-05-24]
 uid nginx signing key <signing-key@nginx.com>
 ```
 
-
 Finally, import the key to the rpm database:
 
 ```
 sudo rpmkeys --import /tmp/nginx_signing.key
 ```
-
 
 To install nginx, run the following command:
 
@@ -333,7 +243,7 @@ To install nginx, run the following command:
 sudo zypper install nginx
 ```
 
-### Alpine {#Alpine}
+## Alpine {#Alpine}
 
 Install the prerequisites:
 
@@ -341,9 +251,7 @@ Install the prerequisites:
 sudo apk add openssl curl ca-certificates
 ```
 
-
-To set up the apk repository for stable nginx packages,
-run the following command:
+To set up the apk repository for stable nginx packages, run the following command:
 
 ```
 printf "%s%s%s%s\n" \
@@ -354,9 +262,7 @@ printf "%s%s%s%s\n" \
     | sudo tee -a /etc/apk/repositories
 ```
 
-
-If you would like to use mainline nginx packages,
-run the following command instead:
+If you would like to use mainline nginx packages, run the following command instead:
 
 ```
 printf "%s%s%s%s\n" \
@@ -367,22 +273,17 @@ printf "%s%s%s%s\n" \
     | sudo tee -a /etc/apk/repositories
 ```
 
-
-Next, import an official nginx signing key so apk could verify
-the packages authenticity.
-Fetch the key:
+Next, import an official nginx signing key so apk could verify the packages authenticity. Fetch the key:
 
 ```
 curl -o /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub
 ```
-
 
 Verify that downloaded file contains the proper key:
 
 ```
 openssl rsa -pubin -in /tmp/nginx_signing.rsa.pub -text -noout
 ```
-
 
 The output should contain the following modulus:
 
@@ -410,13 +311,11 @@ Modulus:
 Exponent: 65537 (0x10001)
 ```
 
-
 Finally, move the key to apk trusted keys storage:
 
 ```
 sudo mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 ```
-
 
 To install nginx, run the following command:
 
@@ -424,15 +323,13 @@ To install nginx, run the following command:
 sudo apk add nginx@nginx
 ```
 
-
-The `@nginx` tag should also be specified when installing
-packages with [dynamic modules](#dynmodules):
+The `@nginx` tag should also be specified when installing packages with [dynamic modules](#dynmodules) :
 
 ```
 sudo apk add nginx-module-image-filter@nginx nginx-module-njs@nginx
 ```
 
-### Amazon Linux {#Amazon-Linux}
+## Amazon Linux {#Amazon-Linux}
 
 Install the prerequisites:
 
@@ -440,11 +337,7 @@ Install the prerequisites:
 sudo yum install yum-utils
 ```
 
-
-To set up the yum repository for Amazon Linux 2, create the file named
-`/etc/yum.repos.d/nginx.repo`
-with the following contents:
-
+To set up the yum repository for Amazon Linux 2, create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
 
 ```
 [nginx-stable]
@@ -466,11 +359,7 @@ module_hotfixes=true
 priority=9
 ```
 
-
-To set up the yum repository for Amazon Linux 2023, create the file named
-`/etc/yum.repos.d/nginx.repo`
-with the following contents:
-
+To set up the yum repository for Amazon Linux 2023, create the file named `/etc/yum.repos.d/nginx.repo` with the following contents:
 
 ```
 [nginx-stable]
@@ -492,15 +381,11 @@ module_hotfixes=true
 priority=9
 ```
 
-
-By default, the repository for stable nginx packages is used.
-If you would like to use mainline nginx packages,
-run the following command:
+By default, the repository for stable nginx packages is used. If you would like to use mainline nginx packages, run the following command:
 
 ```
 sudo yum-config-manager --enable nginx-mainline
 ```
-
 
 To install nginx, run the following command:
 
@@ -508,36 +393,19 @@ To install nginx, run the following command:
 sudo yum install nginx
 ```
 
+When prompted to accept the GPG key, verify that the fingerprint matches `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62` , and if so, accept it.
 
-When prompted to accept the GPG key, verify that the fingerprint matches
-`573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`,
-and if so, accept it.
+# Source Packages {#sourcepackages}
 
-## Source Packages {#sourcepackages}
+Packaging sources can be found in the [packaging sources repository](https://github.com/nginx/pkg-oss) .
 
-Packaging sources can be found in the
-[packaging sources repository](https://github.com/nginx/pkg-oss).
+The `master` branch holds packaging sources for the current mainline version, while `stable-*` branches contain latest sources for stable releases. To build binary packages, run `make` in `debian/` directory on Debian/Ubuntu, or in `rpm/SPECS/` on RHEL and derivatives, SLES, and Amazon Linux, or in `alpine/` on Alpine.
 
-The `master` branch holds packaging sources for the current
-mainline version, while `stable-*` branches contain latest
-sources for stable releases.
-To build binary packages, run `make` in
-`debian/` directory on Debian/Ubuntu, or in
-`rpm/SPECS/` on RHEL and derivatives, SLES, and Amazon Linux, or in
-`alpine/` on Alpine.
+Packaging sources are distributed under the same [2-clause BSD-like license](../LICENSE) used by nginx.
 
-Packaging sources are distributed under the same
-[2-clause BSD-like license](../LICENSE)
-used by nginx.
+# Dynamic Modules {#dynmodules}
 
-## Dynamic Modules {#dynmodules}
-
-Main nginx package is built with all modules that do not require additional
-libraries to avoid extra dependencies.
-Since version 1.9.11, nginx supports
-[dynamic modules](docs/ngx_core_module.xml#load_module)
-and the following modules are built as dynamic and shipped as separate
-packages:
+Main nginx package is built with all modules that do not require additional libraries to avoid extra dependencies. Since version 1.9.11, nginx supports [dynamic modules](docs/ngx_core_module.xml#load_module) and the following modules are built as dynamic and shipped as separate packages:
 
 ```
 nginx-module-geoip
@@ -547,35 +415,19 @@ nginx-module-perl
 nginx-module-xslt
 ```
 
-Additionally, since version 1.25.3, the following module is shipped as a
-separate package:
+Additionally, since version 1.25.3, the following module is shipped as a separate package:
 
 ```
 nginx-module-otel
 ```
 
-Additionally, since version 1.29.1, the following module is shipped as a
-separate package:
+Additionally, since version 1.29.1, the following module is shipped as a separate package:
 
 ```
 nginx-module-acme
 ```
 
-## Signatures {#signatures}
+# Signatures {#signatures}
 
-Since our [PGP keys](../en/pgp_keys.html)
-and packages are located on the same server,
-they are equally trusted.
-It is highly advised to additionally verify
-the authenticity of the downloaded PGP key.
-PGP has the “Web of Trust” concept,
-when a key is signed by someone else’s key,
-that in turn is signed by another key and so on.
-It often makes possible to build a chain from an arbitrary key
-to someone’s key who you know and trust personally,
-thus verify the authenticity of the first key in a chain.
-This concept is described in details in
-[
-GPG Mini Howto](https://www.gnupg.org/howtos/en/GPGMiniHowto-1.html).
-Our keys have enough signatures,
-and their authenticity is relatively easy to check.
+Since our [PGP keys](../en/pgp_keys.xml) and packages are located on the same server, they are equally trusted. It is highly advised to additionally verify the authenticity of the downloaded PGP key. PGP has the “Web of Trust” concept, when a key is signed by someone else’s key, that in turn is signed by another key and so on. It often makes possible to build a chain from an arbitrary key to someone’s key who you know and trust personally, thus verify the authenticity of the first key in a chain. This concept is described in details in [GPG Mini Howto](https://www.gnupg.org/howtos/en/GPGMiniHowto-1.html) . Our keys have enough signatures, and their authenticity is relatively easy to check.
+

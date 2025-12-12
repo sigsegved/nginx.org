@@ -3,9 +3,7 @@
 **Revision:** 3  
 **Language:** ru
 
-
-Пример конфигурации сайта, который передаёт все запросы бэкенду, кроме
-картинок и запросов, начинающихся с "/download/".
+Пример конфигурации сайта, который передаёт все запросы бэкенду, кроме картинок и запросов, начинающихся с "/download/".
 
 ```
 user  www www;
@@ -29,7 +27,6 @@ http {
 
     include       conf/mime.types;
     default_type  application/octet-stream;
-
 
     log_format main      '$remote_addr - $remote_user [$time_local] '
                          '"$request" $status $bytes_sent '
@@ -66,7 +63,6 @@ http {
     #lingering_time     30;
     #lingering_timeout  10;
     #reset_timedout_connection  on;
-
 
     server {
         listen        one.example.com;
@@ -140,3 +136,4 @@ http {
     }
 }
 ```
+

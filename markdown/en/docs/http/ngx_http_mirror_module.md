@@ -3,13 +3,9 @@
 **Revision:** 4  
 **Language:** en
 
+The `ngx_http_mirror_module` module (1.13.4) implements mirroring of an original request by creating background mirror subrequests. Responses to mirror subrequests are ignored.
 
-The `ngx_http_mirror_module` module (1.13.4) implements
-mirroring of an original request
-by creating background mirror subrequests.
-Responses to mirror subrequests are ignored.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location / {
@@ -23,41 +19,29 @@ location = /mirror {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## mirror
 
-uri | off
-off
-http
-server
-location
+```
+Syntax:  uri | off
+Default: off
+Context: location, http, server
+```
 
+Sets the URI to which an original request will be mirrored. Several mirrors can be specified on the same configuration level.
 
-Sets the URI to which an original request will be mirrored.
-Several mirrors can be specified on the same configuration level.
+## mirror_request_body
 
+```
+Syntax:  on | off
+Default: on
+Context: location, http, server
+```
 
+Indicates whether the client request body is mirrored. When enabled, the client request body will be read prior to creating mirror subrequests. In this case, unbuffered client request body proxying set by the [proxy_request_buffering](ngx_http_proxy_module.xml#proxy_request_buffering) , [fastcgi_request_buffering](ngx_http_fastcgi_module.xml#fastcgi_request_buffering) , [scgi_request_buffering](ngx_http_scgi_module.xml#scgi_request_buffering) , and [uwsgi_request_buffering](ngx_http_uwsgi_module.xml#uwsgi_request_buffering) directives will be disabled.
 
-
-on | off
-on
-http
-server
-location
-
-
-Indicates whether the client request body is mirrored.
-When enabled, the client request body will be read
-prior to creating mirror subrequests.
-In this case, unbuffered client request body proxying
-set by the
-,
-,
-,
-and
-
-directives will be disabled.
-
+```
 location / {
     mirror /mirror;
     mirror_request_body off;
@@ -71,6 +55,5 @@ location = /mirror {
     proxy_set_header Content-Length "";
     proxy_set_header X-Original-URI $request_uri;
 }
-
-
+```
 

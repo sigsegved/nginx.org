@@ -3,16 +3,9 @@
 **Revision:** 4  
 **Language:** en
 
+The `ngx_http_autoindex_module` module processes requests ending with the slash character (‘ `/` ’) and produces a directory listing. Usually a request is passed to the `ngx_http_autoindex_module` module when the [ngx_http_index_module](ngx_http_index_module.xml) module cannot find an index file.
 
-The `ngx_http_autoindex_module` module processes requests
-ending with the slash character (‘`/`’) and produces
-a directory listing.
-Usually a request is passed to the `ngx_http_autoindex_module`
-module when the
-[ngx_http_index_module](ngx_http_index_module.html) module
-cannot find an index file.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location / {
@@ -20,73 +13,51 @@ location / {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## autoindex
 
-on | off
-off
-http
-server
-location
-
+```
+Syntax:  on | off
+Default: off
+Context: location, http, server
+```
 
 Enables or disables the directory listing output.
 
+## autoindex_exact_size
 
+```
+Syntax:  on | off
+Default: on
+Context: location, http, server
+```
 
+For the HTML [format](#autoindex_format) , specifies whether exact file sizes should be output in the directory listing, or rather rounded to kilobytes, megabytes, and gigabytes.
 
-on | off
-on
-http
-server
-location
+## autoindex_format
 
+```
+Syntax:  html | xml | json | jsonp
+Default: html
+Context: location, http, server
+```
 
-For the HTML format,
-specifies whether exact file sizes should be output in the directory listing,
-or rather rounded to kilobytes, megabytes, and gigabytes.
-
-
-
-
-
-    html |
-    xml |
-    json |
-    jsonp
-html
-http
-server
-location
-1.7.9
-
+*This directive appeared in version 1.7.9.*
 
 Sets the format of a directory listing.
 
+When the JSONP format is used, the name of a callback function is set with the `callback` request argument. If the argument is missing or has an empty value, then the JSON format is used.
 
+The XML output can be transformed using the [ngx_http_xslt_module](ngx_http_xslt_module.xml) module.
 
-When the JSONP format is used, the name of a callback function is set
-with the callback request argument.
-If the argument is missing or has an empty value,
-then the JSON format is used.
+## autoindex_localtime
 
+```
+Syntax:  on | off
+Default: off
+Context: location, http, server
+```
 
-
-The XML output can be transformed using the
-ngx_http_xslt_module module.
-
-
-
-
-on | off
-off
-http
-server
-location
-
-
-For the HTML format,
-specifies whether times in the directory listing should be
-output in the local time zone or UTC.
-
+For the HTML [format](#autoindex_format) , specifies whether times in the directory listing should be output in the local time zone or UTC.
 

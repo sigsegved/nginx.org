@@ -3,19 +3,11 @@
 **Revision:** 10  
 **Language:** en
 
+The `ngx_http_auth_basic_module` module allows limiting access to resources by validating the user name and password using the “HTTP Basic Authentication” protocol.
 
-The `ngx_http_auth_basic_module` module allows
-limiting access to resources by validating the user name and password
-using the “HTTP Basic Authentication” protocol.
+Access can also be limited by [address](ngx_http_access_module.xml) , by the [result of subrequest](ngx_http_auth_request_module.xml) , or by [JWT](ngx_http_auth_jwt_module.xml) . Simultaneous limitation of access by address and by password is controlled by the [satisfy](ngx_http_core_module.xml#satisfy) directive.
 
-Access can also be limited by
-[address](ngx_http_access_module.html), by the
-[result of subrequest](ngx_http_auth_request_module.html),
-or by [JWT](ngx_http_auth_jwt_module.html).
-Simultaneous limitation of access by address and by password is controlled
-by the [](ngx_http_core_module.xml#satisfy) directive.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location / {
@@ -24,81 +16,53 @@ location / {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## auth_basic
 
-string | off
-off
-http
-server
-location
-limit_except
+```
+Syntax:  string | off
+Default: off
+Context: limit_except, http, server, location
+```
 
+Enables validation of user name and password using the “HTTP Basic Authentication” protocol. The specified parameter is used as a `realm` . Parameter value can contain variables (1.3.10, 1.2.7). The special value `off` cancels the effect of the `auth_basic` directive inherited from the previous configuration level.
 
-Enables validation of user name and password using the
-“HTTP Basic Authentication” protocol.
-The specified parameter is used as a realm.
-Parameter value can contain variables (1.3.10, 1.2.7).
-The special value off cancels the effect
-of the auth_basic directive
-inherited from the previous configuration level.
+## auth_basic_user_file
 
+```
+Syntax:  file
+Default: 
+Context: limit_except, http, server, location
+```
 
+Specifies a file that keeps user names and passwords, in the following format:
 
-
-file
-
-http
-server
-location
-limit_except
-
-
-Specifies a file that keeps user names and passwords,
-in the following format:
-
+```
 # comment
 name1:password1
 name2:password2:comment
 name3:password3
+```
 
-The file name can contain variables.
-
-
+The `file` name can contain variables.
 
 The following password types are supported:
 
-
-
-encrypted with the crypt function; can be generated using
-the “htpasswd” utility from the Apache HTTP Server
-distribution or the “openssl passwd” command;
-
-
-
-hashed with the Apache variant of the MD5-based password algorithm (apr1);
+- encrypted with the `crypt()` function; can be generated using
+the “ `htpasswd` ” utility from the Apache HTTP Server
+distribution or the “ `openssl passwd` ” command;
+- hashed with the Apache variant of the MD5-based password algorithm (apr1);
 can be generated with the same tools;
-
-
-
-specified by the
-“{scheme}data”
-syntax (1.0.3+) as described in
-RFC 2307;
-currently implemented schemes include PLAIN (an example one,
-should not be used), SHA (1.3.13) (plain SHA-1
-hashing, should not be used) and SSHA (salted SHA-1 hashing,
+- specified by the
+“ `{` `scheme` `}` `data` ”
+syntax (1.0.3+) as described in [RFC 2307](https://datatracker.ietf.org/doc/html/rfc2307#section-5.3) ;
+currently implemented schemes include `PLAIN` (an example one,
+should not be used), `SHA` (1.3.13) (plain SHA-1
+hashing, should not be used) and `SSHA` (salted SHA-1 hashing,
 used by some software packages, notably OpenLDAP and Dovecot).
-
-Support for SHA scheme was added only to aid
+  > **Note:** Support for `SHA` scheme was added only to aid
 in migration from other web servers.
 It should not be used for new passwords, since unsalted SHA-1 hashing
-that it employs is vulnerable to
-rainbow table
-attacks.
-
-
-
-
-
+that it employs is vulnerable to [rainbow table](http://en.wikipedia.org/wiki/Rainbow_attack) attacks.
 

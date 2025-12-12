@@ -2,20 +2,16 @@
 
 **Language:** ja
 
+# メインサイトへのリダイレクト
 
-## メインサイトへのリダイレクト
-
-共有のホスティングで Apache の .htaccess ファイル*のみ*で*すべて*を設定してきたのなら、次のようにルールをコンバートします:
-
+共有のホスティングで Apache の .htaccess ファイル *のみ* で *すべて* を設定してきたのなら、次のようにルールをコンバートします:
 
 ```
 RewriteCond  %{HTTP_HOST}  example.org
 RewriteRule  (.*)          http://www.example.org$1
 ```
 
-
 上記は下記のようになります:
-
 
 ```
 server {
@@ -29,7 +25,6 @@ server {
 ```
 
 これは間違っていて面倒で非効率的な方法です。正しい方法は `example.org` 用に別のサーバを定義します:
-
 
 ```
 server {
@@ -45,8 +40,7 @@ server {
 }
 ```
 
-別の例として、`example.com` 以外と `www.example.com` 以外のすべて、という後方ロジックの代わりの例です:
-
+別の例として、 `example.com` 以外と `www.example.com` 以外のすべて、という後方ロジックの代わりの例です:
 
 ```
 RewriteCond  %{HTTP_HOST}  !example.com
@@ -54,10 +48,7 @@ RewriteCond  %{HTTP_HOST}  !www.example.com
 RewriteRule  (.*)          http://www.example.com$1
 ```
 
-
-この場合、単に `example.com`、`www.example.com`、そしてそれ以外を定義します:
-
-
+この場合、単に `example.com` 、 `www.example.com` 、そしてそれ以外を定義します:
 
 ```
 server {
@@ -73,10 +64,9 @@ server {
 }
 ```
 
-## Mongrel ルールのコンバート {#converting_mongrel_rules}
+# Mongrel ルールのコンバート {#converting_mongrel_rules}
 
 典型的な Mongrel のルール:
-
 
 ```
 DocumentRoot /var/www/myapp.com/current/public
@@ -97,9 +87,7 @@ RewriteRule ^(.*)$ $1/index.html [QSA,L]
 RewriteRule ^/(.*)$ balancer://mongrel_cluster%{REQUEST_URI} [P,QSA,L]
 ```
 
-
 上記は次のようにコンバートされます
-
 
 ```
 location / {
@@ -114,3 +102,4 @@ location @mongrel {
     proxy_pass  http://mongrel;
 }
 ```
+

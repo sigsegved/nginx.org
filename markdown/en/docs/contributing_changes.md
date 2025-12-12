@@ -3,40 +3,21 @@
 **Revision:** 5  
 **Language:** en
 
+# Getting Sources {#getting_sources}
 
-## Getting Sources {#getting_sources}
-
-[GitHub](https://github.com) is used
-to store source code.
-The [repository](https://github.com/nginx/nginx) can be cloned
-with the following command:
+[GitHub](https://github.com) is used to store source code. The [repository](https://github.com/nginx/nginx) can be cloned with the following command:
 
 ```
 git clone https://github.com/nginx/nginx.git
 ```
 
-## Formatting Changes {#formatting_changes}
+# Formatting Changes {#formatting_changes}
 
-Changes should be formatted according to the
-[code style](../docs/dev/development_guide.xml#code_style)
-used by nginx.
-Sometimes, there is no clear rule; in such cases
-examine how existing nginx sources are formatted and mimic this style.
-Changes will more likely be accepted if style corresponds to the surrounding
-code.
+Changes should be formatted according to the [code style](../docs/dev/development_guide.xml#code_style) used by nginx. Sometimes, there is no clear rule; in such cases examine how existing nginx sources are formatted and mimic this style. Changes will more likely be accepted if style corresponds to the surrounding code.
 
-[Commit](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits)
-the changes in your nginx GitHub fork.
-Please ensure that the specified
-[e-mail](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git)
-address and real name of the author are correct.
+[Commit](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits) the changes in your nginx GitHub fork. Please ensure that the specified [e-mail](https://docs.github.com/en/get-started/getting-started-with-git/setting-your-username-in-git) address and real name of the author are correct.
 
-The commit message should have a single-line synopsis followed by verbose
-description after an empty line.
-It is desirable that the first line is no longer than 67 symbols,
-and the remaining lines are no longer than 76 symbols.
-The resulting commit can be obtained using the
-`git show` command:
+The commit message should have a single-line synopsis followed by verbose description after an empty line. It is desirable that the first line is no longer than 67 symbols, and the remaining lines are no longer than 76 symbols. The resulting commit can be obtained using the `git show` command:
 
 ```
 commit 8597218f386351d6c6cdced24af6716e19a18fc3
@@ -61,45 +42,37 @@ index 2e9b9f24d..8094bbc5c 100644
                          return;
 ```
 
-## Before Submitting {#before_submitting}
+# Before Submitting {#before_submitting}
 
 Several points are worth to consider before submitting changes:
 
-- The proposed changes should work properly on a wide range of
-[supported
-platforms](../index.xml#tested_os_and_platforms).
+- The proposed changes should work properly on a wide range of [supported
+platforms](../index.xml#tested_os_and_platforms) .
 - Try to make it clear why the suggested change is needed, and provide a use
 case, if possible.
 - Passing your changes through the test suite is a good way to ensure
 that they do not cause a regression.
 The [repository](https://github.com/nginx/nginx-tests) with
 tests can be cloned with the following command:
-
-```
+  ```
 git clone https://github.com/nginx/nginx-tests.git
 ```
 
-## Submitting Changes {#submitting_changes}
+# Submitting Changes {#submitting_changes}
 
-The proposed changes should be submitted from your fork to
-[nginx repository](https://github.com/nginx/nginx)
-as a
-[pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+The proposed changes should be submitted from your fork to [nginx repository](https://github.com/nginx/nginx) as a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) .
 
-## Website {#website}
+# Website {#website}
 
-GitHub is used to store the sources for this website.
-The [repository](https://www.github.com/nginx/nginx.org)
-can be cloned with the following command:
+GitHub is used to store the sources for this website. The [repository](https://www.github.com/nginx/nginx.org) can be cloned with the following command:
 
 ```
 git clone https://github.com/nginx/nginx.org.git
 ```
 
-Documentation changes should be submitted from your fork
-as a pull request.
+Documentation changes should be submitted from your fork as a pull request.
 
-## License {#license}
+# License {#license}
 
-Submitting changes implies granting project a permission to use it under
-an appropriate [license](../../LICENSE).
+Submitting changes implies granting project a permission to use it under an appropriate [license](../../LICENSE) .
+

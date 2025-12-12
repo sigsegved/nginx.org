@@ -3,21 +3,20 @@
 **Revision:** 2  
 **Language:** en
 
+The `ngx_http_browser_module` module creates variables whose values depend on the value of the `User-Agent` request header field:
 
-The `ngx_http_browser_module` module creates variables
-whose values depend on the value of the **User-Agent**
-request header field:
-
-***$modern_browser***  
-  equals the value set by the  directive,
+**`$modern_browser`**  
+  equals the value set by the [modern_browser_value](#modern_browser_value) directive,
 if a browser was identified as modern;
-***$ancient_browser***  
-  equals the value set by the  directive,
+
+**`$ancient_browser`**  
+  equals the value set by the [ancient_browser_value](#ancient_browser_value) directive,
 if a browser was identified as ancient;
-***$msie***  
+
+**`$msie`**  
   equals “1” if a browser was identified as MSIE of any version.
 
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 Choosing an index file:
 
@@ -51,76 +50,49 @@ if ($ancient_browser) {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## ancient_browser
 
-string ...
+```
+Syntax:  string ...
+Default: 
+Context: location, http, server
+```
 
-http
-server
-location
+If any of the specified substrings is found in the `User-Agent` request header field, the browser will be considered ancient. The special string “ `netscape4` ” corresponds to the regular expression “ `^Mozilla/[1-4]` ”.
 
+## ancient_browser_value
 
-If any of the specified substrings is found in the User-Agent
-request header field, the browser will be considered ancient.
-The special string “netscape4” corresponds to the
-regular expression “^Mozilla/[1-4]”.
+```
+Syntax:  string
+Default: 1
+Context: location, http, server
+```
 
+Sets a value for the `$ancient_browser` variables.
 
+## modern_browser
 
+```
+Syntax:  unlisted
+Default: 
+Context: location, http, server
+```
 
-string
-1
-http
-server
-location
+Specifies a version starting from which a browser is considered modern. A browser can be any one of the following: `msie` , `gecko` (browsers based on Mozilla), `opera` , `safari` , or `konqueror` .
 
+Versions can be specified in the following formats: X, X.X, X.X.X, or X.X.X.X. The maximum values for each of the format are 4000, 4000.99, 4000.99.99, and 4000.99.99.99, respectively.
 
-Sets a value for the $ancient_browser variables.
+The special value `unlisted` specifies to consider a browser as modern if it was not listed by the `modern_browser` and [ancient_browser](#ancient_browser) directives. Otherwise such a browser is considered ancient. If a request does not provide the `User-Agent` field in the header, the browser is treated as not being listed.
 
+## modern_browser_value
 
+```
+Syntax:  string
+Default: 1
+Context: location, http, server
+```
 
-
-browser version
-unlisted
-
-http
-server
-location
-
-
-Specifies a version starting from which a browser is considered modern.
-A browser can be any one of the following: msie,
-gecko (browsers based on Mozilla),
-opera, safari,
-or konqueror.
-
-
-
-Versions can be specified in the following formats: X, X.X, X.X.X, or X.X.X.X.
-The maximum values for each of the format are
-4000, 4000.99, 4000.99.99, and 4000.99.99.99, respectively.
-
-
-
-The special value unlisted specifies to consider
-a browser as modern if it was not listed by the
-modern_browser and 
-directives.
-Otherwise such a browser is considered ancient.
-If a request does not provide the User-Agent field
-in the header, the browser is treated as not being listed.
-
-
-
-
-string
-1
-http
-server
-location
-
-
-Sets a value for the $modern_browser variables.
-
+Sets a value for the `$modern_browser` variables.
 

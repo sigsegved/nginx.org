@@ -3,13 +3,9 @@
 **Revision:** 1  
 **Language:** en
 
+The `ngx_stream_pass_module` module (1.25.5) allows passing the accepted connection directly to any configured listening socket in `http` , `stream` , `mail` , and other similar modules.
 
-The `ngx_stream_pass_module` module (1.25.5) allows
-passing the accepted connection directly to any configured listening socket
-in `http`, `stream`, `mail`,
-and other similar modules.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 http {
@@ -34,34 +30,33 @@ stream {
 }
 ```
 
-In the example,
-after terminating SSL/TLS in the `stream` module
-the connection is passed to the `http` module.
+In the example, after terminating SSL/TLS in the `stream` module the connection is passed to the `http` module.
 
-## Directives {#directives}
+# Directives {#directives}
 
+## pass
 
-address
+```
+Syntax:  address
+Default: 
+Context: server
+```
 
-server
+Sets server address to pass client connection to. The address can be specified as an IP address and a port:
 
-
-Sets server address to pass client connection to.
-The address can be specified as an IP address
-and a port:
-
+```
 pass 127.0.0.1:12345;
+```
 
 or as a UNIX-domain socket path:
 
+```
 pass unix:/tmp/stream.socket;
-
-
-
+```
 
 The address can also be specified using variables:
 
+```
 pass $upstream;
-
-
+```
 

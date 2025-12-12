@@ -3,15 +3,11 @@
 **Revision:** 5  
 **Language:** en
 
+The `ngx_http_gzip_module` module is a filter that compresses responses using the “gzip” method. This often helps to reduce the size of transmitted data by half or even more.
 
-The `ngx_http_gzip_module` module is a filter
-that compresses responses using the “gzip” method.
-This often helps to reduce the size of transmitted data by half or even more.
+> **Note:** When using the SSL/TLS protocol, compressed responses may be subject to [BREACH](https://en.wikipedia.org/wiki/BREACH) attacks.
 
-> **Note:** When using the SSL/TLS protocol, compressed responses may be subject to
-[BREACH](https://en.wikipedia.org/wiki/BREACH) attacks.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 gzip            on;
@@ -20,223 +16,140 @@ gzip_proxied    expired no-cache no-store private auth;
 gzip_types      text/plain application/xml;
 ```
 
-The *$gzip_ratio* variable can be used to log the
-achieved compression ratio.
+The `$gzip_ratio` variable can be used to log the achieved compression ratio.
 
-## Directives {#directives}
+# Directives {#directives}
 
+## gzip
 
-on | off
-off
-http
-server
-location
-if in location
-
+```
+Syntax:  on | off
+Default: off
+Context: if in location, http, server, location
+```
 
 Enables or disables gzipping of responses.
 
+## gzip_buffers
 
+```
+Syntax:  number size
+Default: 32 4k|16 8k
+Context: location, http, server
+```
 
+Sets the `number` and `size` of buffers used to compress a response. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform.
 
-number size
-32 4k|16 8k
-http
-server
-location
+> **Note:** Until version 0.7.28, four 4K or 8K buffers were used by default.
 
+## gzip_comp_level
 
-Sets the number and size of buffers
-used to compress a response.
-By default, the buffer size is equal to one memory page.
-This is either 4K or 8K, depending on a platform.
+```
+Syntax:  level
+Default: 1
+Context: location, http, server
+```
 
-Until version 0.7.28, four 4K or 8K buffers were used by default.
+Sets a gzip compression `level` of a response. Acceptable values are in the range from 1 to 9.
 
+## gzip_disable
 
+```
+Syntax:  regex ...
+Default: 
+Context: location, http, server
+```
 
+*This directive appeared in version 0.6.23.*
 
+Disables gzipping of responses for requests with `User-Agent` header fields matching any of the specified regular expressions.
 
+The special mask “ `msie6` ” (0.7.12) corresponds to the regular expression “ `MSIE [4-6]\.` ”, but works faster. Starting from version 0.8.11, “ `MSIE 6.0; ... SV1` ” is excluded from this mask.
 
-level
-1
-http
-server
-location
+## gzip_http_version
 
-
-Sets a gzip compression level of a response.
-Acceptable values are in the range from 1 to 9.
-
-
-
-
-regex ...
-
-http
-server
-location
-0.6.23
-
-
-Disables gzipping of responses for requests with
-User-Agent header fields matching
-any of the specified regular expressions.
-
-
-
-The special mask “msie6” (0.7.12) corresponds to
-the regular expression “MSIE [4-6]\.”, but works faster.
-Starting from version 0.8.11, “MSIE 6.0; ... SV1”
-is excluded from this mask.
-
-
-
-
-1.0 | 1.1
-1.1
-http
-server
-location
-
+```
+Syntax:  1.0 | 1.1
+Default: 1.1
+Context: location, http, server
+```
 
 Sets the minimum HTTP version of a request required to compress a response.
 
+## gzip_min_length
 
+```
+Syntax:  length
+Default: 20
+Context: location, http, server
+```
 
+Sets the minimum length of a response that will be gzipped. The length is determined only from the `Content-Length` response header field.
 
-length
-20
-http
-server
-location
+## gzip_proxied
 
+```
+Syntax:  off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...
+Default: off
+Context: location, http, server
+```
 
-Sets the minimum length of a response that will be gzipped.
-The length is determined only from the Content-Length
-response header field.
+Enables or disables gzipping of responses for proxied requests depending on the request and response. The fact that the request is proxied is determined by the presence of the `Via` request header field. The directive accepts multiple parameters:
 
-
-
-
-
-    off |
-    expired |
-    no-cache |
-    no-store |
-    private |
-    no_last_modified |
-    no_etag |
-    auth |
-    any
-    ...
-off
-http
-server
-location
-
-
-Enables or disables gzipping of responses for proxied
-requests depending on the request and response.
-The fact that the request is proxied is determined by
-the presence of the Via request header field.
-The directive accepts multiple parameters:
-
-
-off
-
-disables compression for all proxied requests,
+**`off`**  
+  disables compression for all proxied requests,
 ignoring other parameters;
 
+**`expired`**  
+  enables compression if a response header includes the `Expires` field with a value that disables caching;
 
-expired
+**`no-cache`**  
+  enables compression if a response header includes the `Cache-Control` field with the
+“ `no-cache` ” parameter;
 
-enables compression if a response header includes the
-Expires field with a value that disables caching;
+**`no-store`**  
+  enables compression if a response header includes the `Cache-Control` field with the
+“ `no-store` ” parameter;
 
+**`private`**  
+  enables compression if a response header includes the `Cache-Control` field with the
+“ `private` ” parameter;
 
-no-cache
+**`no_last_modified`**  
+  enables compression if a response header does not include the `Last-Modified` field;
 
-enables compression if a response header includes the
-Cache-Control field with the
-“no-cache” parameter;
+**`no_etag`**  
+  enables compression if a response header does not include the `ETag` field;
 
+**`auth`**  
+  enables compression if a request header includes the `Authorization` field;
 
-no-store
+**`any`**  
+  enables compression for all proxied requests.
 
-enables compression if a response header includes the
-Cache-Control field with the
-“no-store” parameter;
+## gzip_types
 
+```
+Syntax:  mime-type ...
+Default: text/html
+Context: location, http, server
+```
 
-private
+Enables gzipping of responses for the specified MIME types in addition to “ `text/html` ”. The special value “ `*` ” matches any MIME type (0.8.29). Responses with the “ `text/html` ” type are always compressed.
 
-enables compression if a response header includes the
-Cache-Control field with the
-“private” parameter;
+## gzip_vary
 
+```
+Syntax:  on | off
+Default: off
+Context: location, http, server
+```
 
-no_last_modified
+Enables or disables inserting the `Vary: Accept-Encoding` response header field if the directives [gzip](#gzip) , [gzip_static](ngx_http_gzip_static_module.xml#gzip_static) , or [gunzip](ngx_http_gunzip_module.xml#gunzip) are active.
 
-enables compression if a response header does not include the
-Last-Modified field;
+# Embedded Variables {#variables}
 
-
-no_etag
-
-enables compression if a response header does not include the
-ETag field;
-
-
-auth
-
-enables compression if a request header includes the
-Authorization field;
-
-
-any
-
-enables compression for all proxied requests.
-
-
-
-
-
-
-
-mime-type ...
-text/html
-http
-server
-location
-
-
-Enables gzipping of responses for the specified MIME types in addition
-to “text/html”.
-The special value “*” matches any MIME type (0.8.29).
-Responses with the “text/html” type are always compressed.
-
-
-
-
-on | off
-off
-http
-server
-location
-
-
-Enables or disables inserting the Vary: Accept-Encoding
-response header field if the directives
-,
-, or
-
-are active.
-
-
-
-## Embedded Variables {#variables}
-
-***$gzip_ratio***  
+**`$gzip_ratio`**  
   achieved compression ratio, computed as the ratio between the
 original and compressed response sizes.
+

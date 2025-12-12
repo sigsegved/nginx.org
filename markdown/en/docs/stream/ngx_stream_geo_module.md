@@ -3,11 +3,9 @@
 **Revision:** 2  
 **Language:** en
 
+The `ngx_stream_geo_module` module (1.11.3) creates variables with values depending on the client IP address.
 
-The `ngx_stream_geo_module` module (1.11.3) creates variables
-with values depending on the client IP address.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 geo $geo {
@@ -22,87 +20,61 @@ geo $geo {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## geo
 
-[$address] $variable
+```
+Syntax:  [$address] $variable
+Default: 
+Context: stream
+```
 
-stream
+Describes the dependency of values of the specified variable on the client IP address. By default, the address is taken from the `$remote_addr` variable, but it can also be taken from another variable, for example:
 
-
-Describes the dependency of values of the specified variable
-on the client IP address.
-By default, the address is taken from the $remote_addr variable,
-but it can also be taken from another variable, for example:
-
+```
 geo $arg_remote_addr $geo {
     ...;
 }
+```
 
-
-
-
-
-Since variables are evaluated only when used, the mere existence
-of even a large number of declared “geo” variables
+> **Note:** Since variables are evaluated only when used, the mere existence
+of even a large number of declared “ `geo` ” variables
 does not cause any extra costs for connection processing.
 
+If the value of a variable does not represent a valid IP address then the “ `255.255.255.255` ” address is used.
 
-
-
-If the value of a variable does not represent a valid IP address
-then the “255.255.255.255” address is used.
-
-
-
-Addresses are specified either as prefixes in CIDR notation
-(including individual addresses) or as ranges.
-
-
+Addresses are specified either as prefixes in CIDR notation (including individual addresses) or as ranges.
 
 The following special parameters are also supported:
 
+**`delete`**  
+  deletes the specified network.
 
-delete
-
-deletes the specified network.
-
-
-default
-
-a value set to the variable if the client address does not
+**`default`**  
+  a value set to the variable if the client address does not
 match any of the specified addresses.
 When addresses are specified in CIDR notation,
-“0.0.0.0/0” and “::/0”
-can be used instead of default.
-When default is not specified, the default
+“ `0.0.0.0/0` ” and “ `::/0` ”
+can be used instead of `default` .
+When `default` is not specified, the default
 value will be an empty string.
 
-
-include
-
-includes a file with addresses and values.
+**`include`**  
+  includes a file with addresses and values.
 There can be several inclusions.
 
-
-ranges
-
-indicates that addresses are specified as ranges.
+**`ranges`**  
+  indicates that addresses are specified as ranges.
 This parameter should be the first.
 To speed up loading of a geo base, addresses should be put in ascending order.
 
-
-volatile
-
-indicates that the variable is not cacheable (1.29.3).
-
-
-
-
-
+**`volatile`**  
+  indicates that the variable is not cacheable (1.29.3).
 
 Example:
 
+```
 geo $country {
     default        ZZ;
     include        conf/geo.conf;
@@ -113,26 +85,20 @@ geo $country {
     10.1.0.0/16    RU;
     192.168.1.0/24 UK;
 }
+```
 
+The `conf/geo.conf` file could contain the following lines:
 
-
-
-The conf/geo.conf file could contain the following lines:
-
+```
 10.2.0.0/16    RU;
 192.168.2.0/24 RU;
+```
 
-
-
-
-A value of the most specific match is used.
-For example, for the 127.0.0.1 address the value “RU”
-will be chosen, not “US”.
-
-
+A value of the most specific match is used. For example, for the 127.0.0.1 address the value “ `RU` ” will be chosen, not “ `US` ”.
 
 Example with ranges:
 
+```
 geo $country {
     ranges;
     default                   ZZ;
@@ -142,6 +108,5 @@ geo $country {
     10.1.0.0-10.1.255.255     RU;
     192.168.1.0-192.168.1.255 UK;
 }
-
-
+```
 

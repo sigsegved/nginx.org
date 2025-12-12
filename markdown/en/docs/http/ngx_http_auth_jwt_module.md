@@ -3,34 +3,15 @@
 **Revision:** 12  
 **Language:** en
 
+The `ngx_http_auth_jwt_module` module (1.11.3) implements client authorization by validating the provided [JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519) (JWT) using the specified keys. The module supports [JSON Web Signature](https://datatracker.ietf.org/doc/html/rfc7515) (JWS), [JSON Web Encryption](https://datatracker.ietf.org/doc/html/rfc7516) (JWE) (1.19.7), and Nested JWT (1.21.0). The module can be used for [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) authentication.
 
-The `ngx_http_auth_jwt_module` module (1.11.3)
-implements client authorization by validating the provided
-[JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519) (JWT)
-using the specified keys.
-The module supports
-[JSON Web Signature](https://datatracker.ietf.org/doc/html/rfc7515) (JWS),
-[JSON Web Encryption](https://datatracker.ietf.org/doc/html/rfc7516) (JWE)
-(1.19.7), and Nested JWT (1.21.0).
-The module can be used for
-[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html)
-authentication.
+The module may be combined with other access modules, such as [ngx_http_access_module](ngx_http_access_module.xml) , [ngx_http_auth_basic_module](ngx_http_auth_basic_module.xml) , and [ngx_http_auth_request_module](ngx_http_auth_request_module.xml) , via the [satisfy](ngx_http_core_module.xml#satisfy) directive.
 
-The module may be combined with
-other access modules, such as
-[ngx_http_access_module](ngx_http_access_module.html),
-[ngx_http_auth_basic_module](ngx_http_auth_basic_module.html),
-and
-[ngx_http_auth_request_module](ngx_http_auth_request_module.html),
-via the [](ngx_http_core_module.xml#satisfy) directive.
+> **Note:** This module is available as part of our [commercial subscription](https://nginx.com/products/) .
 
-> **Note:** This module is available as part of our
-commercial subscription.
+# Supported Algorithms {#algorithms}
 
-## Supported Algorithms {#algorithms}
-
-The module supports the following JSON Web
-[Algorithms](https://www.iana.org/assignments/jose/jose.xhtml#web-signature-encryption-algorithms).
+The module supports the following JSON Web [Algorithms](https://www.iana.org/assignments/jose/jose.xhtml#web-signature-encryption-algorithms) .
 
 JWS algorithms:
 
@@ -39,8 +20,6 @@ JWS algorithms:
 - ES256, ES384, ES512
 - EdDSA (Ed25519 and Ed448 signatures) (1.15.7)
 - PS256, PS384, PS512 (1.29.0)
-
-
 
 > **Note:** Prior to version 1.13.7,
 only HS256, RS256, ES256 algorithms were supported.
@@ -57,7 +36,7 @@ JWE key management algorithms (1.19.9):
 - dir—direct use of a shared symmetric key as the content encryption key
 - RSA-OAEP, RSA-OAEP-256, RSA-OAEP-384, RSA-OAEP-512 (1.21.0)
 
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location / {
@@ -66,156 +45,108 @@ location / {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## auth_jwt
 
+```
+Syntax:  string [token=$variable] | off
+Default: off
+Context: limit_except, http, server, location
+```
 
-    string
-    [token=$variable] |
-    off
-off
-http
-server
-location
-limit_except
+Enables validation of JSON Web Token. The specified `string` is used as a `realm` . Parameter value can contain variables.
 
+The optional `token` parameter specifies a variable that contains JSON Web Token. By default, JWT is passed in the `Authorization` header as a [Bearer Token](https://datatracker.ietf.org/doc/html/rfc6750) . JWT may be also passed as a cookie or a part of a query string:
 
-Enables validation of JSON Web Token.
-The specified string is used as a realm.
-Parameter value can contain variables.
-
-
-
-The optional token parameter specifies a variable
-that contains JSON Web Token.
-By default, JWT is passed in the Authorization header
-as a
-Bearer Token.
-JWT may be also passed as a cookie or a part of a query string:
-
+```
 auth_jwt "closed site" token=$cookie_auth_token;
+```
 
+The special value `off` cancels the effect of the `auth_jwt` directive inherited from the previous configuration level.
 
+## auth_jwt_claim_set
 
+```
+Syntax:  $variable name ...
+Default: 
+Context: http
+```
 
-The special value off cancels the effect
-of the auth_jwt directive
-inherited from the previous configuration level.
+*This directive appeared in version 1.11.10.*
 
+Sets the `variable` to a JWT claim parameter identified by key names. Name matching starts from the top level of the JSON tree. For arrays, the variable keeps a list of array elements separated by commas.
 
-
-
-$variable name ...
-
-http
-1.11.10
-
-
-Sets the variable to a JWT claim parameter
-identified by key names.
-Name matching starts from the top level of the JSON tree.
-For arrays, the variable keeps a list of array elements separated by commas.
-
+```
 auth_jwt_claim_set $email info e-mail;
 auth_jwt_claim_set $job info "job title";
+```
 
-
-Prior to version 1.13.7, only one key name could be specified,
+> **Note:** Prior to version 1.13.7, only one key name could be specified,
 and the result was undefined for arrays.
 
+> **Note:** Variable values for tokens encrypted with JWE
+are available only after decryption which occurs during the [Access](../dev/development_guide.xml#http_phases) phase.
 
+## auth_jwt_header_set
 
+```
+Syntax:  $variable name ...
+Default: 
+Context: http
+```
 
+*This directive appeared in version 1.11.10.*
 
-Variable values for tokens encrypted with JWE
-are available only after decryption which occurs during the
-Access phase.
+Sets the `variable` to a JOSE header parameter identified by key names. Name matching starts from the top level of the JSON tree. For arrays, the variable keeps a list of array elements separated by commas.
 
-
-
-
-
-$variable name ...
-
-http
-1.11.10
-
-
-Sets the variable to a JOSE header parameter
-identified by key names.
-Name matching starts from the top level of the JSON tree.
-For arrays, the variable keeps a list of array elements separated by commas.
-
-Prior to version 1.13.7, only one key name could be specified,
+> **Note:** Prior to version 1.13.7, only one key name could be specified,
 and the result was undefined for arrays.
 
+## auth_jwt_key_cache
 
+```
+Syntax:  time
+Default: 0
+Context: location, http, server
+```
 
+*This directive appeared in version 1.21.4.*
 
+Enables or disables caching of keys obtained from a [file](#auth_jwt_key_file) or from a [subrequest](#auth_jwt_key_request) , and sets caching time for them. Caching of keys obtained from variables is not supported. By default, caching of keys is disabled.
 
-time
-0
-http
-server
-location
-1.21.4
+## auth_jwt_key_file
 
+```
+Syntax:  file
+Default: 
+Context: limit_except, http, server, location
+```
 
-Enables or disables caching of keys
-obtained from a file
-or from a subrequest,
-and sets caching time for them.
-Caching of keys obtained from variables is not supported.
-By default, caching of keys is disabled.
+Specifies a `file` in [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517#section-5) format for validating JWT signature. Parameter value can contain variables.
 
+Several `auth_jwt_key_file` directives can be specified on the same level (1.21.1):
 
-
-
-file
-
-http
-server
-location
-limit_except
-
-
-Specifies a file in
-JSON Web Key Set
-format for validating JWT signature.
-Parameter value can contain variables.
-
-
-
-Several auth_jwt_key_file directives
-can be specified on the same level (1.21.1):
-
+```
 auth_jwt_key_file conf/keys.json;
 auth_jwt_key_file conf/key.jwk;
+```
 
-If at least one of the specified keys cannot be loaded or processed,
-nginx will return the
- error.
+If at least one of the specified keys cannot be loaded or processed, nginx will return the 500 Internal Server Error error.
 
+## auth_jwt_key_request
 
+```
+Syntax:  uri
+Default: 
+Context: limit_except, http, server, location
+```
 
+*This directive appeared in version 1.15.6.*
 
-uri
+Allows retrieving a [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517#section-5) file from a subrequest for validating JWT signature and sets the URI where the subrequest will be sent to. Parameter value can contain variables. To avoid validation overhead, it is recommended to cache the key file:
 
-http
-server
-location
-limit_except
-1.15.6
-
-
-Allows retrieving a
-JSON Web Key Set
-file from a subrequest for validating JWT signature and
-sets the URI where the subrequest will be sent to.
-Parameter value can contain variables.
-To avoid validation overhead,
-it is recommended to cache the key file:
-
+```
 proxy_cache_path /data/nginx/cache levels=1 keys_zone=foo:10m;
 
 server {
@@ -232,119 +163,81 @@ server {
         proxy_pass  http://idp.example.com/keys;
     }
 }
+```
 
-Several auth_jwt_key_request directives
-can be specified on the same level (1.21.1):
+Several `auth_jwt_key_request` directives can be specified on the same level (1.21.1):
 
+```
 auth_jwt_key_request /jwks_uri;
 auth_jwt_key_request /jwks2_uri;
+```
 
-If at least one of the specified keys cannot be loaded or processed,
-nginx will return the
- error.
+If at least one of the specified keys cannot be loaded or processed, nginx will return the 500 Internal Server Error error.
 
+## auth_jwt_leeway
 
+```
+Syntax:  time
+Default: 0s
+Context: location, http, server
+```
 
+*This directive appeared in version 1.13.10.*
 
-time
-0s
-http
-server
-location
-1.13.10
+Sets the maximum allowable leeway to compensate clock skew when verifying the [exp](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4) and [nbf](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.5) JWT claims.
 
+## auth_jwt_type
 
-Sets the maximum allowable leeway to compensate
-clock skew when verifying the
-exp
-and
-nbf
-JWT claims.
+```
+Syntax:  signed | encrypted | nested
+Default: signed
+Context: limit_except, http, server, location
+```
 
+*This directive appeared in version 1.19.7.*
 
+Specifies which type of JSON Web Token to expect: JWS ( `signed` ), JWE ( `encrypted` ), or signed and then encrypted Nested JWT ( `nested` ) (1.21.0).
 
+## auth_jwt_require
 
-signed |
-        encrypted |
-        nested
-signed
-http
-server
-location
-limit_except
-1.19.7
+```
+Syntax:  $value ... [error=401 | 403]
+Default: 
+Context: limit_except, http, server, location
+```
 
+*This directive appeared in version 1.21.2.*
 
-Specifies which type of JSON Web Token to expect:
-JWS (signed),
-JWE (encrypted),
-or signed and then encrypted
-Nested JWT (nested) (1.21.0).
+Specifies additional checks for JWT validation. The value can contain text, variables, and their combination, and must start with a variable (1.21.7). The authentication will succeed only if all the values are not empty and are not equal to “0”.
 
-
-
-
-
-    $value ...
-    [error=401 |
-                              403]
-
-
-http
-server
-location
-limit_except
-1.21.2
-
-
-Specifies additional checks for JWT validation.
-The value can contain text, variables, and their combination,
-and must start with a variable (1.21.7).
-The authentication will succeed only
-if all the values are not empty and are not equal to “0”.
-
+```
 map $jwt_claim_iss $valid_jwt_iss {
     "good" 1;
 }
 ...
 
 auth_jwt_require $valid_jwt_iss;
+```
 
+If any of the checks fails, the `401` error code is returned. The optional `error` parameter (1.21.7) allows redefining the error code to `403` .
 
+# Embedded Variables {#variables}
 
+The `ngx_http_auth_jwt_module` module supports embedded variables:
 
-If any of the checks fails,
-the 401 error code is returned.
-The optional error parameter (1.21.7)
-allows redefining the error code to 403.
+**`$jwt_header_` `name`**  
+  returns the value of a specified [JOSE header](https://datatracker.ietf.org/doc/html/rfc7515#section-4)
 
+**`$jwt_claim_` `name`**  
+  returns the value of a specified [JWT claim](https://datatracker.ietf.org/doc/html/rfc7519#section-4)
 
+For nested claims and claims including a dot (“.”), the value of the variable cannot be evaluated; the [auth_jwt_claim_set](#auth_jwt_claim_set) directive should be used instead.
 
-## Embedded Variables {#variables}
+Variable values for tokens encrypted with JWE are available only after decryption which occurs during the [Access](../dev/development_guide.xml#http_phases) phase.
 
-The `ngx_http_auth_jwt_module` module
-supports embedded variables:
-
-***$jwt_header_**name***  
-  returns the value of a specified
-[JOSE header](https://datatracker.ietf.org/doc/html/rfc7515#section-4)
-***$jwt_claim_**name***  
-  returns the value of a specified
-[JWT claim](https://datatracker.ietf.org/doc/html/rfc7519#section-4)
-
-
-For nested claims and claims including a dot (“.”),
-the value of the variable cannot be evaluated;
-the  directive should be used instead.
-
-
-
-Variable values for tokens encrypted with JWE
-are available only after decryption which occurs during the
-Access phase.
-***$jwt_payload***  
+**`$jwt_payload`**  
   returns the decrypted top-level payload
-of `nested`
-or `encrypted` tokens (1.21.2).
+of `nested` or `encrypted` tokens (1.21.2).
 For nested tokens returns the enclosed JWS token.
 For encrypted tokens returns JSON with claims.
+

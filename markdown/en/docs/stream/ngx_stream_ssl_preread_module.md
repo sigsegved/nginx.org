@@ -3,20 +3,9 @@
 **Revision:** 3  
 **Language:** en
 
+The `ngx_stream_ssl_preread_module` module (1.11.5) allows extracting information from the [ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2) message without terminating SSL/TLS, for example, the server name requested through [SNI](https://datatracker.ietf.org/doc/html/rfc6066#section-3) or protocols advertised in [ALPN](https://datatracker.ietf.org/doc/html/rfc7301) . This module is not built by default, it should be enabled with the `--with-stream_ssl_preread_module` configuration parameter.
 
-The `ngx_stream_ssl_preread_module` module (1.11.5) allows
-extracting information from the
-[ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2)
-message without terminating SSL/TLS,
-for example, the server name requested through
-[SNI](https://datatracker.ietf.org/doc/html/rfc6066#section-3)
-or protocols advertised in
-[ALPN](https://datatracker.ietf.org/doc/html/rfc7301).
-This module is not built by default, it should be enabled with the
-`--with-stream_ssl_preread_module`
-configuration parameter.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 Selecting an upstream based on server name:
 
@@ -76,26 +65,27 @@ server {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## ssl_preread
 
-on | off
-off
-stream
-server
+```
+Syntax:  on | off
+Default: off
+Context: server, stream
+```
 
+Enables extracting information from the ClientHello message at the [preread](stream_processing.xml#preread_phase) phase.
 
-Enables extracting information from the ClientHello message at
-the preread phase.
+# Embedded Variables {#variables}
 
-
-
-## Embedded Variables {#variables}
-
-***$ssl_preread_protocol***  
+**`$ssl_preread_protocol`**  
   the highest SSL protocol version supported by the client (1.15.2)
-***$ssl_preread_server_name***  
+
+**`$ssl_preread_server_name`**  
   server name requested through SNI
-***$ssl_preread_alpn_protocols***  
+
+**`$ssl_preread_alpn_protocols`**  
   list of protocols advertised by the client through ALPN (1.13.10).
 The values are separated by commas.
+

@@ -3,11 +3,9 @@
 **Revision:** 1  
 **Language:** en
 
+The `ngx_stream_return_module` module (1.11.2) allows sending a specified value to the client and then closing the connection.
 
-The `ngx_stream_return_module` module (1.11.2) allows
-sending a specified value to the client and then closing the connection.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 server {
@@ -16,15 +14,15 @@ server {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## return
 
-value
+```
+Syntax:  value
+Default: 
+Context: server
+```
 
-server
-
-
-Specifies a value to send to the client.
-The value can contain text, variables, and their combination.
-
+Specifies a `value` to send to the client. The value can contain text, variables, and their combination.
 

@@ -3,15 +3,11 @@
 **Revision:** 1  
 **Language:** en
 
+The `ngx_http_num_map_module` module (1.29.3) creates variables whose values depend on numeric values or numeric value ranges.
 
-The `ngx_http_num_map_module` module (1.29.3)
-creates variables whose values depend on numeric values
-or numeric value ranges.
+> **Note:** This module is available as part of our [commercial subscription](https://nginx.com/products/) .
 
-> **Note:** This module is available as part of our
-commercial subscription.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 num_map $remote_port $port_allow {
@@ -24,60 +20,38 @@ num_map $remote_port $port_allow {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## num_map
 
+```
+Syntax:  [$number] $variable
+Default: 
+Context: http
+```
 
-    [$number]
-    $variable
+Describes how the values of the specified variable depend on numeric values or numeric value ranges.
 
-http
-
-
-Describes how the values of the specified variable depend on numeric values
-or numeric value ranges.
-
-
-
-
-Since variables are evaluated only when used, the mere existence
-of even a large number of declared “num_map” variables
+> **Note:** Since variables are evaluated only when used, the mere existence
+of even a large number of declared “ `num_map` ” variables
 does not cause any extra costs for request processing.
 
-
-
-
-Parameters inside the num_map block specify a mapping
-between source and resulting values.
-
-
+Parameters inside the `num_map` block specify a mapping between source and resulting values.
 
 Source values are specified as numbers or as numeric ranges.
 
-
-
 The following special parameters are also supported:
 
-
-default
-
-sets the resulting value if the source value matches none
+**`default`**  
+  sets the resulting value if the source value matches none
 of the specified variants.
-When default is not specified, the default
+When `default` is not specified, the default
 resulting value will be an empty string.
 
-
-include
-
-includes a file with values.
+**`include`**  
+  includes a file with values.
 There can be several inclusions.
 
-
-volatile
-
-indicates that the variable is not cacheable.
-
-
-
-
+**`volatile`**  
+  indicates that the variable is not cacheable.
 

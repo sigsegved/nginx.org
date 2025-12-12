@@ -3,18 +3,7 @@
 **Revision:** 4  
 **Language:** en
 
-
-njs scripts development and debugging can be performed
-from the command-line.
-The command-line utility is available after the installation of
-the Linux [package](install.xml#install_package)
-or after building from the
-[sources](install.xml#install_sources).
-Compared to njs running inside nginx,
-nginx objects
-([HTTP](reference.xml#http) and
-[Stream](reference.xml#stream))
-are not available in the utility.
+njs scripts development and debugging can be performed from the command-line. The command-line utility is available after the installation of the Linux [package](install.xml#install_package) or after building from the [sources](install.xml#install_sources) . Compared to njs running inside nginx, nginx objects ( [HTTP](reference.xml#http) and [Stream](reference.xml#stream) ) are not available in the utility.
 
 ```
 $ echo "2**3" | njs -q
@@ -51,3 +40,4 @@ global {
 }
 >>
 ```
+

@@ -3,11 +3,9 @@
 **Revision:** 1  
 **Language:** ru
 
+Модуль `ngx_http_empty_gif_module` выдаёт однопиксельный прозрачный GIF.
 
-Модуль `ngx_http_empty_gif_module` выдаёт
-однопиксельный прозрачный GIF.
-
-## Пример конфигурации {#example}
+# Пример конфигурации {#example}
 
 ```
 location = /_.gif {
@@ -15,14 +13,15 @@ location = /_.gif {
 }
 ```
 
-## Директивы {#directives}
+# Директивы {#directives}
 
+## empty_gif
 
-
-
-location
-
+```
+Syntax:  
+Default: 
+Context: location
+```
 
 Разрешает в содержащем location выдавать однопиксельный прозрачный GIF.
-
 

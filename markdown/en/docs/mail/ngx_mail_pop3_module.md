@@ -3,85 +3,45 @@
 **Revision:** 5  
 **Language:** en
 
+# Directives {#directives}
 
-## Directives {#directives}
+## pop3_auth
 
+```
+Syntax:  method ...
+Default: plain
+Context: server, mail
+```
 
-method ...
-plain
-mail
-server
+Sets permitted methods of authentication for POP3 clients. Supported methods are:
 
+**`plain`**  
+  [USER/PASS](https://datatracker.ietf.org/doc/html/rfc1939) , [AUTH PLAIN](https://datatracker.ietf.org/doc/html/rfc4616) , [AUTH LOGIN](https://datatracker.ietf.org/doc/html/draft-murchison-sasl-login-00)
 
-Sets permitted methods of authentication for POP3 clients.
-Supported methods are:
-
-
-plain
-
-USER/PASS,
-AUTH PLAIN,
-AUTH LOGIN
-
-
-apop
-
-APOP.
+**`apop`**  
+  [APOP](https://datatracker.ietf.org/doc/html/rfc1939) .
 In order for this method to work, the password must be stored unencrypted.
 
-
-cram-md5
-
-AUTH CRAM-MD5.
+**`cram-md5`**  
+  [AUTH CRAM-MD5](https://datatracker.ietf.org/doc/html/rfc2195) .
 In order for this method to work, the password must be stored unencrypted.
 
+**`external`**  
+  [AUTH EXTERNAL](https://datatracker.ietf.org/doc/html/rfc4422) (1.11.6).
 
-external
+Plain text authentication methods ( `USER/PASS` , `AUTH PLAIN` , and `AUTH LOGIN` ) are always enabled, though if the `plain` method is not specified, `AUTH PLAIN` and `AUTH LOGIN` will not be automatically included in [pop3_capabilities](#pop3_capabilities) .
 
-AUTH EXTERNAL (1.11.6).
+## pop3_capabilities
 
+```
+Syntax:  extension ...
+Default: TOP USER UIDL
+Context: server, mail
+```
 
+Sets the [POP3 protocol](https://datatracker.ietf.org/doc/html/rfc2449) extensions list that is passed to the client in response to the `CAPA` command. The authentication methods specified in the [pop3_auth](#pop3_auth) directive ( [SASL](https://datatracker.ietf.org/doc/html/rfc2449) extension) and [STLS](https://datatracker.ietf.org/doc/html/rfc2595) are automatically added to this list depending on the [starttls](ngx_mail_ssl_module.xml#starttls) directive value.
 
+It makes sense to specify the extensions supported by the POP3 backends to which the clients are proxied (if these extensions are related to commands used after the authentication, when nginx transparently proxies the client connection to the backend).
 
-
-
-Plain text authentication methods
-(USER/PASS, AUTH PLAIN,
-and AUTH LOGIN) are always enabled,
-though if the plain method is not specified,
-AUTH PLAIN and AUTH LOGIN
-will not be automatically included in .
-
-
-
-
-extension ...
-TOP USER UIDL
-mail
-server
-
-
-Sets the
-POP3 protocol
-extensions list that is passed to the client in response to
-the CAPA command.
-The authentication methods specified in the  directive
-(SASL extension) and
-STLS
-are automatically added to this list depending on the
- directive value.
-
-
-
-It makes sense to specify the extensions
-supported by the POP3 backends
-to which the clients are proxied (if these extensions are related to commands
-used after the authentication, when nginx transparently proxies the client
-connection to the backend).
-
-
-
-The current list of standardized extensions is published at
-www.iana.org.
-
+The current list of standardized extensions is published at [www.iana.org](http://www.iana.org/assignments/pop3-extension-mechanism) .
 

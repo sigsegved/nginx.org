@@ -3,41 +3,34 @@
 **Revision:** 29  
 **Language:** en
 
-
-## Prerequisites
+# Prerequisites
 
 To build nginx on the Microsoft Win32® platform you need:
 
-
-- Microsoft Visual C compiler. Microsoft Visual Studio®
-8, 10, 17 are known to work.
-- [MSYS](https://sourceforge.net/projects/mingw/files/MSYS/) or
-[MSYS2](https://www.msys2.org).
-- Perl, if you want to build OpenSSL® and nginx with SSL support.
-For example [ActivePerl](http://www.activestate.com/activeperl)
-or [Strawberry Perl](http://strawberryperl.com).
+- Microsoft Visual C compiler.
+  Microsoft Visual Studio- 8, 10, 17 are known to work.
+- [MSYS](https://sourceforge.net/projects/mingw/files/MSYS/) or [MSYS2](https://www.msys2.org) .
+- Perl, if you want to build
+  OpenSSL- and nginx with SSL support.
+For example [ActivePerl](http://www.activestate.com/activeperl) or [Strawberry Perl](http://strawberryperl.com) .
 - [Git](https://cli.github.com/) client.
-- [PCRE](http://www.pcre.org), [zlib](http://zlib.net)
-and [OpenSSL](http://www.openssl.org) libraries sources.
+- [PCRE](http://www.pcre.org) , [zlib](http://zlib.net) and [OpenSSL](http://www.openssl.org) libraries sources.
 
-## Build steps {#build_steps}
+# Build steps {#build_steps}
 
-Ensure that paths to Perl, Git and MSYS bin directories are added to
-PATH environment variable before you start build. To set Visual C environment
-run vcvarsall.bat script from Visual C directory.
+Ensure that paths to Perl, Git and MSYS bin directories are added to PATH environment variable before you start build. To set Visual C environment run vcvarsall.bat script from Visual C directory.
 
 To build nginx:
 
 - Start MSYS bash.
 - Check out nginx sources from the GitHub repository:
-
-```
+  ```
 git clone https://github.com/nginx/nginx.git
 ```
+
 - Create a build and lib directories, and unpack zlib, PCRE and OpenSSL libraries
 sources into lib directory:
-
-```
+  ```
 mkdir objs
 mkdir objs/lib
 cd objs/lib
@@ -45,9 +38,9 @@ tar -xzf ../../pcre2-10.39.tar.gz
 tar -xzf ../../zlib-1.3.1.tar.gz
 tar -xzf ../../openssl-3.0.14.tar.gz
 ```
-- Run configure script:
 
-```
+- Run configure script:
+  ```
 auto/configure \
     --with-cc=cl \
     --with-debug \
@@ -69,12 +62,13 @@ auto/configure \
     --with-openssl-opt=no-asm \
     --with-http_ssl_module
 ```
-- Run make:
 
-```
+- Run make:
+  ```
 nmake
 ```
 
-## See also {#see_also}
+# See also {#see_also}
 
-- [windows.html](windows.html)
+- 
+

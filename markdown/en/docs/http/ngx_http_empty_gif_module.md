@@ -3,11 +3,9 @@
 **Revision:** 1  
 **Language:** en
 
+The `ngx_http_empty_gif_module` module emits single-pixel transparent GIF.
 
-The `ngx_http_empty_gif_module` module emits
-single-pixel transparent GIF.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location = /_.gif {
@@ -15,14 +13,15 @@ location = /_.gif {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## empty_gif
 
-
-
-location
-
+```
+Syntax:  
+Default: 
+Context: location
+```
 
 Turns on module processing in a surrounding location.
-
 

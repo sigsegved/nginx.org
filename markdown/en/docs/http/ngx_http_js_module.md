@@ -3,19 +3,13 @@
 **Revision:** 57  
 **Language:** en
 
+The `ngx_http_js_module` module is used to implement location and variable handlers in [njs](../njs/index.xml) — a subset of the JavaScript language.
 
-The `ngx_http_js_module` module is used to implement
-location and variable handlers
-in [njs](../njs/index.html) —
-a subset of the JavaScript language.
+Download and install instructions are available [here](../njs/install.xml) .
 
-Download and install instructions are available
-[here](../njs/install.html).
+# Example Configuration {#example}
 
-## Example Configuration {#example}
-
-The example works since
-[0.4.0](../njs/changes.xml#njs0.4.0).
+The example works since [0.4.0](../njs/changes.xml#njs0.4.0) .
 
 ```
 http {
@@ -124,74 +118,50 @@ async function hash(r) {
 export default {foo, summary, baz, hello, fetch, hash};
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## js_body_filter
 
-module.function
-[buffer_type=string | buffer]
+```
+Syntax:  module.function [buffer_type=string | buffer]
+Default: 
+Context: limit_except, location, if in location
+```
 
-location
-if in location
-limit_except
-0.5.2
+*This directive appeared in version 0.5.2.*
 
+Sets an njs function as a response body filter. The filter function is called for each data chunk of a response body with the following arguments:
 
-Sets an njs function as a response body filter.
-The filter function is called for each data chunk of a response body
-with the following arguments:
+**`r`**  
+  the [HTTP request](../njs/reference.xml#http) object
 
-
-r
-
-the HTTP request object
-
-
-data
-
-the incoming data chunk,
+**`data`**  
+  the incoming data chunk,
 may be a string or Buffer
-depending on the buffer_type value,
+depending on the `buffer_type` value,
 by default is a string.
-Since 0.8.5, the
-data value is implicitly converted to a valid UTF-8 string
+Since [0.8.5](../njs/changes.xml#njs0.8.5) , the `data` value is implicitly converted to a valid UTF-8 string
 by default.
-For binary data, the buffer_type value
-should be set to buffer.
+For binary data, the `buffer_type` value
+should be set to `buffer` .
 
+**`flags`**  
+  an object with the following properties:
 
-flags
+**`last`**  
+  a boolean value, true if data is a last buffer.
 
-an object with the following properties:
+The filter function can pass its own modified version of the input data chunk to the next body filter by calling [`r.sendBuffer()`](../njs/reference.xml#r_sendbuffer) . For example, to transform all the lowercase letters in the response body:
 
-last
-
-a boolean value, true if data is a last buffer.
-
-
-
-
-
-
-
-
-
-The filter function can pass its own modified version
-of the input data chunk to the next body filter by calling
-r.sendBuffer().
-For example, to transform all the lowercase letters in the response body:
-
+```
 function filter(r, data, flags) {
     r.sendBuffer(data.toLowerCase(), flags);
 }
+```
 
+If the filter function changes the length of the response body, the `Content-Length` response header (if present) should be cleared in [`js_header_filter`](#js_header_filter) to enforce chunked transfer encoding:
 
-
-
-If the filter function changes the length of the response body, the
-Content-Length response header (if present) should be cleared
-in js_header_filter
-to enforce chunked transfer encoding:
-
+```
 example.conf:
  location /foo {
      # proxy_pass http://localhost:8080;
@@ -204,427 +174,298 @@ example.js:
  function clear_content_length(r) {
      delete r.headersOut['Content-Length'];
  }
+```
 
+To stop filtering and pass the data chunks to the client without calling `js_body_filter` , [`r.done()`](../njs/reference.xml#r_done) can be used. For example, to prepend some data to the response body:
 
-
-
-To stop filtering and pass the data chunks to the client
-without calling js_body_filter,
-r.done()
-can be used.
-For example, to prepend some data to the response body:
-
+```
 function prepend(r, data, flags) {
     r.sendBuffer("XXX");
     r.sendBuffer(data, flags);
     r.done();
 }
+```
 
-
-
-
-
-As the js_body_filter handler
+> **Note:** As the `js_body_filter` handler
 returns its result immediately, it supports
 only synchronous operations.
-Thus, asynchronous operations such as
-r.subrequest()
-or
-setTimeout()
-are not supported.
+Thus, asynchronous operations such as [r.subrequest()](../njs/reference.xml#r_subrequest) or [setTimeout()](../njs/reference.xml#settimeout) are not supported.
 
+> **Note:** The directive can be specified inside the [if](../http/ngx_http_rewrite_module.xml#if) block
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
+## js_content
 
+```
+Syntax:  module.function
+Default: 
+Context: limit_except, location, if in location
+```
 
+Sets an njs function as a location content handler. Since [0.4.0](../njs/changes.xml#njs0.4.0) , a module function can be referenced.
 
-The directive can be specified inside the
-if block
-since 0.7.7.
+> **Note:** The directive can be specified inside the [if](../http/ngx_http_rewrite_module.xml#if) block
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
+## js_context_reuse
 
+```
+Syntax:  number
+Default: 128
+Context: location, http, server
+```
 
+*This directive appeared in version 0.8.6.*
 
+Sets a maximum number of JS context to be reused for [QuickJS engine](../njs/engine.xml) . Each context is used for a single request. The finished context is put into a pool of reusable contexts. If the pool is full, the context is destroyed.
 
-module.function
+## js_engine
 
-location
-if in location
-limit_except
+```
+Syntax:  njs | qjs
+Default: njs
+Context: location, http, server
+```
 
+*This directive appeared in version 0.8.6.*
 
-Sets an njs function as a location content handler.
-Since 0.4.0,
-a module function can be referenced.
+Sets a [JavaScript engine](../njs/engine.xml) to be used for njs scripts. The `njs` parameter sets the njs engine, also used by default. The `qjs` parameter sets the QuickJS engine.
 
+## js_fetch_buffer_size
 
+```
+Syntax:  size
+Default: 16k
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.4.*
 
-The directive can be specified inside the
-if block
-since 0.7.7.
+Sets the `size` of the buffer used for reading and writing with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
+## js_fetch_ciphers
 
+```
+Syntax:  ciphers
+Default: HIGH:!aNULL:!MD5
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.0.*
 
+Specifies the enabled ciphers for HTTPS requests with [Fetch API](../njs/reference.xml#ngx_fetch) . The ciphers are specified in the format understood by the OpenSSL library.
 
-number
-128
-http
-server
-location
-0.8.6
+The full list can be viewed using the “ `openssl ciphers` ” command.
 
+## js_fetch_max_response_buffer_size
 
-Sets a maximum number of JS context to be reused for
-QuickJS engine.
-Each context is used for a single request.
-The finished context is put into a pool of reusable contexts.
-If the pool is full, the context is destroyed.
+```
+Syntax:  size
+Default: 1m
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.4.*
 
+Sets the maximum `size` of the response received with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
+## js_fetch_protocols
 
-njs | qjs
-njs
-http
-server
-location
-0.8.6
+```
+Syntax:  [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Default: TLSv1 TLSv1.1 TLSv1.2
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.0.*
 
-Sets a JavaScript engine
-to be used for njs scripts.
-The njs parameter sets the njs engine, also used by default.
-The qjs parameter sets the QuickJS engine.
+Enables the specified protocols for HTTPS requests with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
+## js_fetch_timeout
 
+```
+Syntax:  time
+Default: 60s
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.4.*
 
-size
-16k
-http
-server
-location
-0.7.4
+Defines a timeout for reading and writing for [Fetch API](../njs/reference.xml#ngx_fetch) . The timeout is set only between two successive read/write operations, not for the whole response. If no data is transmitted within this time, the connection is closed.
 
+## js_fetch_trusted_certificate
 
-Sets the size of the buffer used for reading and writing
-with Fetch API.
+```
+Syntax:  file
+Default: 
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.0.*
 
+Specifies a `file` with trusted CA certificates in the PEM format used to [verify](../njs/reference.xml#fetch_verify) the HTTPS certificate with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
+## js_fetch_verify
 
-ciphers
-HIGH:!aNULL:!MD5
-http
-server
-location
-0.7.0
+```
+Syntax:  on | off
+Default: on
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.4.*
 
-Specifies the enabled ciphers for HTTPS requests
-with Fetch API.
-The ciphers are specified in the format understood by the
-OpenSSL library.
+Enables or disables verification of the HTTPS server certificate with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
+## js_fetch_verify_depth
 
+```
+Syntax:  number
+Default: 100
+Context: location, http, server
+```
 
-The full list can be viewed using the
-“openssl ciphers” command.
+*This directive appeared in version 0.7.0.*
 
+Sets the verification depth in the HTTPS server certificates chain with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
+## js_fetch_proxy
 
+```
+Syntax:  url
+Default: 
+Context: location, http, server
+```
 
-size
-1m
-http
-server
-location
-0.7.4
+*This directive appeared in version 0.9.4.*
 
-
-Sets the maximum size of the response received
-with Fetch API.
-
-
-
-
-
-    [TLSv1]
-    [TLSv1.1]
-    [TLSv1.2]
-    [TLSv1.3]
-TLSv1 TLSv1.1 TLSv1.2
-http
-server
-location
-0.7.0
-
-
-Enables the specified protocols for HTTPS requests
-with Fetch API.
-
-
-
-
-time
-60s
-http
-server
-location
-0.7.4
-
-
-Defines a timeout for reading and writing
-for Fetch API.
-The timeout is set only between two successive read/write operations,
-not for the whole response.
-If no data is transmitted within this time, the connection is closed.
-
-
-
-
-file
-
-http
-server
-location
-0.7.0
-
-
-Specifies a file with trusted CA certificates in the PEM format
-used to
-verify
-the HTTPS certificate
-with Fetch API.
-
-
-
-
-on | off
-on
-http
-server
-location
-0.7.4
-
-
-Enables or disables verification of the HTTPS server certificate
-with Fetch API.
-
-
-
-
-number
-100
-http
-server
-location
-0.7.0
-
-
-Sets the verification depth in the HTTPS server certificates chain
-with Fetch API.
-
-
-
-
-url
-
-http
-server
-location
-0.9.4
-
-
-Configures a forward proxy URL
-with Fetch API.
-The url supports the HTTP scheme only
-and can contain optional user credentials
-in the format http://[user:password@]host:port
-for Basic authentication.
-Supports both HTTP and HTTPS connections to destination servers.
-If the url is empty, proxy routing is disabled.
-The parameter value can contain variables.
-
-
+Configures a forward proxy URL with [Fetch API](../njs/reference.xml#ngx_fetch) . The `url` supports the HTTP scheme only and can contain optional user credentials in the format `http://[user:password@]host:port` for Basic authentication. Supports both HTTP and HTTPS connections to destination servers. If the `url` is empty, proxy routing is disabled. The parameter value can contain variables.
 
 Example:
 
+```
 location /fetch {
     js_fetch_proxy http://user:pass@proxy.example.com:3128;
     js_content main.fetch_handler;
 }
+```
 
+## js_fetch_keepalive
 
+```
+Syntax:  connections
+Default: 0
+Context: location, http, server
+```
 
+*This directive appeared in version 0.9.2.*
 
+Activates the cache for connections to destination servers. When the value is greater than `0` , enables keepalive connections for [Fetch API](../njs/reference.xml#ngx_fetch) .
 
-connections
-0
-http
-server
-location
-0.9.2
-
-
-Activates the cache for connections to destination servers.
-When the value is greater than 0,
-enables keepalive connections for
-Fetch API.
-
-
-
-The connections parameter sets the maximum number of idle
-keepalive connections to destination servers that are preserved in the cache
-of each worker process.
-When this number is exceeded, the least recently used connections are closed.
-
-
+The `connections` parameter sets the maximum number of idle keepalive connections to destination servers that are preserved in the cache of each worker process. When this number is exceeded, the least recently used connections are closed.
 
 Example:
 
+```
 location /fetch {
     js_fetch_keepalive 32;
     js_fetch_trusted_certificate /path/to/ISRG_Root_X1.pem;
     js_content main.fetch_handler;
 }
+```
 
+## js_fetch_keepalive_requests
 
+```
+Syntax:  number
+Default: 1000
+Context: location, http, server
+```
 
+*This directive appeared in version 0.9.2.*
 
+Sets the maximum number of requests that can be served through one keepalive connection with [Fetch API](../njs/reference.xml#ngx_fetch) . After the maximum number of requests is made, the connection is closed.
 
-number
-1000
-http
-server
-location
-0.9.2
+Closing connections periodically is necessary to free per-connection memory allocations. Therefore, using too high maximum number of requests could result in excessive memory usage and not recommended.
 
+## js_fetch_keepalive_time
 
-Sets the maximum number of requests that can be served through one keepalive
-connection with Fetch API.
-After the maximum number of requests is made, the connection is closed.
+```
+Syntax:  time
+Default: 1h
+Context: location, http, server
+```
 
+*This directive appeared in version 0.9.2.*
 
+Limits the maximum time during which requests can be processed through one keepalive connection with [Fetch API](../njs/reference.xml#ngx_fetch) . After this time is reached, the connection is closed following the subsequent request processing.
 
-Closing connections periodically is necessary to free per-connection memory
-allocations.
-Therefore, using too high maximum number of requests could result in
-excessive memory usage and not recommended.
+## js_fetch_keepalive_timeout
 
+```
+Syntax:  time
+Default: 60s
+Context: location, http, server
+```
 
+*This directive appeared in version 0.9.2.*
 
+Sets a timeout during which an idle keepalive connection to a destination server will stay open with [Fetch API](../njs/reference.xml#ngx_fetch) .
 
-time
-1h
-http
-server
-location
-0.9.2
+## js_header_filter
 
+```
+Syntax:  module.function
+Default: 
+Context: limit_except, location, if in location
+```
 
-Limits the maximum time during which requests can be processed through one
-keepalive connection with Fetch API.
-After this time is reached, the connection is closed following the subsequent
-request processing.
+*This directive appeared in version 0.5.1.*
 
+Sets an njs function as a response header filter. The directive allows changing arbitrary header fields of a response header.
 
-
-
-time
-60s
-http
-server
-location
-0.9.2
-
-
-Sets a timeout during which an idle keepalive connection to a destination server
-will stay open with Fetch API.
-
-
-
-
-module.function
-
-location
-if in location
-limit_except
-0.5.1
-
-
-Sets an njs function as a response header filter.
-The directive allows changing arbitrary header fields of a response header.
-
-
-
-
-As the js_header_filter handler
+> **Note:** As the `js_header_filter` handler
 returns its result immediately, it supports
 only synchronous operations.
-Thus, asynchronous operations such as
-r.subrequest()
-or
-setTimeout()
-are not supported.
+Thus, asynchronous operations such as [r.subrequest()](../njs/reference.xml#r_subrequest) or [setTimeout()](../njs/reference.xml#settimeout) are not supported.
 
+> **Note:** The directive can be specified inside the [if](../http/ngx_http_rewrite_module.xml#if) block
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
+## js_import
 
+```
+Syntax:  module.js | export_name from module.js
+Default: 
+Context: location, http, server
+```
 
+*This directive appeared in version 0.4.0.*
 
-The directive can be specified inside the
-if block
-since 0.7.7.
+Imports a module that implements location and variable handlers in njs. The `export_name` is used as a namespace to access module functions. If the `export_name` is not specified, the module name will be used as a namespace.
 
-
-
-
-
-module.js |
-export_name from module.js
-
-http
-server
-location
-0.4.0
-
-
-Imports a module that implements location and variable handlers in njs.
-The export_name is used as a namespace
-to access module functions.
-If the export_name is not specified,
-the module name will be used as a namespace.
-
+```
 js_import http.js;
+```
 
-Here, the module name http is used as a namespace
-while accessing exports.
-If the imported module exports foo(),
-http.foo is used to refer to it.
+Here, the module name `http` is used as a namespace while accessing exports. If the imported module exports `foo()` , `http.foo` is used to refer to it.
 
+Several `js_import` directives can be specified.
 
+> **Note:** The directive can be specified on the `server` and `location` level
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
-Several js_import directives can be specified.
+## js_include
 
-
-
-
-The directive can be specified on the
-server and location level
-since 0.7.7.
-
-
-
-
-
-file
-
-http
-
+```
+Syntax:  file
+Default: 
+Context: http
+```
 
 Specifies a file that implements location and variable handlers in njs:
 
+```
 nginx.conf:
 js_include http.js;
 location   /version {
@@ -635,83 +476,46 @@ http.js:
 function version(r) {
     r.return(200, njs.version);
 }
+```
 
+The directive was made obsolete in version [0.4.0](../njs/changes.xml#njs0.4.0) and was removed in version [0.7.1](../njs/changes.xml#njs0.7.1) . The [js_import](#js_import) directive should be used instead.
 
+## js_path
 
+```
+Syntax:  path
+Default: 
+Context: location, http, server
+```
 
-The directive was made obsolete in version
-0.4.0
-and was removed in version
-0.7.1.
-The  directive should be used instead.
-
-
-
-
-
-path
-
-http
-server
-location
-0.3.0
-
+*This directive appeared in version 0.3.0.*
 
 Sets an additional path for njs modules.
 
+> **Note:** The directive can be specified on the `server` and `location` level
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
+## js_periodic
 
+```
+Syntax:  module.function [interval=time] [jitter=number] [worker_affinity=mask]
+Default: 
+Context: location
+```
 
-The directive can be specified on the
-server and location level
-since 0.7.7.
+*This directive appeared in version 0.8.1.*
 
+Specifies a content handler to run at regular interval. The handler receives a [session object](../njs/reference.xml#periodic_session) as its first argument, it also has access to global objects such as [ngx](../njs/reference.xml#ngx) .
 
+The optional `interval` parameter sets the interval between two consecutive runs, by default, 5 seconds.
 
+The optional `jitter` parameter sets the time within which the location content handler will be randomly delayed, by default, there is no delay.
 
-
-module.function
-        [interval=time]
-        [jitter=number]
-        [worker_affinity=mask]
-
-location
-0.8.1
-
-
-Specifies a content handler to run at regular interval.
-The handler receives a
-session object
-as its first argument,
-it also has access to global objects such as
-ngx.
-
-
-
-The optional interval parameter
-sets the interval between two consecutive runs,
-by default, 5 seconds.
-
-
-
-The optional jitter parameter sets the time within which
-the location content handler will be randomly delayed,
-by default, there is no delay.
-
-
-
-By default, the js_handler is executed on worker process 0.
-The optional worker_affinity parameter
-allows specifying particular worker processes
-where the location content handler should be executed.
-Each worker process set is represented by a bitmask of allowed worker processes.
-The all mask allows the handler to be executed
-in all worker processes.
-
-
+By default, the `js_handler` is executed on worker process 0. The optional `worker_affinity` parameter allows specifying particular worker processes where the location content handler should be executed. Each worker process set is represented by a bitmask of allowed worker processes. The `all` mask allows the handler to be executed in all worker processes.
 
 Example:
 
+```
 example.conf:
 
 location @periodics {
@@ -736,156 +540,73 @@ async function handler(s) {
 
     ngx.log(ngx.INFO, body);
 }
+```
 
+## js_preload_object
 
+```
+Syntax:  name.json | name from file.json
+Default: 
+Context: location, http, server
+```
 
+*This directive appeared in version 0.7.8.*
 
+Preloads an [immutable object](../njs/preload_objects.xml) at configure time. The `name` is used as a name of the global variable though which the object is available in njs code. If the `name` is not specified, the file name will be used instead.
 
-name.json |
-name from file.json
-
-http
-server
-location
-0.7.8
-
-
-Preloads an
-immutable object
-at configure time.
-The name is used as a name of the global variable
-though which the object is available in njs code.
-If the name is not specified,
-the file name will be used instead.
-
+```
 js_preload_object map.json;
+```
 
-Here, the map is used as a name
-while accessing the preloaded object.
+Here, the `map` is used as a name while accessing the preloaded object.
 
+Several `js_preload_object` directives can be specified.
 
+## js_set
 
-Several js_preload_object directives can be specified.
+```
+Syntax:  $variable module.function [nocache]
+Default: 
+Context: location, http, server
+```
 
+Sets an njs `function` for the specified `variable` . Since [0.4.0](../njs/changes.xml#njs0.4.0) , a module function can be referenced.
 
+The function is called when the variable is referenced for the first time for a given request. The exact moment depends on a [phase](../dev/development_guide.xml#http_phases) at which the variable is referenced. This can be used to perform some logic not related to variable evaluation. For example, if the variable is referenced only in the [log_format](ngx_http_log_module.xml#log_format) directive, its handler will not be executed until the log phase. This handler can be used to do some cleanup right before the request is freed.
 
+Since [0.8.6](../njs/changes.xml#njs0.8.6) , if an optional argument `nocache` is specified, the handler is called every time it is referenced. Due to current limitations of the [rewrite](ngx_http_rewrite_module.xml) module, when a `nocache` variable is referenced by the [set](ngx_http_rewrite_module.xml#set) directive its handler should always return a fixed-length value.
 
-
-    $variable
-    module.function
-    [nocache]
-
-http
-server
-location
-
-
-Sets an njs function
-for the specified variable.
-Since 0.4.0,
-a module function can be referenced.
-
-
-
-The function is called when
-the variable is referenced for the first time for a given request.
-The exact moment depends on a
-phase
-at which the variable is referenced.
-This can be used to perform some logic
-not related to variable evaluation.
-For example, if the variable is referenced only in the
- directive,
-its handler will not be executed until the log phase.
-This handler can be used to do some cleanup
-right before the request is freed.
-
-
-
-Since 0.8.6,
-if an optional argument nocache is specified,
-the handler is called every time it is referenced.
-Due to current limitations
-of the rewrite module,
-when a nocache variable is referenced by the
-set directive
-its handler should always return a fixed-length value.
-
-
-
-
-As the js_set handler
+> **Note:** As the `js_set` handler
 returns its result immediately, it supports
 only synchronous operations.
-Thus, asynchronous operations such as
-r.subrequest()
-or
-setTimeout()
-are not supported.
+Thus, asynchronous operations such as [r.subrequest()](../njs/reference.xml#r_subrequest) or [setTimeout()](../njs/reference.xml#settimeout) are not supported.
 
+> **Note:** The directive can be specified on the `server` and `location` level
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
+## js_shared_dict_zone
 
+```
+Syntax:  zone=name:size [timeout=time] [type=string|number] [evict] [state=file]
+Default: 
+Context: http
+```
 
+*This directive appeared in version 0.8.0.*
 
-The directive can be specified on the
-server and location level
-since 0.7.7.
+Sets the `name` and `size` of the shared memory zone that keeps the key-value [dictionary](../njs/reference.xml#dict) shared between worker processes.
 
+By default the shared dictionary uses a string as a key and a value. The optional `type` parameter allows redefining the value type to number.
 
+The optional `timeout` parameter sets the time in milliseconds after which all shared dictionary entries are removed from the zone. If some entries require a different removal time, it can be set with the `timeout` argument of the [add](../njs/reference.xml#dict_add) , [incr](../njs/reference.xml#dict_incr) , and [set](../njs/reference.xml#dict_set) methods ( [0.8.5](../njs/changes.xml#njs0.8.5) ).
 
+The optional `evict` parameter removes the oldest key-value pair when the zone storage is exhausted.
 
-
-
-    zone=name:size
-    [timeout=time]
-    [type=string|number]
-    [evict]
-    [state=file]
-
-http
-0.8.0
-
-
-Sets the name and size of the shared memory zone
-that keeps the
-key-value dictionary
-shared between worker processes.
-
-
-
-By default the shared dictionary uses a string as a key and a value.
-The optional type parameter
-allows redefining the value type to number.
-
-
-
-The optional timeout parameter sets
-the time in milliseconds
-after which all shared dictionary entries are removed from the zone.
-If some entries require a different removal time, it can be set
-with the timeout argument of the
-add,
-incr, and
-set
-methods
-(0.8.5).
-
-
-
-The optional evict parameter removes the oldest
-key-value pair when the zone storage is exhausted.
-
-
-
-The optional state parameter specifies a file
-that keeps the shared dictionary state
-in JSON format and makes it persistent across nginx restarts
-(0.9.1).
-
-
+The optional `state` parameter specifies a `file` that keeps the shared dictionary state in JSON format and makes it persistent across nginx restarts ( [0.9.1](../njs/changes.xml#njs0.9.1) ).
 
 Example:
 
+```
 example.conf:
     # Creates a 1Mb dictionary with string values,
     # removes key-value pairs after 60 seconds of inactivity:
@@ -917,38 +638,24 @@ example.js:
     function increment(r) {
         r.return(200, ngx.shared.num.incr(r.args.key, 2));
     }
+```
 
+## js_var
 
+```
+Syntax:  $variable [value]
+Default: 
+Context: location, http, server
+```
 
+*This directive appeared in version 0.5.3.*
 
+Declares a [writable](../njs/reference.xml#r_variables) variable. The value can contain text, variables, and their combination. The variable is not overwritten after a redirect unlike variables created with the [set](ngx_http_rewrite_module.xml#set) directive.
 
-$variable [value]
+> **Note:** The directive can be specified on the `server` and `location` level
+since [0.7.7](../njs/changes.xml#njs0.7.7) .
 
-http
-server
-location
-0.5.3
+# Request Argument {#arguments}
 
+Each HTTP njs handler receives one argument, a request [object](../njs/reference.xml#http) .
 
-Declares
-a writable
-variable.
-The value can contain text, variables, and their combination.
-The variable is not overwritten after a redirect
-unlike variables created with the
- directive.
-
-
-
-
-The directive can be specified on the
-server and location level
-since 0.7.7.
-
-
-
-
-## Request Argument {#arguments}
-
-Each HTTP njs handler receives one argument, a request
-[object](../njs/reference.xml#http).

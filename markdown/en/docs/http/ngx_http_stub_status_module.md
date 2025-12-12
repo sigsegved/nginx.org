@@ -3,15 +3,11 @@
 **Revision:** 4  
 **Language:** en
 
+The `ngx_http_stub_status_module` module provides access to basic status information.
 
-The `ngx_http_stub_status_module` module provides
-access to basic status information.
+This module is not built by default, it should be enabled with the `--with-http_stub_status_module` configuration parameter.
 
-This module is not built by default, it should be enabled with the
-`--with-http_stub_status_module`
-configuration parameter.
-
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location = /basic_status {
@@ -19,8 +15,7 @@ location = /basic_status {
 }
 ```
 
-This configuration creates a simple web page
-with basic status data which may look like as follows:
+This configuration creates a simple web page with basic status data which may look like as follows:
 
 ```
 Active connections: 291
@@ -29,62 +24,64 @@ server accepts handled requests
 Reading: 6 Writing: 179 Waiting: 106
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## stub_status
 
-
-
-server
-location
-
+```
+Syntax:  
+Default: 
+Context: location, server
+```
 
 The basic status information will be accessible from the surrounding location.
 
-
-
-
-In versions prior to 1.7.5,
+> **Note:** In versions prior to 1.7.5,
 the directive syntax required an arbitrary argument, for example,
-“stub_status on”.
+“ `stub_status on` ”.
 
-
-
-
-## Data {#data}
+# Data {#data}
 
 The following status information is provided:
 
 **`Active connections`**  
   The current number of active client connections
 including `Waiting` connections.
+
 **`accepts`**  
   The total number of accepted client connections.
+
 **`handled`**  
   The total number of handled connections.
-Generally, the parameter value is the same as `accepts`
-unless some resource limits have been reached
-(for example, the
-[](../ngx_core_module.xml#worker_connections) limit).
+Generally, the parameter value is the same as `accepts` unless some resource limits have been reached
+(for example, the [worker_connections](../ngx_core_module.xml#worker_connections) limit).
+
 **`requests`**  
   The total number of client requests.
+
 **`Reading`**  
   The current number of connections where nginx is reading the request header.
+
 **`Writing`**  
   The current number of connections
 where nginx is writing the response back to the client.
+
 **`Waiting`**  
   The current number of idle client connections waiting for a request.
 
-## Embedded Variables {#variables}
+# Embedded Variables {#variables}
 
-The `ngx_http_stub_status_module` module
-supports the following embedded variables (1.3.14):
+The `ngx_http_stub_status_module` module supports the following embedded variables (1.3.14):
 
-***$connections_active***  
+**`$connections_active`**  
   same as the `Active connections` value;
-***$connections_reading***  
+
+**`$connections_reading`**  
   same as the `Reading` value;
-***$connections_writing***  
+
+**`$connections_writing`**  
   same as the `Writing` value;
-***$connections_waiting***  
+
+**`$connections_waiting`**  
   same as the `Waiting` value.
+

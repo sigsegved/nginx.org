@@ -3,34 +3,18 @@
 **Revision:** 5  
 **Language:** en
 
+The `ngx_http_auth_request_module` module (1.5.4+) implements client authorization based on the result of a subrequest. If the subrequest returns a 2xx response code, the access is allowed. If it returns 401 or 403, the access is denied with the corresponding error code. Any other response code returned by the subrequest is considered an error.
 
-The `ngx_http_auth_request_module` module (1.5.4+) implements
-client authorization based on the result of a subrequest.
-If the subrequest returns a 2xx response code, the access is allowed.
-If it returns 401 or 403,
-the access is denied with the corresponding error code.
-Any other response code returned by the subrequest is considered an error.
+For the 401 error, the client also receives the `WWW-Authenticate` header from the subrequest response.
 
-For the 401 error, the client also receives the
-**WWW-Authenticate** header from the subrequest response.
+This module is not built by default, it should be enabled with the `--with-http_auth_request_module` configuration parameter.
 
-This module is not built by default, it should be enabled with the
-`--with-http_auth_request_module`
-configuration parameter.
-
-The module may be combined with
-other access modules, such as
-[ngx_http_access_module](ngx_http_access_module.html),
-[ngx_http_auth_basic_module](ngx_http_auth_basic_module.html),
-and
-[ngx_http_auth_jwt_module](ngx_http_auth_jwt_module.html),
-via the [](ngx_http_core_module.xml#satisfy) directive.
+The module may be combined with other access modules, such as [ngx_http_access_module](ngx_http_access_module.xml) , [ngx_http_auth_basic_module](ngx_http_auth_basic_module.xml) , and [ngx_http_auth_jwt_module](ngx_http_auth_jwt_module.xml) , via the [satisfy](ngx_http_core_module.xml#satisfy) directive.
 
 > **Note:** Before version 1.7.3, responses to authorization subrequests could not be cached
-(using [](ngx_http_proxy_module.xml#proxy_cache),
-[](ngx_http_proxy_module.xml#proxy_store), etc.).
+(using [proxy_cache](ngx_http_proxy_module.xml#proxy_cache) , [proxy_store](ngx_http_proxy_module.xml#proxy_store) , etc.).
 
-## Example Configuration {#example}
+# Example Configuration {#example}
 
 ```
 location /private/ {
@@ -46,32 +30,25 @@ location = /auth {
 }
 ```
 
-## Directives {#directives}
+# Directives {#directives}
 
+## auth_request
 
-uri | off
-off
-http
-server
-location
+```
+Syntax:  uri | off
+Default: off
+Context: location, http, server
+```
 
+Enables authorization based on the result of a subrequest and sets the URI to which the subrequest will be sent.
 
-Enables authorization based on the result of a subrequest and sets
-the URI to which the subrequest will be sent.
+## auth_request_set
 
+```
+Syntax:  $variable value
+Default: 
+Context: location, http, server
+```
 
-
-
-$variable value
-
-http
-server
-location
-
-
-Sets the request variable to the given
-value after the authorization request completes.
-The value may contain variables from the authorization request,
-such as $upstream_http_*.
-
+Sets the request `variable` to the given `value` after the authorization request completes. The value may contain variables from the authorization request, such as `$upstream_http_*` .
 

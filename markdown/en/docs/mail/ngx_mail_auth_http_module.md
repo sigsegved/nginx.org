@@ -3,69 +3,57 @@
 **Revision:** 11  
 **Language:** en
 
+# Directives {#directives}
 
-## Directives {#directives}
+## auth_http
 
+```
+Syntax:  URL
+Default: 
+Context: server, mail
+```
 
-URL
+Sets the URL of the HTTP authentication server. The protocol is described [below](#protocol) .
 
-mail
-server
+## auth_http_header
 
+```
+Syntax:  header value
+Default: 
+Context: server, mail
+```
 
-Sets the URL of the HTTP authentication server.
-The protocol is described below.
+Appends the specified header to requests sent to the authentication server. This header can be used as the shared secret to verify that the request comes from nginx. For example:
 
-
-
-
-header value
-
-mail
-server
-
-
-Appends the specified header to requests sent to the authentication server.
-This header can be used as the shared secret to verify
-that the request comes from nginx.
-For example:
-
+```
 auth_http_header X-Auth-Key "secret_string";
+```
 
+## auth_http_pass_client_cert
 
+```
+Syntax:  on | off
+Default: off
+Context: server, mail
+```
 
+*This directive appeared in version 1.7.11.*
 
+Appends the `Auth-SSL-Cert` header with the [client](ngx_mail_ssl_module.xml#ssl_verify_client) certificate in the PEM format (urlencoded) to requests sent to the authentication server.
 
-on | off
-off
-mail
-server
-1.7.11
+## auth_http_timeout
 
-
-Appends the Auth-SSL-Cert header with the
-client
-certificate in the PEM format (urlencoded)
-to requests sent to the authentication server.
-
-
-
-
-time
-60s
-mail
-server
-
+```
+Syntax:  time
+Default: 60s
+Context: server, mail
+```
 
 Sets the timeout for communication with the authentication server.
 
+# Protocol {#protocol}
 
-
-## Protocol {#protocol}
-
-The HTTP protocol is used to communicate with the authentication server.
-The data in the response body is ignored, the information is passed only in
-the headers.
+The HTTP protocol is used to communicate with the authentication server. The data in the response body is ignored, the information is passed only in the headers.
 
 Examples of requests and responses:
 
@@ -100,15 +88,7 @@ Auth-Status: Invalid login or password
 Auth-Wait: 3
 ```
 
-If there is no **Auth-Wait** header,
-an error will be returned and the connection will be closed.
-The current implementation allocates memory for each authentication attempt.
-The memory is freed only at the end of a session.
-Therefore, the number of invalid authentication attempts in a single session
-must be limited — the server must respond without
-the **Auth-Wait** header after 10-20 attempts
-(the attempt number is passed in the **Auth-Login-Attempt**
-header).
+If there is no `Auth-Wait` header, an error will be returned and the connection will be closed. The current implementation allocates memory for each authentication attempt. The memory is freed only at the end of a session. Therefore, the number of invalid authentication attempts in a single session must be limited — the server must respond without the `Auth-Wait` header after 10-20 attempts (the attempt number is passed in the `Auth-Login-Attempt` header).
 
 When the APOP or CRAM-MD5 are used, request-response will look as follows:
 
@@ -135,17 +115,11 @@ Auth-Port: 143
 Auth-Pass: plain-text-pass
 ```
 
-If the **Auth-User** header exists in the response,
-it overrides the username used to authenticate with the backend.
+If the `Auth-User` header exists in the response, it overrides the username used to authenticate with the backend.
 
-For the SMTP, the response additionally takes into account
-the **Auth-Error-Code** header — if exists, it is used
-as a response code in case of an error.
-Otherwise, the 535 5.7.0 code will be added to
-the **Auth-Status** header.
+For the SMTP, the response additionally takes into account the `Auth-Error-Code` header — if exists, it is used as a response code in case of an error. Otherwise, the 535 5.7.0 code will be added to the `Auth-Status` header.
 
-For example, if the following response is received
-from the authentication server:
+For example, if the following response is received from the authentication server:
 
 ```
 HTTP/1.0 200 OK
@@ -160,8 +134,7 @@ then the SMTP client will receive an error
 451 4.3.0 Temporary server problem, try again later
 ```
 
-If proxying SMTP does not require authentication,
-the request will look as follows:
+If proxying SMTP does not require authentication, the request will look as follows:
 
 ```
 GET /auth HTTP/1.0
@@ -178,28 +151,12 @@ Auth-SMTP-From: MAIL FROM: <>
 Auth-SMTP-To: RCPT TO: <postmaster@mail.example.com>
 ```
 
-For the SSL/TLS client connection (1.7.11),
-the **Auth-SSL** header is added, and
-**Auth-SSL-Verify** will contain
-the result of client certificate verification, if
-[enabled](ngx_mail_ssl_module.xml#ssl_verify_client):
-“`SUCCESS`”, “`FAILED:`*reason*”,
-and “`NONE`” if a certificate was not present.
+For the SSL/TLS client connection (1.7.11), the `Auth-SSL` header is added, and `Auth-SSL-Verify` will contain the result of client certificate verification, if [enabled](ngx_mail_ssl_module.xml#ssl_verify_client) : “ `SUCCESS` ”, “ `FAILED:` `reason` ”, and “ `NONE` ” if a certificate was not present.
 
-> **Note:** Prior to version 1.11.7, the “`FAILED`” result
-did not contain the *reason* string.
+> **Note:** Prior to version 1.11.7, the “ `FAILED` ” result
+did not contain the `reason` string.
 
-When the client certificate was present,
-its details are passed in the following request headers:
-**Auth-SSL-Subject**, **Auth-SSL-Issuer**,
-**Auth-SSL-Serial**, and **Auth-SSL-Fingerprint**.
-If  is enabled,
-the certificate itself is passed in the
-**Auth-SSL-Cert** header.
-The protocol and cipher of the established connection
-are passed in the **Auth-SSL-Protocol**
-and **Auth-SSL-Cipher** headers (1.21.2).
-The request will look as follows:
+When the client certificate was present, its details are passed in the following request headers: `Auth-SSL-Subject` , `Auth-SSL-Issuer` , `Auth-SSL-Serial` , and `Auth-SSL-Fingerprint` . If [auth_http_pass_client_cert](#auth_http_pass_client_cert) is enabled, the certificate itself is passed in the `Auth-SSL-Cert` header. The protocol and cipher of the established connection are passed in the `Auth-SSL-Protocol` and `Auth-SSL-Cipher` headers (1.21.2). The request will look as follows:
 
 ```
 GET /auth HTTP/1.0
@@ -220,11 +177,5 @@ Auth-SSL-Serial: C07AD56B846B5BFF
 Auth-SSL-Fingerprint: 29d6a80a123d13355ed16b4b04605e29cb55a5ad
 ```
 
-When the
-[PROXY protocol](ngx_mail_core_module.xml#proxy_protocol)
-is used,
-its details are passed in the following request headers:
-**Proxy-Protocol-Addr**,
-**Proxy-Protocol-Port**,
-**Proxy-Protocol-Server-Addr**, and
-**Proxy-Protocol-Server-Port** (1.19.8).
+When the [PROXY protocol](ngx_mail_core_module.xml#proxy_protocol) is used, its details are passed in the following request headers: `Proxy-Protocol-Addr` , `Proxy-Protocol-Port` , `Proxy-Protocol-Server-Addr` , and `Proxy-Protocol-Server-Port` (1.19.8).
+

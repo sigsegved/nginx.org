@@ -4,22 +4,16 @@
 **Revision:** 1  
 **Language:** it
 
+# Redirect ad un sito principale
 
-## Redirect ad un sito principale
-
-Chi, nel corso della propria esperienza con host condivisi, e' sempre
-stato abituato a configurare *tutto* usando *solo* i file
-.htaccess di Apache, in genere converte le seguenti regole:
-
+Chi, nel corso della propria esperienza con host condivisi, e' sempre stato abituato a configurare *tutto* usando *solo* i file .htaccess di Apache, in genere converte le seguenti regole:
 
 ```
 RewriteCond  %{HTTP_HOST}  example.org
 RewriteRule  (.*)          http://www.example.org$1
 ```
 
-
 in qualcosa tipo:
-
 
 ```
 server {
@@ -32,10 +26,7 @@ server {
 }
 ```
 
-Si tratta di una soluzione errata, poco elegante e inefficiente.
-La soluzione corretta prevede la definizione di un server distinto per
-`example.org`:
-
+Si tratta di una soluzione errata, poco elegante e inefficiente. La soluzione corretta prevede la definizione di un server distinto per `example.org` :
 
 ```
 server {
@@ -51,18 +42,13 @@ server {
 }
 ```
 
-
-
 > **Note:** Nelle versioni antecedenti la 0.9.1, i redirect possono essere definiti con:
-
+>
+> ```
+    rewrite      ^ http://www.example.org$request_uri?;
 ```
-rewrite      ^ http://www.example.org$request_uri?;
-```
 
-Un altro esempio:
-invece della logica "upside-down", vale a dire "tutto quello
-che non e' `example.com` ne' `www.example.com`":
-
+Un altro esempio: invece della logica "upside-down", vale a dire "tutto quello che non e' `example.com` ne' `www.example.com` ":
 
 ```
 RewriteCond  %{HTTP_HOST}  !example.com
@@ -70,11 +56,7 @@ RewriteCond  %{HTTP_HOST}  !www.example.com
 RewriteRule  (.*)          http://www.example.com$1
 ```
 
-
-e' meglio semplicemente definire
-`example.com`, `www.example.com`,
-e "tutto il resto":
-
+e' meglio semplicemente definire `example.com` , `www.example.com` , e "tutto il resto":
 
 ```
 server {
@@ -90,18 +72,15 @@ server {
 }
 ```
 
-
-
 > **Note:** Nelle versioni antecedenti la 0.9.1, i redirect possono essere definiti con:
-
+>
+> ```
+    rewrite      ^ http://example.com$request_uri?;
 ```
-rewrite      ^ http://example.com$request_uri?;
-```
 
-## Conversione delle regole di Mongrel {#converting_mongrel_rules}
+# Conversione delle regole di Mongrel {#converting_mongrel_rules}
 
 Regole di Mongrel tipiche, quali:
-
 
 ```
 DocumentRoot /var/www/myapp.com/current/public
@@ -122,9 +101,7 @@ RewriteRule ^(.*)$ $1/index.html [QSA,L]
 RewriteRule ^/(.*)$ balancer://mongrel_cluster%{REQUEST_URI} [P,QSA,L]
 ```
 
-
 andrebbero convertite in:
-
 
 ```
 location / {
@@ -139,3 +116,4 @@ location @mongrel {
     proxy_pass  http://mongrel;
 }
 ```
+
