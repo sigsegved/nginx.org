@@ -26,7 +26,7 @@ server {
 ## memcached_allow_upstream
 
 ```
-Syntax:  строка ...
+Syntax:  memcached_allow_upstream строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -57,7 +57,7 @@ server {
 ## memcached_bind
 
 ```
-Syntax:  адрес [transparent ] | off
+Syntax:  memcached_bind адрес [transparent ] | off;
 Default: 
 Context: location, http, server
 ```
@@ -77,7 +77,7 @@ memcached_bind $remote_addr transparent;
 ## memcached_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  memcached_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -91,7 +91,7 @@ Context: location, http, server
 ## memcached_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  memcached_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -101,7 +101,7 @@ Context: location, http, server
 ## memcached_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  memcached_connect_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Context: location, http, server
 ## memcached_gzip_flag
 
 ```
-Syntax:  флаг
+Syntax:  memcached_gzip_flag флаг;
 Default: 
 Context: location, http, server
 ```
@@ -123,7 +123,7 @@ Context: location, http, server
 ## memcached_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_response | not_found | off ...
+Syntax:  memcached_next_upstream error | timeout | denied | invalid_response | not_found | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -161,7 +161,7 @@ Context: location, http, server
 ## memcached_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  memcached_next_upstream_timeout время;
 Default: 0
 Context: location, http, server
 ```
@@ -173,7 +173,7 @@ Context: location, http, server
 ## memcached_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  memcached_next_upstream_tries число;
 Default: 0
 Context: location, http, server
 ```
@@ -185,7 +185,7 @@ Context: location, http, server
 ## memcached_pass
 
 ```
-Syntax:  адрес
+Syntax:  memcached_pass адрес;
 Default: 
 Context: if в location, location
 ```
@@ -207,7 +207,7 @@ memcached_pass unix:/tmp/memcached.socket;
 ## memcached_read_timeout
 
 ```
-Syntax:  время
+Syntax:  memcached_read_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -217,7 +217,7 @@ Context: location, http, server
 ## memcached_send_timeout
 
 ```
-Syntax:  время
+Syntax:  memcached_send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -227,7 +227,7 @@ Context: location, http, server
 ## memcached_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  memcached_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```

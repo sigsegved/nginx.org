@@ -26,7 +26,7 @@ The rules are checked in sequence until the first match is found. In this exampl
 ## allow
 
 ```
-Syntax:  address | CIDR | unix: | all
+Syntax:  allow address | CIDR | unix: | all;
 Default: 
 Context: limit_except, http, server, location
 ```
@@ -36,7 +36,7 @@ Allows access for the specified network or address. If the special value `unix:`
 ## deny
 
 ```
-Syntax:  address | CIDR | unix: | all
+Syntax:  deny address | CIDR | unix: | all;
 Default: 
 Context: limit_except, http, server, location
 ```

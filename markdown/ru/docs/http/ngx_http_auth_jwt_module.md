@@ -51,7 +51,7 @@ location / {
 ## auth_jwt
 
 ```
-Syntax:  строка [token=$переменная] | off
+Syntax:  auth_jwt строка [token=$переменная] | off;
 Default: off
 Context: limit_except, http, server, location
 ```
@@ -69,7 +69,7 @@ auth_jwt "closed site" token=$cookie_auth_token;
 ## auth_jwt_claim_set
 
 ```
-Syntax:  $переменная имя ...
+Syntax:  auth_jwt_claim_set $переменная имя ...;
 Default: 
 Context: http
 ```
@@ -92,7 +92,7 @@ auth_jwt_claim_set $job info "job title";
 ## auth_jwt_header_set
 
 ```
-Syntax:  $переменная имя ...
+Syntax:  auth_jwt_header_set $переменная имя ...;
 Default: 
 Context: http
 ```
@@ -107,7 +107,7 @@ Context: http
 ## auth_jwt_key_cache
 
 ```
-Syntax:  время
+Syntax:  auth_jwt_key_cache время;
 Default: 0
 Context: location, http, server
 ```
@@ -119,7 +119,7 @@ Context: location, http, server
 ## auth_jwt_key_file
 
 ```
-Syntax:  файл
+Syntax:  auth_jwt_key_file файл;
 Default: 
 Context: limit_except, http, server, location
 ```
@@ -138,7 +138,7 @@ auth_jwt_key_file conf/key.jwk;
 ## auth_jwt_key_request
 
 ```
-Syntax:  uri
+Syntax:  auth_jwt_key_request uri;
 Default: 
 Context: limit_except, http, server, location
 ```
@@ -178,7 +178,7 @@ auth_jwt_key_request /jwks2_uri;
 ## auth_jwt_leeway
 
 ```
-Syntax:  время
+Syntax:  auth_jwt_leeway время;
 Default: 0s
 Context: location, http, server
 ```
@@ -190,7 +190,7 @@ Context: location, http, server
 ## auth_jwt_type
 
 ```
-Syntax:  signed | encrypted | nested
+Syntax:  auth_jwt_type signed | encrypted | nested;
 Default: signed
 Context: limit_except, http, server, location
 ```
@@ -202,7 +202,7 @@ Context: limit_except, http, server, location
 ## auth_jwt_require
 
 ```
-Syntax:  $значение ... [error=401 | 403]
+Syntax:  auth_jwt_require $значение ... [error=401 | 403];
 Default: 
 Context: limit_except, http, server, location
 ```

@@ -20,7 +20,7 @@ location / {
 ## proxy_allow_upstream
 
 ```
-Syntax:  строка ...
+Syntax:  proxy_allow_upstream строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -51,7 +51,7 @@ server {
 ## proxy_bind
 
 ```
-Syntax:  адрес [transparent] | off
+Syntax:  proxy_bind адрес [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -71,7 +71,7 @@ proxy_bind $remote_addr transparent;
 ## proxy_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  proxy_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -85,7 +85,7 @@ Context: location, http, server
 ## proxy_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -95,7 +95,7 @@ Context: location, http, server
 ## proxy_buffering
 
 ```
-Syntax:  on | off
+Syntax:  proxy_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Context: location, http, server
 ## proxy_buffers
 
 ```
-Syntax:  число размер
+Syntax:  proxy_buffers число размер;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -121,7 +121,7 @@ Context: location, http, server
 ## proxy_busy_buffers_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_busy_buffers_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -131,7 +131,7 @@ Context: location, http, server
 ## proxy_cache
 
 ```
-Syntax:  зона | off
+Syntax:  proxy_cache зона | off;
 Default: off
 Context: location, http, server
 ```
@@ -141,7 +141,7 @@ Context: location, http, server
 ## proxy_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -153,7 +153,7 @@ Context: location, http, server
 ## proxy_cache_bypass
 
 ```
-Syntax:  строка ...
+Syntax:  proxy_cache_bypass строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -170,7 +170,7 @@ proxy_cache_bypass $http_pragma    $http_authorization;
 ## proxy_cache_convert_head
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_convert_head on | off;
 Default: on
 Context: location, http, server
 ```
@@ -182,7 +182,7 @@ Context: location, http, server
 ## proxy_cache_key
 
 ```
-Syntax:  строка
+Syntax:  proxy_cache_key строка;
 Default: $scheme$proxy_host$request_uri
 Context: location, http, server
 ```
@@ -202,7 +202,7 @@ proxy_cache_key $scheme$proxy_host$uri$is_args$args;
 ## proxy_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -214,7 +214,7 @@ Context: location, http, server
 ## proxy_cache_lock_age
 
 ```
-Syntax:  время
+Syntax:  proxy_cache_lock_age время;
 Default: 5s
 Context: location, http, server
 ```
@@ -226,7 +226,7 @@ Context: location, http, server
 ## proxy_cache_lock_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_cache_lock_timeout время;
 Default: 5s
 Context: location, http, server
 ```
@@ -240,7 +240,7 @@ Context: location, http, server
 ## proxy_cache_max_range_offset
 
 ```
-Syntax:  число
+Syntax:  proxy_cache_max_range_offset число;
 Default: 
 Context: location, http, server
 ```
@@ -252,7 +252,7 @@ Context: location, http, server
 ## proxy_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  proxy_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -264,7 +264,7 @@ Context: location, http, server
 ## proxy_cache_min_uses
 
 ```
-Syntax:  число
+Syntax:  proxy_cache_min_uses число;
 Default: 1
 Context: location, http, server
 ```
@@ -274,7 +274,7 @@ Context: location, http, server
 ## proxy_cache_path
 
 ```
-Syntax:  путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время]
+Syntax:  proxy_cache_path путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время];
 Default: 
 Context: http
 ```
@@ -336,7 +336,7 @@ proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
 ## proxy_cache_purge
 
 ```
-Syntax:  строка ...
+Syntax:  proxy_cache_purge строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -373,7 +373,7 @@ server {
 ## proxy_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -385,7 +385,7 @@ Context: location, http, server
 ## proxy_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...
+Syntax:  proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -413,7 +413,7 @@ Context: location, http, server
 ## proxy_cache_valid
 
 ```
-Syntax:  [код ...] время
+Syntax:  proxy_cache_valid [код ...] время;
 Default: 
 Context: location, http, server
 ```
@@ -464,7 +464,7 @@ proxy_cache_valid any      1m;
 ## proxy_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_connect_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -474,7 +474,7 @@ Context: location, http, server
 ## proxy_cookie_domain
 
 ```
-Syntax:  домен замена
+Syntax:  proxy_cookie_domain домен замена;
 Default: off
 Context: location, http, server
 ```
@@ -517,7 +517,7 @@ proxy_cookie_domain ~\.([a-z]+\.[a-z]+)$ $1;
 ## proxy_cookie_flags
 
 ```
-Syntax:  off | кука [флаг ...]
+Syntax:  proxy_cookie_flags off | кука [флаг ...];
 Default: off
 Context: location, http, server
 ```
@@ -542,7 +542,7 @@ proxy_cookie_flags ~ nosecure samesite=strict;
 ## proxy_cookie_path
 
 ```
-Syntax:  путь замена
+Syntax:  proxy_cookie_path путь замена;
 Default: off
 Context: location, http, server
 ```
@@ -583,7 +583,7 @@ proxy_cookie_path / /two/;
 ## proxy_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  proxy_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -595,7 +595,7 @@ Context: location, http, server
 ## proxy_headers_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_headers_hash_bucket_size размер;
 Default: 64
 Context: location, http, server
 ```
@@ -605,7 +605,7 @@ Context: location, http, server
 ## proxy_headers_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_headers_hash_max_size размер;
 Default: 512
 Context: location, http, server
 ```
@@ -615,7 +615,7 @@ Context: location, http, server
 ## proxy_hide_header
 
 ```
-Syntax:  поле
+Syntax:  proxy_hide_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -625,7 +625,7 @@ Context: location, http, server
 ## proxy_http_version
 
 ```
-Syntax:  1.0 | 1.1 | 2
+Syntax:  proxy_http_version 1.0 | 1.1 | 2;
 Default: 1.0
 Context: location, http, server
 ```
@@ -637,7 +637,7 @@ Context: location, http, server
 ## proxy_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -647,7 +647,7 @@ Context: location, http, server
 ## proxy_ignore_headers
 
 ```
-Syntax:  поле ...
+Syntax:  proxy_ignore_headers поле ...;
 Default: 
 Context: location, http, server
 ```
@@ -667,7 +667,7 @@ Context: location, http, server
 ## proxy_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  proxy_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -677,7 +677,7 @@ Context: location, http, server
 ## proxy_limit_rate
 
 ```
-Syntax:  скорость
+Syntax:  proxy_limit_rate скорость;
 Default: 0
 Context: location, http, server
 ```
@@ -689,7 +689,7 @@ Context: location, http, server
 ## proxy_max_temp_file_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_max_temp_file_size размер;
 Default: 1024m
 Context: location, http, server
 ```
@@ -704,7 +704,7 @@ Context: location, http, server
 ## proxy_method
 
 ```
-Syntax:  метод
+Syntax:  proxy_method метод;
 Default: 
 Context: location, http, server
 ```
@@ -714,7 +714,7 @@ Context: location, http, server
 ## proxy_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  proxy_next_upstream error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -777,7 +777,7 @@ Context: location, http, server
 ## proxy_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_next_upstream_timeout время;
 Default: 0
 Context: location, http, server
 ```
@@ -789,7 +789,7 @@ Context: location, http, server
 ## proxy_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  proxy_next_upstream_tries число;
 Default: 0
 Context: location, http, server
 ```
@@ -801,7 +801,7 @@ Context: location, http, server
 ## proxy_no_cache
 
 ```
-Syntax:  строка ...
+Syntax:  proxy_no_cache строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -818,7 +818,7 @@ proxy_no_cache $http_pragma    $http_authorization;
 ## proxy_pass
 
 ```
-Syntax:  URL
+Syntax:  proxy_pass URL;
 Default: 
 Context: limit_except, location, if в location
 ```
@@ -900,7 +900,7 @@ location /name/ {
 ## proxy_pass_header
 
 ```
-Syntax:  поле
+Syntax:  proxy_pass_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -910,7 +910,7 @@ Context: location, http, server
 ## proxy_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -932,7 +932,7 @@ location /x-accel-redirect-here/ {
 ## proxy_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -954,7 +954,7 @@ location /x-accel-redirect-here/ {
 ## proxy_pass_trailers
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_trailers on | off;
 Default: off
 Context: location, http, server
 ```
@@ -980,7 +980,7 @@ location / {
 ## proxy_read_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_read_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -990,7 +990,7 @@ Context: location, http, server
 ## proxy_redirect
 
 ```
-Syntax:  перенаправление замена
+Syntax:  proxy_redirect перенаправление замена;
 Default: default
 Context: location, http, server
 ```
@@ -1067,7 +1067,7 @@ proxy_redirect / /;
 ## proxy_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  proxy_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1085,7 +1085,7 @@ Context: location, http, server
 ## proxy_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  proxy_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1104,7 +1104,7 @@ proxy_set_header      Host $upstream_last_server_name;
 ## proxy_send_lowat
 
 ```
-Syntax:  размер
+Syntax:  proxy_send_lowat размер;
 Default: 0
 Context: location, http, server
 ```
@@ -1116,7 +1116,7 @@ Context: location, http, server
 ## proxy_send_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -1126,7 +1126,7 @@ Context: location, http, server
 ## proxy_set_body
 
 ```
-Syntax:  значение
+Syntax:  proxy_set_body значение;
 Default: 
 Context: location, http, server
 ```
@@ -1136,7 +1136,7 @@ Context: location, http, server
 ## proxy_set_header
 
 ```
-Syntax:  поле значение
+Syntax:  proxy_set_header поле значение;
 Default: Connection close
 Context: location, http, server
 ```
@@ -1181,7 +1181,7 @@ proxy_set_header Accept-Encoding "";
 ## proxy_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  proxy_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1193,7 +1193,7 @@ Context: location, http, server
 ## proxy_ssl_certificate
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -1207,7 +1207,7 @@ Context: location, http, server
 ## proxy_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=время] [valid=время]
+Syntax:  proxy_ssl_certificate_cache max=N [inactive=время] [valid=время];
 Default: off
 Context: location, http, server
 ```
@@ -1248,7 +1248,7 @@ proxy_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## proxy_ssl_certificate_key
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_certificate_key файл;
 Default: 
 Context: location, http, server
 ```
@@ -1266,7 +1266,7 @@ Context: location, http, server
 ## proxy_ssl_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  proxy_ssl_ciphers шифры;
 Default: DEFAULT
 Context: location, http, server
 ```
@@ -1280,7 +1280,7 @@ Context: location, http, server
 ## proxy_ssl_conf_command
 
 ```
-Syntax:  имя значение
+Syntax:  proxy_ssl_conf_command имя значение;
 Default: 
 Context: location, http, server
 ```
@@ -1299,7 +1299,7 @@ Context: location, http, server
 ## proxy_ssl_crl
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_crl файл;
 Default: 
 Context: location, http, server
 ```
@@ -1311,7 +1311,7 @@ Context: location, http, server
 ## proxy_ssl_key_log
 
 ```
-Syntax:  путь
+Syntax:  proxy_ssl_key_log путь;
 Default: 
 Context: location, http, server
 ```
@@ -1325,7 +1325,7 @@ Context: location, http, server
 ## proxy_ssl_name
 
 ```
-Syntax:  имя
+Syntax:  proxy_ssl_name имя;
 Default: $proxy_host
 Context: location, http, server
 ```
@@ -1339,7 +1339,7 @@ Context: location, http, server
 ## proxy_ssl_password_file
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_password_file файл;
 Default: 
 Context: location, http, server
 ```
@@ -1351,7 +1351,7 @@ Context: location, http, server
 ## proxy_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: location, http, server
 ```
@@ -1366,7 +1366,7 @@ Context: location, http, server
 ## proxy_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_server_name on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1378,7 +1378,7 @@ Context: location, http, server
 ## proxy_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1388,7 +1388,7 @@ Context: location, http, server
 ## proxy_ssl_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_trusted_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -1400,7 +1400,7 @@ Context: location, http, server
 ## proxy_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_verify on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1412,7 +1412,7 @@ Context: location, http, server
 ## proxy_ssl_verify_depth
 
 ```
-Syntax:  число
+Syntax:  proxy_ssl_verify_depth число;
 Default: 1
 Context: location, http, server
 ```
@@ -1424,7 +1424,7 @@ Context: location, http, server
 ## proxy_store
 
 ```
-Syntax:  on | off | строка
+Syntax:  proxy_store on | off | строка;
 Default: off
 Context: location, http, server
 ```
@@ -1480,7 +1480,7 @@ location @fetch {
 ## proxy_store_access
 
 ```
-Syntax:  пользователи:права ...
+Syntax:  proxy_store_access пользователи:права ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -1500,7 +1500,7 @@ proxy_store_access group:rw all:r;
 ## proxy_temp_file_write_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_temp_file_write_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -1510,7 +1510,7 @@ Context: location, http, server
 ## proxy_temp_path
 
 ```
-Syntax:  путь [уровень1 [уровень2 [уровень3]]]
+Syntax:  proxy_temp_path путь [уровень1 [уровень2 [уровень3]]];
 Default: proxy_temp
 Context: location, http, server
 ```

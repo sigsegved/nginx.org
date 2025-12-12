@@ -60,7 +60,7 @@ server {
 ## health_check
 
 ```
-Syntax:  [параметры]
+Syntax:  health_check [параметры];
 Default: 
 Context: server
 ```
@@ -116,7 +116,7 @@ Context: server
 ## health_check_timeout
 
 ```
-Syntax:  время
+Syntax:  health_check_timeout время;
 Default: 5s
 Context: server, stream
 ```
@@ -126,7 +126,7 @@ Context: server, stream
 ## match
 
 ```
-Syntax:  имя
+Syntax:  match имя { ... }
 Default: 
 Context: stream
 ```

@@ -55,7 +55,7 @@ stream {
 ## listen
 
 ```
-Syntax:  address:port [default_server] [ssl] [udp] [proxy_protocol] [setfib=number] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen address:port [default_server] [ssl] [udp] [proxy_protocol] [setfib=number] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: 
 Context: server
 ```
@@ -199,7 +199,7 @@ and set the probes count ( TCP_KEEPCNT ) to 10 probes.
 ## preread_buffer_size
 
 ```
-Syntax:  size
+Syntax:  preread_buffer_size size;
 Default: 16k
 Context: server, stream
 ```
@@ -211,7 +211,7 @@ Specifies a `size` of the [preread](stream_processing.xml#preread_phase) buffer.
 ## preread_timeout
 
 ```
-Syntax:  timeout
+Syntax:  preread_timeout timeout;
 Default: 30s
 Context: server, stream
 ```
@@ -223,7 +223,7 @@ Specifies a `timeout` of the [preread](stream_processing.xml#preread_phase) phas
 ## proxy_protocol_timeout
 
 ```
-Syntax:  timeout
+Syntax:  proxy_protocol_timeout timeout;
 Default: 30s
 Context: server, stream
 ```
@@ -235,7 +235,7 @@ Specifies a `timeout` for reading the PROXY protocol header to complete. If no e
 ## resolver
 
 ```
-Syntax:  address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone]
+Syntax:  resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
 Default: 
 Context: server, stream
 ```
@@ -268,7 +268,7 @@ The optional `status_zone` parameter (1.17.1) enables [collection](../http/ngx_h
 ## resolver_timeout
 
 ```
-Syntax:  time
+Syntax:  resolver_timeout time;
 Default: 30s
 Context: server, stream
 ```
@@ -286,7 +286,7 @@ resolver_timeout 5s;
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: stream
 ```
@@ -296,7 +296,7 @@ Sets the configuration for a virtual server. There is no clear separation betwee
 ## server_name
 
 ```
-Syntax:  name ...
+Syntax:  server_name name ...;
 Default: ""
 Context: server
 ```
@@ -374,7 +374,7 @@ e.g. “ `mail.*` ”
 ## server_names_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  server_names_hash_bucket_size size;
 Default: 32|64|128
 Context: stream
 ```
@@ -386,7 +386,7 @@ Sets the bucket size for the server names hash tables. The default value depends
 ## server_names_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  server_names_hash_max_size size;
 Default: 512
 Context: stream
 ```
@@ -398,7 +398,7 @@ Sets the maximum `size` of the server names hash tables. The details of setting 
 ## stream
 
 ```
-Syntax:  
+Syntax:  stream { ... }
 Default: 
 Context: main
 ```
@@ -408,7 +408,7 @@ Provides the configuration file context in which the stream server directives ar
 ## tcp_nodelay
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nodelay on | off;
 Default: on
 Context: server, stream
 ```
@@ -420,7 +420,7 @@ Enables or disables the use of the TCP_NODELAY option. The option is enabled for
 ## variables_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  variables_hash_bucket_size size;
 Default: 64
 Context: stream
 ```
@@ -432,7 +432,7 @@ Sets the bucket size for the variables hash table. The details of setting up has
 ## variables_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  variables_hash_max_size size;
 Default: 1024
 Context: stream
 ```

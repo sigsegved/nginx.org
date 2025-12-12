@@ -22,7 +22,7 @@ access_log /spool/logs/nginx-access.log compression buffer=32k;
 ## access_log
 
 ```
-Syntax:  off
+Syntax:  access_log off;
 Default: logs/access.log combined
 Context: limit_except, http, server, location, if в location
 ```
@@ -86,7 +86,7 @@ access_log /path/to/access.log combined if=$loggable;
 ## log_format
 
 ```
-Syntax:  название [escape=default|json|none] строка ...
+Syntax:  log_format название [escape=default|json|none] строка ...;
 Default: combined "..."
 Context: http
 ```
@@ -150,7 +150,7 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
 ## open_log_file_cache
 
 ```
-Syntax:  off
+Syntax:  open_log_file_cache off;
 Default: off
 Context: location, http, server
 ```

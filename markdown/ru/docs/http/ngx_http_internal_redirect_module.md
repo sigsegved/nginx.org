@@ -36,7 +36,7 @@ server {
 ## internal_redirect
 
 ```
-Syntax:  uri
+Syntax:  internal_redirect uri;
 Default: 
 Context: location, server
 ```

@@ -37,7 +37,7 @@ stream {
 ## pass
 
 ```
-Syntax:  адрес
+Syntax:  pass адрес;
 Default: 
 Context: server, stream
 ```

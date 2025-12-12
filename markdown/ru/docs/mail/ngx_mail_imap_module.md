@@ -8,7 +8,7 @@
 ## imap_auth
 
 ```
-Syntax:  метод ...
+Syntax:  imap_auth метод ...;
 Default: plain
 Context: server, mail
 ```
@@ -33,7 +33,7 @@ Context: server, mail
 ## imap_capabilities
 
 ```
-Syntax:  расширение ...
+Syntax:  imap_capabilities расширение ...;
 Default: IMAP4 IMAP4rev1 UIDPLUS
 Context: server, mail
 ```
@@ -47,7 +47,7 @@ Context: server, mail
 ## imap_client_buffer
 
 ```
-Syntax:  размер
+Syntax:  imap_client_buffer размер;
 Default: 4k|8k
 Context: server, mail
 ```

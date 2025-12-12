@@ -52,7 +52,7 @@ http://hls.example.com/test.mp4.ts?start=1.000&end=2.200
 ## hls
 
 ```
-Syntax:  
+Syntax:  hls;
 Default: 
 Context: location
 ```
@@ -62,7 +62,7 @@ Turns on HLS streaming in the surrounding location.
 ## hls_buffers
 
 ```
-Syntax:  number size
+Syntax:  hls_buffers number size;
 Default: 8 2m
 Context: location, http, server
 ```
@@ -72,7 +72,7 @@ Sets the maximum `number` and `size` of buffers that are used for reading and wr
 ## hls_forward_args
 
 ```
-Syntax:  on | off
+Syntax:  hls_forward_args on | off;
 Default: off
 Context: location, http, server
 ```
@@ -144,7 +144,7 @@ http {
 ## hls_fragment
 
 ```
-Syntax:  time
+Syntax:  hls_fragment time;
 Default: 5s
 Context: location, http, server
 ```
@@ -154,7 +154,7 @@ Defines the default fragment length for playlist URIs requested without the “ 
 ## hls_mp4_buffer_size
 
 ```
-Syntax:  size
+Syntax:  hls_mp4_buffer_size size;
 Default: 512k
 Context: location, http, server
 ```
@@ -164,7 +164,7 @@ Sets the initial `size` of the buffer used for processing MP4 and MOV files.
 ## hls_mp4_max_buffer_size
 
 ```
-Syntax:  size
+Syntax:  hls_mp4_max_buffer_size size;
 Default: 10m
 Context: location, http, server
 ```

@@ -35,7 +35,7 @@ location = /auth {
 ## auth_request
 
 ```
-Syntax:  uri | off
+Syntax:  auth_request uri | off;
 Default: off
 Context: location, http, server
 ```
@@ -45,7 +45,7 @@ Context: location, http, server
 ## auth_request_set
 
 ```
-Syntax:  $переменная значение
+Syntax:  auth_request_set $переменная значение;
 Default: 
 Context: location, http, server
 ```

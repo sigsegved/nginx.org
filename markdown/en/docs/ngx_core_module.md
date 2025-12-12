@@ -24,7 +24,7 @@ events {
 ## accept_mutex
 
 ```
-Syntax:  on | off
+Syntax:  accept_mutex on | off;
 Default: off
 Context: events
 ```
@@ -39,7 +39,7 @@ when using [reuseport](http/ngx_http_core_module.xml#reuseport) .
 ## accept_mutex_delay
 
 ```
-Syntax:  time
+Syntax:  accept_mutex_delay time;
 Default: 500ms
 Context: events
 ```
@@ -49,7 +49,7 @@ If [accept_mutex](#accept_mutex) is enabled, specifies the maximum time during w
 ## daemon
 
 ```
-Syntax:  on | off
+Syntax:  daemon on | off;
 Default: on
 Context: main
 ```
@@ -59,7 +59,7 @@ Determines whether nginx should become a daemon. Mainly used during development.
 ## debug_connection
 
 ```
-Syntax:  address | CIDR | unix:
+Syntax:  debug_connection address | CIDR | unix:;
 Default: 
 Context: events
 ```
@@ -85,7 +85,7 @@ see “  ”.
 ## debug_points
 
 ```
-Syntax:  abort | stop
+Syntax:  debug_points abort | stop;
 Default: 
 Context: main
 ```
@@ -97,7 +97,7 @@ When internal error is detected, e.g. the leak of sockets on restart of working 
 ## env
 
 ```
-Syntax:  variable[=value]
+Syntax:  env variable[=value];
 Default: TZ
 Context: main
 ```
@@ -129,7 +129,7 @@ and should not be set directly by the user.
 ## error_log
 
 ```
-Syntax:  file [level]
+Syntax:  error_log file [level];
 Default: logs/error.log error
 Context: location, main, http, mail, stream, server
 ```
@@ -152,7 +152,7 @@ starting from version 1.9.0.
 ## events
 
 ```
-Syntax:  
+Syntax:  events { ... }
 Default: 
 Context: main
 ```
@@ -162,7 +162,7 @@ Provides the configuration file context in which the directives that affect conn
 ## include
 
 ```
-Syntax:  file | mask
+Syntax:  include file | mask;
 Default: 
 Context: 
 ```
@@ -179,7 +179,7 @@ include vhosts/*.conf;
 ## load_module
 
 ```
-Syntax:  file
+Syntax:  load_module file;
 Default: 
 Context: main
 ```
@@ -197,7 +197,7 @@ load_module modules/ngx_mail_module.so;
 ## lock_file
 
 ```
-Syntax:  file
+Syntax:  lock_file file;
 Default: logs/nginx.lock
 Context: main
 ```
@@ -207,7 +207,7 @@ nginx uses the locking mechanism to implement [accept_mutex](#accept_mutex) and 
 ## master_process
 
 ```
-Syntax:  on | off
+Syntax:  master_process on | off;
 Default: on
 Context: main
 ```
@@ -217,7 +217,7 @@ Determines whether worker processes are started. This directive is intended for 
 ## multi_accept
 
 ```
-Syntax:  on | off
+Syntax:  multi_accept on | off;
 Default: off
 Context: events
 ```
@@ -230,7 +230,7 @@ the number of new connections waiting to be accepted.
 ## pcre_jit
 
 ```
-Syntax:  on | off
+Syntax:  pcre_jit on | off;
 Default: off
 Context: main
 ```
@@ -249,7 +249,7 @@ the JIT support is enabled via the `--with-pcre-jit` configuration parameter.
 ## pid
 
 ```
-Syntax:  file
+Syntax:  pid file;
 Default: logs/nginx.pid
 Context: main
 ```
@@ -259,7 +259,7 @@ Defines a `file` that will store the process ID of the main process.
 ## ssl_engine
 
 ```
-Syntax:  device
+Syntax:  ssl_engine device;
 Default: 
 Context: main
 ```
@@ -271,7 +271,7 @@ Defines the name of the hardware SSL accelerator.
 ## ssl_object_cache_inheritable
 
 ```
-Syntax:  on | off
+Syntax:  ssl_object_cache_inheritable on | off;
 Default: on
 Context: main
 ```
@@ -302,7 +302,7 @@ http {
 ## stall_threshold
 
 ```
-Syntax:  time
+Syntax:  stall_threshold time;
 Default: 1000ms
 Context: events
 ```
@@ -316,7 +316,7 @@ Allows overriding the default time threshold for the event loop iteration before
 ## thread_pool
 
 ```
-Syntax:  name threads=number [max_queue=number]
+Syntax:  thread_pool name threads=number [max_queue=number];
 Default: default threads=32 max_queue=65536
 Context: main
 ```
@@ -332,7 +332,7 @@ In the event that all threads in the pool are busy, a new task will wait in the 
 ## timer_resolution
 
 ```
-Syntax:  interval
+Syntax:  timer_resolution interval;
 Default: 
 Context: main
 ```
@@ -355,7 +355,7 @@ Internal implementation of the interval depends on the method used:
 ## use
 
 ```
-Syntax:  method
+Syntax:  use method;
 Default: 
 Context: events
 ```
@@ -365,7 +365,7 @@ Specifies the [connection processing](events.xml) `method` to use. There is norm
 ## user
 
 ```
-Syntax:  user [group]
+Syntax:  user user [group];
 Default: nobody nobody
 Context: main
 ```
@@ -375,7 +375,7 @@ Defines `user` and `group` credentials used by worker processes. If `group` is o
 ## worker_aio_requests
 
 ```
-Syntax:  number
+Syntax:  worker_aio_requests number;
 Default: 32
 Context: events
 ```
@@ -387,7 +387,7 @@ When using [aio](http/ngx_http_core_module.xml#aio) with the [epoll](../docs/eve
 ## worker_connections
 
 ```
-Syntax:  number
+Syntax:  worker_connections number;
 Default: 512
 Context: events
 ```
@@ -399,7 +399,7 @@ It should be kept in mind that this number includes all connections (e.g. connec
 ## worker_cpu_affinity
 
 ```
-Syntax:  auto [cpumask]
+Syntax:  worker_cpu_affinity auto [cpumask];
 Default: 
 Context: main
 ```
@@ -440,7 +440,7 @@ worker_cpu_affinity auto 01010101;
 ## worker_priority
 
 ```
-Syntax:  number
+Syntax:  worker_priority number;
 Default: 0
 Context: main
 ```
@@ -456,7 +456,7 @@ worker_priority -10;
 ## worker_processes
 
 ```
-Syntax:  number | auto
+Syntax:  worker_processes number | auto;
 Default: 1
 Context: main
 ```
@@ -471,7 +471,7 @@ versions 1.3.8 and 1.2.5.
 ## worker_rlimit_core
 
 ```
-Syntax:  size
+Syntax:  worker_rlimit_core size;
 Default: 
 Context: main
 ```
@@ -481,7 +481,7 @@ Changes the limit on the largest size of a core file ( RLIMIT_CORE ) for worker 
 ## worker_rlimit_nofile
 
 ```
-Syntax:  number
+Syntax:  worker_rlimit_nofile number;
 Default: 
 Context: main
 ```
@@ -491,7 +491,7 @@ Changes the limit on the maximum number of open files ( RLIMIT_NOFILE ) for work
 ## worker_shutdown_timeout
 
 ```
-Syntax:  time
+Syntax:  worker_shutdown_timeout time;
 Default: 
 Context: main
 ```
@@ -503,7 +503,7 @@ Configures a timeout for a graceful shutdown of worker processes. When the `time
 ## working_directory
 
 ```
-Syntax:  directory
+Syntax:  working_directory directory;
 Default: 
 Context: main
 ```

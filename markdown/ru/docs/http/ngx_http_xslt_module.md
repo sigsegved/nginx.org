@@ -24,7 +24,7 @@ location / {
 ## xml_entities
 
 ```
-Syntax:  путь
+Syntax:  xml_entities путь;
 Default: 
 Context: location, http, server
 ```
@@ -38,7 +38,7 @@ Context: location, http, server
 ## xslt_last_modified
 
 ```
-Syntax:  on | off
+Syntax:  xslt_last_modified on | off;
 Default: off
 Context: location, http, server
 ```
@@ -52,7 +52,7 @@ Context: location, http, server
 ## xslt_param
 
 ```
-Syntax:  параметр значение
+Syntax:  xslt_param параметр значение;
 Default: 
 Context: location, http, server
 ```
@@ -66,7 +66,7 @@ Context: location, http, server
 ## xslt_string_param
 
 ```
-Syntax:  параметр значение
+Syntax:  xslt_string_param параметр значение;
 Default: 
 Context: location, http, server
 ```
@@ -80,7 +80,7 @@ Context: location, http, server
 ## xslt_stylesheet
 
 ```
-Syntax:  шаблон [параметр=значение ...]
+Syntax:  xslt_stylesheet шаблон [параметр=значение ...];
 Default: 
 Context: location
 ```
@@ -109,7 +109,7 @@ location / {
 ## xslt_types
 
 ```
-Syntax:  mime-тип ...
+Syntax:  xslt_types mime-тип ...;
 Default: text/xml
 Context: location, http, server
 ```

@@ -22,7 +22,7 @@ if ($invalid_referer) {
 ## referer_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  referer_hash_bucket_size size;
 Default: 64
 Context: location, server
 ```
@@ -34,7 +34,7 @@ Sets the bucket size for the valid referers hash tables. The details of setting 
 ## referer_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  referer_hash_max_size size;
 Default: 2048
 Context: location, server
 ```
@@ -46,7 +46,7 @@ Sets the maximum `size` of the valid referers hash tables. The details of settin
 ## valid_referers
 
 ```
-Syntax:  none | blocked | server_names | string ...
+Syntax:  valid_referers none | blocked | server_names | string ...;
 Default: 
 Context: location, server
 ```

@@ -28,7 +28,7 @@ stream {
 ## limit_conn
 
 ```
-Syntax:  зона число
+Syntax:  limit_conn зона число;
 Default: 
 Context: server, stream
 ```
@@ -53,7 +53,7 @@ server {
 ## limit_conn_dry_run
 
 ```
-Syntax:  on | off
+Syntax:  limit_conn_dry_run on | off;
 Default: off
 Context: server, stream
 ```
@@ -65,7 +65,7 @@ Context: server, stream
 ## limit_conn_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_conn_log_level info | notice | warn | error;
 Default: error
 Context: server, stream
 ```
@@ -75,7 +75,7 @@ Context: server, stream
 ## limit_conn_zone
 
 ```
-Syntax:  ключ zone=название:размер
+Syntax:  limit_conn_zone ключ zone=название:размер;
 Default: 
 Context: stream
 ```

@@ -20,7 +20,7 @@ location / {
 ## random_index
 
 ```
-Syntax:  on | off
+Syntax:  random_index on | off;
 Default: off
 Context: location
 ```

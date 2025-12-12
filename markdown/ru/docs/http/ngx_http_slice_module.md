@@ -31,7 +31,7 @@ location / {
 ## slice
 
 ```
-Syntax:  размер
+Syntax:  slice размер;
 Default: 0
 Context: location, http, server
 ```

@@ -20,7 +20,7 @@ location / {
 ## add_before_body
 
 ```
-Syntax:  uri
+Syntax:  add_before_body uri;
 Default: 
 Context: location
 ```
@@ -30,7 +30,7 @@ Context: location
 ## add_after_body
 
 ```
-Syntax:  uri
+Syntax:  add_after_body uri;
 Default: 
 Context: location
 ```
@@ -40,7 +40,7 @@ Context: location
 ## addition_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  addition_types mime-type ...;
 Default: text/html
 Context: location, http, server
 ```

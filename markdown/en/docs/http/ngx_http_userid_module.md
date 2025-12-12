@@ -21,7 +21,7 @@ userid_p3p     'policyref="/w3c/p3p.xml", CP="CUR ADM OUR NOR STA NID"';
 ## userid
 
 ```
-Syntax:  on | v1 | log | off
+Syntax:  userid on | v1 | log | off;
 Default: off
 Context: location, http, server
 ```
@@ -46,7 +46,7 @@ but enables logging of the received cookies;
 ## userid_domain
 
 ```
-Syntax:  name | none
+Syntax:  userid_domain name | none;
 Default: none
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ Defines a domain for which the cookie is set. The `none` parameter disables sett
 ## userid_expires
 
 ```
-Syntax:  time | max | off
+Syntax:  userid_expires time | max | off;
 Default: off
 Context: location, http, server
 ```
@@ -66,7 +66,7 @@ Sets a time during which a browser should keep the cookie. The parameter `max` w
 ## userid_flags
 
 ```
-Syntax:  off | flag ...
+Syntax:  userid_flags off | flag ...;
 Default: off
 Context: location, http, server
 ```
@@ -78,7 +78,7 @@ If the parameter is not `off` , defines one or more additional flags for the coo
 ## userid_mark
 
 ```
-Syntax:  letter | digit | = | off
+Syntax:  userid_mark letter | digit | = | off;
 Default: off
 Context: location, http, server
 ```
@@ -90,7 +90,7 @@ If the mark is set, it is compared with the first padding symbol in the base64 r
 ## userid_name
 
 ```
-Syntax:  name
+Syntax:  userid_name name;
 Default: uid
 Context: location, http, server
 ```
@@ -100,7 +100,7 @@ Sets the cookie name.
 ## userid_p3p
 
 ```
-Syntax:  string | none
+Syntax:  userid_p3p string | none;
 Default: none
 Context: location, http, server
 ```
@@ -110,7 +110,7 @@ Sets a value for the `P3P` header field that will be sent along with the cookie.
 ## userid_path
 
 ```
-Syntax:  path
+Syntax:  userid_path path;
 Default: /
 Context: location, http, server
 ```
@@ -120,7 +120,7 @@ Defines a path for which the cookie is set.
 ## userid_service
 
 ```
-Syntax:  number
+Syntax:  userid_service number;
 Default: IP address of the server
 Context: location, http, server
 ```

@@ -37,7 +37,7 @@ server {
 ## proxy_bind
 
 ```
-Syntax:  address [transparent] | off
+Syntax:  proxy_bind address [transparent] | off;
 Default: 
 Context: server, stream
 ```
@@ -57,7 +57,7 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 ## proxy_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  proxy_bind_dynamic on | off;
 Default: off
 Context: server, stream
 ```
@@ -71,7 +71,7 @@ When enabled, makes the [bind](#proxy_bind) operation at each connection attempt
 ## proxy_buffer_size
 
 ```
-Syntax:  size
+Syntax:  proxy_buffer_size size;
 Default: 16k
 Context: server, stream
 ```
@@ -83,7 +83,7 @@ Sets the `size` of the buffer used for reading data from the proxied server. Als
 ## proxy_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_connect_timeout time;
 Default: 60s
 Context: server, stream
 ```
@@ -93,7 +93,7 @@ Defines a timeout for establishing a connection with a proxied server.
 ## proxy_download_rate
 
 ```
-Syntax:  rate
+Syntax:  proxy_download_rate rate;
 Default: 0
 Context: server, stream
 ```
@@ -116,7 +116,7 @@ proxy_download_rate $rate;
 ## proxy_half_close
 
 ```
-Syntax:  on | off
+Syntax:  proxy_half_close on | off;
 Default: off
 Context: server, stream
 ```
@@ -128,7 +128,7 @@ Enables or disables closing each direction of a TCP connection independently (�
 ## proxy_next_upstream
 
 ```
-Syntax:  on | off
+Syntax:  proxy_next_upstream on | off;
 Default: on
 Context: server, stream
 ```
@@ -140,7 +140,7 @@ Passing a connection to the next server can be limited by [the number of tries](
 ## proxy_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_next_upstream_timeout time;
 Default: 0
 Context: server, stream
 ```
@@ -150,7 +150,7 @@ Limits the time allowed to pass a connection to the [next server](#proxy_next_up
 ## proxy_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  proxy_next_upstream_tries number;
 Default: 0
 Context: server, stream
 ```
@@ -160,7 +160,7 @@ Limits the number of possible tries for passing a connection to the [next server
 ## proxy_pass
 
 ```
-Syntax:  address
+Syntax:  proxy_pass address;
 Default: 
 Context: server
 ```
@@ -190,7 +190,7 @@ In this case, the server name is searched among the described [server groups](ng
 ## proxy_protocol
 
 ```
-Syntax:  on | off
+Syntax:  proxy_protocol on | off;
 Default: off
 Context: server, stream
 ```
@@ -202,7 +202,7 @@ Enables the [PROXY protocol](http://www.haproxy.org/download/1.8/doc/proxy-proto
 ## proxy_requests
 
 ```
-Syntax:  number
+Syntax:  proxy_requests number;
 Default: 0
 Context: server, stream
 ```
@@ -214,7 +214,7 @@ Sets the number of client datagrams at which binding between a client and existi
 ## proxy_responses
 
 ```
-Syntax:  number
+Syntax:  proxy_responses number;
 Default: 
 Context: server, stream
 ```
@@ -228,7 +228,7 @@ If zero value is specified, no response is expected. However, if a response is r
 ## proxy_session_drop
 
 ```
-Syntax:  on | off
+Syntax:  proxy_session_drop on | off;
 Default: off
 Context: server, stream
 ```
@@ -242,7 +242,7 @@ Enables terminating all sessions to a proxied server after it was removed from t
 ## proxy_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  proxy_socket_keepalive on | off;
 Default: off
 Context: server, stream
 ```
@@ -254,7 +254,7 @@ Configures the “TCP keepalive” behavior for outgoing connections to a proxie
 ## proxy_ssl
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl on | off;
 Default: off
 Context: server, stream
 ```
@@ -264,7 +264,7 @@ Enables the SSL/TLS protocol for connections to a proxied server.
 ## proxy_ssl_certificate
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -276,7 +276,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## proxy_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=time] [valid=time]
+Syntax:  proxy_ssl_certificate_cache max=N [inactive=time] [valid=time];
 Default: off
 Context: server, stream
 ```
@@ -317,7 +317,7 @@ proxy_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## proxy_ssl_certificate_key
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_certificate_key file;
 Default: 
 Context: server, stream
 ```
@@ -331,7 +331,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## proxy_ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  proxy_ssl_ciphers ciphers;
 Default: DEFAULT
 Context: server, stream
 ```
@@ -343,7 +343,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## proxy_ssl_conf_command
 
 ```
-Syntax:  name value
+Syntax:  proxy_ssl_conf_command name value;
 Default: 
 Context: server, stream
 ```
@@ -362,7 +362,7 @@ might result in unexpected behavior.
 ## proxy_ssl_crl
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_crl file;
 Default: 
 Context: server, stream
 ```
@@ -372,7 +372,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## proxy_ssl_key_log
 
 ```
-Syntax:  path
+Syntax:  proxy_ssl_key_log path;
 Default: 
 Context: server, stream
 ```
@@ -386,7 +386,7 @@ Enables logging of proxied server connection SSL keys and specifies the path to 
 ## proxy_ssl_name
 
 ```
-Syntax:  name
+Syntax:  proxy_ssl_name name;
 Default: host from proxy_pass
 Context: server, stream
 ```
@@ -398,7 +398,7 @@ By default, the host part of the [proxy_pass](#proxy_pass) address is used.
 ## proxy_ssl_password_file
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_password_file file;
 Default: 
 Context: server, stream
 ```
@@ -408,7 +408,7 @@ Specifies a `file` with passphrases for [secret keys](#proxy_ssl_certificate_key
 ## proxy_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: server, stream
 ```
@@ -421,7 +421,7 @@ since 1.23.4.
 ## proxy_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_server_name on | off;
 Default: off
 Context: server, stream
 ```
@@ -431,7 +431,7 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 ## proxy_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_session_reuse on | off;
 Default: on
 Context: server, stream
 ```
@@ -441,7 +441,7 @@ Determines whether SSL sessions can be reused when working with the proxied serv
 ## proxy_ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_trusted_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -451,7 +451,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## proxy_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_verify on | off;
 Default: off
 Context: server, stream
 ```
@@ -461,7 +461,7 @@ Enables or disables verification of the proxied server certificate.
 ## proxy_ssl_verify_depth
 
 ```
-Syntax:  number
+Syntax:  proxy_ssl_verify_depth number;
 Default: 1
 Context: server, stream
 ```
@@ -471,7 +471,7 @@ Sets the verification depth in the proxied server certificates chain.
 ## proxy_timeout
 
 ```
-Syntax:  timeout
+Syntax:  proxy_timeout timeout;
 Default: 10m
 Context: server, stream
 ```
@@ -481,7 +481,7 @@ Sets the `timeout` between two successive read or write operations on client or 
 ## proxy_upload_rate
 
 ```
-Syntax:  rate
+Syntax:  proxy_upload_rate rate;
 Default: 0
 Context: server, stream
 ```

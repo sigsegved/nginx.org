@@ -55,7 +55,7 @@ server {
 ## upstream
 
 ```
-Syntax:  название
+Syntax:  upstream название { ... }
 Default: 
 Context: stream
 ```
@@ -80,7 +80,7 @@ upstream backend {
 ## server
 
 ```
-Syntax:  адрес [параметры]
+Syntax:  server адрес [параметры];
 Default: 
 Context: upstream
 ```
@@ -184,7 +184,7 @@ SRV-записи с наивысшим приоритетом (записи с �
 ## zone
 
 ```
-Syntax:  имя [размер]
+Syntax:  zone имя [размер];
 Default: 
 Context: upstream
 ```
@@ -200,7 +200,7 @@ Context: upstream
 ## state
 
 ```
-Syntax:  файл
+Syntax:  state файл;
 Default: 
 Context: upstream
 ```
@@ -226,7 +226,7 @@ state /var/db/nginx/state/servers.conf;  # путь для FreeBSD
 ## hash
 
 ```
-Syntax:  ключ [consistent]
+Syntax:  hash ключ [consistent];
 Default: 
 Context: upstream
 ```
@@ -244,7 +244,7 @@ hash $remote_addr;
 ## least_conn
 
 ```
-Syntax:  
+Syntax:  least_conn;
 Default: 
 Context: upstream
 ```
@@ -254,7 +254,7 @@ Context: upstream
 ## least_time
 
 ```
-Syntax:  connect | first_byte | last_byte [inflight]
+Syntax:  least_time connect | first_byte | last_byte [inflight];
 Default: 
 Context: upstream
 ```
@@ -271,7 +271,7 @@ Context: upstream
 ## random
 
 ```
-Syntax:  [two [метод]]
+Syntax:  random [two [метод]];
 Default: 
 Context: upstream
 ```
@@ -289,7 +289,7 @@ Context: upstream
 ## resolver
 
 ```
-Syntax:  адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона]
+Syntax:  resolver адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона];
 Default: 
 Context: upstream
 ```
@@ -323,7 +323,7 @@ resolver 127.0.0.1 [::1]:5353 valid=30s;
 ## resolver_timeout
 
 ```
-Syntax:  время
+Syntax:  resolver_timeout время;
 Default: 30s
 Context: upstream
 ```

@@ -33,7 +33,7 @@ stream {
 ## geoip_country
 
 ```
-Syntax:  file
+Syntax:  geoip_country file;
 Default: 
 Context: stream
 ```
@@ -55,7 +55,7 @@ Specifies a database used to determine the country depending on the client IP ad
 ## geoip_city
 
 ```
-Syntax:  file
+Syntax:  geoip_city file;
 Default: 
 Context: stream
 ```
@@ -113,7 +113,7 @@ and the like), for example,
 ## geoip_org
 
 ```
-Syntax:  file
+Syntax:  geoip_org file;
 Default: 
 Context: stream
 ```

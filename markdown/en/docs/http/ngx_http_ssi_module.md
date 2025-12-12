@@ -19,7 +19,7 @@ location / {
 ## ssi
 
 ```
-Syntax:  on | off
+Syntax:  ssi on | off;
 Default: off
 Context: if in location, http, server, location
 ```
@@ -29,7 +29,7 @@ Enables or disables processing of SSI commands in responses.
 ## ssi_last_modified
 
 ```
-Syntax:  on | off
+Syntax:  ssi_last_modified on | off;
 Default: off
 Context: location, http, server
 ```
@@ -43,7 +43,7 @@ By default, the header field is removed as contents of the response are modified
 ## ssi_min_file_chunk
 
 ```
-Syntax:  size
+Syntax:  ssi_min_file_chunk size;
 Default: 1k
 Context: location, http, server
 ```
@@ -53,7 +53,7 @@ Sets the minimum `size` for parts of a response stored on disk, starting from wh
 ## ssi_silent_errors
 
 ```
-Syntax:  on | off
+Syntax:  ssi_silent_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -63,7 +63,7 @@ If enabled, suppresses the output of the “ `[an error occurred while processin
 ## ssi_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  ssi_types mime-type ...;
 Default: text/html
 Context: location, http, server
 ```
@@ -73,7 +73,7 @@ Enables processing of SSI commands in responses with the specified MIME types in
 ## ssi_value_length
 
 ```
-Syntax:  length
+Syntax:  ssi_value_length length;
 Default: 256
 Context: location, http, server
 ```

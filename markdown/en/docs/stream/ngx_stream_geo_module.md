@@ -25,7 +25,7 @@ geo $geo {
 ## geo
 
 ```
-Syntax:  [$address] $variable
+Syntax:  geo [$address] $variable { ... }
 Default: 
 Context: stream
 ```

@@ -50,7 +50,7 @@ location /video/ {
 ## mp4
 
 ```
-Syntax:  
+Syntax:  mp4;
 Default: 
 Context: location
 ```
@@ -60,7 +60,7 @@ Context: location
 ## mp4_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  mp4_buffer_size размер;
 Default: 512K
 Context: location, http, server
 ```
@@ -70,7 +70,7 @@ Context: location, http, server
 ## mp4_max_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  mp4_max_buffer_size размер;
 Default: 10M
 Context: location, http, server
 ```
@@ -85,7 +85,7 @@ Context: location, http, server
 ## mp4_limit_rate
 
 ```
-Syntax:  on | off | множитель
+Syntax:  mp4_limit_rate on | off | множитель;
 Default: off
 Context: location, http, server
 ```
@@ -97,7 +97,7 @@ Context: location, http, server
 ## mp4_limit_rate_after
 
 ```
-Syntax:  время
+Syntax:  mp4_limit_rate_after время;
 Default: 60s
 Context: location, http, server
 ```
@@ -109,7 +109,7 @@ Context: location, http, server
 ## mp4_start_key_frame
 
 ```
-Syntax:  on | off
+Syntax:  mp4_start_key_frame on | off;
 Default: off
 Context: location, http, server
 ```

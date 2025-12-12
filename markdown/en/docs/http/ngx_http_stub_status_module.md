@@ -29,7 +29,7 @@ Reading: 6 Writing: 179 Waiting: 106
 ## stub_status
 
 ```
-Syntax:  
+Syntax:  stub_status;
 Default: 
 Context: location, server
 ```

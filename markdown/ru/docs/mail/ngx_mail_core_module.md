@@ -54,7 +54,7 @@ mail {
 ## listen
 
 ```
-Syntax:  адрес:порт [ssl] [proxy_protocol] [backlog=число] [rcvbuf=размер] [sndbuf=размер] [bind] [ipv6only=on|off] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen адрес:порт [ssl] [proxy_protocol] [backlog=число] [rcvbuf=размер] [sndbuf=размер] [bind] [ipv6only=on|off] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: 
 Context: server
 ```
@@ -152,7 +152,7 @@ so_keepalive=30m::10
 ## mail
 
 ```
-Syntax:  
+Syntax:  mail { ... }
 Default: 
 Context: main
 ```
@@ -162,7 +162,7 @@ Context: main
 ## max_errors
 
 ```
-Syntax:  число
+Syntax:  max_errors число;
 Default: 5
 Context: server, mail
 ```
@@ -174,7 +174,7 @@ Context: server, mail
 ## protocol
 
 ```
-Syntax:  imap | pop3 | smtp
+Syntax:  protocol imap | pop3 | smtp;
 Default: 
 Context: server
 ```
@@ -192,7 +192,7 @@ Context: server
 ## resolver
 
 ```
-Syntax:  off
+Syntax:  resolver off;
 Default: off
 Context: server, mail
 ```
@@ -233,7 +233,7 @@ resolver 127.0.0.1 [::1]:5353 valid=30s;
 ## resolver_timeout
 
 ```
-Syntax:  время
+Syntax:  resolver_timeout время;
 Default: 30s
 Context: server, mail
 ```
@@ -247,7 +247,7 @@ resolver_timeout 5s;
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: mail
 ```
@@ -257,7 +257,7 @@ Context: mail
 ## server_name
 
 ```
-Syntax:  имя
+Syntax:  server_name имя;
 Default: hostname
 Context: server, mail
 ```
@@ -274,7 +274,7 @@ Context: server, mail
 ## timeout
 
 ```
-Syntax:  время
+Syntax:  timeout время;
 Default: 60s
 Context: server, mail
 ```

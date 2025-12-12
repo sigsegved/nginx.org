@@ -23,7 +23,7 @@ add_header Cache-Control private;
 ## add_header
 
 ```
-Syntax:  имя значение [always]
+Syntax:  add_header имя значение [always];
 Default: 
 Context: if в location, http, server, location
 ```
@@ -37,7 +37,7 @@ Context: if в location, http, server, location
 ## add_header_inherit
 
 ```
-Syntax:  on | off | merge
+Syntax:  add_header_inherit on | off | merge;
 Default: on
 Context: if in location, http, server, location
 ```
@@ -55,7 +55,7 @@ Context: if in location, http, server, location
 ## add_trailer
 
 ```
-Syntax:  имя значение [always]
+Syntax:  add_trailer имя значение [always];
 Default: 
 Context: if в location, http, server, location
 ```
@@ -71,7 +71,7 @@ Context: if в location, http, server, location
 ## add_trailer_inherit
 
 ```
-Syntax:  on | off | merge
+Syntax:  add_trailer_inherit on | off | merge;
 Default: on
 Context: if in location, http, server, location
 ```
@@ -89,7 +89,7 @@ Context: if in location, http, server, location
 ## expires
 
 ```
-Syntax:  epoch | max | off
+Syntax:  expires epoch | max | off;
 Default: off
 Context: if в location, http, server, location
 ```

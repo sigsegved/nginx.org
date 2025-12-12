@@ -52,7 +52,7 @@ location /video/ {
 ## mp4
 
 ```
-Syntax:  
+Syntax:  mp4;
 Default: 
 Context: location
 ```
@@ -62,7 +62,7 @@ Turns on module processing in a surrounding location.
 ## mp4_buffer_size
 
 ```
-Syntax:  size
+Syntax:  mp4_buffer_size size;
 Default: 512K
 Context: location, http, server
 ```
@@ -72,7 +72,7 @@ Sets the initial `size` of the buffer used for processing MP4 files.
 ## mp4_max_buffer_size
 
 ```
-Syntax:  size
+Syntax:  mp4_max_buffer_size size;
 Default: 10M
 Context: location, http, server
 ```
@@ -87,7 +87,7 @@ During metadata processing, a larger buffer may become necessary. Its size canno
 ## mp4_limit_rate
 
 ```
-Syntax:  on | off | factor
+Syntax:  mp4_limit_rate on | off | factor;
 Default: off
 Context: location, http, server
 ```
@@ -99,7 +99,7 @@ Limits the rate of response transmission to a client. The rate is limited based 
 ## mp4_limit_rate_after
 
 ```
-Syntax:  time
+Syntax:  mp4_limit_rate_after time;
 Default: 60s
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Sets the initial amount of media data (measured in playback time) after which th
 ## mp4_start_key_frame
 
 ```
-Syntax:  on | off
+Syntax:  mp4_start_key_frame on | off;
 Default: off
 Context: location, http, server
 ```

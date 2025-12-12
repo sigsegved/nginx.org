@@ -27,7 +27,7 @@ http {
 ## geoip_country
 
 ```
-Syntax:  database
+Syntax:  geoip_country database;
 Default: 
 Context: http
 ```
@@ -49,7 +49,7 @@ Context: http
 ## geoip_city
 
 ```
-Syntax:  database
+Syntax:  geoip_city database;
 Default: 
 Context: http
 ```
@@ -82,7 +82,7 @@ Context: http
 ## geoip_proxy
 
 ```
-Syntax:  address | CIDR
+Syntax:  geoip_proxy address | CIDR;
 Default: 
 Context: http
 ```
@@ -94,7 +94,7 @@ Context: http
 ## geoip_proxy_recursive
 
 ```
-Syntax:  on | off
+Syntax:  geoip_proxy_recursive on | off;
 Default: off
 Context: http
 ```

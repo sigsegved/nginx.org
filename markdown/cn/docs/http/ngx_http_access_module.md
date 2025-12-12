@@ -27,7 +27,7 @@ location / {
 ## allow
 
 ```
-Syntax:  address | CIDR | all
+Syntax:  allow address | CIDR | all;
 Default: 
 Context: limit_except, http, server, location
 ```
@@ -37,7 +37,7 @@ Context: limit_except, http, server, location
 ## deny
 
 ```
-Syntax:  address | CIDR | all
+Syntax:  deny address | CIDR | all;
 Default: 
 Context: limit_except, http, server, location
 ```

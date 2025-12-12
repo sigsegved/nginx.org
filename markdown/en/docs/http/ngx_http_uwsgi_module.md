@@ -19,7 +19,7 @@ location / {
 ## uwsgi_allow_upstream
 
 ```
-Syntax:  string ...
+Syntax:  uwsgi_allow_upstream string ...;
 Default: 
 Context: location, http, server
 ```
@@ -50,7 +50,7 @@ server {
 ## uwsgi_bind
 
 ```
-Syntax:  address [transparent] | off
+Syntax:  uwsgi_bind address [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -68,7 +68,7 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 ## uwsgi_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -82,7 +82,7 @@ When enabled, makes the [bind](#uwsgi_bind) operation at each connection attempt
 ## uwsgi_buffer_size
 
 ```
-Syntax:  size
+Syntax:  uwsgi_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -92,7 +92,7 @@ Sets the `size` of the buffer used for reading the first part of the response re
 ## uwsgi_buffering
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -108,7 +108,7 @@ Buffering can also be enabled or disabled by passing “ `yes` ” or “ `no` �
 ## uwsgi_buffers
 
 ```
-Syntax:  number size
+Syntax:  uwsgi_buffers number size;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Sets the `number` and `size` of the buffers used for reading a response from the
 ## uwsgi_busy_buffers_size
 
 ```
-Syntax:  size
+Syntax:  uwsgi_busy_buffers_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -128,7 +128,7 @@ When [buffering](#uwsgi_buffering) of responses from the uwsgi server is enabled
 ## uwsgi_cache
 
 ```
-Syntax:  zone | off
+Syntax:  uwsgi_cache zone | off;
 Default: off
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 ## uwsgi_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -150,7 +150,7 @@ Allows starting a background subrequest to update an expired cache item, while a
 ## uwsgi_cache_bypass
 
 ```
-Syntax:  string ...
+Syntax:  uwsgi_cache_bypass string ...;
 Default: 
 Context: location, http, server
 ```
@@ -167,7 +167,7 @@ Can be used along with the [uwsgi_no_cache](#uwsgi_no_cache) directive.
 ## uwsgi_cache_key
 
 ```
-Syntax:  string
+Syntax:  uwsgi_cache_key string;
 Default: 
 Context: location, http, server
 ```
@@ -181,7 +181,7 @@ uwsgi_cache_key localhost:9000$request_uri;
 ## uwsgi_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -193,7 +193,7 @@ When enabled, only one request at a time will be allowed to populate a new cache
 ## uwsgi_cache_lock_age
 
 ```
-Syntax:  time
+Syntax:  uwsgi_cache_lock_age time;
 Default: 5s
 Context: location, http, server
 ```
@@ -205,7 +205,7 @@ If the last request passed to the uwsgi server for populating a new cache elemen
 ## uwsgi_cache_lock_timeout
 
 ```
-Syntax:  time
+Syntax:  uwsgi_cache_lock_timeout time;
 Default: 5s
 Context: location, http, server
 ```
@@ -219,7 +219,7 @@ Sets a timeout for [uwsgi_cache_lock](#uwsgi_cache_lock) . When the `time` expir
 ## uwsgi_cache_max_range_offset
 
 ```
-Syntax:  number
+Syntax:  uwsgi_cache_max_range_offset number;
 Default: 
 Context: location, http, server
 ```
@@ -231,7 +231,7 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 ## uwsgi_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  uwsgi_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -241,7 +241,7 @@ If the client request method is listed in this directive then the response will 
 ## uwsgi_cache_min_uses
 
 ```
-Syntax:  number
+Syntax:  uwsgi_cache_min_uses number;
 Default: 1
 Context: location, http, server
 ```
@@ -251,7 +251,7 @@ Sets the `number` of requests after which the response will be cached.
 ## uwsgi_cache_path
 
 ```
-Syntax:  path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time]
+Syntax:  uwsgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];
 Default: 
 Context: http
 ```
@@ -313,7 +313,7 @@ after upgrading to a newer nginx version.
 ## uwsgi_cache_purge
 
 ```
-Syntax:  string ...
+Syntax:  uwsgi_cache_purge string ...;
 Default: 
 Context: location, http, server
 ```
@@ -350,7 +350,7 @@ server {
 ## uwsgi_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -362,7 +362,7 @@ Enables revalidation of expired cache items using conditional requests with the 
 ## uwsgi_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...
+Syntax:  uwsgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -389,7 +389,7 @@ To minimize the number of accesses to uwsgi servers when populating a new cache 
 ## uwsgi_cache_valid
 
 ```
-Syntax:  [code ...] time
+Syntax:  uwsgi_cache_valid [code ...] time;
 Default: 
 Context: location, http, server
 ```
@@ -442,7 +442,7 @@ Processing of one or more of these response header fields can be disabled using 
 ## uwsgi_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  uwsgi_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -452,7 +452,7 @@ Defines a timeout for establishing a connection with a uwsgi server. It should b
 ## uwsgi_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -464,7 +464,7 @@ Enables byte-range support for both cached and uncached responses from the uwsgi
 ## uwsgi_hide_header
 
 ```
-Syntax:  field
+Syntax:  uwsgi_hide_header field;
 Default: 
 Context: location, http, server
 ```
@@ -474,7 +474,7 @@ By default, nginx does not pass the header fields `Status` and `X-Accel-...` fro
 ## uwsgi_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -484,7 +484,7 @@ Determines whether the connection with a uwsgi server should be closed when a cl
 ## uwsgi_ignore_headers
 
 ```
-Syntax:  field ...
+Syntax:  uwsgi_ignore_headers field ...;
 Default: 
 Context: location, http, server
 ```
@@ -505,7 +505,7 @@ limit](ngx_http_core_module.xml#limit_rate) for transmission of a response to a 
 ## uwsgi_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -515,7 +515,7 @@ Determines whether a uwsgi server responses with codes greater than or equal to 
 ## uwsgi_limit_rate
 
 ```
-Syntax:  rate
+Syntax:  uwsgi_limit_rate rate;
 Default: 0
 Context: location, http, server
 ```
@@ -527,7 +527,7 @@ Limits the speed of reading the response from the uwsgi server. The `rate` is sp
 ## uwsgi_max_temp_file_size
 
 ```
-Syntax:  size
+Syntax:  uwsgi_max_temp_file_size size;
 Default: 1024m
 Context: location, http, server
 ```
@@ -542,7 +542,7 @@ that will be [cached](#uwsgi_cache) or [stored](#uwsgi_store) on disk.
 ## uwsgi_modifier1
 
 ```
-Syntax:  number
+Syntax:  uwsgi_modifier1 number;
 Default: 0
 Context: location, http, server
 ```
@@ -552,7 +552,7 @@ Sets the value of the `modifier1` field in the [uwsgi packet header](http://uwsg
 ## uwsgi_modifier2
 
 ```
-Syntax:  number
+Syntax:  uwsgi_modifier2 number;
 Default: 0
 Context: location, http, server
 ```
@@ -562,7 +562,7 @@ Sets the value of the `modifier2` field in the [uwsgi packet header](http://uwsg
 ## uwsgi_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  uwsgi_next_upstream error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -619,7 +619,7 @@ Passing a request to the next server can be limited by [the number of tries](#uw
 ## uwsgi_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  uwsgi_next_upstream_timeout time;
 Default: 0
 Context: location, http, server
 ```
@@ -631,7 +631,7 @@ Limits the time during which a request can be passed to the [next server](#uwsgi
 ## uwsgi_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  uwsgi_next_upstream_tries number;
 Default: 0
 Context: location, http, server
 ```
@@ -643,7 +643,7 @@ Limits the number of possible tries for passing a request to the [next server](#
 ## uwsgi_no_cache
 
 ```
-Syntax:  string ...
+Syntax:  uwsgi_no_cache string ...;
 Default: 
 Context: location, http, server
 ```
@@ -660,7 +660,7 @@ Can be used along with the [uwsgi_cache_bypass](#uwsgi_cache_bypass) directive.
 ## uwsgi_param
 
 ```
-Syntax:  parameter value [if_not_empty]
+Syntax:  uwsgi_param parameter value [if_not_empty];
 Default: 
 Context: location, http, server
 ```
@@ -685,7 +685,7 @@ uwsgi_param HTTPS $https if_not_empty;
 ## uwsgi_pass
 
 ```
-Syntax:  [protocol://]address
+Syntax:  uwsgi_pass [protocol://]address;
 Default: 
 Context: if in location, location
 ```
@@ -713,7 +713,7 @@ Parameter value can contain variables. In this case, if an address is specified 
 ## uwsgi_pass_header
 
 ```
-Syntax:  field
+Syntax:  uwsgi_pass_header field;
 Default: 
 Context: location, http, server
 ```
@@ -723,7 +723,7 @@ Permits passing [otherwise disabled](#uwsgi_hide_header) header fields from a uw
 ## uwsgi_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -733,7 +733,7 @@ Indicates whether the original request body is passed to the uwsgi server. See a
 ## uwsgi_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -743,7 +743,7 @@ Indicates whether the header fields of the original request are passed to the uw
 ## uwsgi_read_timeout
 
 ```
-Syntax:  time
+Syntax:  uwsgi_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -753,7 +753,7 @@ Defines a timeout for reading a response from the uwsgi server. The timeout is s
 ## uwsgi_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -771,7 +771,7 @@ When HTTP/1.1 chunked transfer encoding is used to send the original request bod
 ## uwsgi_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -785,7 +785,7 @@ Enables or disables creation of a separate request instance for each uwsgi serve
 ## uwsgi_send_timeout
 
 ```
-Syntax:  time
+Syntax:  uwsgi_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -795,7 +795,7 @@ Sets a timeout for transmitting a request to the uwsgi server. The timeout is se
 ## uwsgi_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -807,7 +807,7 @@ Configures the “TCP keepalive” behavior for outgoing connections to a uwsgi 
 ## uwsgi_ssl_certificate
 
 ```
-Syntax:  file
+Syntax:  uwsgi_ssl_certificate file;
 Default: 
 Context: location, http, server
 ```
@@ -821,7 +821,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## uwsgi_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=time] [valid=time]
+Syntax:  uwsgi_ssl_certificate_cache max=N [inactive=time] [valid=time];
 Default: off
 Context: location, http, server
 ```
@@ -862,7 +862,7 @@ uwsgi_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## uwsgi_ssl_certificate_key
 
 ```
-Syntax:  file
+Syntax:  uwsgi_ssl_certificate_key file;
 Default: 
 Context: location, http, server
 ```
@@ -880,7 +880,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## uwsgi_ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  uwsgi_ssl_ciphers ciphers;
 Default: DEFAULT
 Context: location, http, server
 ```
@@ -894,7 +894,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## uwsgi_ssl_conf_command
 
 ```
-Syntax:  name value
+Syntax:  uwsgi_ssl_conf_command name value;
 Default: 
 Context: location, http, server
 ```
@@ -913,7 +913,7 @@ might result in unexpected behavior.
 ## uwsgi_ssl_crl
 
 ```
-Syntax:  file
+Syntax:  uwsgi_ssl_crl file;
 Default: 
 Context: location, http, server
 ```
@@ -925,7 +925,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## uwsgi_ssl_key_log
 
 ```
-Syntax:  path
+Syntax:  uwsgi_ssl_key_log path;
 Default: 
 Context: location, http, server
 ```
@@ -939,7 +939,7 @@ Enables logging of secured uwsgi server connection SSL keys and specifies the pa
 ## uwsgi_ssl_name
 
 ```
-Syntax:  name
+Syntax:  uwsgi_ssl_name name;
 Default: host from uwsgi_pass
 Context: location, http, server
 ```
@@ -953,7 +953,7 @@ By default, the host part from [uwsgi_pass](#uwsgi_pass) is used.
 ## uwsgi_ssl_password_file
 
 ```
-Syntax:  file
+Syntax:  uwsgi_ssl_password_file file;
 Default: 
 Context: location, http, server
 ```
@@ -965,7 +965,7 @@ Specifies a `file` with passphrases for [secret keys](#uwsgi_ssl_certificate_key
 ## uwsgi_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  uwsgi_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: location, http, server
 ```
@@ -980,7 +980,7 @@ since 1.23.4.
 ## uwsgi_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ssl_server_name on | off;
 Default: off
 Context: location, http, server
 ```
@@ -992,7 +992,7 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 ## uwsgi_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1004,7 +1004,7 @@ Determines whether SSL sessions can be reused when working with a secured uwsgi 
 ## uwsgi_ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  uwsgi_ssl_trusted_certificate file;
 Default: 
 Context: location, http, server
 ```
@@ -1016,7 +1016,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## uwsgi_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ssl_verify on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1028,7 +1028,7 @@ Enables or disables verification of the secured uwsgi server certificate.
 ## uwsgi_ssl_verify_depth
 
 ```
-Syntax:  number
+Syntax:  uwsgi_ssl_verify_depth number;
 Default: 1
 Context: location, http, server
 ```
@@ -1040,7 +1040,7 @@ Sets the verification depth in the secured uwsgi server certificates chain.
 ## uwsgi_store
 
 ```
-Syntax:  on | off | string
+Syntax:  uwsgi_store on | off | string;
 Default: off
 Context: location, http, server
 ```
@@ -1078,7 +1078,7 @@ location /fetch/ {
 ## uwsgi_store_access
 
 ```
-Syntax:  users:permissions ...
+Syntax:  uwsgi_store_access users:permissions ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -1098,7 +1098,7 @@ uwsgi_store_access group:rw all:r;
 ## uwsgi_temp_file_write_size
 
 ```
-Syntax:  size
+Syntax:  uwsgi_temp_file_write_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -1108,7 +1108,7 @@ Limits the `size` of data written to a temporary file at a time, when buffering 
 ## uwsgi_temp_path
 
 ```
-Syntax:  path [level1 [level2 [level3]]]
+Syntax:  uwsgi_temp_path path [level1 [level2 [level3]]];
 Default: uwsgi_temp
 Context: location, http, server
 ```

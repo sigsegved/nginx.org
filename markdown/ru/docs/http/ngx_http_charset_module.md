@@ -23,7 +23,7 @@ source_charset koi8-r;
 ## charset
 
 ```
-Syntax:  кодировка | off
+Syntax:  charset кодировка | off;
 Default: off
 Context: if в location, http, server, location
 ```
@@ -49,7 +49,7 @@ charset_map iso-8859-5 _ { }
 ## charset_map
 
 ```
-Syntax:  кодировка1 кодировка2
+Syntax:  charset_map кодировка1 кодировка2 { ... }
 Default: 
 Context: http
 ```
@@ -85,7 +85,7 @@ charset_map koi8-r utf-8 {
 ## charset_types
 
 ```
-Syntax:  mime-тип ...
+Syntax:  charset_types mime-тип ...;
 Default: text/html text/xml text/plain text/vnd.wap.wml
 application/javascript application/rss+xml
 Context: location, http, server
@@ -102,7 +102,7 @@ Context: location, http, server
 ## override_charset
 
 ```
-Syntax:  on | off
+Syntax:  override_charset on | off;
 Default: off
 Context: if в location, http, server, location
 ```
@@ -117,7 +117,7 @@ Context: if в location, http, server, location
 ## source_charset
 
 ```
-Syntax:  кодировка
+Syntax:  source_charset кодировка;
 Default: 
 Context: if в location, http, server, location
 ```

@@ -45,7 +45,7 @@ stream {
 ## ssl_alpn
 
 ```
-Syntax:  протокол ...
+Syntax:  ssl_alpn протокол ...;
 Default: 
 Context: server, stream
 ```
@@ -70,7 +70,7 @@ server {
 ## ssl_certificate
 
 ```
-Syntax:  файл
+Syntax:  ssl_certificate файл;
 Default: 
 Context: server, stream
 ```
@@ -114,7 +114,7 @@ ssl_certificate_key $ssl_server_name.key;
 ## ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=время] [valid=время]
+Syntax:  ssl_certificate_cache max=N [inactive=время] [valid=время];
 Default: off
 Context: server, stream
 ```
@@ -155,7 +155,7 @@ ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## ssl_certificate_compression
 
 ```
-Syntax:  on | off
+Syntax:  ssl_certificate_compression on | off;
 Default: off
 Context: server, stream
 ```
@@ -173,7 +173,7 @@ Context: server, stream
 ## ssl_certificate_key
 
 ```
-Syntax:  файл
+Syntax:  ssl_certificate_key файл;
 Default: 
 Context: server, stream
 ```
@@ -191,7 +191,7 @@ Context: server, stream
 ## ssl_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  ssl_ciphers шифры;
 Default: HIGH:!aNULL:!MD5
 Context: server, stream
 ```
@@ -207,7 +207,7 @@ ssl_ciphers ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
 ## ssl_client_certificate
 
 ```
-Syntax:  файл
+Syntax:  ssl_client_certificate файл;
 Default: 
 Context: server, stream
 ```
@@ -221,7 +221,7 @@ Context: server, stream
 ## ssl_conf_command
 
 ```
-Syntax:  имя значение
+Syntax:  ssl_conf_command имя значение;
 Default: 
 Context: server, stream
 ```
@@ -247,7 +247,7 @@ ssl_conf_command Ciphersuites TLS_CHACHA20_POLY1305_SHA256;
 ## ssl_crl
 
 ```
-Syntax:  файл
+Syntax:  ssl_crl файл;
 Default: 
 Context: server, stream
 ```
@@ -259,7 +259,7 @@ Context: server, stream
 ## ssl_dhparam
 
 ```
-Syntax:  файл
+Syntax:  ssl_dhparam файл;
 Default: 
 Context: server, stream
 ```
@@ -273,7 +273,7 @@ Context: server, stream
 ## ssl_ecdh_curve
 
 ```
-Syntax:  кривая
+Syntax:  ssl_ecdh_curve кривая;
 Default: auto
 Context: server, stream
 ```
@@ -299,7 +299,7 @@ ssl_ecdh_curve prime256v1:secp384r1;
 ## ssl_ech_file
 
 ```
-Syntax:  file
+Syntax:  ssl_ech_file file;
 Default: 
 Context: server, stream
 ```
@@ -314,7 +314,7 @@ Context: server, stream
 ## ssl_handshake_timeout
 
 ```
-Syntax:  время
+Syntax:  ssl_handshake_timeout время;
 Default: 60s
 Context: server, stream
 ```
@@ -324,7 +324,7 @@ Context: server, stream
 ## ssl_key_log
 
 ```
-Syntax:  путь
+Syntax:  ssl_key_log путь;
 Default: 
 Context: server, stream
 ```
@@ -338,7 +338,7 @@ Context: server, stream
 ## ssl_ocsp
 
 ```
-Syntax:  on | off | leaf
+Syntax:  ssl_ocsp on | off | leaf;
 Default: off
 Context: server, stream
 ```
@@ -362,7 +362,7 @@ resolver          192.0.2.1;
 ## ssl_ocsp_cache
 
 ```
-Syntax:  off | [shared:имя:размер]
+Syntax:  ssl_ocsp_cache off | [shared:имя:размер];
 Default: off
 Context: server, stream
 ```
@@ -376,7 +376,7 @@ Context: server, stream
 ## ssl_ocsp_responder
 
 ```
-Syntax:  url
+Syntax:  ssl_ocsp_responder url;
 Default: 
 Context: server, stream
 ```
@@ -394,7 +394,7 @@ ssl_ocsp_responder http://ocsp.example.com/;
 ## ssl_password_file
 
 ```
-Syntax:  файл
+Syntax:  ssl_password_file файл;
 Default: 
 Context: server, stream
 ```
@@ -426,7 +426,7 @@ stream {
 ## ssl_prefer_server_ciphers
 
 ```
-Syntax:  on | off
+Syntax:  ssl_prefer_server_ciphers on | off;
 Default: off
 Context: server, stream
 ```
@@ -436,7 +436,7 @@ Context: server, stream
 ## ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: server, stream
 ```
@@ -456,7 +456,7 @@ Context: server, stream
 ## ssl_reject_handshake
 
 ```
-Syntax:  on | off
+Syntax:  ssl_reject_handshake on | off;
 Default: off
 Context: server, stream
 ```
@@ -484,7 +484,7 @@ server {
 ## ssl_session_cache
 
 ```
-Syntax:  off | none | [builtin[:размер]] [shared:название:размер]
+Syntax:  ssl_session_cache off | none | [builtin[:размер]] [shared:название:размер];
 Default: none
 Context: server, stream
 ```
@@ -529,7 +529,7 @@ ssl_session_cache builtin:1000 shared:SSL:10m;
 ## ssl_session_ticket_key
 
 ```
-Syntax:  файл
+Syntax:  ssl_session_ticket_key файл;
 Default: 
 Context: server, stream
 ```
@@ -554,7 +554,7 @@ openssl rand 80 > ticket.key
 ## ssl_session_tickets
 
 ```
-Syntax:  on | off
+Syntax:  ssl_session_tickets on | off;
 Default: on
 Context: server, stream
 ```
@@ -564,7 +564,7 @@ Context: server, stream
 ## ssl_session_timeout
 
 ```
-Syntax:  время
+Syntax:  ssl_session_timeout время;
 Default: 5m
 Context: server, stream
 ```
@@ -574,7 +574,7 @@ Context: server, stream
 ## ssl_stapling
 
 ```
-Syntax:  on | off
+Syntax:  ssl_stapling on | off;
 Default: off
 Context: server, stream
 ```
@@ -595,7 +595,7 @@ resolver 192.0.2.1;
 ## ssl_stapling_file
 
 ```
-Syntax:  файл
+Syntax:  ssl_stapling_file файл;
 Default: 
 Context: server, stream
 ```
@@ -609,7 +609,7 @@ Context: server, stream
 ## ssl_stapling_responder
 
 ```
-Syntax:  url
+Syntax:  ssl_stapling_responder url;
 Default: 
 Context: server, stream
 ```
@@ -627,7 +627,7 @@ ssl_stapling_responder http://ocsp.example.com/;
 ## ssl_stapling_verify
 
 ```
-Syntax:  on | off
+Syntax:  ssl_stapling_verify on | off;
 Default: off
 Context: server, stream
 ```
@@ -641,7 +641,7 @@ Context: server, stream
 ## ssl_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  ssl_trusted_certificate файл;
 Default: 
 Context: server, stream
 ```
@@ -655,7 +655,7 @@ Context: server, stream
 ## ssl_verify_client
 
 ```
-Syntax:  on | off | optional | optional_no_ca
+Syntax:  ssl_verify_client on | off | optional | optional_no_ca;
 Default: off
 Context: server, stream
 ```
@@ -671,7 +671,7 @@ Context: server, stream
 ## ssl_verify_depth
 
 ```
-Syntax:  число
+Syntax:  ssl_verify_depth число;
 Default: 1
 Context: server, stream
 ```

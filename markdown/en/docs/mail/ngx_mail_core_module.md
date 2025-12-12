@@ -54,7 +54,7 @@ mail {
 ## listen
 
 ```
-Syntax:  address:port [ssl] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen address:port [ssl] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: 
 Context: server
 ```
@@ -150,7 +150,7 @@ and set the probes count ( TCP_KEEPCNT ) to 10 probes.
 ## mail
 
 ```
-Syntax:  
+Syntax:  mail { ... }
 Default: 
 Context: main
 ```
@@ -160,7 +160,7 @@ Provides the configuration file context in which the mail server directives are 
 ## max_errors
 
 ```
-Syntax:  number
+Syntax:  max_errors number;
 Default: 5
 Context: server, mail
 ```
@@ -172,7 +172,7 @@ Sets the number of protocol errors after which the connection is closed.
 ## protocol
 
 ```
-Syntax:  imap | pop3 | smtp
+Syntax:  protocol imap | pop3 | smtp;
 Default: 
 Context: server
 ```
@@ -190,7 +190,7 @@ Unnecessary protocols can be disabled using the [configuration](../configure.xml
 ## resolver
 
 ```
-Syntax:  off
+Syntax:  resolver off;
 Default: off
 Context: server, mail
 ```
@@ -231,7 +231,7 @@ The special value `off` disables resolving.
 ## resolver_timeout
 
 ```
-Syntax:  time
+Syntax:  resolver_timeout time;
 Default: 30s
 Context: server, mail
 ```
@@ -245,7 +245,7 @@ resolver_timeout 5s;
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: mail
 ```
@@ -255,7 +255,7 @@ Sets the configuration for a server.
 ## server_name
 
 ```
-Syntax:  name
+Syntax:  server_name name;
 Default: hostname
 Context: server, mail
 ```
@@ -273,7 +273,7 @@ If the directive is not specified, the machine’s hostname is used.
 ## timeout
 
 ```
-Syntax:  time
+Syntax:  timeout time;
 Default: 60s
 Context: server, mail
 ```

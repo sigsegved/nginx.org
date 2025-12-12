@@ -31,7 +31,7 @@ In this example, the response is split into 1-megabyte cacheable slices.
 ## slice
 
 ```
-Syntax:  size
+Syntax:  slice size;
 Default: 0
 Context: location, http, server
 ```

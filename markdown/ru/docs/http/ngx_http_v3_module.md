@@ -52,7 +52,7 @@ http {
 ## http3
 
 ```
-Syntax:  on | off
+Syntax:  http3 on | off;
 Default: on
 Context: server, http
 ```
@@ -62,7 +62,7 @@ Context: server, http
 ## http3_hq
 
 ```
-Syntax:  on | off
+Syntax:  http3_hq on | off;
 Default: off
 Context: server, http
 ```
@@ -72,7 +72,7 @@ Context: server, http
 ## http3_max_concurrent_streams
 
 ```
-Syntax:  число
+Syntax:  http3_max_concurrent_streams число;
 Default: 128
 Context: server, http
 ```
@@ -82,7 +82,7 @@ Context: server, http
 ## http3_stream_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  http3_stream_buffer_size размер;
 Default: 64k
 Context: server, http
 ```
@@ -92,7 +92,7 @@ Context: server, http
 ## quic_active_connection_id_limit
 
 ```
-Syntax:  число
+Syntax:  quic_active_connection_id_limit число;
 Default: 2
 Context: server, http
 ```
@@ -102,7 +102,7 @@ Context: server, http
 ## quic_bpf
 
 ```
-Syntax:  on | off
+Syntax:  quic_bpf on | off;
 Default: off
 Context: main
 ```
@@ -114,7 +114,7 @@ Context: main
 ## quic_gso
 
 ```
-Syntax:  on | off
+Syntax:  quic_gso on | off;
 Default: off
 Context: server, http
 ```
@@ -127,7 +127,7 @@ Context: server, http
 ## quic_host_key
 
 ```
-Syntax:  файл
+Syntax:  quic_host_key файл;
 Default: 
 Context: server, http
 ```
@@ -137,7 +137,7 @@ Context: server, http
 ## quic_retry
 
 ```
-Syntax:  on | off
+Syntax:  quic_retry on | off;
 Default: off
 Context: server, http
 ```

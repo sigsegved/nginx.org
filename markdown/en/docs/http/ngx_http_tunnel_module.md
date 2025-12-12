@@ -46,7 +46,7 @@ http {
 ## tunnel_allow_upstream
 
 ```
-Syntax:  string ...
+Syntax:  tunnel_allow_upstream string ...;
 Default: 
 Context: location, http, server
 ```
@@ -70,7 +70,7 @@ server {
 ## tunnel_bind
 
 ```
-Syntax:  address | off
+Syntax:  tunnel_bind address | off;
 Default: 
 Context: location, http, server
 ```
@@ -80,7 +80,7 @@ Makes outgoing connections to a backend server originate from the specified loca
 ## tunnel_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  tunnel_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -101,7 +101,7 @@ tunnel_bind_dynamic on;
 ## tunnel_buffer_size
 
 ```
-Syntax:  size
+Syntax:  tunnel_buffer_size size;
 Default: 16k
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Sets the `size` of the buffer used for reading data from the backend server. Als
 ## tunnel_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  tunnel_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -121,7 +121,7 @@ Defines a timeout for establishing a connection with a backend server. It should
 ## tunnel_next_upstream
 
 ```
-Syntax:  error | timeout | denied | off ...
+Syntax:  tunnel_next_upstream error | timeout | denied | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -151,7 +151,7 @@ Passing a request to the next server can be limited by [the number of tries](#tu
 ## tunnel_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  tunnel_next_upstream_timeout time;
 Default: 0
 Context: location, http, server
 ```
@@ -161,7 +161,7 @@ Limits the time during which a request can be passed to the [next server](#tunne
 ## tunnel_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  tunnel_next_upstream_tries number;
 Default: 0
 Context: location, http, server
 ```
@@ -171,7 +171,7 @@ Limits the number of possible tries for passing a request to the [next server](#
 ## tunnel_pass
 
 ```
-Syntax:  [address]
+Syntax:  tunnel_pass [address];
 Default: 
 Context: if in location, server, location
 ```
@@ -197,7 +197,7 @@ Parameter value can contain variables. In this case, if an address is specified 
 ## tunnel_read_timeout
 
 ```
-Syntax:  time
+Syntax:  tunnel_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -207,7 +207,7 @@ Sets the timeout between two successive read or write operations on client or ba
 ## tunnel_send_lowat
 
 ```
-Syntax:  size
+Syntax:  tunnel_send_lowat size;
 Default: 0
 Context: location, http, server
 ```
@@ -219,7 +219,7 @@ This directive is ignored on Linux, Solaris, and Windows.
 ## tunnel_send_timeout
 
 ```
-Syntax:  time
+Syntax:  tunnel_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -229,7 +229,7 @@ Sets a timeout for transmitting a request to the backend server. The timeout is 
 ## tunnel_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  tunnel_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```

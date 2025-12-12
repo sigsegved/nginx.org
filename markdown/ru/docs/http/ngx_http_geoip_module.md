@@ -28,7 +28,7 @@ http {
 ## geoip_country
 
 ```
-Syntax:  файл
+Syntax:  geoip_country файл;
 Default: 
 Context: http
 ```
@@ -50,7 +50,7 @@ Context: http
 ## geoip_city
 
 ```
-Syntax:  файл
+Syntax:  geoip_city файл;
 Default: 
 Context: http
 ```
@@ -108,7 +108,7 @@ Context: http
 ## geoip_org
 
 ```
-Syntax:  файл
+Syntax:  geoip_org файл;
 Default: 
 Context: http
 ```
@@ -123,7 +123,7 @@ Context: http
 ## geoip_proxy
 
 ```
-Syntax:  адрес | CIDR
+Syntax:  geoip_proxy адрес | CIDR;
 Default: 
 Context: http
 ```
@@ -135,7 +135,7 @@ Context: http
 ## geoip_proxy_recursive
 
 ```
-Syntax:  on | off
+Syntax:  geoip_proxy_recursive on | off;
 Default: off
 Context: http
 ```

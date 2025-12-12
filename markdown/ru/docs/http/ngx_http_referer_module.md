@@ -22,7 +22,7 @@ if ($invalid_referer) {
 ## referer_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  referer_hash_bucket_size размер;
 Default: 64
 Context: location, server
 ```
@@ -34,7 +34,7 @@ Context: location, server
 ## referer_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  referer_hash_max_size размер;
 Default: 2048
 Context: location, server
 ```
@@ -46,7 +46,7 @@ Context: location, server
 ## valid_referers
 
 ```
-Syntax:  none | blocked | server_names | строка ...
+Syntax:  valid_referers none | blocked | server_names | строка ...;
 Default: 
 Context: location, server
 ```

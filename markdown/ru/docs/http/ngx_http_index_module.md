@@ -18,7 +18,7 @@ location / {
 ## index
 
 ```
-Syntax:  файл ...
+Syntax:  index файл ...;
 Default: index.html
 Context: location, http, server
 ```

@@ -20,7 +20,7 @@ gzip_proxied expired no-cache no-store private auth;
 ## gzip_static
 
 ```
-Syntax:  on | off
+Syntax:  gzip_static on | off;
 Default: off
 Context: location, http, server
 ```

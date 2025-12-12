@@ -8,7 +8,7 @@
 ## imap_auth
 
 ```
-Syntax:  method ...
+Syntax:  imap_auth method ...;
 Default: plain
 Context: server, mail
 ```
@@ -33,7 +33,7 @@ Plain text authentication methods (the `LOGIN` command, `AUTH=PLAIN` , and `AUTH
 ## imap_capabilities
 
 ```
-Syntax:  extension ...
+Syntax:  imap_capabilities extension ...;
 Default: IMAP4 IMAP4rev1 UIDPLUS
 Context: server, mail
 ```
@@ -47,7 +47,7 @@ The current list of standardized extensions is published at [www.iana.org](http:
 ## imap_client_buffer
 
 ```
-Syntax:  size
+Syntax:  imap_client_buffer size;
 Default: 4k|8k
 Context: server, mail
 ```

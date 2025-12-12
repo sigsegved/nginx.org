@@ -16,7 +16,7 @@
 ## secure_link
 
 ```
-Syntax:  выражение
+Syntax:  secure_link выражение;
 Default: 
 Context: location, http, server
 ```
@@ -32,7 +32,7 @@ Context: location, http, server
 ## secure_link_md5
 
 ```
-Syntax:  выражение
+Syntax:  secure_link_md5 выражение;
 Default: 
 Context: location, http, server
 ```
@@ -74,7 +74,7 @@ echo -n '2147483647/s/link127.0.0.1 secret' | \
 ## secure_link_secret
 
 ```
-Syntax:  слово
+Syntax:  secure_link_secret слово;
 Default: 
 Context: location
 ```

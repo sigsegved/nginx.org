@@ -32,7 +32,7 @@ server {
 ## upstream_conf
 
 ```
-Syntax:  
+Syntax:  upstream_conf;
 Default: 
 Context: location
 ```

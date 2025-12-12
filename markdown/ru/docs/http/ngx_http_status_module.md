@@ -91,7 +91,7 @@ http://127.0.0.1/status/stream/upstreams/backend/peers/1/weight
 ## status
 
 ```
-Syntax:  
+Syntax:  status;
 Default: 
 Context: location
 ```
@@ -101,7 +101,7 @@ Context: location
 ## status_format
 
 ```
-Syntax:  jsonp [callback]
+Syntax:  status_format jsonp [callback];
 Default: json
 Context: location, http, server
 ```
@@ -113,7 +113,7 @@ Context: location, http, server
 ## status_zone
 
 ```
-Syntax:  зона
+Syntax:  status_zone зона;
 Default: 
 Context: server
 ```

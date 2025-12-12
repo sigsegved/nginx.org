@@ -19,7 +19,7 @@ location / {
 ## scgi_allow_upstream
 
 ```
-Syntax:  строка ...
+Syntax:  scgi_allow_upstream строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -50,7 +50,7 @@ server {
 ## scgi_bind
 
 ```
-Syntax:  адрес [transparent] | off
+Syntax:  scgi_bind адрес [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -68,7 +68,7 @@ scgi_bind $remote_addr transparent;
 ## scgi_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  scgi_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -82,7 +82,7 @@ Context: location, http, server
 ## scgi_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  scgi_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -92,7 +92,7 @@ Context: location, http, server
 ## scgi_buffering
 
 ```
-Syntax:  on | off
+Syntax:  scgi_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -108,7 +108,7 @@ Context: location, http, server
 ## scgi_buffers
 
 ```
-Syntax:  число размер
+Syntax:  scgi_buffers число размер;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Context: location, http, server
 ## scgi_busy_buffers_size
 
 ```
-Syntax:  размер
+Syntax:  scgi_busy_buffers_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -128,7 +128,7 @@ Context: location, http, server
 ## scgi_cache
 
 ```
-Syntax:  зона | off
+Syntax:  scgi_cache зона | off;
 Default: off
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ Context: location, http, server
 ## scgi_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  scgi_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -150,7 +150,7 @@ Context: location, http, server
 ## scgi_cache_bypass
 
 ```
-Syntax:  строка ...
+Syntax:  scgi_cache_bypass строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -167,7 +167,7 @@ scgi_cache_bypass $http_pragma    $http_authorization;
 ## scgi_cache_key
 
 ```
-Syntax:  строка
+Syntax:  scgi_cache_key строка;
 Default: 
 Context: location, http, server
 ```
@@ -181,7 +181,7 @@ scgi_cache_key localhost:9000$request_uri;
 ## scgi_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  scgi_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -193,7 +193,7 @@ Context: location, http, server
 ## scgi_cache_lock_age
 
 ```
-Syntax:  время
+Syntax:  scgi_cache_lock_age время;
 Default: 5s
 Context: location, http, server
 ```
@@ -205,7 +205,7 @@ Context: location, http, server
 ## scgi_cache_lock_timeout
 
 ```
-Syntax:  время
+Syntax:  scgi_cache_lock_timeout время;
 Default: 5s
 Context: location, http, server
 ```
@@ -219,7 +219,7 @@ Context: location, http, server
 ## scgi_cache_max_range_offset
 
 ```
-Syntax:  число
+Syntax:  scgi_cache_max_range_offset число;
 Default: 
 Context: location, http, server
 ```
@@ -231,7 +231,7 @@ Context: location, http, server
 ## scgi_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  scgi_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -241,7 +241,7 @@ Context: location, http, server
 ## scgi_cache_min_uses
 
 ```
-Syntax:  число
+Syntax:  scgi_cache_min_uses число;
 Default: 1
 Context: location, http, server
 ```
@@ -251,7 +251,7 @@ Context: location, http, server
 ## scgi_cache_path
 
 ```
-Syntax:  путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время]
+Syntax:  scgi_cache_path путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время];
 Default: 
 Context: http
 ```
@@ -313,7 +313,7 @@ scgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
 ## scgi_cache_purge
 
 ```
-Syntax:  строка ...
+Syntax:  scgi_cache_purge строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -350,7 +350,7 @@ server {
 ## scgi_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  scgi_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -362,7 +362,7 @@ Context: location, http, server
 ## scgi_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...
+Syntax:  scgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -390,7 +390,7 @@ Context: location, http, server
 ## scgi_cache_valid
 
 ```
-Syntax:  [код ...] время
+Syntax:  scgi_cache_valid [код ...] время;
 Default: 
 Context: location, http, server
 ```
@@ -441,7 +441,7 @@ scgi_cache_valid any      1m;
 ## scgi_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  scgi_connect_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -451,7 +451,7 @@ Context: location, http, server
 ## scgi_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  scgi_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -463,7 +463,7 @@ Context: location, http, server
 ## scgi_hide_header
 
 ```
-Syntax:  поле
+Syntax:  scgi_hide_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -473,7 +473,7 @@ Context: location, http, server
 ## scgi_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  scgi_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -483,7 +483,7 @@ Context: location, http, server
 ## scgi_ignore_headers
 
 ```
-Syntax:  поле ...
+Syntax:  scgi_ignore_headers поле ...;
 Default: 
 Context: location, http, server
 ```
@@ -503,7 +503,7 @@ Context: location, http, server
 ## scgi_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  scgi_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -513,7 +513,7 @@ Context: location, http, server
 ## scgi_limit_rate
 
 ```
-Syntax:  скорость
+Syntax:  scgi_limit_rate скорость;
 Default: 0
 Context: location, http, server
 ```
@@ -525,7 +525,7 @@ Context: location, http, server
 ## scgi_max_temp_file_size
 
 ```
-Syntax:  размер
+Syntax:  scgi_max_temp_file_size размер;
 Default: 1024m
 Context: location, http, server
 ```
@@ -540,7 +540,7 @@ Context: location, http, server
 ## scgi_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  scgi_next_upstream error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -597,7 +597,7 @@ Context: location, http, server
 ## scgi_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  scgi_next_upstream_timeout время;
 Default: 0
 Context: location, http, server
 ```
@@ -609,7 +609,7 @@ Context: location, http, server
 ## scgi_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  scgi_next_upstream_tries число;
 Default: 0
 Context: location, http, server
 ```
@@ -621,7 +621,7 @@ Context: location, http, server
 ## scgi_no_cache
 
 ```
-Syntax:  строка ...
+Syntax:  scgi_no_cache строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -638,7 +638,7 @@ scgi_no_cache $http_pragma    $http_authorization;
 ## scgi_param
 
 ```
-Syntax:  параметр значение [if_not_empty]
+Syntax:  scgi_param параметр значение [if_not_empty];
 Default: 
 Context: location, http, server
 ```
@@ -663,7 +663,7 @@ scgi_param HTTPS $https if_not_empty;
 ## scgi_pass
 
 ```
-Syntax:  адрес
+Syntax:  scgi_pass адрес;
 Default: 
 Context: if в location, location
 ```
@@ -687,7 +687,7 @@ scgi_pass unix:/tmp/scgi.socket;
 ## scgi_pass_header
 
 ```
-Syntax:  поле
+Syntax:  scgi_pass_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -697,7 +697,7 @@ Context: location, http, server
 ## scgi_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  scgi_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -707,7 +707,7 @@ Context: location, http, server
 ## scgi_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  scgi_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -717,7 +717,7 @@ Context: location, http, server
 ## scgi_read_timeout
 
 ```
-Syntax:  время
+Syntax:  scgi_read_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -727,7 +727,7 @@ Context: location, http, server
 ## scgi_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  scgi_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -745,7 +745,7 @@ Context: location, http, server
 ## scgi_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  scgi_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -759,7 +759,7 @@ Context: location, http, server
 ## scgi_send_timeout
 
 ```
-Syntax:  время
+Syntax:  scgi_send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -769,7 +769,7 @@ Context: location, http, server
 ## scgi_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  scgi_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -781,7 +781,7 @@ Context: location, http, server
 ## scgi_store
 
 ```
-Syntax:  on | off | строка
+Syntax:  scgi_store on | off | строка;
 Default: off
 Context: location, http, server
 ```
@@ -819,7 +819,7 @@ location /fetch/ {
 ## scgi_store_access
 
 ```
-Syntax:  пользователи:права ...
+Syntax:  scgi_store_access пользователи:права ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -839,7 +839,7 @@ scgi_store_access group:rw all:r;
 ## scgi_temp_file_write_size
 
 ```
-Syntax:  размер
+Syntax:  scgi_temp_file_write_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -849,7 +849,7 @@ Context: location, http, server
 ## scgi_temp_path
 
 ```
-Syntax:  путь [уровень1 [уровень2 [уровень3]]]
+Syntax:  scgi_temp_path путь [уровень1 [уровень2 [уровень3]]];
 Default: scgi_temp
 Context: location, http, server
 ```

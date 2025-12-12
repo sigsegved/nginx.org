@@ -19,7 +19,7 @@ location / {
 ## add_before_body
 
 ```
-Syntax:  uri
+Syntax:  add_before_body uri;
 Default: 
 Context: location, http, server
 ```
@@ -29,7 +29,7 @@ Adds the text returned as a result of processing a given subrequest before the r
 ## add_after_body
 
 ```
-Syntax:  uri
+Syntax:  add_after_body uri;
 Default: 
 Context: location, http, server
 ```
@@ -39,7 +39,7 @@ Adds the text returned as a result of processing a given subrequest after the re
 ## addition_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  addition_types mime-type ...;
 Default: text/html
 Context: location, http, server
 ```

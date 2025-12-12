@@ -77,7 +77,7 @@ stream {
 ## zone_sync
 
 ```
-Syntax:  
+Syntax:  zone_sync;
 Default: 
 Context: server
 ```
@@ -87,7 +87,7 @@ Enables the synchronization of shared memory zones between cluster nodes. Cluste
 ## zone_sync_buffers
 
 ```
-Syntax:  number size
+Syntax:  zone_sync_buffers number size;
 Default: 8 4k|8k
 Context: server, stream
 ```
@@ -100,7 +100,7 @@ synchronized.
 ## zone_sync_connect_retry_interval
 
 ```
-Syntax:  time
+Syntax:  zone_sync_connect_retry_interval time;
 Default: 1s
 Context: server, stream
 ```
@@ -110,7 +110,7 @@ Defines an interval between connection attempts to another cluster node.
 ## zone_sync_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  zone_sync_connect_timeout time;
 Default: 5s
 Context: server, stream
 ```
@@ -120,7 +120,7 @@ Defines a timeout for establishing a connection with another cluster node.
 ## zone_sync_interval
 
 ```
-Syntax:  time
+Syntax:  zone_sync_interval time;
 Default: 1s
 Context: server, stream
 ```
@@ -130,7 +130,7 @@ Defines an interval for polling updates in a shared memory zone.
 ## zone_sync_recv_buffer_size
 
 ```
-Syntax:  size
+Syntax:  zone_sync_recv_buffer_size size;
 Default: 4k|8k
 Context: server, stream
 ```
@@ -140,7 +140,7 @@ Sets `size` of a per-connection receive buffer used to parse incoming stream of 
 ## zone_sync_server
 
 ```
-Syntax:  address [resolve]
+Syntax:  zone_sync_server address [resolve];
 Default: 
 Context: server
 ```
@@ -172,7 +172,7 @@ stream {
 ## zone_sync_ssl
 
 ```
-Syntax:  on | off
+Syntax:  zone_sync_ssl on | off;
 Default: off
 Context: server, stream
 ```
@@ -182,7 +182,7 @@ Enables the SSL/TLS protocol for connections to another cluster server.
 ## zone_sync_ssl_certificate
 
 ```
-Syntax:  file
+Syntax:  zone_sync_ssl_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -192,7 +192,7 @@ Specifies a `file` with the certificate in the PEM format used for authenticatio
 ## zone_sync_ssl_certificate_key
 
 ```
-Syntax:  file
+Syntax:  zone_sync_ssl_certificate_key file;
 Default: 
 Context: server, stream
 ```
@@ -202,7 +202,7 @@ Specifies a `file` with the secret key in the PEM format used for authentication
 ## zone_sync_ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  zone_sync_ssl_ciphers ciphers;
 Default: DEFAULT
 Context: server, stream
 ```
@@ -214,7 +214,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## zone_sync_ssl_conf_command
 
 ```
-Syntax:  name value
+Syntax:  zone_sync_ssl_conf_command name value;
 Default: 
 Context: server, stream
 ```
@@ -233,7 +233,7 @@ might result in unexpected behavior.
 ## zone_sync_ssl_crl
 
 ```
-Syntax:  file
+Syntax:  zone_sync_ssl_crl file;
 Default: 
 Context: server, stream
 ```
@@ -243,7 +243,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## zone_sync_ssl_name
 
 ```
-Syntax:  name
+Syntax:  zone_sync_ssl_name name;
 Default: host from zone_sync_server
 Context: server, stream
 ```
@@ -257,7 +257,7 @@ By default, the host part of the [zone_sync_server](#zone_sync_server) address i
 ## zone_sync_ssl_password_file
 
 ```
-Syntax:  file
+Syntax:  zone_sync_ssl_password_file file;
 Default: 
 Context: server, stream
 ```
@@ -267,7 +267,7 @@ Specifies a `file` with passphrases for [secret keys](#zone_sync_ssl_certificate
 ## zone_sync_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  zone_sync_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: server, stream
 ```
@@ -277,7 +277,7 @@ Enables the specified protocols for connections to another cluster server.
 ## zone_sync_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  zone_sync_ssl_server_name on | off;
 Default: off
 Context: server, stream
 ```
@@ -289,7 +289,7 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 ## zone_sync_ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  zone_sync_ssl_trusted_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -299,7 +299,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## zone_sync_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  zone_sync_ssl_verify on | off;
 Default: off
 Context: server, stream
 ```
@@ -309,7 +309,7 @@ Enables or disables verification of another cluster server certificate.
 ## zone_sync_ssl_verify_depth
 
 ```
-Syntax:  number
+Syntax:  zone_sync_ssl_verify_depth number;
 Default: 1
 Context: server, stream
 ```
@@ -319,7 +319,7 @@ Sets the verification depth in another cluster server certificates chain.
 ## zone_sync_timeout
 
 ```
-Syntax:  timeout
+Syntax:  zone_sync_timeout timeout;
 Default: 5s
 Context: server, stream
 ```

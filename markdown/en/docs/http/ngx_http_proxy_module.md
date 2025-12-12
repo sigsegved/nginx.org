@@ -20,7 +20,7 @@ location / {
 ## proxy_allow_upstream
 
 ```
-Syntax:  string ...
+Syntax:  proxy_allow_upstream string ...;
 Default: 
 Context: location, http, server
 ```
@@ -51,7 +51,7 @@ server {
 ## proxy_bind
 
 ```
-Syntax:  address [transparent] | off
+Syntax:  proxy_bind address [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -71,7 +71,7 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 ## proxy_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  proxy_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -85,7 +85,7 @@ When enabled, makes the [bind](#proxy_bind) operation at each connection attempt
 ## proxy_buffer_size
 
 ```
-Syntax:  size
+Syntax:  proxy_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -95,7 +95,7 @@ Sets the `size` of the buffer used for reading the first part of the response re
 ## proxy_buffering
 
 ```
-Syntax:  on | off
+Syntax:  proxy_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Buffering can also be enabled or disabled by passing “ `yes` ” or “ `no` �
 ## proxy_buffers
 
 ```
-Syntax:  number size
+Syntax:  proxy_buffers number size;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -121,7 +121,7 @@ Sets the `number` and `size` of the buffers used for reading a response from the
 ## proxy_busy_buffers_size
 
 ```
-Syntax:  size
+Syntax:  proxy_busy_buffers_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -131,7 +131,7 @@ When [buffering](#proxy_buffering) of responses from the proxied server is enabl
 ## proxy_cache
 
 ```
-Syntax:  zone | off
+Syntax:  proxy_cache zone | off;
 Default: off
 Context: location, http, server
 ```
@@ -141,7 +141,7 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 ## proxy_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -153,7 +153,7 @@ Allows starting a background subrequest to update an expired cache item, while a
 ## proxy_cache_bypass
 
 ```
-Syntax:  string ...
+Syntax:  proxy_cache_bypass string ...;
 Default: 
 Context: location, http, server
 ```
@@ -170,7 +170,7 @@ Can be used along with the [proxy_no_cache](#proxy_no_cache) directive.
 ## proxy_cache_convert_head
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_convert_head on | off;
 Default: on
 Context: location, http, server
 ```
@@ -182,7 +182,7 @@ Enables or disables the conversion of the “ `HEAD` ” method to “ `GET` ”
 ## proxy_cache_key
 
 ```
-Syntax:  string
+Syntax:  proxy_cache_key string;
 Default: $scheme$proxy_host$request_uri
 Context: location, http, server
 ```
@@ -202,7 +202,7 @@ proxy_cache_key $scheme$proxy_host$uri$is_args$args;
 ## proxy_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -214,7 +214,7 @@ When enabled, only one request at a time will be allowed to populate a new cache
 ## proxy_cache_lock_age
 
 ```
-Syntax:  time
+Syntax:  proxy_cache_lock_age time;
 Default: 5s
 Context: location, http, server
 ```
@@ -226,7 +226,7 @@ If the last request passed to the proxied server for populating a new cache elem
 ## proxy_cache_lock_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_cache_lock_timeout time;
 Default: 5s
 Context: location, http, server
 ```
@@ -240,7 +240,7 @@ Sets a timeout for [proxy_cache_lock](#proxy_cache_lock) . When the `time` expir
 ## proxy_cache_max_range_offset
 
 ```
-Syntax:  number
+Syntax:  proxy_cache_max_range_offset number;
 Default: 
 Context: location, http, server
 ```
@@ -252,7 +252,7 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 ## proxy_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  proxy_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -264,7 +264,7 @@ If the client request method is listed in this directive then the response will 
 ## proxy_cache_min_uses
 
 ```
-Syntax:  number
+Syntax:  proxy_cache_min_uses number;
 Default: 1
 Context: location, http, server
 ```
@@ -274,7 +274,7 @@ Sets the `number` of requests after which the response will be cached.
 ## proxy_cache_path
 
 ```
-Syntax:  path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time]
+Syntax:  proxy_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];
 Default: 
 Context: http
 ```
@@ -336,7 +336,7 @@ after upgrading to a newer nginx version.
 ## proxy_cache_purge
 
 ```
-Syntax:  string ...
+Syntax:  proxy_cache_purge string ...;
 Default: 
 Context: location, http, server
 ```
@@ -373,7 +373,7 @@ server {
 ## proxy_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -385,7 +385,7 @@ Enables revalidation of expired cache items using conditional requests with the 
 ## proxy_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...
+Syntax:  proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -412,7 +412,7 @@ To minimize the number of accesses to proxied servers when populating a new cach
 ## proxy_cache_valid
 
 ```
-Syntax:  [code ...] time
+Syntax:  proxy_cache_valid [code ...] time;
 Default: 
 Context: location, http, server
 ```
@@ -465,7 +465,7 @@ Processing of one or more of these response header fields can be disabled using 
 ## proxy_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -475,7 +475,7 @@ Defines a timeout for establishing a connection with a proxied server. It should
 ## proxy_cookie_domain
 
 ```
-Syntax:  domain replacement
+Syntax:  proxy_cookie_domain domain replacement;
 Default: off
 Context: location, http, server
 ```
@@ -518,7 +518,7 @@ The `off` parameter cancels the effect of the `proxy_cookie_domain` directives i
 ## proxy_cookie_flags
 
 ```
-Syntax:  off | cookie [flag ...]
+Syntax:  proxy_cookie_flags off | cookie [flag ...];
 Default: off
 Context: location, http, server
 ```
@@ -543,7 +543,7 @@ The `off` parameter cancels the effect of the `proxy_cookie_flags` directives in
 ## proxy_cookie_path
 
 ```
-Syntax:  path replacement
+Syntax:  proxy_cookie_path path replacement;
 Default: off
 Context: location, http, server
 ```
@@ -584,7 +584,7 @@ The `off` parameter cancels the effect of the `proxy_cookie_path` directives inh
 ## proxy_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  proxy_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -596,7 +596,7 @@ Enables byte-range support for both cached and uncached responses from the proxi
 ## proxy_headers_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  proxy_headers_hash_bucket_size size;
 Default: 64
 Context: location, http, server
 ```
@@ -606,7 +606,7 @@ Sets the bucket `size` for hash tables used by the [proxy_hide_header](#proxy_hi
 ## proxy_headers_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  proxy_headers_hash_max_size size;
 Default: 512
 Context: location, http, server
 ```
@@ -616,7 +616,7 @@ Sets the maximum `size` of hash tables used by the [proxy_hide_header](#proxy_hi
 ## proxy_hide_header
 
 ```
-Syntax:  field
+Syntax:  proxy_hide_header field;
 Default: 
 Context: location, http, server
 ```
@@ -626,7 +626,7 @@ By default, nginx does not pass the header fields `Date` , `Server` , `X-Pad` , 
 ## proxy_http_version
 
 ```
-Syntax:  1.0 | 1.1 | 2
+Syntax:  proxy_http_version 1.0 | 1.1 | 2;
 Default: 1.0
 Context: location, http, server
 ```
@@ -638,7 +638,7 @@ Sets the HTTP protocol version for proxying. By default, version 1.0 is used. Ve
 ## proxy_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -648,7 +648,7 @@ Determines whether the connection with a proxied server should be closed when a 
 ## proxy_ignore_headers
 
 ```
-Syntax:  field ...
+Syntax:  proxy_ignore_headers field ...;
 Default: 
 Context: location, http, server
 ```
@@ -669,7 +669,7 @@ limit](ngx_http_core_module.xml#limit_rate) for transmission of a response to a 
 ## proxy_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  proxy_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -679,7 +679,7 @@ Determines whether proxied responses with codes greater than or equal to 300 sho
 ## proxy_limit_rate
 
 ```
-Syntax:  rate
+Syntax:  proxy_limit_rate rate;
 Default: 0
 Context: location, http, server
 ```
@@ -691,7 +691,7 @@ Limits the speed of reading the response from the proxied server. The `rate` is 
 ## proxy_max_temp_file_size
 
 ```
-Syntax:  size
+Syntax:  proxy_max_temp_file_size size;
 Default: 1024m
 Context: location, http, server
 ```
@@ -706,7 +706,7 @@ that will be [cached](#proxy_cache) or [stored](#proxy_store) on disk.
 ## proxy_method
 
 ```
-Syntax:  method
+Syntax:  proxy_method method;
 Default: 
 Context: location, http, server
 ```
@@ -716,7 +716,7 @@ Specifies the HTTP `method` to use in requests forwarded to the proxied server i
 ## proxy_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  proxy_next_upstream error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -779,7 +779,7 @@ Passing a request to the next server can be limited by [the number of tries](#pr
 ## proxy_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_next_upstream_timeout time;
 Default: 0
 Context: location, http, server
 ```
@@ -791,7 +791,7 @@ Limits the time during which a request can be passed to the [next server](#proxy
 ## proxy_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  proxy_next_upstream_tries number;
 Default: 0
 Context: location, http, server
 ```
@@ -803,7 +803,7 @@ Limits the number of possible tries for passing a request to the [next server](#
 ## proxy_no_cache
 
 ```
-Syntax:  string ...
+Syntax:  proxy_no_cache string ...;
 Default: 
 Context: location, http, server
 ```
@@ -820,7 +820,7 @@ Can be used along with the [proxy_cache_bypass](#proxy_cache_bypass) directive.
 ## proxy_pass
 
 ```
-Syntax:  URL
+Syntax:  proxy_pass URL;
 Default: 
 Context: limit_except, location, if in location
 ```
@@ -902,7 +902,7 @@ replacing the original request URI.
 ## proxy_pass_header
 
 ```
-Syntax:  field
+Syntax:  proxy_pass_header field;
 Default: 
 Context: location, http, server
 ```
@@ -912,7 +912,7 @@ Permits passing [otherwise disabled](#proxy_hide_header) header fields from a pr
 ## proxy_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -934,7 +934,7 @@ See also the [proxy_set_header](#proxy_set_header) and [proxy_pass_request_heade
 ## proxy_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -956,7 +956,7 @@ See also the [proxy_set_header](#proxy_set_header) and [proxy_pass_request_body]
 ## proxy_pass_trailers
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_trailers on | off;
 Default: off
 Context: location, http, server
 ```
@@ -982,7 +982,7 @@ location / {
 ## proxy_read_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -992,7 +992,7 @@ Defines a timeout for reading a response from the proxied server. The timeout is
 ## proxy_redirect
 
 ```
-Syntax:  redirect replacement
+Syntax:  proxy_redirect redirect replacement;
 Default: default
 Context: location, http, server
 ```
@@ -1069,7 +1069,7 @@ proxy_redirect / /;
 ## proxy_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  proxy_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1087,7 +1087,7 @@ When HTTP/1.1 chunked transfer encoding is used to send the original request bod
 ## proxy_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  proxy_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1106,7 +1106,7 @@ proxy_set_header      Host $upstream_last_server_name;
 ## proxy_send_lowat
 
 ```
-Syntax:  size
+Syntax:  proxy_send_lowat size;
 Default: 0
 Context: location, http, server
 ```
@@ -1118,7 +1118,7 @@ This directive is ignored on Linux, Solaris, and Windows.
 ## proxy_send_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -1128,7 +1128,7 @@ Sets a timeout for transmitting a request to the proxied server. The timeout is 
 ## proxy_set_body
 
 ```
-Syntax:  value
+Syntax:  proxy_set_body value;
 Default: 
 Context: location, http, server
 ```
@@ -1138,7 +1138,7 @@ Allows redefining the request body passed to the proxied server. The `value` can
 ## proxy_set_header
 
 ```
-Syntax:  field value
+Syntax:  proxy_set_header field value;
 Default: Connection close
 Context: location, http, server
 ```
@@ -1183,7 +1183,7 @@ proxy_set_header Accept-Encoding "";
 ## proxy_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  proxy_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1195,7 +1195,7 @@ Configures the “TCP keepalive” behavior for outgoing connections to a proxie
 ## proxy_ssl_certificate
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_certificate file;
 Default: 
 Context: location, http, server
 ```
@@ -1209,7 +1209,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## proxy_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=time] [valid=time]
+Syntax:  proxy_ssl_certificate_cache max=N [inactive=time] [valid=time];
 Default: off
 Context: location, http, server
 ```
@@ -1250,7 +1250,7 @@ proxy_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## proxy_ssl_certificate_key
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_certificate_key file;
 Default: 
 Context: location, http, server
 ```
@@ -1268,7 +1268,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## proxy_ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  proxy_ssl_ciphers ciphers;
 Default: DEFAULT
 Context: location, http, server
 ```
@@ -1282,7 +1282,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## proxy_ssl_conf_command
 
 ```
-Syntax:  name value
+Syntax:  proxy_ssl_conf_command name value;
 Default: 
 Context: location, http, server
 ```
@@ -1301,7 +1301,7 @@ might result in unexpected behavior.
 ## proxy_ssl_crl
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_crl file;
 Default: 
 Context: location, http, server
 ```
@@ -1313,7 +1313,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## proxy_ssl_key_log
 
 ```
-Syntax:  path
+Syntax:  proxy_ssl_key_log path;
 Default: 
 Context: location, http, server
 ```
@@ -1327,7 +1327,7 @@ Enables logging of proxied HTTPS server connection SSL keys and specifies the pa
 ## proxy_ssl_name
 
 ```
-Syntax:  name
+Syntax:  proxy_ssl_name name;
 Default: $proxy_host
 Context: location, http, server
 ```
@@ -1341,7 +1341,7 @@ By default, the host part of the [proxy_pass](#proxy_pass) URL is used.
 ## proxy_ssl_password_file
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_password_file file;
 Default: 
 Context: location, http, server
 ```
@@ -1353,7 +1353,7 @@ Specifies a `file` with passphrases for [secret keys](#proxy_ssl_certificate_key
 ## proxy_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: location, http, server
 ```
@@ -1368,7 +1368,7 @@ since 1.23.4.
 ## proxy_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_server_name on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1380,7 +1380,7 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 ## proxy_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1390,7 +1390,7 @@ Determines whether SSL sessions can be reused when working with the proxied serv
 ## proxy_ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  proxy_ssl_trusted_certificate file;
 Default: 
 Context: location, http, server
 ```
@@ -1402,7 +1402,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## proxy_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_verify on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1414,7 +1414,7 @@ Enables or disables verification of the proxied HTTPS server certificate.
 ## proxy_ssl_verify_depth
 
 ```
-Syntax:  number
+Syntax:  proxy_ssl_verify_depth number;
 Default: 1
 Context: location, http, server
 ```
@@ -1426,7 +1426,7 @@ Sets the verification depth in the proxied HTTPS server certificates chain.
 ## proxy_store
 
 ```
-Syntax:  on | off | string
+Syntax:  proxy_store on | off | string;
 Default: off
 Context: location, http, server
 ```
@@ -1482,7 +1482,7 @@ location @fetch {
 ## proxy_store_access
 
 ```
-Syntax:  users:permissions ...
+Syntax:  proxy_store_access users:permissions ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -1502,7 +1502,7 @@ proxy_store_access group:rw all:r;
 ## proxy_temp_file_write_size
 
 ```
-Syntax:  size
+Syntax:  proxy_temp_file_write_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -1512,7 +1512,7 @@ Limits the `size` of data written to a temporary file at a time, when buffering 
 ## proxy_temp_path
 
 ```
-Syntax:  path [level1 [level2 [level3]]]
+Syntax:  proxy_temp_path path [level1 [level2 [level3]]];
 Default: proxy_temp
 Context: location, http, server
 ```

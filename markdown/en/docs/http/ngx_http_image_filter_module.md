@@ -34,7 +34,7 @@ location = /empty {
 ## image_filter
 
 ```
-Syntax:  crop width height
+Syntax:  image_filter crop width height;
 Default: off
 Context: location
 ```
@@ -88,7 +88,7 @@ the rotation happens *before* reduction.
 ## image_filter_buffer
 
 ```
-Syntax:  size
+Syntax:  image_filter_buffer size;
 Default: 1M
 Context: location, http, server
 ```
@@ -98,7 +98,7 @@ Sets the maximum size of the buffer used for reading images. When the size is ex
 ## image_filter_interlace
 
 ```
-Syntax:  on | off
+Syntax:  image_filter_interlace on | off;
 Default: off
 Context: location, http, server
 ```
@@ -110,7 +110,7 @@ If enabled, final images will be interlaced. For JPEG, final images will be in â
 ## image_filter_jpeg_quality
 
 ```
-Syntax:  quality
+Syntax:  image_filter_jpeg_quality quality;
 Default: 75
 Context: location, http, server
 ```
@@ -120,7 +120,7 @@ Sets the desired `quality` of the transformed JPEG images. Acceptable values are
 ## image_filter_sharpen
 
 ```
-Syntax:  percent
+Syntax:  image_filter_sharpen percent;
 Default: 0
 Context: location, http, server
 ```
@@ -130,7 +130,7 @@ Increases sharpness of the final image. The sharpness percentage can exceed 100.
 ## image_filter_transparency
 
 ```
-Syntax:  on|off
+Syntax:  image_filter_transparency on|off;
 Default: on
 Context: location, http, server
 ```
@@ -140,7 +140,7 @@ Defines whether transparency should be preserved when transforming GIF images or
 ## image_filter_webp_quality
 
 ```
-Syntax:  quality
+Syntax:  image_filter_webp_quality quality;
 Default: 80
 Context: location, http, server
 ```

@@ -44,7 +44,7 @@ stream {
 ## ssl_alpn
 
 ```
-Syntax:  protocol ...
+Syntax:  ssl_alpn protocol ...;
 Default: 
 Context: server, stream
 ```
@@ -69,7 +69,7 @@ server {
 ## ssl_certificate
 
 ```
-Syntax:  file
+Syntax:  ssl_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -112,7 +112,7 @@ It should be kept in mind that due to the SSL/TLS protocol limitations, for maxi
 ## ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=time] [valid=time]
+Syntax:  ssl_certificate_cache max=N [inactive=time] [valid=time];
 Default: off
 Context: server, stream
 ```
@@ -153,7 +153,7 @@ ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## ssl_certificate_compression
 
 ```
-Syntax:  on | off
+Syntax:  ssl_certificate_compression on | off;
 Default: off
 Context: server, stream
 ```
@@ -171,7 +171,7 @@ the list of supported compression algorithms includes `zlib` (1.29.3).
 ## ssl_certificate_key
 
 ```
-Syntax:  file
+Syntax:  ssl_certificate_key file;
 Default: 
 Context: server, stream
 ```
@@ -189,7 +189,7 @@ Since version 1.15.9, variables can be used in the `file` name when using OpenSS
 ## ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  ssl_ciphers ciphers;
 Default: HIGH:!aNULL:!MD5
 Context: server, stream
 ```
@@ -205,7 +205,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## ssl_client_certificate
 
 ```
-Syntax:  file
+Syntax:  ssl_client_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -219,7 +219,7 @@ The list of certificates will be sent to clients. If this is not desired, the [s
 ## ssl_conf_command
 
 ```
-Syntax:  name value
+Syntax:  ssl_conf_command name value;
 Default: 
 Context: server, stream
 ```
@@ -245,7 +245,7 @@ might result in unexpected behavior.
 ## ssl_crl
 
 ```
-Syntax:  file
+Syntax:  ssl_crl file;
 Default: 
 Context: server, stream
 ```
@@ -257,7 +257,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## ssl_dhparam
 
 ```
-Syntax:  file
+Syntax:  ssl_dhparam file;
 Default: 
 Context: server, stream
 ```
@@ -271,7 +271,7 @@ By default no parameters are set, and therefore DHE ciphers will not be used.
 ## ssl_ecdh_curve
 
 ```
-Syntax:  curve
+Syntax:  ssl_ecdh_curve curve;
 Default: auto
 Context: server, stream
 ```
@@ -297,7 +297,7 @@ it is important to include the curves used in the certificates.
 ## ssl_ech_file
 
 ```
-Syntax:  file
+Syntax:  ssl_ech_file file;
 Default: 
 Context: server, stream
 ```
@@ -312,7 +312,7 @@ feature branch](https://github.com/openssl/openssl/tree/feature/ech) .
 ## ssl_handshake_timeout
 
 ```
-Syntax:  time
+Syntax:  ssl_handshake_timeout time;
 Default: 60s
 Context: server, stream
 ```
@@ -322,7 +322,7 @@ Specifies a timeout for the SSL handshake to complete.
 ## ssl_key_log
 
 ```
-Syntax:  path
+Syntax:  ssl_key_log path;
 Default: 
 Context: server, stream
 ```
@@ -336,7 +336,7 @@ Enables logging of client connection SSL keys and specifies the path to the key 
 ## ssl_ocsp
 
 ```
-Syntax:  on | off | leaf
+Syntax:  ssl_ocsp on | off | leaf;
 Default: off
 Context: server, stream
 ```
@@ -360,7 +360,7 @@ resolver          192.0.2.1;
 ## ssl_ocsp_cache
 
 ```
-Syntax:  off | [shared:name:size]
+Syntax:  ssl_ocsp_cache off | [shared:name:size];
 Default: off
 Context: server, stream
 ```
@@ -374,7 +374,7 @@ The `off` parameter prohibits the use of the cache.
 ## ssl_ocsp_responder
 
 ```
-Syntax:  url
+Syntax:  ssl_ocsp_responder url;
 Default: 
 Context: server, stream
 ```
@@ -392,7 +392,7 @@ ssl_ocsp_responder http://ocsp.example.com/;
 ## ssl_password_file
 
 ```
-Syntax:  file
+Syntax:  ssl_password_file file;
 Default: 
 Context: server, stream
 ```
@@ -424,7 +424,7 @@ stream {
 ## ssl_prefer_server_ciphers
 
 ```
-Syntax:  on | off
+Syntax:  ssl_prefer_server_ciphers on | off;
 Default: off
 Context: server, stream
 ```
@@ -434,7 +434,7 @@ Specifies that server ciphers should be preferred over client ciphers when the S
 ## ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: server, stream
 ```
@@ -455,7 +455,7 @@ since 1.23.4.
 ## ssl_reject_handshake
 
 ```
-Syntax:  on | off
+Syntax:  ssl_reject_handshake on | off;
 Default: off
 Context: server, stream
 ```
@@ -483,7 +483,7 @@ server {
 ## ssl_session_cache
 
 ```
-Syntax:  off | none | [builtin[:size]] [shared:name:size]
+Syntax:  ssl_session_cache off | none | [builtin[:size]] [shared:name:size];
 Default: none
 Context: server, stream
 ```
@@ -528,7 +528,7 @@ but using only shared cache without the built-in cache should be more efficient.
 ## ssl_session_ticket_key
 
 ```
-Syntax:  file
+Syntax:  ssl_session_ticket_key file;
 Default: 
 Context: server, stream
 ```
@@ -553,7 +553,7 @@ Depending on the file size either AES256 (for 80-byte keys, 1.11.8) or AES128 (f
 ## ssl_session_tickets
 
 ```
-Syntax:  on | off
+Syntax:  ssl_session_tickets on | off;
 Default: on
 Context: server, stream
 ```
@@ -563,7 +563,7 @@ Enables or disables session resumption through [TLS session tickets](https://dat
 ## ssl_session_timeout
 
 ```
-Syntax:  time
+Syntax:  ssl_session_timeout time;
 Default: 5m
 Context: server, stream
 ```
@@ -573,7 +573,7 @@ Specifies a time during which a client may reuse the session parameters.
 ## ssl_stapling
 
 ```
-Syntax:  on | off
+Syntax:  ssl_stapling on | off;
 Default: off
 Context: server, stream
 ```
@@ -594,7 +594,7 @@ For a resolution of the OCSP responder hostname, the [resolver](ngx_stream_core_
 ## ssl_stapling_file
 
 ```
-Syntax:  file
+Syntax:  ssl_stapling_file file;
 Default: 
 Context: server, stream
 ```
@@ -608,7 +608,7 @@ The file should be in the DER format as produced by the “ `openssl ocsp` ” c
 ## ssl_stapling_responder
 
 ```
-Syntax:  url
+Syntax:  ssl_stapling_responder url;
 Default: 
 Context: server, stream
 ```
@@ -626,7 +626,7 @@ ssl_stapling_responder http://ocsp.example.com/;
 ## ssl_stapling_verify
 
 ```
-Syntax:  on | off
+Syntax:  ssl_stapling_verify on | off;
 Default: off
 Context: server, stream
 ```
@@ -640,7 +640,7 @@ For verification to work, the certificate of the server certificate issuer, the 
 ## ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  ssl_trusted_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -654,7 +654,7 @@ In contrast to the certificate set by [ssl_client_certificate](#ssl_client_certi
 ## ssl_verify_client
 
 ```
-Syntax:  on | off | optional | optional_no_ca
+Syntax:  ssl_verify_client on | off | optional | optional_no_ca;
 Default: off
 Context: server, stream
 ```
@@ -670,7 +670,7 @@ The `optional_no_ca` parameter requests the client certificate but does not requ
 ## ssl_verify_depth
 
 ```
-Syntax:  number
+Syntax:  ssl_verify_depth number;
 Default: 1
 Context: server, stream
 ```

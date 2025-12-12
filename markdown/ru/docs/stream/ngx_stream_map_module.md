@@ -22,7 +22,7 @@ limit_conn addr 1;
 ## map
 
 ```
-Syntax:  строка $переменная
+Syntax:  map строка $переменная { ... }
 Default: 
 Context: stream
 ```
@@ -99,7 +99,7 @@ example.com   1;
 ## map_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  map_hash_bucket_size размер;
 Default: 32|64|128
 Context: stream
 ```
@@ -109,7 +109,7 @@ Context: stream
 ## map_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  map_hash_max_size размер;
 Default: 2048
 Context: stream
 ```

@@ -8,7 +8,7 @@
 ## proxy_buffer
 
 ```
-Syntax:  размер
+Syntax:  proxy_buffer размер;
 Default: 4k|8k
 Context: server, mail
 ```
@@ -18,7 +18,7 @@ Context: server, mail
 ## proxy_pass_error_message
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_error_message on | off;
 Default: off
 Context: server, mail
 ```
@@ -30,7 +30,7 @@ Context: server, mail
 ## proxy_protocol
 
 ```
-Syntax:  on | off
+Syntax:  proxy_protocol on | off;
 Default: off
 Context: server, mail
 ```
@@ -42,7 +42,7 @@ Context: server, mail
 ## proxy_smtp_auth
 
 ```
-Syntax:  on | off
+Syntax:  proxy_smtp_auth on | off;
 Default: off
 Context: server, mail
 ```
@@ -56,7 +56,7 @@ Context: server, mail
 ## proxy_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_timeout время;
 Default: 24h
 Context: server, mail
 ```
@@ -66,7 +66,7 @@ Context: server, mail
 ## xclient
 
 ```
-Syntax:  on | off
+Syntax:  xclient on | off;
 Default: on
 Context: server, mail
 ```

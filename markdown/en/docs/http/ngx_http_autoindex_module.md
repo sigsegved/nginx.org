@@ -18,7 +18,7 @@ location / {
 ## autoindex
 
 ```
-Syntax:  on | off
+Syntax:  autoindex on | off;
 Default: off
 Context: location, http, server
 ```
@@ -28,7 +28,7 @@ Enables or disables the directory listing output.
 ## autoindex_exact_size
 
 ```
-Syntax:  on | off
+Syntax:  autoindex_exact_size on | off;
 Default: on
 Context: location, http, server
 ```
@@ -38,7 +38,7 @@ For the HTML [format](#autoindex_format) , specifies whether exact file sizes sh
 ## autoindex_format
 
 ```
-Syntax:  html | xml | json | jsonp
+Syntax:  autoindex_format html | xml | json | jsonp;
 Default: html
 Context: location, http, server
 ```
@@ -54,7 +54,7 @@ The XML output can be transformed using the [ngx_http_xslt_module](ngx_http_xslt
 ## autoindex_localtime
 
 ```
-Syntax:  on | off
+Syntax:  autoindex_localtime on | off;
 Default: off
 Context: location, http, server
 ```

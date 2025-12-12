@@ -22,7 +22,7 @@ Profiles will be stored as `/path/to/profile.<worker_pid>` .
 ## google_perftools_profiles
 
 ```
-Syntax:  file
+Syntax:  google_perftools_profiles file;
 Default: 
 Context: main
 ```

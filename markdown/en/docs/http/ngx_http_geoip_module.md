@@ -28,7 +28,7 @@ http {
 ## geoip_country
 
 ```
-Syntax:  file
+Syntax:  geoip_country file;
 Default: 
 Context: http
 ```
@@ -50,7 +50,7 @@ Specifies a database used to determine the country depending on the client IP ad
 ## geoip_city
 
 ```
-Syntax:  file
+Syntax:  geoip_city file;
 Default: 
 Context: http
 ```
@@ -108,7 +108,7 @@ and the like), for example,
 ## geoip_org
 
 ```
-Syntax:  file
+Syntax:  geoip_org file;
 Default: 
 Context: http
 ```
@@ -123,7 +123,7 @@ Specifies a database used to determine the organization depending on the client 
 ## geoip_proxy
 
 ```
-Syntax:  address | CIDR
+Syntax:  geoip_proxy address | CIDR;
 Default: 
 Context: http
 ```
@@ -135,7 +135,7 @@ Defines trusted addresses. When a request comes from a trusted address, an addre
 ## geoip_proxy_recursive
 
 ```
-Syntax:  on | off
+Syntax:  geoip_proxy_recursive on | off;
 Default: off
 Context: http
 ```

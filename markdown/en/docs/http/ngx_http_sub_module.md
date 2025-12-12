@@ -22,7 +22,7 @@ location / {
 ## sub_filter
 
 ```
-Syntax:  string replacement
+Syntax:  sub_filter string replacement;
 Default: 
 Context: location, http, server
 ```
@@ -32,7 +32,7 @@ Sets a string to replace and a replacement string. The string to replace is matc
 ## sub_filter_last_modified
 
 ```
-Syntax:  on | off
+Syntax:  sub_filter_last_modified on | off;
 Default: off
 Context: location, http, server
 ```
@@ -46,7 +46,7 @@ By default, the header field is removed as contents of the response are modified
 ## sub_filter_once
 
 ```
-Syntax:  on | off
+Syntax:  sub_filter_once on | off;
 Default: on
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ Indicates whether to look for each string to replace once or repeatedly.
 ## sub_filter_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  sub_filter_types mime-type ...;
 Default: text/html
 Context: location, http, server
 ```

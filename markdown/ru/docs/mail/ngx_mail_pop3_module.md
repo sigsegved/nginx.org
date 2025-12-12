@@ -8,7 +8,7 @@
 ## pop3_auth
 
 ```
-Syntax:  метод ...
+Syntax:  pop3_auth метод ...;
 Default: plain
 Context: server, mail
 ```
@@ -34,7 +34,7 @@ Context: server, mail
 ## pop3_capabilities
 
 ```
-Syntax:  расширение ...
+Syntax:  pop3_capabilities расширение ...;
 Default: TOP USER UIDL
 Context: server, mail
 ```

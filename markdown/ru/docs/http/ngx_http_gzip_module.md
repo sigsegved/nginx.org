@@ -24,7 +24,7 @@ gzip_types      text/plain application/xml;
 ## gzip
 
 ```
-Syntax:  on | off
+Syntax:  gzip on | off;
 Default: off
 Context: if в location, http, server, location
 ```
@@ -34,7 +34,7 @@ Context: if в location, http, server, location
 ## gzip_buffers
 
 ```
-Syntax:  число размер
+Syntax:  gzip_buffers число размер;
 Default: 32 4k|16 8k
 Context: location, http, server
 ```
@@ -46,7 +46,7 @@ Context: location, http, server
 ## gzip_comp_level
 
 ```
-Syntax:  степень
+Syntax:  gzip_comp_level степень;
 Default: 1
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ Context: location, http, server
 ## gzip_disable
 
 ```
-Syntax:  regex ...
+Syntax:  gzip_disable regex ...;
 Default: 
 Context: location, http, server
 ```
@@ -70,7 +70,7 @@ Context: location, http, server
 ## gzip_http_version
 
 ```
-Syntax:  1.0 | 1.1
+Syntax:  gzip_http_version 1.0 | 1.1;
 Default: 1.1
 Context: location, http, server
 ```
@@ -80,7 +80,7 @@ Context: location, http, server
 ## gzip_min_length
 
 ```
-Syntax:  длина
+Syntax:  gzip_min_length длина;
 Default: 20
 Context: location, http, server
 ```
@@ -90,7 +90,7 @@ Context: location, http, server
 ## gzip_proxied
 
 ```
-Syntax:  off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...
+Syntax:  gzip_proxied off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...;
 Default: off
 Context: location, http, server
 ```
@@ -128,7 +128,7 @@ Context: location, http, server
 ## gzip_types
 
 ```
-Syntax:  mime-тип ...
+Syntax:  gzip_types mime-тип ...;
 Default: text/html
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ Context: location, http, server
 ## gzip_vary
 
 ```
-Syntax:  on | off
+Syntax:  gzip_vary on | off;
 Default: off
 Context: location, http, server
 ```

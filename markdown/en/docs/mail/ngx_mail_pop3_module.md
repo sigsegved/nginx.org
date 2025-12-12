@@ -8,7 +8,7 @@
 ## pop3_auth
 
 ```
-Syntax:  method ...
+Syntax:  pop3_auth method ...;
 Default: plain
 Context: server, mail
 ```
@@ -34,7 +34,7 @@ Plain text authentication methods ( `USER/PASS` , `AUTH PLAIN` , and `AUTH LOGIN
 ## pop3_capabilities
 
 ```
-Syntax:  extension ...
+Syntax:  pop3_capabilities extension ...;
 Default: TOP USER UIDL
 Context: server, mail
 ```

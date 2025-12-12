@@ -32,7 +32,7 @@ map $http_user_agent $mobile {
 ## map
 
 ```
-Syntax:  строка $переменная
+Syntax:  map строка $переменная { ... }
 Default: 
 Context: http
 ```
@@ -112,7 +112,7 @@ example.com   1;
 ## map_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  map_hash_bucket_size размер;
 Default: 32|64|128
 Context: http
 ```
@@ -122,7 +122,7 @@ Context: http
 ## map_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  map_hash_max_size размер;
 Default: 2048
 Context: http
 ```

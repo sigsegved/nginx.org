@@ -55,7 +55,7 @@ server {
 ## upstream
 
 ```
-Syntax:  название
+Syntax:  upstream название { ... }
 Default: 
 Context: http
 ```
@@ -79,7 +79,7 @@ upstream backend {
 ## server
 
 ```
-Syntax:  адрес [параметры]
+Syntax:  server адрес [параметры];
 Default: 
 Context: upstream
 ```
@@ -198,7 +198,7 @@ SRV-записи с наивысшим приоритетом (записи с �
 ## zone
 
 ```
-Syntax:  имя [размер]
+Syntax:  zone имя [размер];
 Default: 
 Context: upstream
 ```
@@ -216,7 +216,7 @@ Context: upstream
 ## state
 
 ```
-Syntax:  файл
+Syntax:  state файл;
 Default: 
 Context: upstream
 ```
@@ -242,7 +242,7 @@ state /var/db/nginx/state/servers.conf;  # путь для FreeBSD
 ## hash
 
 ```
-Syntax:  ключ [consistent]
+Syntax:  hash ключ [consistent];
 Default: 
 Context: upstream
 ```
@@ -256,7 +256,7 @@ Context: upstream
 ## ip_hash
 
 ```
-Syntax:  
+Syntax:  ip_hash;
 Default: 
 Context: upstream
 ```
@@ -285,7 +285,7 @@ upstream backend {
 ## keepalive
 
 ```
-Syntax:  соединения
+Syntax:  keepalive соединения;
 Default: 
 Context: upstream
 ```
@@ -376,7 +376,7 @@ server {
 ## keepalive_requests
 
 ```
-Syntax:  число
+Syntax:  keepalive_requests число;
 Default: 1000
 Context: upstream
 ```
@@ -392,7 +392,7 @@ Context: upstream
 ## keepalive_time
 
 ```
-Syntax:  время
+Syntax:  keepalive_time время;
 Default: 1h
 Context: upstream
 ```
@@ -404,7 +404,7 @@ Context: upstream
 ## keepalive_timeout
 
 ```
-Syntax:  таймаут
+Syntax:  keepalive_timeout таймаут;
 Default: 60s
 Context: upstream
 ```
@@ -416,7 +416,7 @@ Context: upstream
 ## ntlm
 
 ```
-Syntax:  
+Syntax:  ntlm;
 Default: 
 Context: upstream
 ```
@@ -455,7 +455,7 @@ server {
 ## least_conn
 
 ```
-Syntax:  
+Syntax:  least_conn;
 Default: 
 Context: upstream
 ```
@@ -467,7 +467,7 @@ Context: upstream
 ## least_time
 
 ```
-Syntax:  header | last_byte [inflight]
+Syntax:  least_time header | last_byte [inflight];
 Default: 
 Context: upstream
 ```
@@ -485,7 +485,7 @@ Context: upstream
 ## queue
 
 ```
-Syntax:  число [timeout=время]
+Syntax:  queue число [timeout=время];
 Default: 
 Context: upstream
 ```
@@ -505,7 +505,7 @@ Context: upstream
 ## random
 
 ```
-Syntax:  [two [метод]]
+Syntax:  random [two [метод]];
 Default: 
 Context: upstream
 ```
@@ -523,7 +523,7 @@ Context: upstream
 ## resolver
 
 ```
-Syntax:  адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона]
+Syntax:  resolver адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона];
 Default: 
 Context: upstream
 ```
@@ -557,7 +557,7 @@ resolver 127.0.0.1 [::1]:5353 valid=30s;
 ## resolver_timeout
 
 ```
-Syntax:  время
+Syntax:  resolver_timeout время;
 Default: 30s
 Context: upstream
 ```
@@ -576,7 +576,7 @@ resolver_timeout 5s;
 ## sticky
 
 ```
-Syntax:  learn create=$переменная lookup=$переменная zone=имя:размер [timeout=время] [header] [sync]
+Syntax:  sticky learn create=$переменная lookup=$переменная zone=имя:размер [timeout=время] [header] [sync];
 Default: 
 Context: upstream
 ```
@@ -706,7 +706,7 @@ upstream backend {
 ## sticky_cookie_insert
 
 ```
-Syntax:  имя [expires=время] [domain=домен] [path=путь]
+Syntax:  sticky_cookie_insert имя [expires=время] [domain=домен] [path=путь];
 Default: 
 Context: upstream
 ```

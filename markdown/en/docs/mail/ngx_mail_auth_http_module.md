@@ -8,7 +8,7 @@
 ## auth_http
 
 ```
-Syntax:  URL
+Syntax:  auth_http URL;
 Default: 
 Context: server, mail
 ```
@@ -18,7 +18,7 @@ Sets the URL of the HTTP authentication server. The protocol is described [below
 ## auth_http_header
 
 ```
-Syntax:  header value
+Syntax:  auth_http_header header value;
 Default: 
 Context: server, mail
 ```
@@ -32,7 +32,7 @@ auth_http_header X-Auth-Key "secret_string";
 ## auth_http_pass_client_cert
 
 ```
-Syntax:  on | off
+Syntax:  auth_http_pass_client_cert on | off;
 Default: off
 Context: server, mail
 ```
@@ -44,7 +44,7 @@ Appends the `Auth-SSL-Cert` header with the [client](ngx_mail_ssl_module.xml#ssl
 ## auth_http_timeout
 
 ```
-Syntax:  time
+Syntax:  auth_http_timeout time;
 Default: 60s
 Context: server, mail
 ```

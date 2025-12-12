@@ -8,7 +8,7 @@
 ## proxy_buffer
 
 ```
-Syntax:  size
+Syntax:  proxy_buffer size;
 Default: 4k|8k
 Context: server, mail
 ```
@@ -18,7 +18,7 @@ Sets the size of the buffer used for proxying. By default, the buffer size is eq
 ## proxy_pass_error_message
 
 ```
-Syntax:  on | off
+Syntax:  proxy_pass_error_message on | off;
 Default: off
 Context: server, mail
 ```
@@ -30,7 +30,7 @@ Usually, if the authentication in nginx is a success, the backend cannot return 
 ## proxy_protocol
 
 ```
-Syntax:  on | off
+Syntax:  proxy_protocol on | off;
 Default: off
 Context: server, mail
 ```
@@ -42,7 +42,7 @@ Enables the [PROXY protocol](http://www.haproxy.org/download/1.8/doc/proxy-proto
 ## proxy_smtp_auth
 
 ```
-Syntax:  on | off
+Syntax:  proxy_smtp_auth on | off;
 Default: off
 Context: server, mail
 ```
@@ -56,7 +56,7 @@ If [XCLIENT](#xclient) is also enabled, then the `XCLIENT` command will not send
 ## proxy_timeout
 
 ```
-Syntax:  timeout
+Syntax:  proxy_timeout timeout;
 Default: 24h
 Context: server, mail
 ```
@@ -66,7 +66,7 @@ Sets the `timeout` between two successive read or write operations on client or 
 ## xclient
 
 ```
-Syntax:  on | off
+Syntax:  xclient on | off;
 Default: on
 Context: server, mail
 ```

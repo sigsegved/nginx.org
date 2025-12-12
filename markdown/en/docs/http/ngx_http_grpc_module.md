@@ -24,7 +24,7 @@ server {
 ## grpc_allow_upstream
 
 ```
-Syntax:  address
+Syntax:  grpc_allow_upstream address;
 Default: 
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ server {
 ## grpc_bind
 
 ```
-Syntax:  address [transparent ] | off
+Syntax:  grpc_bind address [transparent ] | off;
 Default: 
 Context: location, http, server
 ```
@@ -74,7 +74,7 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 ## grpc_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  grpc_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -88,7 +88,7 @@ When enabled, makes the [bind](#grpc_bind) operation at each connection attempt.
 ## grpc_buffer_size
 
 ```
-Syntax:  size
+Syntax:  grpc_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -98,7 +98,7 @@ Sets the `size` of the buffer used for reading the response received from the gR
 ## grpc_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  grpc_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -108,7 +108,7 @@ Defines a timeout for establishing a connection with a gRPC server. It should be
 ## grpc_hide_header
 
 ```
-Syntax:  field
+Syntax:  grpc_hide_header field;
 Default: 
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ By default, nginx does not pass the header fields `Date` , `Server` , and `X-Acc
 ## grpc_ignore_headers
 
 ```
-Syntax:  field ...
+Syntax:  grpc_ignore_headers field ...;
 Default: 
 Context: location, http, server
 ```
@@ -134,7 +134,7 @@ redirect](ngx_http_core_module.xml#internal) to the specified URI;
 ## grpc_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  grpc_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -144,7 +144,7 @@ Determines whether gRPC server responses with codes greater than or equal to 300
 ## grpc_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  grpc_next_upstream error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -207,7 +207,7 @@ Passing a request to the next server can be limited by [the number of tries](#gr
 ## grpc_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  grpc_next_upstream_timeout time;
 Default: 0
 Context: location, http, server
 ```
@@ -217,7 +217,7 @@ Limits the time during which a request can be passed to the [next server](#grpc_
 ## grpc_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  grpc_next_upstream_tries number;
 Default: 0
 Context: location, http, server
 ```
@@ -227,7 +227,7 @@ Limits the number of possible tries for passing a request to the [next server](#
 ## grpc_pass
 
 ```
-Syntax:  address
+Syntax:  grpc_pass address;
 Default: 
 Context: if in location, location
 ```
@@ -263,7 +263,7 @@ Parameter value can contain variables (1.17.8). In this case, if an address is s
 ## grpc_pass_header
 
 ```
-Syntax:  field
+Syntax:  grpc_pass_header field;
 Default: 
 Context: location, http, server
 ```
@@ -273,7 +273,7 @@ Permits passing [otherwise disabled](#grpc_hide_header) header fields from a gRP
 ## grpc_read_timeout
 
 ```
-Syntax:  time
+Syntax:  grpc_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -283,7 +283,7 @@ Defines a timeout for reading a response from the gRPC server. The timeout is se
 ## grpc_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  grpc_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -302,7 +302,7 @@ grpc_set_header      Host $upstream_last_server_name;
 ## grpc_send_timeout
 
 ```
-Syntax:  time
+Syntax:  grpc_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -312,7 +312,7 @@ Sets a timeout for transmitting a request to the gRPC server. The timeout is set
 ## grpc_set_header
 
 ```
-Syntax:  field value
+Syntax:  grpc_set_header field value;
 Default: Content-Length $content_length
 Context: location, http, server
 ```
@@ -328,7 +328,7 @@ grpc_set_header Accept-Encoding "";
 ## grpc_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  grpc_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -340,7 +340,7 @@ Configures the “TCP keepalive” behavior for outgoing connections to a gRPC s
 ## grpc_ssl_certificate
 
 ```
-Syntax:  file
+Syntax:  grpc_ssl_certificate file;
 Default: 
 Context: location, http, server
 ```
@@ -352,7 +352,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## grpc_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=time] [valid=time]
+Syntax:  grpc_ssl_certificate_cache max=N [inactive=time] [valid=time];
 Default: off
 Context: location, http, server
 ```
@@ -393,7 +393,7 @@ grpc_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## grpc_ssl_certificate_key
 
 ```
-Syntax:  file
+Syntax:  grpc_ssl_certificate_key file;
 Default: 
 Context: location, http, server
 ```
@@ -409,7 +409,7 @@ Since version 1.21.0, variables can be used in the `file` name.
 ## grpc_ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  grpc_ssl_ciphers ciphers;
 Default: DEFAULT
 Context: location, http, server
 ```
@@ -421,7 +421,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## grpc_ssl_conf_command
 
 ```
-Syntax:  name value
+Syntax:  grpc_ssl_conf_command name value;
 Default: 
 Context: location, http, server
 ```
@@ -440,7 +440,7 @@ might result in unexpected behavior.
 ## grpc_ssl_crl
 
 ```
-Syntax:  file
+Syntax:  grpc_ssl_crl file;
 Default: 
 Context: location, http, server
 ```
@@ -450,7 +450,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## grpc_ssl_key_log
 
 ```
-Syntax:  path
+Syntax:  grpc_ssl_key_log path;
 Default: 
 Context: location, http, server
 ```
@@ -464,7 +464,7 @@ Enables logging of gRPC SSL server connection SSL keys and specifies the path to
 ## grpc_ssl_name
 
 ```
-Syntax:  name
+Syntax:  grpc_ssl_name name;
 Default: host from grpc_pass
 Context: location, http, server
 ```
@@ -476,7 +476,7 @@ By default, the host part from [grpc_pass](#grpc_pass) is used.
 ## grpc_ssl_password_file
 
 ```
-Syntax:  file
+Syntax:  grpc_ssl_password_file file;
 Default: 
 Context: location, http, server
 ```
@@ -486,7 +486,7 @@ Specifies a `file` with passphrases for [secret keys](#grpc_ssl_certificate_key)
 ## grpc_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  grpc_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: location, http, server
 ```
@@ -499,7 +499,7 @@ since 1.23.4.
 ## grpc_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  grpc_ssl_server_name on | off;
 Default: off
 Context: location, http, server
 ```
@@ -509,7 +509,7 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 ## grpc_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  grpc_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -519,7 +519,7 @@ Determines whether SSL sessions can be reused when working with the gRPC server.
 ## grpc_ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  grpc_ssl_trusted_certificate file;
 Default: 
 Context: location, http, server
 ```
@@ -529,7 +529,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## grpc_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  grpc_ssl_verify on | off;
 Default: off
 Context: location, http, server
 ```
@@ -539,7 +539,7 @@ Enables or disables verification of the gRPC SSL server certificate.
 ## grpc_ssl_verify_depth
 
 ```
-Syntax:  number
+Syntax:  grpc_ssl_verify_depth number;
 Default: 1
 Context: location, http, server
 ```

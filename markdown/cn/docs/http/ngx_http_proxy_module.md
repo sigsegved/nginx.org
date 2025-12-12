@@ -21,7 +21,7 @@ location / {
 ## proxy_buffer_size
 
 ```
-Syntax:  size
+Syntax:  proxy_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -31,7 +31,7 @@ Context: location, http, server
 ## proxy_buffering
 
 ```
-Syntax:  on | off
+Syntax:  proxy_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -47,7 +47,7 @@ Context: location, http, server
 ## proxy_buffers
 
 ```
-Syntax:  number size
+Syntax:  proxy_buffers number size;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -57,7 +57,7 @@ Context: location, http, server
 ## proxy_busy_buffers_size
 
 ```
-Syntax:  size
+Syntax:  proxy_busy_buffers_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -67,7 +67,7 @@ Context: location, http, server
 ## proxy_cache
 
 ```
-Syntax:  zone | off
+Syntax:  proxy_cache zone | off;
 Default: off
 Context: location, http, server
 ```
@@ -77,7 +77,7 @@ Context: location, http, server
 ## proxy_cache_bypass
 
 ```
-Syntax:  string ...
+Syntax:  proxy_cache_bypass string ...;
 Default: 
 Context: location, http, server
 ```
@@ -94,7 +94,7 @@ proxy_cache_bypass $http_pragma    $http_authorization;
 ## proxy_cache_key
 
 ```
-Syntax:  string
+Syntax:  proxy_cache_key string;
 Default: $scheme$proxy_host$request_uri
 Context: location, http, server
 ```
@@ -114,7 +114,7 @@ proxy_cache_key $scheme$proxy_host$uri$is_args$args;
 ## proxy_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  proxy_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -126,7 +126,7 @@ Context: location, http, server
 ## proxy_cache_lock_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_cache_lock_timeout time;
 Default: 5s
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ Context: location, http, server
 ## proxy_cache_min_uses
 
 ```
-Syntax:  number
+Syntax:  proxy_cache_min_uses number;
 Default: 1
 Context: location, http, server
 ```
@@ -148,7 +148,7 @@ Context: location, http, server
 ## proxy_cache_path
 
 ```
-Syntax:  path [levels=levels] keys_zone=name:size [inactive=time] [max_size=size] [loader_files=number] [loader_sleep=time] [loader_threshold=time]
+Syntax:  proxy_cache_path path [levels=levels] keys_zone=name:size [inactive=time] [max_size=size] [loader_files=number] [loader_sleep=time] [loader_threshold=time];
 Default: 
 Context: http
 ```
@@ -176,7 +176,7 @@ nginx新启动后不就，特殊进程“cache loader”就被启动。该进程
 ## proxy_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_404 | off ...
+Syntax:  proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_404 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -190,7 +190,7 @@ Context: location, http, server
 ## proxy_cache_valid
 
 ```
-Syntax:  [code ...] time
+Syntax:  proxy_cache_valid [code ...] time;
 Default: 
 Context: location, http, server
 ```
@@ -225,7 +225,7 @@ proxy_cache_valid any      1m;
 ## proxy_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -235,7 +235,7 @@ Context: location, http, server
 ## proxy_cookie_domain
 
 ```
-Syntax:  domain replacement
+Syntax:  proxy_cookie_domain domain replacement;
 Default: off
 Context: location, http, server
 ```
@@ -282,7 +282,7 @@ proxy_cookie_domain www.example.org example.org;
 ## proxy_cookie_path
 
 ```
-Syntax:  path replacement
+Syntax:  proxy_cookie_path path replacement;
 Default: off
 Context: location, http, server
 ```
@@ -327,7 +327,7 @@ proxy_cookie_path ~*^/user/([^/]+) /u/$1;
 ## proxy_hide_header
 
 ```
-Syntax:  field
+Syntax:  proxy_hide_header field;
 Default: 
 Context: location, http, server
 ```
@@ -337,7 +337,7 @@ nginx默认不会将 `Date` 、 `Server` 、 `X-Pad` ，和 `X-Accel-...` 响应
 ## proxy_http_version
 
 ```
-Syntax:  1.0 | 1.1
+Syntax:  proxy_http_version 1.0 | 1.1;
 Default: 1.0
 Context: location, http, server
 ```
@@ -349,7 +349,7 @@ Context: location, http, server
 ## proxy_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -359,7 +359,7 @@ Context: location, http, server
 ## proxy_ignore_headers
 
 ```
-Syntax:  field ...
+Syntax:  proxy_ignore_headers field ...;
 Default: 
 Context: location, http, server
 ```
@@ -377,7 +377,7 @@ Context: location, http, server
 ## proxy_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  proxy_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -387,7 +387,7 @@ Context: location, http, server
 ## proxy_max_temp_file_size
 
 ```
-Syntax:  size
+Syntax:  proxy_max_temp_file_size size;
 Default: 1024m
 Context: location, http, server
 ```
@@ -399,7 +399,7 @@ Context: location, http, server
 ## proxy_next_upstream
 
 ```
-Syntax:  error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_404 | off ...
+Syntax:  proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_404 | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -438,7 +438,7 @@ Context: location, http, server
 ## proxy_no_cache
 
 ```
-Syntax:  string ...
+Syntax:  proxy_no_cache string ...;
 Default: 
 Context: location, http, server
 ```
@@ -455,7 +455,7 @@ proxy_no_cache $http_pragma    $http_authorization;
 ## proxy_pass
 
 ```
-Syntax:  URL
+Syntax:  proxy_pass URL;
 Default: 
 Context: limit_except, location, if in location
 ```
@@ -524,7 +524,7 @@ proxy_pass $request;
 ## proxy_pass_header
 
 ```
-Syntax:  field
+Syntax:  proxy_pass_header field;
 Default: 
 Context: location, http, server
 ```
@@ -534,7 +534,7 @@ Context: location, http, server
 ## proxy_read_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -544,7 +544,7 @@ Context: location, http, server
 ## proxy_redirect
 
 ```
-Syntax:  redirect replacement
+Syntax:  proxy_redirect redirect replacement;
 Default: default
 Context: location, http, server
 ```
@@ -626,7 +626,7 @@ proxy_redirect / /;
 ## proxy_send_timeout
 
 ```
-Syntax:  time
+Syntax:  proxy_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -636,7 +636,7 @@ Context: location, http, server
 ## proxy_set_header
 
 ```
-Syntax:  field value
+Syntax:  proxy_set_header field value;
 Default: Connection close
 Context: location, http, server
 ```
@@ -675,7 +675,7 @@ proxy_set_header Accept-Encoding "";
 ## proxy_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -685,7 +685,7 @@ Context: location, http, server
 ## proxy_store
 
 ```
-Syntax:  on | off | string
+Syntax:  proxy_store on | off | string;
 Default: off
 Context: location, http, server
 ```
@@ -742,7 +742,7 @@ location @fetch {
 ## proxy_store_access
 
 ```
-Syntax:  users:permissions ...
+Syntax:  proxy_store_access users:permissions ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -762,7 +762,7 @@ proxy_store_access group:rw all:r;
 ## proxy_temp_file_write_size
 
 ```
-Syntax:  size
+Syntax:  proxy_temp_file_write_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -772,7 +772,7 @@ Context: location, http, server
 ## proxy_temp_path
 
 ```
-Syntax:  path [level1 [level2 [level3]]]
+Syntax:  proxy_temp_path path [level1 [level2 [level3]]];
 Default: proxy_temp
 Context: location, http, server
 ```

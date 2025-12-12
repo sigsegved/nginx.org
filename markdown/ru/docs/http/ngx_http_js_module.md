@@ -123,7 +123,7 @@ export default {foo, summary, baz, hello, fetch, hash};
 ## js_body_filter
 
 ```
-Syntax:  функция | модуль.функция [buffer_type=string | buffer]
+Syntax:  js_body_filter функция | модуль.функция [buffer_type=string | buffer];
 Default: 
 Context: limit_except, location, if in location
 ```
@@ -174,7 +174,7 @@ function filter(r, data, flags) {
 ## js_content
 
 ```
-Syntax:  функция | модуль.функция
+Syntax:  js_content функция | модуль.функция;
 Default: 
 Context: limit_except, location, if in location
 ```
@@ -187,7 +187,7 @@ Context: limit_except, location, if in location
 ## js_context_reuse
 
 ```
-Syntax:  число
+Syntax:  js_context_reuse число;
 Default: 128
 Context: location, http, server
 ```
@@ -199,7 +199,7 @@ Context: location, http, server
 ## js_engine
 
 ```
-Syntax:  njs | qjs
+Syntax:  js_engine njs | qjs;
 Default: njs
 Context: location, http, server
 ```
@@ -211,7 +211,7 @@ Context: location, http, server
 ## js_fetch_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  js_fetch_buffer_size размер;
 Default: 16k
 Context: location, http, server
 ```
@@ -223,7 +223,7 @@ Context: location, http, server
 ## js_fetch_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  js_fetch_ciphers шифры;
 Default: HIGH:!aNULL:!MD5
 Context: location, http, server
 ```
@@ -237,7 +237,7 @@ Context: location, http, server
 ## js_fetch_max_response_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  js_fetch_max_response_buffer_size размер;
 Default: 1m
 Context: location, http, server
 ```
@@ -249,7 +249,7 @@ Context: location, http, server
 ## js_fetch_protocols
 
 ```
-Syntax:  [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  js_fetch_protocols [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1 TLSv1.1 TLSv1.2
 Context: location, http, server
 ```
@@ -261,7 +261,7 @@ Context: location, http, server
 ## js_fetch_timeout
 
 ```
-Syntax:  время
+Syntax:  js_fetch_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -273,7 +273,7 @@ Context: location, http, server
 ## js_fetch_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  js_fetch_trusted_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -285,7 +285,7 @@ Context: location, http, server
 ## js_fetch_verify
 
 ```
-Syntax:  on | off
+Syntax:  js_fetch_verify on | off;
 Default: on
 Context: location, http, server
 ```
@@ -297,7 +297,7 @@ Context: location, http, server
 ## js_fetch_verify_depth
 
 ```
-Syntax:  число
+Syntax:  js_fetch_verify_depth число;
 Default: 100
 Context: location, http, server
 ```
@@ -309,7 +309,7 @@ Context: location, http, server
 ## js_fetch_proxy
 
 ```
-Syntax:  url
+Syntax:  js_fetch_proxy url;
 Default: 
 Context: location, http, server
 ```
@@ -330,7 +330,7 @@ location /fetch {
 ## js_fetch_keepalive
 
 ```
-Syntax:  соединения
+Syntax:  js_fetch_keepalive соединения;
 Default: 0
 Context: location, http, server
 ```
@@ -354,7 +354,7 @@ location /fetch {
 ## js_fetch_keepalive_requests
 
 ```
-Syntax:  число
+Syntax:  js_fetch_keepalive_requests число;
 Default: 1000
 Context: location, http, server
 ```
@@ -368,7 +368,7 @@ Context: location, http, server
 ## js_fetch_keepalive_time
 
 ```
-Syntax:  время
+Syntax:  js_fetch_keepalive_time время;
 Default: 1h
 Context: location, http, server
 ```
@@ -380,7 +380,7 @@ Context: location, http, server
 ## js_fetch_keepalive_timeout
 
 ```
-Syntax:  время
+Syntax:  js_fetch_keepalive_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -392,7 +392,7 @@ Context: location, http, server
 ## js_header_filter
 
 ```
-Syntax:  функция | модуль.функция
+Syntax:  js_header_filter функция | модуль.функция;
 Default: 
 Context: limit_except, location, if in location
 ```
@@ -412,7 +412,7 @@ Context: limit_except, location, if in location
 ## js_import
 
 ```
-Syntax:  модуль.js | имя_экспорта from модуль.js
+Syntax:  js_import модуль.js | имя_экспорта from модуль.js;
 Default: 
 Context: location, http, server
 ```
@@ -435,7 +435,7 @@ js_import http.js;
 ## js_include
 
 ```
-Syntax:  файл
+Syntax:  js_include файл;
 Default: 
 Context: http
 ```
@@ -460,7 +460,7 @@ function version(r) {
 ## js_path
 
 ```
-Syntax:  путь
+Syntax:  js_path путь;
 Default: 
 Context: location, http, server
 ```
@@ -475,7 +475,7 @@ Context: location, http, server
 ## js_periodic
 
 ```
-Syntax:  функция | модуль.функция [interval=время] [jitter=число] [worker_affinity=маска]
+Syntax:  js_periodic функция | модуль.функция [interval=время] [jitter=число] [worker_affinity=маска];
 Default: 
 Context: location
 ```
@@ -522,7 +522,7 @@ async function handler(s) {
 ## js_preload_object
 
 ```
-Syntax:  имя.json | имя from файл.json
+Syntax:  js_preload_object имя.json | имя from файл.json;
 Default: 
 Context: location, http, server
 ```
@@ -542,7 +542,7 @@ js_preload_object map.json;
 ## js_set
 
 ```
-Syntax:  $переменная функция | модуль.функция [nocache]
+Syntax:  js_set $переменная функция | модуль.функция [nocache];
 Default: 
 Context: location, http, server
 ```
@@ -564,7 +564,7 @@ Context: location, http, server
 ## js_shared_dict_zone
 
 ```
-Syntax:  zone=имя:размер [timeout=время] [type=строка|число] [evict]
+Syntax:  js_shared_dict_zone zone=имя:размер [timeout=время] [type=строка|число] [evict];
 Default: 
 Context: http
 ```
@@ -615,7 +615,7 @@ example.js:
 ## js_var
 
 ```
-Syntax:  $переменная [значение]
+Syntax:  js_var $переменная [значение];
 Default: 
 Context: location, http, server
 ```

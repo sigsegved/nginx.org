@@ -21,7 +21,7 @@ location /storage/ {
 ## gunzip
 
 ```
-Syntax:  on | off
+Syntax:  gunzip on | off;
 Default: off
 Context: location, http, server
 ```
@@ -31,7 +31,7 @@ Enables or disables decompression of gzipped responses for clients that lack gzi
 ## gunzip_buffers
 
 ```
-Syntax:  number size
+Syntax:  gunzip_buffers number size;
 Default: 32 4k|16 8k
 Context: location, http, server
 ```

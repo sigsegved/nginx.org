@@ -29,7 +29,7 @@ http {
 ## limit_conn
 
 ```
-Syntax:  zone number
+Syntax:  limit_conn zone number;
 Default: 
 Context: location, http, server
 ```
@@ -68,7 +68,7 @@ These directives are inherited from the previous configuration level if and only
 ## limit_conn_dry_run
 
 ```
-Syntax:  on | off
+Syntax:  limit_conn_dry_run on | off;
 Default: off
 Context: location, http, server
 ```
@@ -80,7 +80,7 @@ Enables the dry run mode. In this mode, the number of connections is not limited
 ## limit_conn_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_conn_log_level info | notice | warn | error;
 Default: error
 Context: location, http, server
 ```
@@ -92,7 +92,7 @@ Sets the desired logging level for cases when the server limits the number of co
 ## limit_conn_status
 
 ```
-Syntax:  code
+Syntax:  limit_conn_status code;
 Default: 503
 Context: location, http, server
 ```
@@ -104,7 +104,7 @@ Sets the status code to return in response to rejected requests.
 ## limit_conn_zone
 
 ```
-Syntax:  key zone=name:size
+Syntax:  limit_conn_zone key zone=name:size;
 Default: 
 Context: http
 ```
@@ -127,7 +127,7 @@ the [status information](ngx_http_api_module.xml#http_limit_conns_) for each suc
 ## limit_zone
 
 ```
-Syntax:  name $variable size
+Syntax:  limit_zone name $variable size;
 Default: 
 Context: http
 ```

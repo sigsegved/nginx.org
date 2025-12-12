@@ -51,7 +51,7 @@ server {
 ## acme_issuer
 
 ```
-Syntax:  name
+Syntax:  acme_issuer name { ... }
 Default: 
 Context: http
 ```
@@ -61,7 +61,7 @@ Defines an ACME certificate issuer object.
 ## uri
 
 ```
-Syntax:  uri
+Syntax:  uri uri;
 Default: 
 Context: acme_issuer
 ```
@@ -71,7 +71,7 @@ The [directory URL](https://datatracker.ietf.org/doc/html/rfc8555#section-7.1.1)
 ## account_key
 
 ```
-Syntax:  alg[:size] | file
+Syntax:  account_key alg[:size] | file;
 Default: 
 Context: acme_issuer
 ```
@@ -89,7 +89,7 @@ The generated account keys are preserved across reloads, but will be lost on res
 ## challenge
 
 ```
-Syntax:  type
+Syntax:  challenge type;
 Default: http-01
 Context: acme_issuer
 ```
@@ -110,7 +110,7 @@ the module automatically selects the latest implemented version.
 ## contact
 
 ```
-Syntax:  URL
+Syntax:  contact URL;
 Default: 
 Context: acme_issuer
 ```
@@ -120,7 +120,7 @@ Sets an array of URLs that the ACME server can use to contact the client regardi
 ## external_account_key
 
 ```
-Syntax:  kid file
+Syntax:  external_account_key kid file;
 Default: 
 Context: acme_issuer
 ```
@@ -136,7 +136,7 @@ In both cases, the key is expected to be encoded in [base64url](https://datatrac
 ## preferred_chain
 
 ```
-Syntax:  name
+Syntax:  preferred_chain name;
 Default: 
 Context: acme_issuer
 ```
@@ -150,7 +150,7 @@ If the ACME server offers multiple certificate chains, prefer the chain with the
 ## profile
 
 ```
-Syntax:  name [require]
+Syntax:  profile name [require];
 Default: 
 Context: acme_issuer
 ```
@@ -164,7 +164,7 @@ The `require` parameter will cause certificate renewals to fail if the server do
 ## ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  ssl_trusted_certificate file;
 Default: 
 Context: acme_issuer
 ```
@@ -174,7 +174,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  ssl_verify on | off;
 Default: on
 Context: acme_issuer
 ```
@@ -184,7 +184,7 @@ Enables or disables verification of the ACME server certificate.
 ## state_path
 
 ```
-Syntax:  path | off
+Syntax:  state_path path | off;
 Default: acme_<issuer>
 Context: acme_issuer
 ```
@@ -200,7 +200,7 @@ The `off` parameter (0.2.0) disables storing the account information and issued 
 ## accept_terms_of_service
 
 ```
-Syntax:  
+Syntax:  accept_terms_of_service;
 Default: 
 Context: acme_issuer
 ```
@@ -210,7 +210,7 @@ Agrees to the terms of service under which the ACME server will be used. Some se
 ## acme_shared_zone
 
 ```
-Syntax:  zone=name:size
+Syntax:  acme_shared_zone zone=name:size;
 Default: zone=ngx_acme_shared:256k
 Context: http
 ```
@@ -222,7 +222,7 @@ The default zone size is sufficient to hold approximately 50 ECDSA prime256v1 ke
 ## acme_certificate
 
 ```
-Syntax:  issuer [identifier ...] [key=alg[:size]]
+Syntax:  acme_certificate issuer [identifier ...] [key=alg[:size]];
 Default: 
 Context: server
 ```

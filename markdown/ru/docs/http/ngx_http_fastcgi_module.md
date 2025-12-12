@@ -25,7 +25,7 @@ location / {
 ## fastcgi_allow_upstream
 
 ```
-Syntax:  строка ...
+Syntax:  fastcgi_allow_upstream строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ server {
 ## fastcgi_bind
 
 ```
-Syntax:  адрес [transparent] | off
+Syntax:  fastcgi_bind адрес [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -76,7 +76,7 @@ fastcgi_bind $remote_addr transparent;
 ## fastcgi_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -90,7 +90,7 @@ Context: location, http, server
 ## fastcgi_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  fastcgi_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -100,7 +100,7 @@ Context: location, http, server
 ## fastcgi_buffering
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Context: location, http, server
 ## fastcgi_buffers
 
 ```
-Syntax:  число размер
+Syntax:  fastcgi_buffers число размер;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -128,7 +128,7 @@ Context: location, http, server
 ## fastcgi_busy_buffers_size
 
 ```
-Syntax:  размер
+Syntax:  fastcgi_busy_buffers_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ Context: location, http, server
 ## fastcgi_cache
 
 ```
-Syntax:  зона | off
+Syntax:  fastcgi_cache зона | off;
 Default: off
 Context: location, http, server
 ```
@@ -148,7 +148,7 @@ Context: location, http, server
 ## fastcgi_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -160,7 +160,7 @@ Context: location, http, server
 ## fastcgi_cache_bypass
 
 ```
-Syntax:  строка ...
+Syntax:  fastcgi_cache_bypass строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -177,7 +177,7 @@ fastcgi_cache_bypass $http_pragma    $http_authorization;
 ## fastcgi_cache_key
 
 ```
-Syntax:  строка
+Syntax:  fastcgi_cache_key строка;
 Default: 
 Context: location, http, server
 ```
@@ -191,7 +191,7 @@ fastcgi_cache_key localhost:9000$request_uri;
 ## fastcgi_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -203,7 +203,7 @@ Context: location, http, server
 ## fastcgi_cache_lock_age
 
 ```
-Syntax:  время
+Syntax:  fastcgi_cache_lock_age время;
 Default: 5s
 Context: location, http, server
 ```
@@ -215,7 +215,7 @@ Context: location, http, server
 ## fastcgi_cache_lock_timeout
 
 ```
-Syntax:  время
+Syntax:  fastcgi_cache_lock_timeout время;
 Default: 5s
 Context: location, http, server
 ```
@@ -229,7 +229,7 @@ Context: location, http, server
 ## fastcgi_cache_max_range_offset
 
 ```
-Syntax:  число
+Syntax:  fastcgi_cache_max_range_offset число;
 Default: 
 Context: location, http, server
 ```
@@ -241,7 +241,7 @@ Context: location, http, server
 ## fastcgi_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  fastcgi_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -253,7 +253,7 @@ Context: location, http, server
 ## fastcgi_cache_min_uses
 
 ```
-Syntax:  число
+Syntax:  fastcgi_cache_min_uses число;
 Default: 1
 Context: location, http, server
 ```
@@ -263,7 +263,7 @@ Context: location, http, server
 ## fastcgi_cache_path
 
 ```
-Syntax:  путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время]
+Syntax:  fastcgi_cache_path путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время];
 Default: 
 Context: http
 ```
@@ -325,7 +325,7 @@ fastcgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
 ## fastcgi_cache_purge
 
 ```
-Syntax:  строка ...
+Syntax:  fastcgi_cache_purge строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -362,7 +362,7 @@ server {
 ## fastcgi_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -374,7 +374,7 @@ Context: location, http, server
 ## fastcgi_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...
+Syntax:  fastcgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -402,7 +402,7 @@ Context: location, http, server
 ## fastcgi_cache_valid
 
 ```
-Syntax:  [код ...] время
+Syntax:  fastcgi_cache_valid [код ...] время;
 Default: 
 Context: location, http, server
 ```
@@ -453,7 +453,7 @@ fastcgi_cache_valid any      1m;
 ## fastcgi_catch_stderr
 
 ```
-Syntax:  строка
+Syntax:  fastcgi_catch_stderr строка;
 Default: 
 Context: location, http, server
 ```
@@ -472,7 +472,7 @@ location /php/ {
 ## fastcgi_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  fastcgi_connect_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -482,7 +482,7 @@ Context: location, http, server
 ## fastcgi_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -494,7 +494,7 @@ Context: location, http, server
 ## fastcgi_hide_header
 
 ```
-Syntax:  поле
+Syntax:  fastcgi_hide_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -504,7 +504,7 @@ Context: location, http, server
 ## fastcgi_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -514,7 +514,7 @@ Context: location, http, server
 ## fastcgi_ignore_headers
 
 ```
-Syntax:  поле ...
+Syntax:  fastcgi_ignore_headers поле ...;
 Default: 
 Context: location, http, server
 ```
@@ -534,7 +534,7 @@ Context: location, http, server
 ## fastcgi_index
 
 ```
-Syntax:  имя
+Syntax:  fastcgi_index имя;
 Default: 
 Context: location, http, server
 ```
@@ -551,7 +551,7 @@ fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
 ## fastcgi_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -561,7 +561,7 @@ Context: location, http, server
 ## fastcgi_keep_conn
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_keep_conn on | off;
 Default: off
 Context: location, http, server
 ```
@@ -573,7 +573,7 @@ Context: location, http, server
 ## fastcgi_limit_rate
 
 ```
-Syntax:  скорость
+Syntax:  fastcgi_limit_rate скорость;
 Default: 0
 Context: location, http, server
 ```
@@ -585,7 +585,7 @@ Context: location, http, server
 ## fastcgi_max_temp_file_size
 
 ```
-Syntax:  размер
+Syntax:  fastcgi_max_temp_file_size размер;
 Default: 1024m
 Context: location, http, server
 ```
@@ -600,7 +600,7 @@ Context: location, http, server
 ## fastcgi_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  fastcgi_next_upstream error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -657,7 +657,7 @@ Context: location, http, server
 ## fastcgi_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  fastcgi_next_upstream_timeout время;
 Default: 0
 Context: location, http, server
 ```
@@ -669,7 +669,7 @@ Context: location, http, server
 ## fastcgi_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  fastcgi_next_upstream_tries число;
 Default: 0
 Context: location, http, server
 ```
@@ -681,7 +681,7 @@ Context: location, http, server
 ## fastcgi_no_cache
 
 ```
-Syntax:  строка ...
+Syntax:  fastcgi_no_cache строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -698,7 +698,7 @@ fastcgi_no_cache $http_pragma    $http_authorization;
 ## fastcgi_param
 
 ```
-Syntax:  параметр значение [if_not_empty]
+Syntax:  fastcgi_param параметр значение [if_not_empty];
 Default: 
 Context: location, http, server
 ```
@@ -737,7 +737,7 @@ fastcgi_param HTTPS           $https if_not_empty;
 ## fastcgi_pass
 
 ```
-Syntax:  адрес
+Syntax:  fastcgi_pass адрес;
 Default: 
 Context: if в location, location
 ```
@@ -761,7 +761,7 @@ fastcgi_pass unix:/tmp/fastcgi.socket;
 ## fastcgi_pass_header
 
 ```
-Syntax:  поле
+Syntax:  fastcgi_pass_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -771,7 +771,7 @@ Context: location, http, server
 ## fastcgi_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -781,7 +781,7 @@ Context: location, http, server
 ## fastcgi_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -791,7 +791,7 @@ Context: location, http, server
 ## fastcgi_read_timeout
 
 ```
-Syntax:  время
+Syntax:  fastcgi_read_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -801,7 +801,7 @@ Context: location, http, server
 ## fastcgi_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -817,7 +817,7 @@ Context: location, http, server
 ## fastcgi_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -831,7 +831,7 @@ Context: location, http, server
 ## fastcgi_send_lowat
 
 ```
-Syntax:  размер
+Syntax:  fastcgi_send_lowat размер;
 Default: 0
 Context: location, http, server
 ```
@@ -843,7 +843,7 @@ Context: location, http, server
 ## fastcgi_send_timeout
 
 ```
-Syntax:  время
+Syntax:  fastcgi_send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -853,7 +853,7 @@ Context: location, http, server
 ## fastcgi_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -865,7 +865,7 @@ Context: location, http, server
 ## fastcgi_split_path_info
 
 ```
-Syntax:  regex
+Syntax:  fastcgi_split_path_info regex;
 Default: 
 Context: location
 ```
@@ -884,7 +884,7 @@ location ~ ^(.+\.php)(.*)$ {
 ## fastcgi_store
 
 ```
-Syntax:  on | off | строка
+Syntax:  fastcgi_store on | off | строка;
 Default: off
 Context: location, http, server
 ```
@@ -922,7 +922,7 @@ location /fetch/ {
 ## fastcgi_store_access
 
 ```
-Syntax:  пользователи:права ...
+Syntax:  fastcgi_store_access пользователи:права ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -942,7 +942,7 @@ fastcgi_store_access group:rw all:r;
 ## fastcgi_temp_file_write_size
 
 ```
-Syntax:  размер
+Syntax:  fastcgi_temp_file_write_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -952,7 +952,7 @@ Context: location, http, server
 ## fastcgi_temp_path
 
 ```
-Syntax:  путь [уровень1 [уровень2 [уровень3]]]
+Syntax:  fastcgi_temp_path путь [уровень1 [уровень2 [уровень3]]];
 Default: fastcgi_temp
 Context: location, http, server
 ```

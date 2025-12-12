@@ -27,7 +27,7 @@ http {
 ## limit_req
 
 ```
-Syntax:  zone=name [burst=number] [nodelay | delay=number]
+Syntax:  limit_req zone=name [burst=number] [nodelay | delay=number];
 Default: 
 Context: location, http, server
 ```
@@ -71,7 +71,7 @@ These directives are inherited from the previous configuration level if and only
 ## limit_req_dry_run
 
 ```
-Syntax:  on | off
+Syntax:  limit_req_dry_run on | off;
 Default: off
 Context: location, http, server
 ```
@@ -83,7 +83,7 @@ Enables the dry run mode. In this mode, requests processing rate is not limited,
 ## limit_req_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_req_log_level info | notice | warn | error;
 Default: error
 Context: location, http, server
 ```
@@ -95,7 +95,7 @@ Sets the desired logging level for cases when the server refuses to process requ
 ## limit_req_status
 
 ```
-Syntax:  code
+Syntax:  limit_req_status code;
 Default: 503
 Context: location, http, server
 ```
@@ -107,7 +107,7 @@ Sets the status code to return in response to rejected requests.
 ## limit_req_zone
 
 ```
-Syntax:  key zone=name:size rate=rate [sync]
+Syntax:  limit_req_zone key zone=name:size rate=rate [sync];
 Default: 
 Context: http
 ```

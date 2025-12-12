@@ -106,7 +106,7 @@ export default {bar, preread, req_line, header_inject, access};
 ## js_access
 
 ```
-Syntax:  функция | модуль.функция
+Syntax:  js_access функция | модуль.функция;
 Default: 
 Context: server, stream
 ```
@@ -123,7 +123,7 @@ Context: server, stream
 ## js_context_reuse
 
 ```
-Syntax:  число
+Syntax:  js_context_reuse число;
 Default: 128
 Context: server, stream
 ```
@@ -135,7 +135,7 @@ Context: server, stream
 ## js_engine
 
 ```
-Syntax:  njs | qjs
+Syntax:  js_engine njs | qjs;
 Default: njs
 Context: server, stream
 ```
@@ -147,7 +147,7 @@ Context: server, stream
 ## js_fetch_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  js_fetch_buffer_size размер;
 Default: 16k
 Context: server, stream
 ```
@@ -159,7 +159,7 @@ Context: server, stream
 ## js_fetch_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  js_fetch_ciphers шифры;
 Default: HIGH:!aNULL:!MD5
 Context: server, stream
 ```
@@ -173,7 +173,7 @@ Context: server, stream
 ## js_fetch_max_response_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  js_fetch_max_response_buffer_size размер;
 Default: 1m
 Context: server, stream
 ```
@@ -185,7 +185,7 @@ Context: server, stream
 ## js_fetch_protocols
 
 ```
-Syntax:  [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  js_fetch_protocols [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1 TLSv1.1 TLSv1.2
 Context: server, stream
 ```
@@ -197,7 +197,7 @@ Context: server, stream
 ## js_fetch_timeout
 
 ```
-Syntax:  время
+Syntax:  js_fetch_timeout время;
 Default: 60s
 Context: server, stream
 ```
@@ -209,7 +209,7 @@ Context: server, stream
 ## js_fetch_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  js_fetch_trusted_certificate файл;
 Default: 
 Context: server, stream
 ```
@@ -221,7 +221,7 @@ Context: server, stream
 ## js_fetch_verify
 
 ```
-Syntax:  on | off
+Syntax:  js_fetch_verify on | off;
 Default: on
 Context: server, stream
 ```
@@ -233,7 +233,7 @@ Context: server, stream
 ## js_fetch_verify_depth
 
 ```
-Syntax:  число
+Syntax:  js_fetch_verify_depth число;
 Default: 100
 Context: server, stream
 ```
@@ -245,7 +245,7 @@ Context: server, stream
 ## js_fetch_proxy
 
 ```
-Syntax:  url
+Syntax:  js_fetch_proxy url;
 Default: 
 Context: server, stream
 ```
@@ -267,7 +267,7 @@ server {
 ## js_fetch_keepalive
 
 ```
-Syntax:  соединения
+Syntax:  js_fetch_keepalive соединения;
 Default: 0
 Context: server, stream
 ```
@@ -292,7 +292,7 @@ server {
 ## js_fetch_keepalive_requests
 
 ```
-Syntax:  число
+Syntax:  js_fetch_keepalive_requests число;
 Default: 1000
 Context: server, stream
 ```
@@ -306,7 +306,7 @@ Context: server, stream
 ## js_fetch_keepalive_time
 
 ```
-Syntax:  время
+Syntax:  js_fetch_keepalive_time время;
 Default: 1h
 Context: server, stream
 ```
@@ -318,7 +318,7 @@ Context: server, stream
 ## js_fetch_keepalive_timeout
 
 ```
-Syntax:  время
+Syntax:  js_fetch_keepalive_timeout время;
 Default: 60s
 Context: server, stream
 ```
@@ -330,7 +330,7 @@ Context: server, stream
 ## js_filter
 
 ```
-Syntax:  функция | модуль.функция
+Syntax:  js_filter функция | модуль.функция;
 Default: 
 Context: server, stream
 ```
@@ -352,7 +352,7 @@ Context: server, stream
 ## js_import
 
 ```
-Syntax:  модуль.js | имя_экспорта from модуль.js
+Syntax:  js_import модуль.js | имя_экспорта from модуль.js;
 Default: 
 Context: server, stream
 ```
@@ -375,7 +375,7 @@ js_import stream.js;
 ## js_include
 
 ```
-Syntax:  файл
+Syntax:  js_include файл;
 Default: 
 Context: stream
 ```
@@ -402,7 +402,7 @@ function address(s) {
 ## js_preload_object
 
 ```
-Syntax:  имя.json | имя from файл.json
+Syntax:  js_preload_object имя.json | имя from файл.json;
 Default: 
 Context: server, stream
 ```
@@ -422,7 +422,7 @@ js_preload_object map.json;
 ## js_preread
 
 ```
-Syntax:  функция | модуль.функция
+Syntax:  js_preread функция | модуль.функция;
 Default: 
 Context: server, stream
 ```
@@ -446,7 +446,7 @@ Context: server, stream
 ## js_path
 
 ```
-Syntax:  путь
+Syntax:  js_path путь;
 Default: 
 Context: server, stream
 ```
@@ -461,7 +461,7 @@ Context: server, stream
 ## js_periodic
 
 ```
-Syntax:  функция | модуль.функция [interval=время] [jitter=число] [worker_affinity=маска]
+Syntax:  js_periodic функция | модуль.функция [interval=время] [jitter=число] [worker_affinity=маска];
 Default: 
 Context: server
 ```
@@ -508,7 +508,7 @@ async function handler(s) {
 ## js_set
 
 ```
-Syntax:  $переменная функция | модуль.функция [nocache]
+Syntax:  js_set $переменная функция | модуль.функция [nocache];
 Default: 
 Context: server, stream
 ```
@@ -530,7 +530,7 @@ Context: server, stream
 ## js_shared_dict_zone
 
 ```
-Syntax:  zone=имя:размер [timeout=время] [type=строка|число] [evict]
+Syntax:  js_shared_dict_zone zone=имя:размер [timeout=время] [type=строка|число] [evict];
 Default: 
 Context: stream
 ```
@@ -581,7 +581,7 @@ example.js:
 ## js_var
 
 ```
-Syntax:  $переменная [значение]
+Syntax:  js_var $переменная [значение];
 Default: 
 Context: server, stream
 ```

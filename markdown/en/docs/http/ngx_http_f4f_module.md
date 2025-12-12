@@ -25,7 +25,7 @@ location /video/ {
 ## f4f
 
 ```
-Syntax:  
+Syntax:  f4f;
 Default: 
 Context: location
 ```
@@ -35,7 +35,7 @@ Turns on module processing in the surrounding location.
 ## f4f_buffer_size
 
 ```
-Syntax:  size
+Syntax:  f4f_buffer_size size;
 Default: 512k
 Context: location, http, server
 ```

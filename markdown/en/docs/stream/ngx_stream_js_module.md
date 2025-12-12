@@ -106,7 +106,7 @@ export default {bar, preread, req_line, header_inject, access};
 ## js_access
 
 ```
-Syntax:  module.function
+Syntax:  js_access module.function;
 Default: 
 Context: server, stream
 ```
@@ -123,7 +123,7 @@ At this phase, it is possible to perform initialization or register a callback w
 ## js_context_reuse
 
 ```
-Syntax:  number
+Syntax:  js_context_reuse number;
 Default: 128
 Context: server, stream
 ```
@@ -135,7 +135,7 @@ Sets a maximum number of JS context to be reused for [QuickJS engine](../njs/eng
 ## js_engine
 
 ```
-Syntax:  njs | qjs
+Syntax:  js_engine njs | qjs;
 Default: njs
 Context: server, stream
 ```
@@ -147,7 +147,7 @@ Sets a [JavaScript engine](../njs/engine.xml) to be used for njs scripts. The `n
 ## js_fetch_buffer_size
 
 ```
-Syntax:  size
+Syntax:  js_fetch_buffer_size size;
 Default: 16k
 Context: server, stream
 ```
@@ -159,7 +159,7 @@ Sets the `size` of the buffer used for reading and writing with [Fetch API](../n
 ## js_fetch_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  js_fetch_ciphers ciphers;
 Default: HIGH:!aNULL:!MD5
 Context: server, stream
 ```
@@ -173,7 +173,7 @@ The full list can be viewed using the “ `openssl ciphers` ” command.
 ## js_fetch_max_response_buffer_size
 
 ```
-Syntax:  size
+Syntax:  js_fetch_max_response_buffer_size size;
 Default: 1m
 Context: server, stream
 ```
@@ -185,7 +185,7 @@ Sets the maximum `size` of the response received with [Fetch API](../njs/referen
 ## js_fetch_protocols
 
 ```
-Syntax:  [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  js_fetch_protocols [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1 TLSv1.1 TLSv1.2
 Context: server, stream
 ```
@@ -197,7 +197,7 @@ Enables the specified protocols for HTTPS connections with [Fetch API](../njs/re
 ## js_fetch_timeout
 
 ```
-Syntax:  time
+Syntax:  js_fetch_timeout time;
 Default: 60s
 Context: server, stream
 ```
@@ -209,7 +209,7 @@ Defines a timeout for reading and writing for [Fetch API](../njs/reference.xml#n
 ## js_fetch_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  js_fetch_trusted_certificate file;
 Default: 
 Context: server, stream
 ```
@@ -221,7 +221,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## js_fetch_verify
 
 ```
-Syntax:  on | off
+Syntax:  js_fetch_verify on | off;
 Default: on
 Context: server, stream
 ```
@@ -233,7 +233,7 @@ Enables or disables verification of the HTTPS server certificate with [Fetch API
 ## js_fetch_verify_depth
 
 ```
-Syntax:  number
+Syntax:  js_fetch_verify_depth number;
 Default: 100
 Context: server, stream
 ```
@@ -245,7 +245,7 @@ Sets the verification depth in the HTTPS server certificates chain with [Fetch A
 ## js_fetch_proxy
 
 ```
-Syntax:  url
+Syntax:  js_fetch_proxy url;
 Default: 
 Context: server, stream
 ```
@@ -267,7 +267,7 @@ server {
 ## js_fetch_keepalive
 
 ```
-Syntax:  connections
+Syntax:  js_fetch_keepalive connections;
 Default: 0
 Context: server, stream
 ```
@@ -292,7 +292,7 @@ server {
 ## js_fetch_keepalive_requests
 
 ```
-Syntax:  number
+Syntax:  js_fetch_keepalive_requests number;
 Default: 1000
 Context: server, stream
 ```
@@ -306,7 +306,7 @@ Closing connections periodically is necessary to free per-connection memory allo
 ## js_fetch_keepalive_time
 
 ```
-Syntax:  time
+Syntax:  js_fetch_keepalive_time time;
 Default: 1h
 Context: server, stream
 ```
@@ -318,7 +318,7 @@ Limits the maximum time during which requests can be processed through one keepa
 ## js_fetch_keepalive_timeout
 
 ```
-Syntax:  time
+Syntax:  js_fetch_keepalive_timeout time;
 Default: 60s
 Context: server, stream
 ```
@@ -330,7 +330,7 @@ Sets a timeout during which an idle keepalive connection to a destination server
 ## js_filter
 
 ```
-Syntax:  module.function
+Syntax:  js_filter module.function;
 Default: 
 Context: server, stream
 ```
@@ -352,7 +352,7 @@ Thus, asynchronous operations such as [`ngx.fetch()`](../njs/reference.xml#ngx_f
 ## js_import
 
 ```
-Syntax:  module.js | export_name from module.js
+Syntax:  js_import module.js | export_name from module.js;
 Default: 
 Context: server, stream
 ```
@@ -375,7 +375,7 @@ since [0.7.7](../njs/changes.xml#njs0.7.7) .
 ## js_include
 
 ```
-Syntax:  file
+Syntax:  js_include file;
 Default: 
 Context: stream
 ```
@@ -402,7 +402,7 @@ The directive was made obsolete in version [0.4.0](../njs/changes.xml#njs0.4.0) 
 ## js_path
 
 ```
-Syntax:  path
+Syntax:  js_path path;
 Default: 
 Context: server, stream
 ```
@@ -417,7 +417,7 @@ since [0.7.7](../njs/changes.xml#njs0.7.7) .
 ## js_periodic
 
 ```
-Syntax:  module.function [interval=time] [jitter=number] [worker_affinity=mask]
+Syntax:  js_periodic module.function [interval=time] [jitter=number] [worker_affinity=mask];
 Default: 
 Context: server
 ```
@@ -464,7 +464,7 @@ async function handler(s) {
 ## js_preload_object
 
 ```
-Syntax:  name.json | name from file.json
+Syntax:  js_preload_object name.json | name from file.json;
 Default: 
 Context: server, stream
 ```
@@ -484,7 +484,7 @@ Several `js_preload_object` directives can be specified.
 ## js_preread
 
 ```
-Syntax:  module.function
+Syntax:  js_preread module.function;
 Default: 
 Context: server, stream
 ```
@@ -508,7 +508,7 @@ See [this example](https://github.com/nginx/njs-examples#authorizing-connections
 ## js_set
 
 ```
-Syntax:  $variable module.function [nocache]
+Syntax:  js_set $variable module.function [nocache];
 Default: 
 Context: server, stream
 ```
@@ -530,7 +530,7 @@ since [0.7.7](../njs/changes.xml#njs0.7.7) .
 ## js_shared_dict_zone
 
 ```
-Syntax:  zone=name:size [timeout=time] [type=string|number] [evict] [state=file]
+Syntax:  js_shared_dict_zone zone=name:size [timeout=time] [type=string|number] [evict] [state=file];
 Default: 
 Context: stream
 ```
@@ -586,7 +586,7 @@ example.js:
 ## js_var
 
 ```
-Syntax:  $variable [value]
+Syntax:  js_var $variable [value];
 Default: 
 Context: server, stream
 ```

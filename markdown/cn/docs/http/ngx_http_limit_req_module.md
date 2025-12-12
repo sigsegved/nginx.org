@@ -28,7 +28,7 @@ http {
 ## limit_req
 
 ```
-Syntax:  zone=name [burst=number] [nodelay]
+Syntax:  limit_req zone=name [burst=number] [nodelay];
 Default: 
 Context: location, http, server
 ```
@@ -55,7 +55,7 @@ limit_req zone=one burst=5 nodelay;
 ## limit_req_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_req_log_level info | notice | warn | error;
 Default: error
 Context: location, http, server
 ```
@@ -67,7 +67,7 @@ Context: location, http, server
 ## limit_req_zone
 
 ```
-Syntax:  $variable zone=name:size rate=rate
+Syntax:  limit_req_zone $variable zone=name:size rate=rate;
 Default: 
 Context: http
 ```

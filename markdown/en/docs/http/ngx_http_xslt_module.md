@@ -24,7 +24,7 @@ location / {
 ## xml_entities
 
 ```
-Syntax:  path
+Syntax:  xml_entities path;
 Default: 
 Context: location, http, server
 ```
@@ -38,7 +38,7 @@ Specifies the DTD file that declares character entities. This file is compiled a
 ## xslt_last_modified
 
 ```
-Syntax:  on | off
+Syntax:  xslt_last_modified on | off;
 Default: off
 Context: location, http, server
 ```
@@ -52,7 +52,7 @@ By default, the header field is removed as contents of the response are modified
 ## xslt_param
 
 ```
-Syntax:  parameter value
+Syntax:  xslt_param parameter value;
 Default: 
 Context: location, http, server
 ```
@@ -66,7 +66,7 @@ There could be several `xslt_param` directives. These directives are inherited f
 ## xslt_string_param
 
 ```
-Syntax:  parameter value
+Syntax:  xslt_string_param parameter value;
 Default: 
 Context: location, http, server
 ```
@@ -80,7 +80,7 @@ There could be several `xslt_string_param` directives. These directives are inhe
 ## xslt_stylesheet
 
 ```
-Syntax:  stylesheet [parameter=value ...]
+Syntax:  xslt_stylesheet stylesheet [parameter=value ...];
 Default: 
 Context: location
 ```
@@ -109,7 +109,7 @@ It is possible to specify several stylesheets. They will be applied sequentially
 ## xslt_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  xslt_types mime-type ...;
 Default: text/xml
 Context: location, http, server
 ```

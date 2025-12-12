@@ -24,7 +24,7 @@ mqtt_set_connect username "$name";
 ## mqtt
 
 ```
-Syntax:  on | off
+Syntax:  mqtt on | off;
 Default: off
 Context: server, stream
 ```
@@ -34,7 +34,7 @@ Enables the MQTT protocol for the given virtual server.
 ## mqtt_buffers
 
 ```
-Syntax:  number size
+Syntax:  mqtt_buffers number size;
 Default: 100 1k
 Context: server, stream
 ```
@@ -46,7 +46,7 @@ Sets the `number` and `size` of the buffers used for handling MQTT messages, for
 ## mqtt_rewrite_buffer_size
 
 ```
-Syntax:  size
+Syntax:  mqtt_rewrite_buffer_size size;
 Default: 4k|8k
 Context: server
 ```
@@ -59,7 +59,7 @@ Sets the `size` of the buffer used for writing a modified message. By default, t
 ## mqtt_set_connect
 
 ```
-Syntax:  field value
+Syntax:  mqtt_set_connect field value;
 Default: 
 Context: server
 ```

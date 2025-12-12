@@ -41,7 +41,7 @@ http {
 ## otel_exporter
 
 ```
-Syntax:  
+Syntax:  otel_exporter { ... }
 Default: 
 Context: http
 ```
@@ -86,7 +86,7 @@ otel_exporter {
 ## otel_service_name
 
 ```
-Syntax:  name
+Syntax:  otel_service_name name;
 Default: unknown_service:nginx
 Context: http
 ```
@@ -96,7 +96,7 @@ Sets the “ [`service.name`](https://opentelemetry.io/docs/reference/specificat
 ## otel_resource_attr
 
 ```
-Syntax:  name value
+Syntax:  otel_resource_attr name value;
 Default: 
 Context: http
 ```
@@ -108,7 +108,7 @@ Sets a custom OTel resource attribute.
 ## otel_trace
 
 ```
-Syntax:  on | off | $variable
+Syntax:  otel_trace on | off | $variable;
 Default: off
 Context: location, http, server
 ```
@@ -133,7 +133,7 @@ server {
 ## otel_trace_context
 
 ```
-Syntax:  extract | inject | propagate | ignore
+Syntax:  otel_trace_context extract | inject | propagate | ignore;
 Default: ignore
 Context: location, http, server
 ```
@@ -159,7 +159,7 @@ the [parent span](#var_otel_parent_id) are inherited from the incoming request.
 ## otel_span_name
 
 ```
-Syntax:  name
+Syntax:  otel_span_name name;
 Default: 
 Context: location, http, server
 ```
@@ -169,7 +169,7 @@ Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/obser
 ## otel_span_attr
 
 ```
-Syntax:  name value
+Syntax:  otel_span_attr name value;
 Default: 
 Context: location, http, server
 ```

@@ -25,7 +25,7 @@ geo $geo {
 ## geo
 
 ```
-Syntax:  [$адрес] $переменная
+Syntax:  geo [$адрес] $переменная { ... }
 Default: 
 Context: stream
 ```

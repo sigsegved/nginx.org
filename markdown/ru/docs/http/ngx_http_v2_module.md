@@ -35,7 +35,7 @@ server {
 ## http2
 
 ```
-Syntax:  on | off
+Syntax:  http2 on | off;
 Default: off
 Context: server, http
 ```
@@ -47,7 +47,7 @@ Context: server, http
 ## http2_body_preread_size
 
 ```
-Syntax:  размер
+Syntax:  http2_body_preread_size размер;
 Default: 64k
 Context: server, http
 ```
@@ -59,7 +59,7 @@ Context: server, http
 ## http2_chunk_size
 
 ```
-Syntax:  размер
+Syntax:  http2_chunk_size размер;
 Default: 8k
 Context: location, http, server
 ```
@@ -69,7 +69,7 @@ Context: location, http, server
 ## http2_idle_timeout
 
 ```
-Syntax:  время
+Syntax:  http2_idle_timeout время;
 Default: 3m
 Context: server, http
 ```
@@ -82,7 +82,7 @@ Context: server, http
 ## http2_max_concurrent_pushes
 
 ```
-Syntax:  число
+Syntax:  http2_max_concurrent_pushes число;
 Default: 10
 Context: server, http
 ```
@@ -96,7 +96,7 @@ Context: server, http
 ## http2_max_concurrent_streams
 
 ```
-Syntax:  число
+Syntax:  http2_max_concurrent_streams число;
 Default: 128
 Context: server, http
 ```
@@ -106,7 +106,7 @@ Context: server, http
 ## http2_max_field_size
 
 ```
-Syntax:  размер
+Syntax:  http2_max_field_size размер;
 Default: 4k
 Context: server, http
 ```
@@ -119,7 +119,7 @@ Context: server, http
 ## http2_max_header_size
 
 ```
-Syntax:  размер
+Syntax:  http2_max_header_size размер;
 Default: 16k
 Context: server, http
 ```
@@ -132,7 +132,7 @@ Context: server, http
 ## http2_max_requests
 
 ```
-Syntax:  число
+Syntax:  http2_max_requests число;
 Default: 1000
 Context: server, http
 ```
@@ -149,7 +149,7 @@ Context: server, http
 ## http2_push
 
 ```
-Syntax:  uri | off
+Syntax:  http2_push uri | off;
 Default: off
 Context: location, http, server
 ```
@@ -172,7 +172,7 @@ http2_push /static/css/main.css;
 ## http2_push_preload
 
 ```
-Syntax:  on | off
+Syntax:  http2_push_preload on | off;
 Default: off
 Context: location, http, server
 ```
@@ -186,7 +186,7 @@ Context: location, http, server
 ## http2_recv_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  http2_recv_buffer_size размер;
 Default: 256k
 Context: http
 ```
@@ -196,7 +196,7 @@ Context: http
 ## http2_recv_timeout
 
 ```
-Syntax:  время
+Syntax:  http2_recv_timeout время;
 Default: 30s
 Context: server, http
 ```

@@ -92,7 +92,7 @@ The simple monitoring page is shipped with this distribution, accessible as “ 
 ## status
 
 ```
-Syntax:  
+Syntax:  status;
 Default: 
 Context: location
 ```
@@ -102,7 +102,7 @@ The status information will be accessible from the surrounding location. Access 
 ## status_format
 
 ```
-Syntax:  jsonp [callback]
+Syntax:  status_format jsonp [callback];
 Default: json
 Context: location, http, server
 ```
@@ -114,7 +114,7 @@ Alternatively, data may be output as JSONP. The `callback` parameter specifies t
 ## status_zone
 
 ```
-Syntax:  zone
+Syntax:  status_zone zone;
 Default: 
 Context: server
 ```

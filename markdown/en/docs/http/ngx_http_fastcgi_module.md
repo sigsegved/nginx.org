@@ -25,7 +25,7 @@ location / {
 ## fastcgi_allow_upstream
 
 ```
-Syntax:  string ...
+Syntax:  fastcgi_allow_upstream string ...;
 Default: 
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ server {
 ## fastcgi_bind
 
 ```
-Syntax:  address [transparent] | off
+Syntax:  fastcgi_bind address [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -76,7 +76,7 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 ## fastcgi_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -90,7 +90,7 @@ When enabled, makes the [bind](#fastcgi_bind) operation at each connection attem
 ## fastcgi_buffer_size
 
 ```
-Syntax:  size
+Syntax:  fastcgi_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -100,7 +100,7 @@ Sets the `size` of the buffer used for reading the first part of the response re
 ## fastcgi_buffering
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Buffering can also be enabled or disabled by passing “ `yes` ” or “ `no` �
 ## fastcgi_buffers
 
 ```
-Syntax:  number size
+Syntax:  fastcgi_buffers number size;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -128,7 +128,7 @@ Sets the `number` and `size` of the buffers used for reading a response from the
 ## fastcgi_busy_buffers_size
 
 ```
-Syntax:  size
+Syntax:  fastcgi_busy_buffers_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ When [buffering](#fastcgi_buffering) of responses from the FastCGI server is ena
 ## fastcgi_cache
 
 ```
-Syntax:  zone | off
+Syntax:  fastcgi_cache zone | off;
 Default: off
 Context: location, http, server
 ```
@@ -148,7 +148,7 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 ## fastcgi_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -160,7 +160,7 @@ Allows starting a background subrequest to update an expired cache item, while a
 ## fastcgi_cache_bypass
 
 ```
-Syntax:  string ...
+Syntax:  fastcgi_cache_bypass string ...;
 Default: 
 Context: location, http, server
 ```
@@ -177,7 +177,7 @@ Can be used along with the [fastcgi_no_cache](#fastcgi_no_cache) directive.
 ## fastcgi_cache_key
 
 ```
-Syntax:  string
+Syntax:  fastcgi_cache_key string;
 Default: 
 Context: location, http, server
 ```
@@ -191,7 +191,7 @@ fastcgi_cache_key localhost:9000$request_uri;
 ## fastcgi_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -203,7 +203,7 @@ When enabled, only one request at a time will be allowed to populate a new cache
 ## fastcgi_cache_lock_age
 
 ```
-Syntax:  time
+Syntax:  fastcgi_cache_lock_age time;
 Default: 5s
 Context: location, http, server
 ```
@@ -215,7 +215,7 @@ If the last request passed to the FastCGI server for populating a new cache elem
 ## fastcgi_cache_lock_timeout
 
 ```
-Syntax:  time
+Syntax:  fastcgi_cache_lock_timeout time;
 Default: 5s
 Context: location, http, server
 ```
@@ -229,7 +229,7 @@ Sets a timeout for [fastcgi_cache_lock](#fastcgi_cache_lock) . When the `time` e
 ## fastcgi_cache_max_range_offset
 
 ```
-Syntax:  number
+Syntax:  fastcgi_cache_max_range_offset number;
 Default: 
 Context: location, http, server
 ```
@@ -241,7 +241,7 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 ## fastcgi_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  fastcgi_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -253,7 +253,7 @@ If the client request method is listed in this directive then the response will 
 ## fastcgi_cache_min_uses
 
 ```
-Syntax:  number
+Syntax:  fastcgi_cache_min_uses number;
 Default: 1
 Context: location, http, server
 ```
@@ -263,7 +263,7 @@ Sets the `number` of requests after which the response will be cached.
 ## fastcgi_cache_path
 
 ```
-Syntax:  path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time]
+Syntax:  fastcgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];
 Default: 
 Context: http
 ```
@@ -325,7 +325,7 @@ after upgrading to a newer nginx version.
 ## fastcgi_cache_purge
 
 ```
-Syntax:  string ...
+Syntax:  fastcgi_cache_purge string ...;
 Default: 
 Context: location, http, server
 ```
@@ -362,7 +362,7 @@ server {
 ## fastcgi_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -374,7 +374,7 @@ Enables revalidation of expired cache items using conditional requests with the 
 ## fastcgi_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...
+Syntax:  fastcgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -401,7 +401,7 @@ To minimize the number of accesses to FastCGI servers when populating a new cach
 ## fastcgi_cache_valid
 
 ```
-Syntax:  [code ...] time
+Syntax:  fastcgi_cache_valid [code ...] time;
 Default: 
 Context: location, http, server
 ```
@@ -454,7 +454,7 @@ Processing of one or more of these response header fields can be disabled using 
 ## fastcgi_catch_stderr
 
 ```
-Syntax:  string
+Syntax:  fastcgi_catch_stderr string;
 Default: 
 Context: location, http, server
 ```
@@ -473,7 +473,7 @@ location /php/ {
 ## fastcgi_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  fastcgi_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -483,7 +483,7 @@ Defines a timeout for establishing a connection with a FastCGI server. It should
 ## fastcgi_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -495,7 +495,7 @@ Enables byte-range support for both cached and uncached responses from the FastC
 ## fastcgi_hide_header
 
 ```
-Syntax:  field
+Syntax:  fastcgi_hide_header field;
 Default: 
 Context: location, http, server
 ```
@@ -505,7 +505,7 @@ By default, nginx does not pass the header fields `Status` and `X-Accel-...` fro
 ## fastcgi_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -515,7 +515,7 @@ Determines whether the connection with a FastCGI server should be closed when a 
 ## fastcgi_ignore_headers
 
 ```
-Syntax:  field ...
+Syntax:  fastcgi_ignore_headers field ...;
 Default: 
 Context: location, http, server
 ```
@@ -536,7 +536,7 @@ limit](ngx_http_core_module.xml#limit_rate) for transmission of a response to a 
 ## fastcgi_index
 
 ```
-Syntax:  name
+Syntax:  fastcgi_index name;
 Default: 
 Context: location, http, server
 ```
@@ -553,7 +553,7 @@ and the “ `/page.php` ” request, the `SCRIPT_FILENAME` parameter will be equ
 ## fastcgi_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -563,7 +563,7 @@ Determines whether FastCGI server responses with codes greater than or equal to 
 ## fastcgi_keep_conn
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_keep_conn on | off;
 Default: off
 Context: location, http, server
 ```
@@ -575,7 +575,7 @@ By default, a FastCGI server will close a connection right after sending the res
 ## fastcgi_limit_rate
 
 ```
-Syntax:  rate
+Syntax:  fastcgi_limit_rate rate;
 Default: 0
 Context: location, http, server
 ```
@@ -587,7 +587,7 @@ Limits the speed of reading the response from the FastCGI server. The `rate` is 
 ## fastcgi_max_temp_file_size
 
 ```
-Syntax:  size
+Syntax:  fastcgi_max_temp_file_size size;
 Default: 1024m
 Context: location, http, server
 ```
@@ -602,7 +602,7 @@ that will be [cached](#fastcgi_cache) or [stored](#fastcgi_store) on disk.
 ## fastcgi_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  fastcgi_next_upstream error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -659,7 +659,7 @@ Passing a request to the next server can be limited by [the number of tries](#fa
 ## fastcgi_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  fastcgi_next_upstream_timeout time;
 Default: 0
 Context: location, http, server
 ```
@@ -671,7 +671,7 @@ Limits the time during which a request can be passed to the [next server](#fastc
 ## fastcgi_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  fastcgi_next_upstream_tries number;
 Default: 0
 Context: location, http, server
 ```
@@ -683,7 +683,7 @@ Limits the number of possible tries for passing a request to the [next server](#
 ## fastcgi_no_cache
 
 ```
-Syntax:  string ...
+Syntax:  fastcgi_no_cache string ...;
 Default: 
 Context: location, http, server
 ```
@@ -700,7 +700,7 @@ Can be used along with the [fastcgi_cache_bypass](#fastcgi_cache_bypass) directi
 ## fastcgi_param
 
 ```
-Syntax:  parameter value [if_not_empty]
+Syntax:  fastcgi_param parameter value [if_not_empty];
 Default: 
 Context: location, http, server
 ```
@@ -739,7 +739,7 @@ fastcgi_param HTTPS           $https if_not_empty;
 ## fastcgi_pass
 
 ```
-Syntax:  address
+Syntax:  fastcgi_pass address;
 Default: 
 Context: if in location, location
 ```
@@ -763,7 +763,7 @@ Parameter value can contain variables. In this case, if an address is specified 
 ## fastcgi_pass_header
 
 ```
-Syntax:  field
+Syntax:  fastcgi_pass_header field;
 Default: 
 Context: location, http, server
 ```
@@ -773,7 +773,7 @@ Permits passing [otherwise disabled](#fastcgi_hide_header) header fields from a 
 ## fastcgi_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -783,7 +783,7 @@ Indicates whether the original request body is passed to the FastCGI server. See
 ## fastcgi_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -793,7 +793,7 @@ Indicates whether the header fields of the original request are passed to the Fa
 ## fastcgi_read_timeout
 
 ```
-Syntax:  time
+Syntax:  fastcgi_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -803,7 +803,7 @@ Defines a timeout for reading a response from the FastCGI server. The timeout is
 ## fastcgi_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -819,7 +819,7 @@ When buffering is disabled, the request body is sent to the FastCGI server immed
 ## fastcgi_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -833,7 +833,7 @@ Enables or disables creation of a separate request instance for each FastCGI ser
 ## fastcgi_send_lowat
 
 ```
-Syntax:  size
+Syntax:  fastcgi_send_lowat size;
 Default: 0
 Context: location, http, server
 ```
@@ -845,7 +845,7 @@ This directive is ignored on Linux, Solaris, and Windows.
 ## fastcgi_send_timeout
 
 ```
-Syntax:  time
+Syntax:  fastcgi_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -855,7 +855,7 @@ Sets a timeout for transmitting a request to the FastCGI server. The timeout is 
 ## fastcgi_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  fastcgi_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -867,7 +867,7 @@ Configures the “TCP keepalive” behavior for outgoing connections to a FastCG
 ## fastcgi_split_path_info
 
 ```
-Syntax:  regex
+Syntax:  fastcgi_split_path_info regex;
 Default: 
 Context: location
 ```
@@ -886,7 +886,7 @@ and the “ `/show.php/article/0001` ” request, the `SCRIPT_FILENAME` paramete
 ## fastcgi_store
 
 ```
-Syntax:  on | off | string
+Syntax:  fastcgi_store on | off | string;
 Default: off
 Context: location, http, server
 ```
@@ -924,7 +924,7 @@ location /fetch/ {
 ## fastcgi_store_access
 
 ```
-Syntax:  users:permissions ...
+Syntax:  fastcgi_store_access users:permissions ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -944,7 +944,7 @@ fastcgi_store_access group:rw all:r;
 ## fastcgi_temp_file_write_size
 
 ```
-Syntax:  size
+Syntax:  fastcgi_temp_file_write_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -954,7 +954,7 @@ Limits the `size` of data written to a temporary file at a time, when buffering 
 ## fastcgi_temp_path
 
 ```
-Syntax:  path [level1 [level2 [level3]]]
+Syntax:  fastcgi_temp_path path [level1 [level2 [level3]]];
 Default: fastcgi_temp
 Context: location, http, server
 ```

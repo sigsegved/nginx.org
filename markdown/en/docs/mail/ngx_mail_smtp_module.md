@@ -8,7 +8,7 @@
 ## smtp_auth
 
 ```
-Syntax:  method ...
+Syntax:  smtp_auth method ...;
 Default: plain login
 Context: server, mail
 ```
@@ -36,7 +36,7 @@ Plain text authentication methods ( `AUTH PLAIN` and `AUTH LOGIN` ) are always e
 ## smtp_capabilities
 
 ```
-Syntax:  extension ...
+Syntax:  smtp_capabilities extension ...;
 Default: 
 Context: server, mail
 ```
@@ -50,7 +50,7 @@ The current list of standardized extensions is published at [www.iana.org](http:
 ## smtp_client_buffer
 
 ```
-Syntax:  size
+Syntax:  smtp_client_buffer size;
 Default: 4k|8k
 Context: server, mail
 ```
@@ -60,7 +60,7 @@ Sets the `size` of the buffer used for reading SMTP commands. By default, the bu
 ## smtp_greeting_delay
 
 ```
-Syntax:  time
+Syntax:  smtp_greeting_delay time;
 Default: 0
 Context: server, mail
 ```

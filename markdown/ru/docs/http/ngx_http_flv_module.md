@@ -22,7 +22,7 @@ location ~ \.flv$ {
 ## flv
 
 ```
-Syntax:  
+Syntax:  flv;
 Default: 
 Context: location
 ```

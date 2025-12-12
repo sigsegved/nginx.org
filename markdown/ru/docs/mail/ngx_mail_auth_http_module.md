@@ -8,7 +8,7 @@
 ## auth_http
 
 ```
-Syntax:  URL
+Syntax:  auth_http URL;
 Default: 
 Context: server, mail
 ```
@@ -18,7 +18,7 @@ Context: server, mail
 ## auth_http_header
 
 ```
-Syntax:  заголовок значение
+Syntax:  auth_http_header заголовок значение;
 Default: 
 Context: server, mail
 ```
@@ -32,7 +32,7 @@ auth_http_header X-Auth-Key "secret_string";
 ## auth_http_pass_client_cert
 
 ```
-Syntax:  on | off
+Syntax:  auth_http_pass_client_cert on | off;
 Default: off
 Context: server, mail
 ```
@@ -44,7 +44,7 @@ Context: server, mail
 ## auth_http_timeout
 
 ```
-Syntax:  время
+Syntax:  auth_http_timeout время;
 Default: 60s
 Context: server, mail
 ```

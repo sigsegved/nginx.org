@@ -55,7 +55,7 @@ if ($ancient_browser) {
 ## ancient_browser
 
 ```
-Syntax:  строка ...
+Syntax:  ancient_browser строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -65,7 +65,7 @@ Context: location, http, server
 ## ancient_browser_value
 
 ```
-Syntax:  строка
+Syntax:  ancient_browser_value строка;
 Default: 1
 Context: location, http, server
 ```
@@ -75,7 +75,7 @@ Context: location, http, server
 ## modern_browser
 
 ```
-Syntax:  unlisted
+Syntax:  modern_browser unlisted;
 Default: 
 Context: location, http, server
 ```
@@ -89,7 +89,7 @@ Context: location, http, server
 ## modern_browser_value
 
 ```
-Syntax:  строка
+Syntax:  modern_browser_value строка;
 Default: 1
 Context: location, http, server
 ```

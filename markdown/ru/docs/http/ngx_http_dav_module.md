@@ -35,7 +35,7 @@ location / {
 ## create_full_put_path
 
 ```
-Syntax:  on | off
+Syntax:  create_full_put_path on | off;
 Default: off
 Context: location, http, server
 ```
@@ -45,7 +45,7 @@ Context: location, http, server
 ## dav_access
 
 ```
-Syntax:  пользователи:права ...
+Syntax:  dav_access пользователи:права ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -65,7 +65,7 @@ dav_access group:rw all:r;
 ## dav_methods
 
 ```
-Syntax:  off | метод ...
+Syntax:  dav_methods off | метод ...;
 Default: off
 Context: location, http, server
 ```
@@ -79,7 +79,7 @@ Context: location, http, server
 ## min_delete_depth
 
 ```
-Syntax:  число
+Syntax:  min_delete_depth число;
 Default: 0
 Context: location, http, server
 ```

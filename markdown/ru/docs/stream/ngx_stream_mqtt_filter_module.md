@@ -24,7 +24,7 @@ mqtt_set_connect username "$name";
 ## mqtt
 
 ```
-Syntax:  on | off
+Syntax:  mqtt on | off;
 Default: off
 Context: server, stream
 ```
@@ -34,7 +34,7 @@ Context: server, stream
 ## mqtt_buffers
 
 ```
-Syntax:  число размер
+Syntax:  mqtt_buffers число размер;
 Default: 100 1k
 Context: server, stream
 ```
@@ -46,7 +46,7 @@ Context: server, stream
 ## mqtt_rewrite_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  mqtt_rewrite_buffer_size размер;
 Default: 4k|8k
 Context: server
 ```
@@ -59,7 +59,7 @@ Context: server
 ## mqtt_set_connect
 
 ```
-Syntax:  поле значение
+Syntax:  mqtt_set_connect поле значение;
 Default: 
 Context: server
 ```

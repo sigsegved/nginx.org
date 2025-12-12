@@ -22,7 +22,7 @@ real_ip_recursive on;
 ## set_real_ip_from
 
 ```
-Syntax:  address | CIDR | unix:
+Syntax:  set_real_ip_from address | CIDR | unix:;
 Default: 
 Context: location, http, server
 ```
@@ -34,7 +34,7 @@ Defines trusted addresses that are known to send correct replacement addresses. 
 ## real_ip_header
 
 ```
-Syntax:  field | X-Real-IP | X-Forwarded-For | proxy_protocol
+Syntax:  real_ip_header field | X-Real-IP | X-Forwarded-For | proxy_protocol;
 Default: X-Real-IP
 Context: location, http, server
 ```
@@ -48,7 +48,7 @@ The `proxy_protocol` parameter (1.5.12) changes the client address to the one fr
 ## real_ip_recursive
 
 ```
-Syntax:  on | off
+Syntax:  real_ip_recursive on | off;
 Default: off
 Context: location, http, server
 ```

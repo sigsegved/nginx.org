@@ -27,7 +27,7 @@ http {
 ## limit_req
 
 ```
-Syntax:  zone=название [burst=число] [nodelay | delay=число]
+Syntax:  limit_req zone=название [burst=число] [nodelay | delay=число];
 Default: 
 Context: location, http, server
 ```
@@ -71,7 +71,7 @@ server {
 ## limit_req_dry_run
 
 ```
-Syntax:  on | off
+Syntax:  limit_req_dry_run on | off;
 Default: off
 Context: location, http, server
 ```
@@ -83,7 +83,7 @@ Context: location, http, server
 ## limit_req_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_req_log_level info | notice | warn | error;
 Default: error
 Context: location, http, server
 ```
@@ -95,7 +95,7 @@ Context: location, http, server
 ## limit_req_status
 
 ```
-Syntax:  код
+Syntax:  limit_req_status код;
 Default: 503
 Context: location, http, server
 ```
@@ -107,7 +107,7 @@ Context: location, http, server
 ## limit_req_zone
 
 ```
-Syntax:  ключ zone=название:размер rate=скорость [sync]
+Syntax:  limit_req_zone ключ zone=название:размер rate=скорость [sync];
 Default: 
 Context: http
 ```

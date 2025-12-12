@@ -30,7 +30,7 @@ http {
 ## limit_conn
 
 ```
-Syntax:  zone number
+Syntax:  limit_conn zone number;
 Default: 
 Context: location, http, server
 ```
@@ -66,7 +66,7 @@ server {
 ## limit_conn_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_conn_log_level info | notice | warn | error;
 Default: error
 Context: location, http, server
 ```
@@ -78,7 +78,7 @@ Context: location, http, server
 ## limit_conn_zone
 
 ```
-Syntax:  $variable zone=name:size
+Syntax:  limit_conn_zone $variable zone=name:size;
 Default: 
 Context: http
 ```
@@ -94,7 +94,7 @@ limit_conn_zone $binary_remote_addr zone=addr:10m;
 ## limit_zone
 
 ```
-Syntax:  name $variable size
+Syntax:  limit_zone name $variable size;
 Default: 
 Context: http
 ```

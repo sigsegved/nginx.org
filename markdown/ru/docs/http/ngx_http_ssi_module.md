@@ -19,7 +19,7 @@ location / {
 ## ssi
 
 ```
-Syntax:  on | off
+Syntax:  ssi on | off;
 Default: off
 Context: if в location, http, server, location
 ```
@@ -29,7 +29,7 @@ Context: if в location, http, server, location
 ## ssi_last_modified
 
 ```
-Syntax:  on | off
+Syntax:  ssi_last_modified on | off;
 Default: off
 Context: location, http, server
 ```
@@ -43,7 +43,7 @@ Context: location, http, server
 ## ssi_min_file_chunk
 
 ```
-Syntax:  размер
+Syntax:  ssi_min_file_chunk размер;
 Default: 1k
 Context: location, http, server
 ```
@@ -53,7 +53,7 @@ Context: location, http, server
 ## ssi_silent_errors
 
 ```
-Syntax:  on | off
+Syntax:  ssi_silent_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -63,7 +63,7 @@ Context: location, http, server
 ## ssi_types
 
 ```
-Syntax:  mime-тип ...
+Syntax:  ssi_types mime-тип ...;
 Default: text/html
 Context: location, http, server
 ```
@@ -73,7 +73,7 @@ Context: location, http, server
 ## ssi_value_length
 
 ```
-Syntax:  длина
+Syntax:  ssi_value_length длина;
 Default: 256
 Context: location, http, server
 ```

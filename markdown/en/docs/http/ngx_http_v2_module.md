@@ -35,7 +35,7 @@ Also note that if the [ssl_prefer_server_ciphers](ngx_http_ssl_module.xml#ssl_pr
 ## http2
 
 ```
-Syntax:  on | off
+Syntax:  http2 on | off;
 Default: off
 Context: server, http
 ```
@@ -47,7 +47,7 @@ Enables the [HTTP/2](https://datatracker.ietf.org/doc/html/rfc9113) protocol.
 ## http2_body_preread_size
 
 ```
-Syntax:  size
+Syntax:  http2_body_preread_size size;
 Default: 64k
 Context: server, http
 ```
@@ -59,7 +59,7 @@ Sets the `size` of the buffer per each request in which the request body may be 
 ## http2_chunk_size
 
 ```
-Syntax:  size
+Syntax:  http2_chunk_size size;
 Default: 8k
 Context: location, http, server
 ```
@@ -69,7 +69,7 @@ Sets the maximum size of chunks into which the response body is sliced. A too lo
 ## http2_idle_timeout
 
 ```
-Syntax:  time
+Syntax:  http2_idle_timeout time;
 Default: 3m
 Context: server, http
 ```
@@ -82,7 +82,7 @@ Sets the timeout of inactivity after which the connection is closed.
 ## http2_max_concurrent_pushes
 
 ```
-Syntax:  number
+Syntax:  http2_max_concurrent_pushes number;
 Default: 10
 Context: server, http
 ```
@@ -96,7 +96,7 @@ Limits the maximum number of concurrent [push](#http2_push) requests in a connec
 ## http2_max_concurrent_streams
 
 ```
-Syntax:  number
+Syntax:  http2_max_concurrent_streams number;
 Default: 128
 Context: server, http
 ```
@@ -106,7 +106,7 @@ Sets the maximum number of concurrent HTTP/2 streams in a connection.
 ## http2_max_field_size
 
 ```
-Syntax:  size
+Syntax:  http2_max_field_size size;
 Default: 4k
 Context: server, http
 ```
@@ -119,7 +119,7 @@ Limits the maximum size of an [HPACK](https://datatracker.ietf.org/doc/html/rfc7
 ## http2_max_header_size
 
 ```
-Syntax:  size
+Syntax:  http2_max_header_size size;
 Default: 16k
 Context: server, http
 ```
@@ -132,7 +132,7 @@ Limits the maximum size of the entire request header list after [HPACK](https://
 ## http2_max_requests
 
 ```
-Syntax:  number
+Syntax:  http2_max_requests number;
 Default: 1000
 Context: server, http
 ```
@@ -149,7 +149,7 @@ Closing connections periodically is necessary to free per-connection memory allo
 ## http2_push
 
 ```
-Syntax:  uri | off
+Syntax:  http2_push uri | off;
 Default: off
 Context: location, http, server
 ```
@@ -172,7 +172,7 @@ Several `http2_push` directives can be specified on the same configuration level
 ## http2_push_preload
 
 ```
-Syntax:  on | off
+Syntax:  http2_push_preload on | off;
 Default: off
 Context: location, http, server
 ```
@@ -186,7 +186,7 @@ Enables automatic conversion of [preload links](https://www.w3.org/TR/preload/#s
 ## http2_recv_buffer_size
 
 ```
-Syntax:  size
+Syntax:  http2_recv_buffer_size size;
 Default: 256k
 Context: http
 ```
@@ -196,7 +196,7 @@ Sets the size of the per [worker](../ngx_core_module.xml#worker_processes) input
 ## http2_recv_timeout
 
 ```
-Syntax:  time
+Syntax:  http2_recv_timeout time;
 Default: 30s
 Context: server, http
 ```

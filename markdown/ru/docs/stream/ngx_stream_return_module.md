@@ -19,7 +19,7 @@ server {
 ## return
 
 ```
-Syntax:  значение
+Syntax:  return значение;
 Default: 
 Context: server
 ```

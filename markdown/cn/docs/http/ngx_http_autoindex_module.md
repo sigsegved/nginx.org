@@ -19,7 +19,7 @@ location / {
 ## autoindex
 
 ```
-Syntax:  on | off
+Syntax:  autoindex on | off;
 Default: off
 Context: location, http, server
 ```
@@ -29,7 +29,7 @@ Context: location, http, server
 ## autoindex_exact_size
 
 ```
-Syntax:  on | off
+Syntax:  autoindex_exact_size on | off;
 Default: on
 Context: location, http, server
 ```
@@ -39,7 +39,7 @@ Context: location, http, server
 ## autoindex_localtime
 
 ```
-Syntax:  on | off
+Syntax:  autoindex_localtime on | off;
 Default: off
 Context: location, http, server
 ```

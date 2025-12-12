@@ -37,7 +37,7 @@ In the example, after terminating SSL/TLS in the `stream` module the connection 
 ## pass
 
 ```
-Syntax:  address
+Syntax:  pass address;
 Default: 
 Context: server
 ```

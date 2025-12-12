@@ -24,7 +24,7 @@ events {
 ## accept_mutex
 
 ```
-Syntax:  on | off
+Syntax:  accept_mutex on | off;
 Default: off
 Context: events
 ```
@@ -40,7 +40,7 @@ Context: events
 ## accept_mutex_delay
 
 ```
-Syntax:  время
+Syntax:  accept_mutex_delay время;
 Default: 500ms
 Context: events
 ```
@@ -50,7 +50,7 @@ Context: events
 ## daemon
 
 ```
-Syntax:  on | off
+Syntax:  daemon on | off;
 Default: on
 Context: main
 ```
@@ -60,7 +60,7 @@ Context: main
 ## debug_connection
 
 ```
-Syntax:  адрес | CIDR | unix:
+Syntax:  debug_connection адрес | CIDR | unix:;
 Default: 
 Context: events
 ```
@@ -85,7 +85,7 @@ events {
 ## debug_points
 
 ```
-Syntax:  abort | stop
+Syntax:  debug_points abort | stop;
 Default: 
 Context: main
 ```
@@ -97,7 +97,7 @@ Context: main
 ## env
 
 ```
-Syntax:  переменная[=значение]
+Syntax:  env переменная[=значение];
 Default: TZ
 Context: main
 ```
@@ -129,7 +129,7 @@ env OPENSSL_ALLOW_PROXY_CERTS=1;
 ## error_log
 
 ```
-Syntax:  файл [уровень]
+Syntax:  error_log файл [уровень];
 Default: logs/error.log error
 Context: location, main, http, mail, stream, server
 ```
@@ -151,7 +151,7 @@ nginx с `--with-debug` ,
 ## events
 
 ```
-Syntax:  
+Syntax:  events { ... }
 Default: 
 Context: main
 ```
@@ -161,7 +161,7 @@ Context: main
 ## include
 
 ```
-Syntax:  файл | маска
+Syntax:  include файл | маска;
 Default: 
 Context: 
 ```
@@ -178,7 +178,7 @@ include vhosts/*.conf;
 ## load_module
 
 ```
-Syntax:  файл
+Syntax:  load_module файл;
 Default: 
 Context: main
 ```
@@ -196,7 +196,7 @@ load_module modules/ngx_mail_module.so;
 ## lock_file
 
 ```
-Syntax:  файл
+Syntax:  lock_file файл;
 Default: logs/nginx.lock
 Context: main
 ```
@@ -206,7 +206,7 @@ Context: main
 ## master_process
 
 ```
-Syntax:  on | off
+Syntax:  master_process on | off;
 Default: on
 Context: main
 ```
@@ -216,7 +216,7 @@ Context: main
 ## multi_accept
 
 ```
-Syntax:  on | off
+Syntax:  multi_accept on | off;
 Default: off
 Context: events
 ```
@@ -229,7 +229,7 @@ Context: events
 ## pcre_jit
 
 ```
-Syntax:  on | off
+Syntax:  pcre_jit on | off;
 Default: off
 Context: main
 ```
@@ -249,7 +249,7 @@ Context: main
 ## pid
 
 ```
-Syntax:  файл
+Syntax:  pid файл;
 Default: logs/nginx.pid
 Context: main
 ```
@@ -259,7 +259,7 @@ Context: main
 ## ssl_engine
 
 ```
-Syntax:  устройство
+Syntax:  ssl_engine устройство;
 Default: 
 Context: main
 ```
@@ -272,7 +272,7 @@ Context: main
 ## ssl_object_cache_inheritable
 
 ```
-Syntax:  on | off
+Syntax:  ssl_object_cache_inheritable on | off;
 Default: on
 Context: main
 ```
@@ -303,7 +303,7 @@ http {
 ## thread_pool
 
 ```
-Syntax:  имя threads=число [max_queue=число]
+Syntax:  thread_pool имя threads=число [max_queue=число];
 Default: default threads=32 max_queue=65536
 Context: main
 ```
@@ -319,7 +319,7 @@ Context: main
 ## timer_resolution
 
 ```
-Syntax:  интервал
+Syntax:  timer_resolution интервал;
 Default: 
 Context: main
 ```
@@ -342,7 +342,7 @@ timer_resolution 100ms;
 ## use
 
 ```
-Syntax:  метод
+Syntax:  use метод;
 Default: 
 Context: events
 ```
@@ -352,7 +352,7 @@ Context: events
 ## user
 
 ```
-Syntax:  пользователь [группа]
+Syntax:  user пользователь [группа];
 Default: nobody nobody
 Context: main
 ```
@@ -362,7 +362,7 @@ Context: main
 ## worker_aio_requests
 
 ```
-Syntax:  число
+Syntax:  worker_aio_requests число;
 Default: 32
 Context: events
 ```
@@ -374,7 +374,7 @@ Context: events
 ## worker_connections
 
 ```
-Syntax:  число
+Syntax:  worker_connections число;
 Default: 512
 Context: events
 ```
@@ -386,7 +386,7 @@ Context: events
 ## worker_cpu_affinity
 
 ```
-Syntax:  auto [маска_CPU]
+Syntax:  worker_cpu_affinity auto [маска_CPU];
 Default: 
 Context: main
 ```
@@ -427,7 +427,7 @@ worker_cpu_affinity auto 01010101;
 ## worker_priority
 
 ```
-Syntax:  число
+Syntax:  worker_priority число;
 Default: 0
 Context: main
 ```
@@ -443,7 +443,7 @@ worker_priority -10;
 ## worker_processes
 
 ```
-Syntax:  число | auto
+Syntax:  worker_processes число | auto;
 Default: 1
 Context: main
 ```
@@ -458,7 +458,7 @@ Context: main
 ## worker_rlimit_core
 
 ```
-Syntax:  размер
+Syntax:  worker_rlimit_core размер;
 Default: 
 Context: main
 ```
@@ -468,7 +468,7 @@ Context: main
 ## worker_rlimit_nofile
 
 ```
-Syntax:  число
+Syntax:  worker_rlimit_nofile число;
 Default: 
 Context: main
 ```
@@ -478,7 +478,7 @@ Context: main
 ## worker_shutdown_timeout
 
 ```
-Syntax:  время
+Syntax:  worker_shutdown_timeout время;
 Default: 
 Context: main
 ```
@@ -490,7 +490,7 @@ Context: main
 ## working_directory
 
 ```
-Syntax:  каталог
+Syntax:  working_directory каталог;
 Default: 
 Context: main
 ```

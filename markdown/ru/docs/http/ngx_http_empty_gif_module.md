@@ -18,7 +18,7 @@ location = /_.gif {
 ## empty_gif
 
 ```
-Syntax:  
+Syntax:  empty_gif;
 Default: 
 Context: location
 ```

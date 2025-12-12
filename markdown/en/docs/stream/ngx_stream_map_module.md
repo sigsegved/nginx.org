@@ -22,7 +22,7 @@ limit_conn addr 1;
 ## map
 
 ```
-Syntax:  string $variable
+Syntax:  map string $variable { ... }
 Default: 
 Context: stream
 ```
@@ -97,7 +97,7 @@ e.g. “ `mail.*` ”
 ## map_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  map_hash_bucket_size size;
 Default: 32|64|128
 Context: stream
 ```
@@ -107,7 +107,7 @@ Sets the bucket size for the [map](#map) variables hash tables. Default value de
 ## map_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  map_hash_max_size size;
 Default: 2048
 Context: stream
 ```

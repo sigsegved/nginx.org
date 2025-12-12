@@ -50,7 +50,7 @@ location / {
 ## auth_jwt
 
 ```
-Syntax:  string [token=$variable] | off
+Syntax:  auth_jwt string [token=$variable] | off;
 Default: off
 Context: limit_except, http, server, location
 ```
@@ -68,7 +68,7 @@ The special value `off` cancels the effect of the `auth_jwt` directive inherited
 ## auth_jwt_claim_set
 
 ```
-Syntax:  $variable name ...
+Syntax:  auth_jwt_claim_set $variable name ...;
 Default: 
 Context: http
 ```
@@ -91,7 +91,7 @@ are available only after decryption which occurs during the [Access](../dev/deve
 ## auth_jwt_header_set
 
 ```
-Syntax:  $variable name ...
+Syntax:  auth_jwt_header_set $variable name ...;
 Default: 
 Context: http
 ```
@@ -106,7 +106,7 @@ and the result was undefined for arrays.
 ## auth_jwt_key_cache
 
 ```
-Syntax:  time
+Syntax:  auth_jwt_key_cache time;
 Default: 0
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Enables or disables caching of keys obtained from a [file](#auth_jwt_key_file) o
 ## auth_jwt_key_file
 
 ```
-Syntax:  file
+Syntax:  auth_jwt_key_file file;
 Default: 
 Context: limit_except, http, server, location
 ```
@@ -137,7 +137,7 @@ If at least one of the specified keys cannot be loaded or processed, nginx will 
 ## auth_jwt_key_request
 
 ```
-Syntax:  uri
+Syntax:  auth_jwt_key_request uri;
 Default: 
 Context: limit_except, http, server, location
 ```
@@ -177,7 +177,7 @@ If at least one of the specified keys cannot be loaded or processed, nginx will 
 ## auth_jwt_leeway
 
 ```
-Syntax:  time
+Syntax:  auth_jwt_leeway time;
 Default: 0s
 Context: location, http, server
 ```
@@ -189,7 +189,7 @@ Sets the maximum allowable leeway to compensate clock skew when verifying the [e
 ## auth_jwt_type
 
 ```
-Syntax:  signed | encrypted | nested
+Syntax:  auth_jwt_type signed | encrypted | nested;
 Default: signed
 Context: limit_except, http, server, location
 ```
@@ -201,7 +201,7 @@ Specifies which type of JSON Web Token to expect: JWS ( `signed` ), JWE ( `encry
 ## auth_jwt_require
 
 ```
-Syntax:  $value ... [error=401 | 403]
+Syntax:  auth_jwt_require $value ... [error=401 | 403];
 Default: 
 Context: limit_except, http, server, location
 ```

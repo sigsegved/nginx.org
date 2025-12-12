@@ -33,7 +33,7 @@ stream {
 ## geoip_country
 
 ```
-Syntax:  файл
+Syntax:  geoip_country файл;
 Default: 
 Context: stream
 ```
@@ -55,7 +55,7 @@ Context: stream
 ## geoip_city
 
 ```
-Syntax:  файл
+Syntax:  geoip_city файл;
 Default: 
 Context: stream
 ```
@@ -113,7 +113,7 @@ Context: stream
 ## geoip_org
 
 ```
-Syntax:  файл
+Syntax:  geoip_org файл;
 Default: 
 Context: stream
 ```

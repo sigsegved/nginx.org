@@ -63,7 +63,7 @@ http {
 ## health_check
 
 ```
-Syntax:  [параметры]
+Syntax:  health_check [параметры];
 Default: 
 Context: location
 ```
@@ -136,7 +136,7 @@ health_check mandatory type=grpc grpc_status=12;
 ## match
 
 ```
-Syntax:  имя
+Syntax:  match имя { ... }
 Default: 
 Context: http
 ```

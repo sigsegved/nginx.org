@@ -33,7 +33,7 @@ map $http_user_agent $mobile {
 ## map
 
 ```
-Syntax:  string $variable
+Syntax:  map string $variable { ... }
 Default: 
 Context: http
 ```
@@ -95,7 +95,7 @@ example.com   1;
 ## map_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  map_hash_bucket_size size;
 Default: 32|64|128
 Context: http
 ```
@@ -105,7 +105,7 @@ Context: http
 ## map_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  map_hash_max_size size;
 Default: 2048
 Context: http
 ```

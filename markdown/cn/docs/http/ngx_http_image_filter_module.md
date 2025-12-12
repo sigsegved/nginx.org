@@ -31,7 +31,7 @@ location = /empty {
 ## image_filter
 
 ```
-Syntax:  crop width height
+Syntax:  image_filter crop width height;
 Default: 
 Context: location
 ```
@@ -83,7 +83,7 @@ Context: location
 ## image_filter_buffer
 
 ```
-Syntax:  size
+Syntax:  image_filter_buffer size;
 Default: 1M
 Context: location, http, server
 ```
@@ -93,7 +93,7 @@ Context: location, http, server
 ## image_filter_jpeg_quality
 
 ```
-Syntax:  quality
+Syntax:  image_filter_jpeg_quality quality;
 Default: 75
 Context: location, http, server
 ```
@@ -103,7 +103,7 @@ Context: location, http, server
 ## image_filter_sharpen
 
 ```
-Syntax:  percent
+Syntax:  image_filter_sharpen percent;
 Default: 0
 Context: location, http, server
 ```
@@ -113,7 +113,7 @@ Context: location, http, server
 ## image_filter_transparency
 
 ```
-Syntax:  on|off
+Syntax:  image_filter_transparency on|off;
 Default: on
 Context: location, http, server
 ```

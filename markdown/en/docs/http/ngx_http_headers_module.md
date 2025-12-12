@@ -23,7 +23,7 @@ add_header Cache-Control private;
 ## add_header
 
 ```
-Syntax:  name value [always]
+Syntax:  add_header name value [always];
 Default: 
 Context: if in location, http, server, location
 ```
@@ -37,7 +37,7 @@ If the `always` parameter is specified (1.7.5), the header field will be added r
 ## add_header_inherit
 
 ```
-Syntax:  on | off | merge
+Syntax:  add_header_inherit on | off | merge;
 Default: on
 Context: if in location, http, server, location
 ```
@@ -55,7 +55,7 @@ The inheritance rules themselves are inherited in a standard way. For example, `
 ## add_trailer
 
 ```
-Syntax:  name value [always]
+Syntax:  add_trailer name value [always];
 Default: 
 Context: if in location, http, server, location
 ```
@@ -71,7 +71,7 @@ If the `always` parameter is specified the specified field will be added regardl
 ## add_trailer_inherit
 
 ```
-Syntax:  on | off | merge
+Syntax:  add_trailer_inherit on | off | merge;
 Default: on
 Context: if in location, http, server, location
 ```
@@ -89,7 +89,7 @@ The inheritance rules themselves are inherited in a standard way. For example, `
 ## expires
 
 ```
-Syntax:  epoch | max | off
+Syntax:  expires epoch | max | off;
 Default: off
 Context: if in location, http, server, location
 ```

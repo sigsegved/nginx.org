@@ -87,7 +87,7 @@ __END__
 ## perl
 
 ```
-Syntax:  модуль::функция|'sub { ... }'
+Syntax:  perl модуль::функция|'sub { ... }';
 Default: 
 Context: limit_except, location
 ```
@@ -97,7 +97,7 @@ Context: limit_except, location
 ## perl_modules
 
 ```
-Syntax:  путь
+Syntax:  perl_modules путь;
 Default: 
 Context: http
 ```
@@ -107,7 +107,7 @@ Context: http
 ## perl_require
 
 ```
-Syntax:  модуль
+Syntax:  perl_require модуль;
 Default: 
 Context: http
 ```
@@ -117,7 +117,7 @@ Context: http
 ## perl_set
 
 ```
-Syntax:  $переменная модуль::функция|'sub { ... }'
+Syntax:  perl_set $переменная модуль::функция|'sub { ... }';
 Default: 
 Context: http
 ```

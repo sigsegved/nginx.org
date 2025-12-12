@@ -21,7 +21,7 @@ location / {
 ## auth_basic
 
 ```
-Syntax:  строка | off
+Syntax:  auth_basic строка | off;
 Default: off
 Context: limit_except, http, server, location
 ```
@@ -31,7 +31,7 @@ Context: limit_except, http, server, location
 ## auth_basic_user_file
 
 ```
-Syntax:  файл
+Syntax:  auth_basic_user_file файл;
 Default: 
 Context: limit_except, http, server, location
 ```

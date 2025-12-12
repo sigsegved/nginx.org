@@ -19,7 +19,7 @@ server {
 ## set
 
 ```
-Syntax:  $variable value
+Syntax:  set $variable value;
 Default: 
 Context: server
 ```

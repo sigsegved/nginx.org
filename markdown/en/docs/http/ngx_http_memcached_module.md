@@ -26,7 +26,7 @@ server {
 ## memcached_allow_upstream
 
 ```
-Syntax:  string ...
+Syntax:  memcached_allow_upstream string ...;
 Default: 
 Context: location, http, server
 ```
@@ -57,7 +57,7 @@ server {
 ## memcached_bind
 
 ```
-Syntax:  address [transparent ] | off
+Syntax:  memcached_bind address [transparent ] | off;
 Default: 
 Context: location, http, server
 ```
@@ -77,7 +77,7 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 ## memcached_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  memcached_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -91,7 +91,7 @@ When enabled, makes the [bind](#memcached_bind) operation at each connection att
 ## memcached_buffer_size
 
 ```
-Syntax:  size
+Syntax:  memcached_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -101,7 +101,7 @@ Sets the `size` of the buffer used for reading the response received from the me
 ## memcached_connect_timeout
 
 ```
-Syntax:  time
+Syntax:  memcached_connect_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Defines a timeout for establishing a connection with a memcached server. It shou
 ## memcached_gzip_flag
 
 ```
-Syntax:  flag
+Syntax:  memcached_gzip_flag flag;
 Default: 
 Context: location, http, server
 ```
@@ -123,7 +123,7 @@ Enables the test for the `flag` presence in the memcached server response and se
 ## memcached_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_response | not_found | off ...
+Syntax:  memcached_next_upstream error | timeout | denied | invalid_response | not_found | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -161,7 +161,7 @@ Passing a request to the next server can be limited by [the number of tries](#me
 ## memcached_next_upstream_timeout
 
 ```
-Syntax:  time
+Syntax:  memcached_next_upstream_timeout time;
 Default: 0
 Context: location, http, server
 ```
@@ -173,7 +173,7 @@ Limits the time during which a request can be passed to the [next server](#memca
 ## memcached_next_upstream_tries
 
 ```
-Syntax:  number
+Syntax:  memcached_next_upstream_tries number;
 Default: 0
 Context: location, http, server
 ```
@@ -185,7 +185,7 @@ Limits the number of possible tries for passing a request to the [next server](#
 ## memcached_pass
 
 ```
-Syntax:  address
+Syntax:  memcached_pass address;
 Default: 
 Context: if in location, location
 ```
@@ -207,7 +207,7 @@ If a domain name resolves to several addresses, all of them will be used in a ro
 ## memcached_read_timeout
 
 ```
-Syntax:  time
+Syntax:  memcached_read_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -217,7 +217,7 @@ Defines a timeout for reading a response from the memcached server. The timeout 
 ## memcached_send_timeout
 
 ```
-Syntax:  time
+Syntax:  memcached_send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -227,7 +227,7 @@ Sets a timeout for transmitting a request to the memcached server. The timeout i
 ## memcached_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  memcached_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```

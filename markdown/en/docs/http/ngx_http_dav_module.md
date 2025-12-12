@@ -35,7 +35,7 @@ location / {
 ## create_full_put_path
 
 ```
-Syntax:  on | off
+Syntax:  create_full_put_path on | off;
 Default: off
 Context: location, http, server
 ```
@@ -45,7 +45,7 @@ The WebDAV specification only allows creating files in already existing director
 ## dav_access
 
 ```
-Syntax:  users:permissions ...
+Syntax:  dav_access users:permissions ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -65,7 +65,7 @@ dav_access group:rw all:r;
 ## dav_methods
 
 ```
-Syntax:  off | method ...
+Syntax:  dav_methods off | method ...;
 Default: off
 Context: location, http, server
 ```
@@ -79,7 +79,7 @@ When creating a file with the PUT method, it is possible to specify the modifica
 ## min_delete_depth
 
 ```
-Syntax:  number
+Syntax:  min_delete_depth number;
 Default: 0
 Context: location, http, server
 ```

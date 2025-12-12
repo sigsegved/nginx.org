@@ -20,7 +20,7 @@ access_log /spool/logs/nginx-access.log basic buffer=32k;
 ## access_log
 
 ```
-Syntax:  off
+Syntax:  access_log off;
 Default: off
 Context: server, stream
 ```
@@ -67,7 +67,7 @@ access_log /path/to/log.gz basic gzip flush=5m;
 ## log_format
 
 ```
-Syntax:  название [escape=default|json|none] строка ...
+Syntax:  log_format название [escape=default|json|none] строка ...;
 Default: 
 Context: stream
 ```
@@ -90,7 +90,7 @@ log_format proxy '$remote_addr [$time_local] '
 ## open_log_file_cache
 
 ```
-Syntax:  off
+Syntax:  open_log_file_cache off;
 Default: off
 Context: server, stream
 ```

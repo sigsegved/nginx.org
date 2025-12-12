@@ -23,7 +23,7 @@ access_log /spool/logs/nginx-access.log gzip buffer=32k;
 ## access_log
 
 ```
-Syntax:  off
+Syntax:  access_log off;
 Default: logs/access.log combined
 Context: limit_except, http, server, location, if in location
 ```
@@ -52,7 +52,7 @@ server {
 ## log_format
 
 ```
-Syntax:  name string ...
+Syntax:  log_format name string ...;
 Default: combined "..."
 Context: http
 ```
@@ -109,7 +109,7 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
 ## open_log_file_cache
 
 ```
-Syntax:  off
+Syntax:  open_log_file_cache off;
 Default: off
 Context: location, http, server
 ```

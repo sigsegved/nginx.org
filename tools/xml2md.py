@@ -499,6 +499,8 @@ def process_element(elem, level=0, processed_inline=None):
             if 'syntax' in directive_info:
                 text_parts = []
                 elem_syntax = directive_info['syntax']
+                is_block = elem_syntax.get('block') == 'yes'
+                
                 if elem_syntax.text:
                     text_parts.append(convert_text(elem_syntax.text))
                 for child in elem_syntax:
@@ -509,7 +511,18 @@ def process_element(elem, level=0, processed_inline=None):
                         text_parts.append(convert_text(child.tail))
                 syntax_text = "".join(text_parts).strip()
                 syntax_text = " ".join(syntax_text.split())
-                result.append(f"Syntax:  {syntax_text}\n")
+                
+                # Add directive name and appropriate ending (block or semicolon)
+                if is_block:
+                    if syntax_text:
+                        result.append(f"Syntax:  {name} {syntax_text} {{ ... }}\n")
+                    else:
+                        result.append(f"Syntax:  {name} {{ ... }}\n")
+                else:
+                    if syntax_text:
+                        result.append(f"Syntax:  {name} {syntax_text};\n")
+                    else:
+                        result.append(f"Syntax:  {name};\n")
             
             if 'default' in directive_info:
                 elem_default = directive_info['default']

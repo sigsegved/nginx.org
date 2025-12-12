@@ -24,7 +24,7 @@ location = /mirror {
 ## mirror
 
 ```
-Syntax:  uri | off
+Syntax:  mirror uri | off;
 Default: off
 Context: location, http, server
 ```
@@ -34,7 +34,7 @@ Context: location, http, server
 ## mirror_request_body
 
 ```
-Syntax:  on | off
+Syntax:  mirror_request_body on | off;
 Default: on
 Context: location, http, server
 ```

@@ -22,7 +22,7 @@ set_real_ip_from  2001:0db8::/32;
 ## set_real_ip_from
 
 ```
-Syntax:  address | CIDR | unix:
+Syntax:  set_real_ip_from address | CIDR | unix:;
 Default: 
 Context: server, stream
 ```

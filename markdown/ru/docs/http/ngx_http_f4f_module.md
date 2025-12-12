@@ -25,7 +25,7 @@ location /video/ {
 ## f4f
 
 ```
-Syntax:  
+Syntax:  f4f;
 Default: 
 Context: location
 ```
@@ -35,7 +35,7 @@ Context: location
 ## f4f_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  f4f_buffer_size размер;
 Default: 512k
 Context: location, http, server
 ```

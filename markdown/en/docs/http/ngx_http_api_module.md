@@ -94,7 +94,7 @@ http://127.0.0.1/api/9/stream/upstreams/backend/servers/1
 ## api
 
 ```
-Syntax:  [write=on|off]
+Syntax:  api [write=on|off];
 Default: 
 Context: location
 ```
@@ -114,7 +114,7 @@ http://127.0.0.1/api/9/nginx?fields=version,build
 ## status_zone
 
 ```
-Syntax:  zone
+Syntax:  status_zone zone;
 Default: 
 Context: if in location, server, location
 ```

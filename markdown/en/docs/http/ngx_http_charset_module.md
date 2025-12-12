@@ -23,7 +23,7 @@ source_charset koi8-r;
 ## charset
 
 ```
-Syntax:  charset | off
+Syntax:  charset charset | off;
 Default: off
 Context: if in location, http, server, location
 ```
@@ -49,7 +49,7 @@ In addition, a charset can be set in the `X-Accel-Charset` response header field
 ## charset_map
 
 ```
-Syntax:  charset1 charset2
+Syntax:  charset_map charset1 charset2 { ... }
 Default: 
 Context: http
 ```
@@ -85,7 +85,7 @@ Full conversion tables from `koi8-r` to `windows-1251` , and from `koi8-r` and `
 ## charset_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  charset_types mime-type ...;
 Default: text/html text/xml text/plain text/vnd.wap.wml
 application/javascript application/rss+xml
 Context: location, http, server
@@ -101,7 +101,7 @@ as the default MIME type instead of “ `application/javascript` ”.
 ## override_charset
 
 ```
-Syntax:  on | off
+Syntax:  override_charset on | off;
 Default: off
 Context: if in location, http, server, location
 ```
@@ -115,7 +115,7 @@ is always performed, regardless of the `override_charset` directive setting.
 ## source_charset
 
 ```
-Syntax:  charset
+Syntax:  source_charset charset;
 Default: 
 Context: if in location, http, server, location
 ```

@@ -8,7 +8,7 @@
 ## absolute_redirect
 
 ```
-Syntax:  on | off
+Syntax:  absolute_redirect on | off;
 Default: on
 Context: location, http, server
 ```
@@ -22,7 +22,7 @@ Context: location, http, server
 ## aio
 
 ```
-Syntax:  on | off | threads[=pool]
+Syntax:  aio on | off | threads[=pool];
 Default: off
 Context: location, http, server
 ```
@@ -94,7 +94,7 @@ aio threads=pool$disk;
 ## aio_write
 
 ```
-Syntax:  on | off
+Syntax:  aio_write on | off;
 Default: off
 Context: location, http, server
 ```
@@ -106,7 +106,7 @@ Context: location, http, server
 ## alias
 
 ```
-Syntax:  путь
+Syntax:  alias путь;
 Default: 
 Context: location
 ```
@@ -150,7 +150,7 @@ location /images/ {
 ## auth_delay
 
 ```
-Syntax:  время
+Syntax:  auth_delay время;
 Default: 0s
 Context: location, http, server
 ```
@@ -162,7 +162,7 @@ Context: location, http, server
 ## chunked_transfer_encoding
 
 ```
-Syntax:  on | off
+Syntax:  chunked_transfer_encoding on | off;
 Default: on
 Context: location, http, server
 ```
@@ -172,7 +172,7 @@ Context: location, http, server
 ## client_body_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  client_body_buffer_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -182,7 +182,7 @@ Context: location, http, server
 ## client_body_in_file_only
 
 ```
-Syntax:  on | clean | off
+Syntax:  client_body_in_file_only on | clean | off;
 Default: off
 Context: location, http, server
 ```
@@ -196,7 +196,7 @@ Context: location, http, server
 ## client_body_in_single_buffer
 
 ```
-Syntax:  on | off
+Syntax:  client_body_in_single_buffer on | off;
 Default: off
 Context: location, http, server
 ```
@@ -206,7 +206,7 @@ Context: location, http, server
 ## client_body_temp_path
 
 ```
-Syntax:  путь [уровень1 [уровень2 [уровень3]]]
+Syntax:  client_body_temp_path путь [уровень1 [уровень2 [уровень3]]];
 Default: client_body_temp
 Context: location, http, server
 ```
@@ -226,7 +226,7 @@ client_body_temp_path /spool/nginx/client_temp 1 2;
 ## client_body_timeout
 
 ```
-Syntax:  время
+Syntax:  client_body_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -236,7 +236,7 @@ Context: location, http, server
 ## client_header_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  client_header_buffer_size размер;
 Default: 1k
 Context: server, http
 ```
@@ -248,7 +248,7 @@ Context: server, http
 ## client_header_timeout
 
 ```
-Syntax:  время
+Syntax:  client_header_timeout время;
 Default: 60s
 Context: server, http
 ```
@@ -258,7 +258,7 @@ Context: server, http
 ## client_max_body_size
 
 ```
-Syntax:  размер
+Syntax:  client_max_body_size размер;
 Default: 1m
 Context: location, http, server
 ```
@@ -268,7 +268,7 @@ Context: location, http, server
 ## connection_pool_size
 
 ```
-Syntax:  размер
+Syntax:  connection_pool_size размер;
 Default: 256|512
 Context: server, http
 ```
@@ -280,7 +280,7 @@ Context: server, http
 ## default_type
 
 ```
-Syntax:  mime-тип
+Syntax:  default_type mime-тип;
 Default: text/plain
 Context: location, http, server
 ```
@@ -290,7 +290,7 @@ Context: location, http, server
 ## directio
 
 ```
-Syntax:  размер | off
+Syntax:  directio размер | off;
 Default: off
 Context: location, http, server
 ```
@@ -308,7 +308,7 @@ directio 4m;
 ## directio_alignment
 
 ```
-Syntax:  размер
+Syntax:  directio_alignment размер;
 Default: 512
 Context: location, http, server
 ```
@@ -320,7 +320,7 @@ Context: location, http, server
 ## disable_symlinks
 
 ```
-Syntax:  on | if_not_owner [from=часть]
+Syntax:  disable_symlinks on | if_not_owner [from=часть];
 Default: off
 Context: location, http, server
 ```
@@ -375,7 +375,7 @@ disable_symlinks on from=$document_root;
 ## early_hints
 
 ```
-Syntax:  строка ...
+Syntax:  early_hints строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -401,7 +401,7 @@ server {
 ## error_page
 
 ```
-Syntax:  код ... [=[ответ]] uri
+Syntax:  error_page код ... [=[ответ]] uri;
 Default: 
 Context: if в location, http, server, location
 ```
@@ -462,7 +462,7 @@ error_page 404 =301 http://example.com/notfound.html;
 ## etag
 
 ```
-Syntax:  on | off
+Syntax:  etag on | off;
 Default: on
 Context: location, http, server
 ```
@@ -474,7 +474,7 @@ Context: location, http, server
 ## http
 
 ```
-Syntax:  
+Syntax:  http { ... }
 Default: 
 Context: main
 ```
@@ -484,7 +484,7 @@ Context: main
 ## if_modified_since
 
 ```
-Syntax:  off | exact | before
+Syntax:  if_modified_since off | exact | before;
 Default: exact
 Context: location, http, server
 ```
@@ -505,7 +505,7 @@ Context: location, http, server
 ## ignore_invalid_headers
 
 ```
-Syntax:  on | off
+Syntax:  ignore_invalid_headers on | off;
 Default: on
 Context: server, http
 ```
@@ -517,7 +517,7 @@ Context: server, http
 ## internal
 
 ```
-Syntax:  
+Syntax:  internal;
 Default: 
 Context: location
 ```
@@ -553,7 +553,7 @@ location = /404.html {
 ## keepalive_disable
 
 ```
-Syntax:  none | браузер ...
+Syntax:  keepalive_disable none | браузер ...;
 Default: msie6
 Context: location, http, server
 ```
@@ -567,7 +567,7 @@ Context: location, http, server
 ## keepalive_min_timeout
 
 ```
-Syntax:  таймаут
+Syntax:  keepalive_min_timeout таймаут;
 Default: 0
 Context: location, http, server
 ```
@@ -579,7 +579,7 @@ Context: location, http, server
 ## keepalive_requests
 
 ```
-Syntax:  число
+Syntax:  keepalive_requests число;
 Default: 1000
 Context: location, http, server
 ```
@@ -595,7 +595,7 @@ Context: location, http, server
 ## keepalive_time
 
 ```
-Syntax:  время
+Syntax:  keepalive_time время;
 Default: 1h
 Context: location, http, server
 ```
@@ -607,7 +607,7 @@ Context: location, http, server
 ## keepalive_timeout
 
 ```
-Syntax:  таймаут [заголовок_таймаута]
+Syntax:  keepalive_timeout таймаут [заголовок_таймаута];
 Default: 75s
 Context: location, http, server
 ```
@@ -619,7 +619,7 @@ Context: location, http, server
 ## large_client_header_buffers
 
 ```
-Syntax:  число размер
+Syntax:  large_client_header_buffers число размер;
 Default: 4 8k
 Context: server, http
 ```
@@ -631,7 +631,7 @@ Context: server, http
 ## limit_except
 
 ```
-Syntax:  метод ...
+Syntax:  limit_except метод ... { ... }
 Default: 
 Context: location
 ```
@@ -650,7 +650,7 @@ limit_except GET {
 ## limit_rate
 
 ```
-Syntax:  скорость
+Syntax:  limit_rate скорость;
 Default: 0
 Context: if в location, http, server, location
 ```
@@ -686,7 +686,7 @@ server {
 ## limit_rate_after
 
 ```
-Syntax:  размер
+Syntax:  limit_rate_after размер;
 Default: 0
 Context: if в location, http, server, location
 ```
@@ -708,7 +708,7 @@ location /flv/ {
 ## lingering_close
 
 ```
-Syntax:  off | on | always
+Syntax:  lingering_close off | on | always;
 Default: on
 Context: location, http, server
 ```
@@ -728,7 +728,7 @@ Context: location, http, server
 ## lingering_time
 
 ```
-Syntax:  время
+Syntax:  lingering_time время;
 Default: 30s
 Context: location, http, server
 ```
@@ -738,7 +738,7 @@ Context: location, http, server
 ## lingering_timeout
 
 ```
-Syntax:  время
+Syntax:  lingering_timeout время;
 Default: 5s
 Context: location, http, server
 ```
@@ -748,7 +748,7 @@ Context: location, http, server
 ## listen
 
 ```
-Syntax:  unix:путь [default_server] [ssl] [http2 | quic] [proxy_protocol] [backlog=число] [rcvbuf=размер] [sndbuf=размер] [accept_filter=фильтр] [deferred] [bind] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen unix:путь [default_server] [ssl] [http2 | quic] [proxy_protocol] [backlog=число] [rcvbuf=размер] [sndbuf=размер] [accept_filter=фильтр] [deferred] [bind] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: *:80 | *:8000
 Context: server
 ```
@@ -910,7 +910,7 @@ listen 127.0.0.1 default_server accept_filter=dataready backlog=1024;
 ## location
 
 ```
-Syntax:  @имя
+Syntax:  location @имя { ... }
 Default: 
 Context: location, server
 ```
@@ -979,7 +979,7 @@ location = /user {
 ## log_not_found
 
 ```
-Syntax:  on | off
+Syntax:  log_not_found on | off;
 Default: on
 Context: location, http, server
 ```
@@ -989,7 +989,7 @@ Context: location, http, server
 ## log_subrequest
 
 ```
-Syntax:  on | off
+Syntax:  log_subrequest on | off;
 Default: off
 Context: location, http, server
 ```
@@ -999,7 +999,7 @@ Context: location, http, server
 ## max_ranges
 
 ```
-Syntax:  число
+Syntax:  max_ranges число;
 Default: 
 Context: location, http, server
 ```
@@ -1011,7 +1011,7 @@ Context: location, http, server
 ## merge_slashes
 
 ```
-Syntax:  on | off
+Syntax:  merge_slashes on | off;
 Default: on
 Context: server, http
 ```
@@ -1035,7 +1035,7 @@ location /scripts/ {
 ## msie_padding
 
 ```
-Syntax:  on | off
+Syntax:  msie_padding on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1045,7 +1045,7 @@ Context: location, http, server
 ## msie_refresh
 
 ```
-Syntax:  on | off
+Syntax:  msie_refresh on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1055,7 +1055,7 @@ Context: location, http, server
 ## open_file_cache
 
 ```
-Syntax:  max=N [inactive=время]
+Syntax:  open_file_cache max=N [inactive=время];
 Default: off
 Context: location, http, server
 ```
@@ -1093,7 +1093,7 @@ open_file_cache_errors   on;
 ## open_file_cache_errors
 
 ```
-Syntax:  on | off
+Syntax:  open_file_cache_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1103,7 +1103,7 @@ Context: location, http, server
 ## open_file_cache_min_uses
 
 ```
-Syntax:  число
+Syntax:  open_file_cache_min_uses число;
 Default: 1
 Context: location, http, server
 ```
@@ -1113,7 +1113,7 @@ Context: location, http, server
 ## open_file_cache_valid
 
 ```
-Syntax:  время
+Syntax:  open_file_cache_valid время;
 Default: 60s
 Context: location, http, server
 ```
@@ -1123,7 +1123,7 @@ Context: location, http, server
 ## output_buffers
 
 ```
-Syntax:  number size
+Syntax:  output_buffers number size;
 Default: 2 32k
 Context: location, http, server
 ```
@@ -1135,7 +1135,7 @@ Context: location, http, server
 ## port_in_redirect
 
 ```
-Syntax:  on | off
+Syntax:  port_in_redirect on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1147,7 +1147,7 @@ Context: location, http, server
 ## postpone_output
 
 ```
-Syntax:  размер
+Syntax:  postpone_output размер;
 Default: 1460
 Context: location, http, server
 ```
@@ -1157,7 +1157,7 @@ Context: location, http, server
 ## read_ahead
 
 ```
-Syntax:  размер
+Syntax:  read_ahead размер;
 Default: 0
 Context: location, http, server
 ```
@@ -1171,7 +1171,7 @@ Context: location, http, server
 ## recursive_error_pages
 
 ```
-Syntax:  on | off
+Syntax:  recursive_error_pages on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1181,7 +1181,7 @@ Context: location, http, server
 ## request_pool_size
 
 ```
-Syntax:  размер
+Syntax:  request_pool_size размер;
 Default: 4k
 Context: server, http
 ```
@@ -1191,7 +1191,7 @@ Context: server, http
 ## reset_timedout_connection
 
 ```
-Syntax:  on | off
+Syntax:  reset_timedout_connection on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1203,7 +1203,7 @@ Context: location, http, server
 ## resolver
 
 ```
-Syntax:  адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона]
+Syntax:  resolver адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона];
 Default: 
 Context: location, http, server
 ```
@@ -1242,7 +1242,7 @@ resolver 127.0.0.1 [::1]:5353 valid=30s;
 ## resolver_timeout
 
 ```
-Syntax:  время
+Syntax:  resolver_timeout время;
 Default: 30s
 Context: location, http, server
 ```
@@ -1256,7 +1256,7 @@ resolver_timeout 5s;
 ## root
 
 ```
-Syntax:  путь
+Syntax:  root путь;
 Default: html
 Context: if в location, http, server, location
 ```
@@ -1278,7 +1278,7 @@ location /i/ {
 ## satisfy
 
 ```
-Syntax:  all | any
+Syntax:  satisfy all | any;
 Default: all
 Context: location, http, server
 ```
@@ -1302,7 +1302,7 @@ location / {
 ## send_lowat
 
 ```
-Syntax:  размер
+Syntax:  send_lowat размер;
 Default: 0
 Context: location, http, server
 ```
@@ -1314,7 +1314,7 @@ Context: location, http, server
 ## send_timeout
 
 ```
-Syntax:  время
+Syntax:  send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -1324,7 +1324,7 @@ Context: location, http, server
 ## sendfile
 
 ```
-Syntax:  on | off
+Syntax:  sendfile on | off;
 Default: off
 Context: if в location, http, server, location
 ```
@@ -1348,7 +1348,7 @@ location /video/ {
 ## sendfile_max_chunk
 
 ```
-Syntax:  размер
+Syntax:  sendfile_max_chunk размер;
 Default: 2m
 Context: location, http, server
 ```
@@ -1360,7 +1360,7 @@ Context: location, http, server
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: http
 ```
@@ -1370,7 +1370,7 @@ Context: http
 ## server_name
 
 ```
-Syntax:  имя ...
+Syntax:  server_name имя ...;
 Default: ""
 Context: server
 ```
@@ -1480,7 +1480,7 @@ server {
 ## server_name_in_redirect
 
 ```
-Syntax:  on | off
+Syntax:  server_name_in_redirect on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1492,7 +1492,7 @@ Context: location, http, server
 ## server_names_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  server_names_hash_bucket_size размер;
 Default: 32|64|128
 Context: http
 ```
@@ -1502,7 +1502,7 @@ Context: http
 ## server_names_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  server_names_hash_max_size размер;
 Default: 512
 Context: http
 ```
@@ -1512,7 +1512,7 @@ Context: http
 ## server_tokens
 
 ```
-Syntax:  on | off | build | строка
+Syntax:  server_tokens on | off | build | строка;
 Default: on
 Context: location, http, server
 ```
@@ -1526,7 +1526,7 @@ Context: location, http, server
 ## subrequest_output_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  subrequest_output_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -1540,7 +1540,7 @@ Context: location, http, server
 ## tcp_nodelay
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nodelay on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1550,7 +1550,7 @@ Context: location, http, server
 ## tcp_nopush
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nopush on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1564,7 +1564,7 @@ Context: location, http, server
 ## try_files
 
 ```
-Syntax:  файл ... =код
+Syntax:  try_files файл ... =код;
 Default: 
 Context: location, server
 ```
@@ -1693,7 +1693,7 @@ location @wordpress {
 ## types
 
 ```
-Syntax:  
+Syntax:  types { ... }
 Default: text/html  html;
     image/gif  gif;
     image/jpeg jpg;
@@ -1724,7 +1724,7 @@ location /download/ {
 ## types_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  types_hash_bucket_size размер;
 Default: 64
 Context: location, http, server
 ```
@@ -1737,7 +1737,7 @@ Context: location, http, server
 ## types_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  types_hash_max_size размер;
 Default: 1024
 Context: location, http, server
 ```
@@ -1747,7 +1747,7 @@ Context: location, http, server
 ## underscores_in_headers
 
 ```
-Syntax:  on | off
+Syntax:  underscores_in_headers on | off;
 Default: off
 Context: server, http
 ```
@@ -1759,7 +1759,7 @@ Context: server, http
 ## variables_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  variables_hash_bucket_size размер;
 Default: 64
 Context: http
 ```
@@ -1769,7 +1769,7 @@ Context: http
 ## variables_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  variables_hash_max_size размер;
 Default: 1024
 Context: http
 ```

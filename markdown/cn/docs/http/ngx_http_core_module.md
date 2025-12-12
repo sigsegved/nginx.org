@@ -9,7 +9,7 @@
 ## aio
 
 ```
-Syntax:  on | off | sendfile
+Syntax:  aio on | off | sendfile;
 Default: off
 Context: location, http, server
 ```
@@ -78,7 +78,7 @@ location /video/ {
 ## alias
 
 ```
-Syntax:  path
+Syntax:  alias path;
 Default: 
 Context: location
 ```
@@ -122,7 +122,7 @@ location /images/ {
 ## chunked_transfer_encoding
 
 ```
-Syntax:  on | off
+Syntax:  chunked_transfer_encoding on | off;
 Default: on
 Context: location, http, server
 ```
@@ -132,7 +132,7 @@ Context: location, http, server
 ## client_body_buffer_size
 
 ```
-Syntax:  size
+Syntax:  client_body_buffer_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -142,7 +142,7 @@ Context: location, http, server
 ## client_body_in_file_only
 
 ```
-Syntax:  on | clean | off
+Syntax:  client_body_in_file_only on | clean | off;
 Default: off
 Context: location, http, server
 ```
@@ -156,7 +156,7 @@ Context: location, http, server
 ## client_body_in_single_buffer
 
 ```
-Syntax:  on | off
+Syntax:  client_body_in_single_buffer on | off;
 Default: off
 Context: location, http, server
 ```
@@ -166,7 +166,7 @@ Context: location, http, server
 ## client_body_temp_path
 
 ```
-Syntax:  path [level1 [level2 [level3]]]
+Syntax:  client_body_temp_path path [level1 [level2 [level3]]];
 Default: client_body_temp
 Context: location, http, server
 ```
@@ -186,7 +186,7 @@ client_body_temp_path /spool/nginx/client_temp 1 2;
 ## client_body_timeout
 
 ```
-Syntax:  time
+Syntax:  client_body_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -196,7 +196,7 @@ Context: location, http, server
 ## client_header_buffer_size
 
 ```
-Syntax:  size
+Syntax:  client_header_buffer_size size;
 Default: 1k
 Context: server, http
 ```
@@ -206,7 +206,7 @@ Context: server, http
 ## client_header_timeout
 
 ```
-Syntax:  time
+Syntax:  client_header_timeout time;
 Default: 60s
 Context: server, http
 ```
@@ -216,7 +216,7 @@ Context: server, http
 ## client_max_body_size
 
 ```
-Syntax:  size
+Syntax:  client_max_body_size size;
 Default: 1m
 Context: location, http, server
 ```
@@ -226,7 +226,7 @@ Context: location, http, server
 ## connection_pool_size
 
 ```
-Syntax:  size
+Syntax:  connection_pool_size size;
 Default: 256
 Context: server, http
 ```
@@ -236,7 +236,7 @@ Context: server, http
 ## default_type
 
 ```
-Syntax:  mime-type
+Syntax:  default_type mime-type;
 Default: text/plain
 Context: location, http, server
 ```
@@ -246,7 +246,7 @@ Context: location, http, server
 ## directio
 
 ```
-Syntax:  size | off
+Syntax:  directio size | off;
 Default: off
 Context: location, http, server
 ```
@@ -264,7 +264,7 @@ directio 4m;
 ## directio_alignment
 
 ```
-Syntax:  size
+Syntax:  directio_alignment size;
 Default: 512
 Context: location, http, server
 ```
@@ -276,7 +276,7 @@ Context: location, http, server
 ## disable_symlinks
 
 ```
-Syntax:  on | if_not_owner [from=part]
+Syntax:  disable_symlinks on | if_not_owner [from=part];
 Default: off
 Context: location, http, server
 ```
@@ -319,7 +319,7 @@ disable_symlinks on from=$document_root;
 ## error_page
 
 ```
-Syntax:  code ... [=[response]] uri
+Syntax:  error_page code ... [=[response]] uri;
 Default: 
 Context: if in location, http, server, location
 ```
@@ -371,7 +371,7 @@ location @fallback {
 ## etag
 
 ```
-Syntax:  on | off
+Syntax:  etag on | off;
 Default: on
 Context: location, http, server
 ```
@@ -383,7 +383,7 @@ Context: location, http, server
 ## http
 
 ```
-Syntax:  
+Syntax:  http { ... }
 Default: 
 Context: main
 ```
@@ -393,7 +393,7 @@ Context: main
 ## if_modified_since
 
 ```
-Syntax:  off | exact | before
+Syntax:  if_modified_since off | exact | before;
 Default: exact
 Context: location, http, server
 ```
@@ -414,7 +414,7 @@ Context: location, http, server
 ## ignore_invalid_headers
 
 ```
-Syntax:  on | off
+Syntax:  ignore_invalid_headers on | off;
 Default: on
 Context: server, http
 ```
@@ -426,7 +426,7 @@ Context: server, http
 ## internal
 
 ```
-Syntax:  
+Syntax:  internal;
 Default: 
 Context: location
 ```
@@ -458,7 +458,7 @@ location /404.html {
 ## keepalive_disable
 
 ```
-Syntax:  none | browser ...
+Syntax:  keepalive_disable none | browser ...;
 Default: msie6
 Context: location, http, server
 ```
@@ -470,7 +470,7 @@ Context: location, http, server
 ## keepalive_requests
 
 ```
-Syntax:  number
+Syntax:  keepalive_requests number;
 Default: 100
 Context: location, http, server
 ```
@@ -482,7 +482,7 @@ Context: location, http, server
 ## keepalive_timeout
 
 ```
-Syntax:  timeout [header_timeout]
+Syntax:  keepalive_timeout timeout [header_timeout];
 Default: 75s
 Context: location, http, server
 ```
@@ -494,7 +494,7 @@ Context: location, http, server
 ## large_client_header_buffers
 
 ```
-Syntax:  number size
+Syntax:  large_client_header_buffers number size;
 Default: 4 8k
 Context: server, http
 ```
@@ -504,7 +504,7 @@ Context: server, http
 ## limit_except
 
 ```
-Syntax:  method ...
+Syntax:  limit_except method ... { ... }
 Default: 
 Context: location
 ```
@@ -523,7 +523,7 @@ limit_except GET {
 ## limit_rate
 
 ```
-Syntax:  rate
+Syntax:  limit_rate rate;
 Default: 0
 Context: if in location, http, server, location
 ```
@@ -548,7 +548,7 @@ server {
 ## limit_rate_after
 
 ```
-Syntax:  size
+Syntax:  limit_rate_after size;
 Default: 0
 Context: if in location, http, server, location
 ```
@@ -570,7 +570,7 @@ location /flv/ {
 ## lingering_close
 
 ```
-Syntax:  off | on | always
+Syntax:  lingering_close off | on | always;
 Default: on
 Context: location, http, server
 ```
@@ -588,7 +588,7 @@ Context: location, http, server
 ## lingering_time
 
 ```
-Syntax:  time
+Syntax:  lingering_time time;
 Default: 30s
 Context: location, http, server
 ```
@@ -598,7 +598,7 @@ Context: location, http, server
 ## lingering_timeout
 
 ```
-Syntax:  time
+Syntax:  lingering_timeout time;
 Default: 5s
 Context: location, http, server
 ```
@@ -608,7 +608,7 @@ Context: location, http, server
 ## listen
 
 ```
-Syntax:  unix:path [default_server] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [ssl] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen unix:path [default_server] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [ssl] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: *:80 | *:8000
 Context: server
 ```
@@ -723,7 +723,7 @@ listen 127.0.0.1 default_server accept_filter=dataready backlog=1024;
 ## location
 
 ```
-Syntax:  @name
+Syntax:  location @name { ... }
 Default: 
 Context: location, server
 ```
@@ -778,7 +778,7 @@ location ~* \.(gif|jpg|jpeg)$ {
 ## log_not_found
 
 ```
-Syntax:  on | off
+Syntax:  log_not_found on | off;
 Default: on
 Context: location, http, server
 ```
@@ -788,7 +788,7 @@ Context: location, http, server
 ## log_subrequest
 
 ```
-Syntax:  on | off
+Syntax:  log_subrequest on | off;
 Default: off
 Context: location, http, server
 ```
@@ -798,7 +798,7 @@ Context: location, http, server
 ## max_ranges
 
 ```
-Syntax:  number
+Syntax:  max_ranges number;
 Default: 
 Context: location, http, server
 ```
@@ -810,7 +810,7 @@ Context: location, http, server
 ## merge_slashes
 
 ```
-Syntax:  on | off
+Syntax:  merge_slashes on | off;
 Default: on
 Context: server, http
 ```
@@ -834,7 +834,7 @@ location /scripts/ {
 ## msie_padding
 
 ```
-Syntax:  on | off
+Syntax:  msie_padding on | off;
 Default: on
 Context: location, http, server
 ```
@@ -844,7 +844,7 @@ Context: location, http, server
 ## msie_refresh
 
 ```
-Syntax:  on | off
+Syntax:  msie_refresh on | off;
 Default: off
 Context: location, http, server
 ```
@@ -854,7 +854,7 @@ Context: location, http, server
 ## open_file_cache
 
 ```
-Syntax:  max=N [inactive=time]
+Syntax:  open_file_cache max=N [inactive=time];
 Default: off
 Context: location, http, server
 ```
@@ -890,7 +890,7 @@ open_file_cache_errors   on;
 ## open_file_cache_errors
 
 ```
-Syntax:  on | off
+Syntax:  open_file_cache_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -900,7 +900,7 @@ Context: location, http, server
 ## open_file_cache_min_uses
 
 ```
-Syntax:  number
+Syntax:  open_file_cache_min_uses number;
 Default: 1
 Context: location, http, server
 ```
@@ -910,7 +910,7 @@ Context: location, http, server
 ## open_file_cache_valid
 
 ```
-Syntax:  time
+Syntax:  open_file_cache_valid time;
 Default: 60s
 Context: location, http, server
 ```
@@ -920,7 +920,7 @@ Context: location, http, server
 ## optimize_server_names
 
 ```
-Syntax:  on | off
+Syntax:  optimize_server_names on | off;
 Default: off
 Context: server, http
 ```
@@ -930,7 +930,7 @@ Context: server, http
 ## port_in_redirect
 
 ```
-Syntax:  on | off
+Syntax:  port_in_redirect on | off;
 Default: on
 Context: location, http, server
 ```
@@ -942,7 +942,7 @@ Context: location, http, server
 ## postpone_output
 
 ```
-Syntax:  size
+Syntax:  postpone_output size;
 Default: 1460
 Context: location, http, server
 ```
@@ -952,7 +952,7 @@ Context: location, http, server
 ## read_ahead
 
 ```
-Syntax:  size
+Syntax:  read_ahead size;
 Default: 0
 Context: location, http, server
 ```
@@ -966,7 +966,7 @@ Context: location, http, server
 ## recursive_error_pages
 
 ```
-Syntax:  on | off
+Syntax:  recursive_error_pages on | off;
 Default: off
 Context: location, http, server
 ```
@@ -976,7 +976,7 @@ Context: location, http, server
 ## request_pool_size
 
 ```
-Syntax:  size
+Syntax:  request_pool_size size;
 Default: 4k
 Context: server, http
 ```
@@ -986,7 +986,7 @@ Context: server, http
 ## reset_timedout_connection
 
 ```
-Syntax:  on | off
+Syntax:  reset_timedout_connection on | off;
 Default: off
 Context: location, http, server
 ```
@@ -998,7 +998,7 @@ Context: location, http, server
 ## resolver
 
 ```
-Syntax:  address ... [valid=time]
+Syntax:  resolver address ... [valid=time];
 Default: 
 Context: location, http, server
 ```
@@ -1024,7 +1024,7 @@ resolver 127.0.0.1 [::1]:5353 valid=30s;
 ## resolver_timeout
 
 ```
-Syntax:  time
+Syntax:  resolver_timeout time;
 Default: 30s
 Context: location, http, server
 ```
@@ -1038,7 +1038,7 @@ resolver_timeout 5s;
 ## root
 
 ```
-Syntax:  path
+Syntax:  root path;
 Default: html
 Context: if in location, http, server, location
 ```
@@ -1060,7 +1060,7 @@ location /i/ {
 ## satisfy
 
 ```
-Syntax:  all | any
+Syntax:  satisfy all | any;
 Default: all
 Context: location, http, server
 ```
@@ -1084,7 +1084,7 @@ location / {
 ## satisfy_any
 
 ```
-Syntax:  on | off
+Syntax:  satisfy_any on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1094,7 +1094,7 @@ Context: location, http, server
 ## send_lowat
 
 ```
-Syntax:  size
+Syntax:  send_lowat size;
 Default: 0
 Context: location, http, server
 ```
@@ -1106,7 +1106,7 @@ Context: location, http, server
 ## send_timeout
 
 ```
-Syntax:  time
+Syntax:  send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -1116,7 +1116,7 @@ Context: location, http, server
 ## sendfile
 
 ```
-Syntax:  on | off
+Syntax:  sendfile on | off;
 Default: off
 Context: if in location, http, server, location
 ```
@@ -1126,7 +1126,7 @@ Context: if in location, http, server, location
 ## sendfile_max_chunk
 
 ```
-Syntax:  size
+Syntax:  sendfile_max_chunk size;
 Default: 0
 Context: location, http, server
 ```
@@ -1136,7 +1136,7 @@ Context: location, http, server
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: http
 ```
@@ -1146,7 +1146,7 @@ Context: http
 ## server_name
 
 ```
-Syntax:  name ...
+Syntax:  server_name name ...;
 Default: ""
 Context: server
 ```
@@ -1253,7 +1253,7 @@ server {
 ## server_name_in_redirect
 
 ```
-Syntax:  on | off
+Syntax:  server_name_in_redirect on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1265,7 +1265,7 @@ Context: location, http, server
 ## server_names_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  server_names_hash_bucket_size size;
 Default: 32|64|128
 Context: http
 ```
@@ -1275,7 +1275,7 @@ Context: http
 ## server_names_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  server_names_hash_max_size size;
 Default: 512
 Context: http
 ```
@@ -1285,7 +1285,7 @@ Context: http
 ## server_tokens
 
 ```
-Syntax:  on | off
+Syntax:  server_tokens on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1295,7 +1295,7 @@ Context: location, http, server
 ## tcp_nodelay
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nodelay on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1305,7 +1305,7 @@ Context: location, http, server
 ## tcp_nopush
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nopush on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1318,7 +1318,7 @@ Context: location, http, server
 ## try_files
 
 ```
-Syntax:  file ... =code
+Syntax:  try_files file ... =code;
 Default: 
 Context: location, server
 ```
@@ -1447,7 +1447,7 @@ location @wordpress {
 ## types
 
 ```
-Syntax:  
+Syntax:  types { ... }
 Default: text/html  html;
     image/gif  gif;
     image/jpeg jpg;
@@ -1478,7 +1478,7 @@ location /download/ {
 ## types_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  types_hash_bucket_size size;
 Default: 32|64|128
 Context: location, http, server
 ```
@@ -1488,7 +1488,7 @@ Context: location, http, server
 ## types_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  types_hash_max_size size;
 Default: 1024
 Context: location, http, server
 ```
@@ -1498,7 +1498,7 @@ Context: location, http, server
 ## underscores_in_headers
 
 ```
-Syntax:  on | off
+Syntax:  underscores_in_headers on | off;
 Default: off
 Context: server, http
 ```
@@ -1510,7 +1510,7 @@ Context: server, http
 ## variables_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  variables_hash_bucket_size size;
 Default: 64
 Context: http
 ```
@@ -1520,7 +1520,7 @@ Context: http
 ## variables_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  variables_hash_max_size size;
 Default: 512
 Context: http
 ```

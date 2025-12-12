@@ -54,7 +54,7 @@ http {
 ## http3
 
 ```
-Syntax:  on | off
+Syntax:  http3 on | off;
 Default: on
 Context: server, http
 ```
@@ -64,7 +64,7 @@ Enables [HTTP/3](https://datatracker.ietf.org/doc/html/rfc9114) protocol negotia
 ## http3_hq
 
 ```
-Syntax:  on | off
+Syntax:  http3_hq on | off;
 Default: off
 Context: server, http
 ```
@@ -74,7 +74,7 @@ Enables HTTP/0.9 protocol negotiation used in [QUIC interoperability tests](http
 ## http3_max_concurrent_streams
 
 ```
-Syntax:  number
+Syntax:  http3_max_concurrent_streams number;
 Default: 128
 Context: server, http
 ```
@@ -84,7 +84,7 @@ Sets the maximum number of concurrent HTTP/3 request streams in a connection.
 ## http3_stream_buffer_size
 
 ```
-Syntax:  size
+Syntax:  http3_stream_buffer_size size;
 Default: 64k
 Context: server, http
 ```
@@ -94,7 +94,7 @@ Sets the size of the buffer used for reading and writing of the QUIC streams.
 ## quic_active_connection_id_limit
 
 ```
-Syntax:  number
+Syntax:  quic_active_connection_id_limit number;
 Default: 2
 Context: server, http
 ```
@@ -104,7 +104,7 @@ Sets the QUIC `active_connection_id_limit` transport parameter value. This is th
 ## quic_bpf
 
 ```
-Syntax:  on | off
+Syntax:  quic_bpf on | off;
 Default: off
 Context: main
 ```
@@ -116,7 +116,7 @@ Enables routing of QUIC packets using [eBPF](https://ebpf.io/) . When enabled, t
 ## quic_gso
 
 ```
-Syntax:  on | off
+Syntax:  quic_gso on | off;
 Default: off
 Context: server, http
 ```
@@ -129,7 +129,7 @@ featuring `UDP_SEGMENT` .
 ## quic_host_key
 
 ```
-Syntax:  file
+Syntax:  quic_host_key file;
 Default: 
 Context: server, http
 ```
@@ -139,7 +139,7 @@ Sets a `file` with the secret key used to encrypt stateless reset and address va
 ## quic_retry
 
 ```
-Syntax:  on | off
+Syntax:  quic_retry on | off;
 Default: off
 Context: server, http
 ```

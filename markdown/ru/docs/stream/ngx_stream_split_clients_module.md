@@ -28,7 +28,7 @@ stream {
 ## split_clients
 
 ```
-Syntax:  строка $переменная
+Syntax:  split_clients строка $переменная { ... }
 Default: 
 Context: stream
 ```

@@ -24,7 +24,7 @@ server {
 ## grpc_allow_upstream
 
 ```
-Syntax:  строка ...
+Syntax:  grpc_allow_upstream строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ server {
 ## grpc_bind
 
 ```
-Syntax:  адрес [transparent ] | off
+Syntax:  grpc_bind адрес [transparent ] | off;
 Default: 
 Context: location, http, server
 ```
@@ -74,7 +74,7 @@ grpc_bind $remote_addr transparent;
 ## grpc_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  grpc_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -88,7 +88,7 @@ Context: location, http, server
 ## grpc_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  grpc_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -98,7 +98,7 @@ Context: location, http, server
 ## grpc_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  grpc_connect_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -108,7 +108,7 @@ Context: location, http, server
 ## grpc_hide_header
 
 ```
-Syntax:  поле
+Syntax:  grpc_hide_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Context: location, http, server
 ## grpc_ignore_headers
 
 ```
-Syntax:  поле ...
+Syntax:  grpc_ignore_headers поле ...;
 Default: 
 Context: location, http, server
 ```
@@ -134,7 +134,7 @@ Context: location, http, server
 ## grpc_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  grpc_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -144,7 +144,7 @@ Context: location, http, server
 ## grpc_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  grpc_next_upstream error | timeout | denied | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -207,7 +207,7 @@ Context: location, http, server
 ## grpc_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  grpc_next_upstream_timeout время;
 Default: 0
 Context: location, http, server
 ```
@@ -217,7 +217,7 @@ Context: location, http, server
 ## grpc_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  grpc_next_upstream_tries число;
 Default: 0
 Context: location, http, server
 ```
@@ -227,7 +227,7 @@ Context: location, http, server
 ## grpc_pass
 
 ```
-Syntax:  адрес
+Syntax:  grpc_pass адрес;
 Default: 
 Context: if в location, location
 ```
@@ -263,7 +263,7 @@ grpc_pass grpcs://127.0.0.1:443;
 ## grpc_pass_header
 
 ```
-Syntax:  поле
+Syntax:  grpc_pass_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -273,7 +273,7 @@ Context: location, http, server
 ## grpc_read_timeout
 
 ```
-Syntax:  время
+Syntax:  grpc_read_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -283,7 +283,7 @@ Context: location, http, server
 ## grpc_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  grpc_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -302,7 +302,7 @@ grpc_set_header      Host $upstream_last_server_name;
 ## grpc_send_timeout
 
 ```
-Syntax:  время
+Syntax:  grpc_send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -312,7 +312,7 @@ Context: location, http, server
 ## grpc_set_header
 
 ```
-Syntax:  поле значение
+Syntax:  grpc_set_header поле значение;
 Default: Content-Length $content_length
 Context: location, http, server
 ```
@@ -328,7 +328,7 @@ grpc_set_header Accept-Encoding "";
 ## grpc_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  grpc_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -340,7 +340,7 @@ Context: location, http, server
 ## grpc_ssl_certificate
 
 ```
-Syntax:  файл
+Syntax:  grpc_ssl_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -352,7 +352,7 @@ Context: location, http, server
 ## grpc_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=время] [valid=время]
+Syntax:  grpc_ssl_certificate_cache max=N [inactive=время] [valid=время];
 Default: off
 Context: location, http, server
 ```
@@ -393,7 +393,7 @@ grpc_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## grpc_ssl_certificate_key
 
 ```
-Syntax:  файл
+Syntax:  grpc_ssl_certificate_key файл;
 Default: 
 Context: location, http, server
 ```
@@ -409,7 +409,7 @@ Context: location, http, server
 ## grpc_ssl_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  grpc_ssl_ciphers шифры;
 Default: DEFAULT
 Context: location, http, server
 ```
@@ -421,7 +421,7 @@ Context: location, http, server
 ## grpc_ssl_conf_command
 
 ```
-Syntax:  имя значение
+Syntax:  grpc_ssl_conf_command имя значение;
 Default: 
 Context: location, http, server
 ```
@@ -440,7 +440,7 @@ Context: location, http, server
 ## grpc_ssl_crl
 
 ```
-Syntax:  файл
+Syntax:  grpc_ssl_crl файл;
 Default: 
 Context: location, http, server
 ```
@@ -450,7 +450,7 @@ Context: location, http, server
 ## grpc_ssl_key_log
 
 ```
-Syntax:  путь
+Syntax:  grpc_ssl_key_log путь;
 Default: 
 Context: location, http, server
 ```
@@ -464,7 +464,7 @@ Context: location, http, server
 ## grpc_ssl_name
 
 ```
-Syntax:  имя
+Syntax:  grpc_ssl_name имя;
 Default: имя хоста из grpc_pass
 Context: location, http, server
 ```
@@ -476,7 +476,7 @@ Context: location, http, server
 ## grpc_ssl_password_file
 
 ```
-Syntax:  файл
+Syntax:  grpc_ssl_password_file файл;
 Default: 
 Context: location, http, server
 ```
@@ -486,7 +486,7 @@ Context: location, http, server
 ## grpc_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  grpc_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: location, http, server
 ```
@@ -499,7 +499,7 @@ Context: location, http, server
 ## grpc_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  grpc_ssl_server_name on | off;
 Default: off
 Context: location, http, server
 ```
@@ -509,7 +509,7 @@ Context: location, http, server
 ## grpc_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  grpc_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -519,7 +519,7 @@ Context: location, http, server
 ## grpc_ssl_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  grpc_ssl_trusted_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -529,7 +529,7 @@ Context: location, http, server
 ## grpc_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  grpc_ssl_verify on | off;
 Default: off
 Context: location, http, server
 ```
@@ -539,7 +539,7 @@ Context: location, http, server
 ## grpc_ssl_verify_depth
 
 ```
-Syntax:  число
+Syntax:  grpc_ssl_verify_depth число;
 Default: 1
 Context: location, http, server
 ```

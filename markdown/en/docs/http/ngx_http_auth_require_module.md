@@ -34,7 +34,7 @@ http {
 ## auth_require
 
 ```
-Syntax:  $value ... [error=4xx | 5xx]
+Syntax:  auth_require $value ... [error=4xx | 5xx];
 Default: off
 Context: limit_except, http, server, location
 ```

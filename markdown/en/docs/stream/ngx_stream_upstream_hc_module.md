@@ -60,7 +60,7 @@ Health checks can also be configured to test data obtained from the server. Test
 ## health_check
 
 ```
-Syntax:  [parameters]
+Syntax:  health_check [parameters];
 Default: 
 Context: server
 ```
@@ -117,7 +117,7 @@ health checks instead of the default `TCP` protocol (1.9.13).
 ## health_check_timeout
 
 ```
-Syntax:  timeout
+Syntax:  health_check_timeout timeout;
 Default: 5s
 Context: server, stream
 ```
@@ -127,7 +127,7 @@ Overrides the [proxy_timeout](ngx_stream_proxy_module.xml#proxy_timeout) value f
 ## match
 
 ```
-Syntax:  name
+Syntax:  match name { ... }
 Default: 
 Context: stream
 ```

@@ -22,7 +22,7 @@ location / {
 ## auth_basic
 
 ```
-Syntax:  string | off
+Syntax:  auth_basic string | off;
 Default: off
 Context: limit_except, http, server, location
 ```
@@ -32,7 +32,7 @@ Context: limit_except, http, server, location
 ## auth_basic_user_file
 
 ```
-Syntax:  file
+Syntax:  auth_basic_user_file file;
 Default: 
 Context: limit_except, http, server, location
 ```

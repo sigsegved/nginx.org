@@ -35,7 +35,7 @@ location = /auth {
 ## auth_request
 
 ```
-Syntax:  uri | off
+Syntax:  auth_request uri | off;
 Default: off
 Context: location, http, server
 ```
@@ -45,7 +45,7 @@ Enables authorization based on the result of a subrequest and sets the URI to wh
 ## auth_request_set
 
 ```
-Syntax:  $variable value
+Syntax:  auth_request_set $variable value;
 Default: 
 Context: location, http, server
 ```

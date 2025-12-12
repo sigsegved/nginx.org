@@ -63,7 +63,7 @@ This configuration shows that in order for a health check to pass, the response 
 ## health_check
 
 ```
-Syntax:  [parameters]
+Syntax:  health_check [parameters];
 Default: 
 Context: location
 ```
@@ -137,7 +137,7 @@ By default keepalive connections are disabled.
 ## match
 
 ```
-Syntax:  name
+Syntax:  match name { ... }
 Default: 
 Context: http
 ```

@@ -22,7 +22,7 @@ location / {
 ## sub_filter
 
 ```
-Syntax:  строка замена
+Syntax:  sub_filter строка замена;
 Default: 
 Context: location, http, server
 ```
@@ -32,7 +32,7 @@ Context: location, http, server
 ## sub_filter_last_modified
 
 ```
-Syntax:  on | off
+Syntax:  sub_filter_last_modified on | off;
 Default: off
 Context: location, http, server
 ```
@@ -46,7 +46,7 @@ Context: location, http, server
 ## sub_filter_once
 
 ```
-Syntax:  on | off
+Syntax:  sub_filter_once on | off;
 Default: on
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ Context: location, http, server
 ## sub_filter_types
 
 ```
-Syntax:  mime-тип ...
+Syntax:  sub_filter_types mime-тип ...;
 Default: text/html
 Context: location, http, server
 ```

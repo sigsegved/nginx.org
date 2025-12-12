@@ -23,7 +23,7 @@ The `$gzip_ratio` variable can be used to log the achieved compression ratio.
 ## gzip
 
 ```
-Syntax:  on | off
+Syntax:  gzip on | off;
 Default: off
 Context: if in location, http, server, location
 ```
@@ -33,7 +33,7 @@ Enables or disables gzipping of responses.
 ## gzip_buffers
 
 ```
-Syntax:  number size
+Syntax:  gzip_buffers number size;
 Default: 32 4k|16 8k
 Context: location, http, server
 ```
@@ -45,7 +45,7 @@ Sets the `number` and `size` of buffers used to compress a response. By default,
 ## gzip_comp_level
 
 ```
-Syntax:  level
+Syntax:  gzip_comp_level level;
 Default: 1
 Context: location, http, server
 ```
@@ -55,7 +55,7 @@ Sets a gzip compression `level` of a response. Acceptable values are in the rang
 ## gzip_disable
 
 ```
-Syntax:  regex ...
+Syntax:  gzip_disable regex ...;
 Default: 
 Context: location, http, server
 ```
@@ -69,7 +69,7 @@ The special mask “ `msie6` ” (0.7.12) corresponds to the regular expression 
 ## gzip_http_version
 
 ```
-Syntax:  1.0 | 1.1
+Syntax:  gzip_http_version 1.0 | 1.1;
 Default: 1.1
 Context: location, http, server
 ```
@@ -79,7 +79,7 @@ Sets the minimum HTTP version of a request required to compress a response.
 ## gzip_min_length
 
 ```
-Syntax:  length
+Syntax:  gzip_min_length length;
 Default: 20
 Context: location, http, server
 ```
@@ -89,7 +89,7 @@ Sets the minimum length of a response that will be gzipped. The length is determ
 ## gzip_proxied
 
 ```
-Syntax:  off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...
+Syntax:  gzip_proxied off | expired | no-cache | no-store | private | no_last_modified | no_etag | auth | any ...;
 Default: off
 Context: location, http, server
 ```
@@ -130,7 +130,7 @@ ignoring other parameters;
 ## gzip_types
 
 ```
-Syntax:  mime-type ...
+Syntax:  gzip_types mime-type ...;
 Default: text/html
 Context: location, http, server
 ```
@@ -140,7 +140,7 @@ Enables gzipping of responses for the specified MIME types in addition to “ `t
 ## gzip_vary
 
 ```
-Syntax:  on | off
+Syntax:  gzip_vary on | off;
 Default: off
 Context: location, http, server
 ```

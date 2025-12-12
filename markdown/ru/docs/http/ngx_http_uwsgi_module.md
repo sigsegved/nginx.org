@@ -19,7 +19,7 @@ location / {
 ## uwsgi_allow_upstream
 
 ```
-Syntax:  строка ...
+Syntax:  uwsgi_allow_upstream строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -50,7 +50,7 @@ server {
 ## uwsgi_bind
 
 ```
-Syntax:  адрес [transparent] | off
+Syntax:  uwsgi_bind адрес [transparent] | off;
 Default: 
 Context: location, http, server
 ```
@@ -68,7 +68,7 @@ uwsgi_bind $remote_addr transparent;
 ## uwsgi_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_bind_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -82,7 +82,7 @@ Context: location, http, server
 ## uwsgi_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  uwsgi_buffer_size размер;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -92,7 +92,7 @@ Context: location, http, server
 ## uwsgi_buffering
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -108,7 +108,7 @@ Context: location, http, server
 ## uwsgi_buffers
 
 ```
-Syntax:  число размер
+Syntax:  uwsgi_buffers число размер;
 Default: 8 4k|8k
 Context: location, http, server
 ```
@@ -118,7 +118,7 @@ Context: location, http, server
 ## uwsgi_busy_buffers_size
 
 ```
-Syntax:  размер
+Syntax:  uwsgi_busy_buffers_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -128,7 +128,7 @@ Context: location, http, server
 ## uwsgi_cache
 
 ```
-Syntax:  зона | off
+Syntax:  uwsgi_cache зона | off;
 Default: off
 Context: location, http, server
 ```
@@ -138,7 +138,7 @@ Context: location, http, server
 ## uwsgi_cache_background_update
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_cache_background_update on | off;
 Default: off
 Context: location, http, server
 ```
@@ -150,7 +150,7 @@ Context: location, http, server
 ## uwsgi_cache_bypass
 
 ```
-Syntax:  строка ...
+Syntax:  uwsgi_cache_bypass строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -167,7 +167,7 @@ uwsgi_cache_bypass $http_pragma    $http_authorization;
 ## uwsgi_cache_key
 
 ```
-Syntax:  строка
+Syntax:  uwsgi_cache_key строка;
 Default: 
 Context: location, http, server
 ```
@@ -181,7 +181,7 @@ uwsgi_cache_key localhost:9000$request_uri;
 ## uwsgi_cache_lock
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_cache_lock on | off;
 Default: off
 Context: location, http, server
 ```
@@ -193,7 +193,7 @@ Context: location, http, server
 ## uwsgi_cache_lock_age
 
 ```
-Syntax:  время
+Syntax:  uwsgi_cache_lock_age время;
 Default: 5s
 Context: location, http, server
 ```
@@ -205,7 +205,7 @@ Context: location, http, server
 ## uwsgi_cache_lock_timeout
 
 ```
-Syntax:  время
+Syntax:  uwsgi_cache_lock_timeout время;
 Default: 5s
 Context: location, http, server
 ```
@@ -219,7 +219,7 @@ Context: location, http, server
 ## uwsgi_cache_max_range_offset
 
 ```
-Syntax:  число
+Syntax:  uwsgi_cache_max_range_offset число;
 Default: 
 Context: location, http, server
 ```
@@ -231,7 +231,7 @@ Context: location, http, server
 ## uwsgi_cache_methods
 
 ```
-Syntax:  GET | HEAD | POST ...
+Syntax:  uwsgi_cache_methods GET | HEAD | POST ...;
 Default: GET HEAD
 Context: location, http, server
 ```
@@ -241,7 +241,7 @@ Context: location, http, server
 ## uwsgi_cache_min_uses
 
 ```
-Syntax:  число
+Syntax:  uwsgi_cache_min_uses число;
 Default: 1
 Context: location, http, server
 ```
@@ -251,7 +251,7 @@ Context: location, http, server
 ## uwsgi_cache_path
 
 ```
-Syntax:  путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время]
+Syntax:  uwsgi_cache_path путь [levels=уровни] [use_temp_path=on|off] keys_zone=имя:размер [inactive=время] [max_size=размер] [min_free=размер] [manager_files=число] [manager_sleep=время] [manager_threshold=время] [loader_files=число] [loader_sleep=время] [loader_threshold=время] [purger=on|off] [purger_files=число] [purger_sleep=время] [purger_threshold=время];
 Default: 
 Context: http
 ```
@@ -313,7 +313,7 @@ uwsgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
 ## uwsgi_cache_purge
 
 ```
-Syntax:  строка ...
+Syntax:  uwsgi_cache_purge строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -350,7 +350,7 @@ server {
 ## uwsgi_cache_revalidate
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_cache_revalidate on | off;
 Default: off
 Context: location, http, server
 ```
@@ -362,7 +362,7 @@ Context: location, http, server
 ## uwsgi_cache_use_stale
 
 ```
-Syntax:  error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...
+Syntax:  uwsgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;
 Default: off
 Context: location, http, server
 ```
@@ -390,7 +390,7 @@ Context: location, http, server
 ## uwsgi_cache_valid
 
 ```
-Syntax:  [код ...] время
+Syntax:  uwsgi_cache_valid [код ...] время;
 Default: 
 Context: location, http, server
 ```
@@ -441,7 +441,7 @@ uwsgi_cache_valid any      1m;
 ## uwsgi_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  uwsgi_connect_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -451,7 +451,7 @@ Context: location, http, server
 ## uwsgi_force_ranges
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_force_ranges on | off;
 Default: off
 Context: location, http, server
 ```
@@ -463,7 +463,7 @@ Context: location, http, server
 ## uwsgi_hide_header
 
 ```
-Syntax:  поле
+Syntax:  uwsgi_hide_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -473,7 +473,7 @@ Context: location, http, server
 ## uwsgi_ignore_client_abort
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ignore_client_abort on | off;
 Default: off
 Context: location, http, server
 ```
@@ -483,7 +483,7 @@ Context: location, http, server
 ## uwsgi_ignore_headers
 
 ```
-Syntax:  поле ...
+Syntax:  uwsgi_ignore_headers поле ...;
 Default: 
 Context: location, http, server
 ```
@@ -503,7 +503,7 @@ Context: location, http, server
 ## uwsgi_intercept_errors
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_intercept_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -513,7 +513,7 @@ Context: location, http, server
 ## uwsgi_limit_rate
 
 ```
-Syntax:  скорость
+Syntax:  uwsgi_limit_rate скорость;
 Default: 0
 Context: location, http, server
 ```
@@ -525,7 +525,7 @@ Context: location, http, server
 ## uwsgi_max_temp_file_size
 
 ```
-Syntax:  размер
+Syntax:  uwsgi_max_temp_file_size размер;
 Default: 1024m
 Context: location, http, server
 ```
@@ -540,7 +540,7 @@ Context: location, http, server
 ## uwsgi_modifier1
 
 ```
-Syntax:  число
+Syntax:  uwsgi_modifier1 число;
 Default: 0
 Context: location, http, server
 ```
@@ -550,7 +550,7 @@ Context: location, http, server
 ## uwsgi_modifier2
 
 ```
-Syntax:  число
+Syntax:  uwsgi_modifier2 число;
 Default: 0
 Context: location, http, server
 ```
@@ -560,7 +560,7 @@ Context: location, http, server
 ## uwsgi_next_upstream
 
 ```
-Syntax:  error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...
+Syntax:  uwsgi_next_upstream error | timeout | denied | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;
 Default: error timeout
 Context: location, http, server
 ```
@@ -617,7 +617,7 @@ Context: location, http, server
 ## uwsgi_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  uwsgi_next_upstream_timeout время;
 Default: 0
 Context: location, http, server
 ```
@@ -629,7 +629,7 @@ Context: location, http, server
 ## uwsgi_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  uwsgi_next_upstream_tries число;
 Default: 0
 Context: location, http, server
 ```
@@ -641,7 +641,7 @@ Context: location, http, server
 ## uwsgi_no_cache
 
 ```
-Syntax:  строка ...
+Syntax:  uwsgi_no_cache строка ...;
 Default: 
 Context: location, http, server
 ```
@@ -658,7 +658,7 @@ uwsgi_no_cache $http_pragma    $http_authorization;
 ## uwsgi_param
 
 ```
-Syntax:  параметр значение [if_not_empty]
+Syntax:  uwsgi_param параметр значение [if_not_empty];
 Default: 
 Context: location, http, server
 ```
@@ -683,7 +683,7 @@ uwsgi_param HTTPS $https if_not_empty;
 ## uwsgi_pass
 
 ```
-Syntax:  [протокол://]адрес
+Syntax:  uwsgi_pass [протокол://]адрес;
 Default: 
 Context: if в location, location
 ```
@@ -711,7 +711,7 @@ uwsgi_pass unix:/tmp/uwsgi.socket;
 ## uwsgi_pass_header
 
 ```
-Syntax:  поле
+Syntax:  uwsgi_pass_header поле;
 Default: 
 Context: location, http, server
 ```
@@ -721,7 +721,7 @@ Context: location, http, server
 ## uwsgi_pass_request_body
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_pass_request_body on | off;
 Default: on
 Context: location, http, server
 ```
@@ -731,7 +731,7 @@ Context: location, http, server
 ## uwsgi_pass_request_headers
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_pass_request_headers on | off;
 Default: on
 Context: location, http, server
 ```
@@ -741,7 +741,7 @@ Context: location, http, server
 ## uwsgi_read_timeout
 
 ```
-Syntax:  время
+Syntax:  uwsgi_read_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -751,7 +751,7 @@ Context: location, http, server
 ## uwsgi_request_buffering
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_request_buffering on | off;
 Default: on
 Context: location, http, server
 ```
@@ -769,7 +769,7 @@ Context: location, http, server
 ## uwsgi_request_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_request_dynamic on | off;
 Default: off
 Context: location, http, server
 ```
@@ -783,7 +783,7 @@ Context: location, http, server
 ## uwsgi_send_timeout
 
 ```
-Syntax:  время
+Syntax:  uwsgi_send_timeout время;
 Default: 60s
 Context: location, http, server
 ```
@@ -793,7 +793,7 @@ Context: location, http, server
 ## uwsgi_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_socket_keepalive on | off;
 Default: off
 Context: location, http, server
 ```
@@ -805,7 +805,7 @@ Context: location, http, server
 ## uwsgi_ssl_certificate
 
 ```
-Syntax:  файл
+Syntax:  uwsgi_ssl_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -819,7 +819,7 @@ Context: location, http, server
 ## uwsgi_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=время] [valid=время]
+Syntax:  uwsgi_ssl_certificate_cache max=N [inactive=время] [valid=время];
 Default: off
 Context: location, http, server
 ```
@@ -860,7 +860,7 @@ uwsgi_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## uwsgi_ssl_certificate_key
 
 ```
-Syntax:  файл
+Syntax:  uwsgi_ssl_certificate_key файл;
 Default: 
 Context: location, http, server
 ```
@@ -878,7 +878,7 @@ Context: location, http, server
 ## uwsgi_ssl_ciphers
 
 ```
-Syntax:  ciphers
+Syntax:  uwsgi_ssl_ciphers ciphers;
 Default: DEFAULT
 Context: location, http, server
 ```
@@ -892,7 +892,7 @@ Context: location, http, server
 ## uwsgi_ssl_conf_command
 
 ```
-Syntax:  имя значение
+Syntax:  uwsgi_ssl_conf_command имя значение;
 Default: 
 Context: location, http, server
 ```
@@ -911,7 +911,7 @@ Context: location, http, server
 ## uwsgi_ssl_crl
 
 ```
-Syntax:  файл
+Syntax:  uwsgi_ssl_crl файл;
 Default: 
 Context: location, http, server
 ```
@@ -923,7 +923,7 @@ Context: location, http, server
 ## uwsgi_ssl_key_log
 
 ```
-Syntax:  путь
+Syntax:  uwsgi_ssl_key_log путь;
 Default: 
 Context: location, http, server
 ```
@@ -937,7 +937,7 @@ Context: location, http, server
 ## uwsgi_ssl_name
 
 ```
-Syntax:  имя
+Syntax:  uwsgi_ssl_name имя;
 Default: имя хоста из uwsgi_pass
 Context: location, http, server
 ```
@@ -951,7 +951,7 @@ Context: location, http, server
 ## uwsgi_ssl_password_file
 
 ```
-Syntax:  файл
+Syntax:  uwsgi_ssl_password_file файл;
 Default: 
 Context: location, http, server
 ```
@@ -963,7 +963,7 @@ Context: location, http, server
 ## uwsgi_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  uwsgi_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: location, http, server
 ```
@@ -978,7 +978,7 @@ Context: location, http, server
 ## uwsgi_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ssl_server_name on | off;
 Default: off
 Context: location, http, server
 ```
@@ -990,7 +990,7 @@ Context: location, http, server
 ## uwsgi_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ssl_session_reuse on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1002,7 +1002,7 @@ Context: location, http, server
 ## uwsgi_ssl_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  uwsgi_ssl_trusted_certificate файл;
 Default: 
 Context: location, http, server
 ```
@@ -1014,7 +1014,7 @@ Context: location, http, server
 ## uwsgi_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  uwsgi_ssl_verify on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1026,7 +1026,7 @@ Context: location, http, server
 ## uwsgi_ssl_verify_depth
 
 ```
-Syntax:  число
+Syntax:  uwsgi_ssl_verify_depth число;
 Default: 1
 Context: location, http, server
 ```
@@ -1038,7 +1038,7 @@ Context: location, http, server
 ## uwsgi_store
 
 ```
-Syntax:  on | off | строка
+Syntax:  uwsgi_store on | off | строка;
 Default: off
 Context: location, http, server
 ```
@@ -1076,7 +1076,7 @@ location /fetch/ {
 ## uwsgi_store_access
 
 ```
-Syntax:  пользователи:права ...
+Syntax:  uwsgi_store_access пользователи:права ...;
 Default: user:rw
 Context: location, http, server
 ```
@@ -1096,7 +1096,7 @@ uwsgi_store_access group:rw all:r;
 ## uwsgi_temp_file_write_size
 
 ```
-Syntax:  размер
+Syntax:  uwsgi_temp_file_write_size размер;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -1106,7 +1106,7 @@ Context: location, http, server
 ## uwsgi_temp_path
 
 ```
-Syntax:  путь [уровень1 [уровень2 [уровень3]]]
+Syntax:  uwsgi_temp_path путь [уровень1 [уровень2 [уровень3]]];
 Default: uwsgi_temp
 Context: location, http, server
 ```

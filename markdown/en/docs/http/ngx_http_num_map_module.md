@@ -25,7 +25,7 @@ num_map $remote_port $port_allow {
 ## num_map
 
 ```
-Syntax:  [$number] $variable
+Syntax:  num_map [$number] $variable { ... }
 Default: 
 Context: http
 ```

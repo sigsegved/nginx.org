@@ -19,7 +19,7 @@ return       $mqtt_preread_clientid;
 ## mqtt_preread
 
 ```
-Syntax:  on | off
+Syntax:  mqtt_preread on | off;
 Default: off
 Context: server, stream
 ```

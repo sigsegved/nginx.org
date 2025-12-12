@@ -21,7 +21,7 @@
 ## break
 
 ```
-Syntax:  
+Syntax:  break;
 Default: 
 Context: if, server, location
 ```
@@ -42,7 +42,7 @@ if ($slow) {
 ## if
 
 ```
-Syntax:  (условие)
+Syntax:  if (условие) { ... }
 Default: 
 Context: location, server
 ```
@@ -105,7 +105,7 @@ if ($invalid_referer) {
 ## return
 
 ```
-Syntax:  URL
+Syntax:  return URL;
 Default: 
 Context: if, server, location
 ```
@@ -128,7 +128,7 @@ Context: if, server, location
 ## rewrite
 
 ```
-Syntax:  regex замена [флаг]
+Syntax:  rewrite regex замена [флаг];
 Default: 
 Context: if, server, location
 ```
@@ -188,7 +188,7 @@ rewrite ^/users/(.*)$ /show?user=$1? last;
 ## rewrite_log
 
 ```
-Syntax:  on | off
+Syntax:  rewrite_log on | off;
 Default: off
 Context: if, http, server, location
 ```
@@ -198,7 +198,7 @@ Context: if, http, server, location
 ## set
 
 ```
-Syntax:  $переменная значение
+Syntax:  set $переменная значение;
 Default: 
 Context: if, server, location
 ```
@@ -208,7 +208,7 @@ Context: if, server, location
 ## uninitialized_variable_warn
 
 ```
-Syntax:  on | off
+Syntax:  uninitialized_variable_warn on | off;
 Default: on
 Context: if, http, server, location
 ```

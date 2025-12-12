@@ -52,7 +52,7 @@ http://hls.example.com/test.mp4.ts?start=1.000&end=2.200
 ## hls
 
 ```
-Syntax:  
+Syntax:  hls;
 Default: 
 Context: location
 ```
@@ -62,7 +62,7 @@ Context: location
 ## hls_buffers
 
 ```
-Syntax:  число размер
+Syntax:  hls_buffers число размер;
 Default: 8 2m
 Context: location, http, server
 ```
@@ -72,7 +72,7 @@ Context: location, http, server
 ## hls_forward_args
 
 ```
-Syntax:  on | off
+Syntax:  hls_forward_args on | off;
 Default: off
 Context: location, http, server
 ```
@@ -144,7 +144,7 @@ http {
 ## hls_fragment
 
 ```
-Syntax:  время
+Syntax:  hls_fragment время;
 Default: 5s
 Context: location, http, server
 ```
@@ -154,7 +154,7 @@ Context: location, http, server
 ## hls_mp4_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  hls_mp4_buffer_size размер;
 Default: 512k
 Context: location, http, server
 ```
@@ -164,7 +164,7 @@ Context: location, http, server
 ## hls_mp4_max_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  hls_mp4_max_buffer_size размер;
 Default: 10m
 Context: location, http, server
 ```

@@ -25,7 +25,7 @@ server {
 ## allow
 
 ```
-Syntax:  адрес | CIDR | unix: | all
+Syntax:  allow адрес | CIDR | unix: | all;
 Default: 
 Context: server, stream
 ```
@@ -35,7 +35,7 @@ Context: server, stream
 ## deny
 
 ```
-Syntax:  адрес | CIDR | unix: | all
+Syntax:  deny адрес | CIDR | unix: | all;
 Default: 
 Context: server, stream
 ```

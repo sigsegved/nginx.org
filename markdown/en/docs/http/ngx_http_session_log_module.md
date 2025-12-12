@@ -26,7 +26,7 @@ The following configuration sets up a session log and maps requests to sessions 
 ## session_log
 
 ```
-Syntax:  name | off
+Syntax:  session_log name | off;
 Default: off
 Context: location, http, server
 ```
@@ -36,7 +36,7 @@ Enables the use of the specified session log. The special value `off` cancels th
 ## session_log_format
 
 ```
-Syntax:  name string ...
+Syntax:  session_log_format name string ...;
 Default: combined "..."
 Context: http
 ```
@@ -46,7 +46,7 @@ Specifies the output format of a log. The value of the `$body_bytes_sent` variab
 ## session_log_zone
 
 ```
-Syntax:  path zone=name:size [format=format] [timeout=time] [id=id] [md5=md5]
+Syntax:  session_log_zone path zone=name:size [format=format] [timeout=time] [id=id] [md5=md5];
 Default: 
 Context: http
 ```

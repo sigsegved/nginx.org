@@ -37,7 +37,7 @@ server {
 ## proxy_bind
 
 ```
-Syntax:  address [transparent] | off
+Syntax:  proxy_bind address [transparent] | off;
 Default: 
 Context: server, stream
 ```
@@ -57,7 +57,7 @@ proxy_bind $remote_addr transparent;
 ## proxy_bind_dynamic
 
 ```
-Syntax:  on | off
+Syntax:  proxy_bind_dynamic on | off;
 Default: off
 Context: server, stream
 ```
@@ -71,7 +71,7 @@ Context: server, stream
 ## proxy_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  proxy_buffer_size размер;
 Default: 16k
 Context: server, stream
 ```
@@ -83,7 +83,7 @@ Context: server, stream
 ## proxy_connect_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_connect_timeout время;
 Default: 60s
 Context: server, stream
 ```
@@ -93,7 +93,7 @@ Context: server, stream
 ## proxy_download_rate
 
 ```
-Syntax:  скорость
+Syntax:  proxy_download_rate скорость;
 Default: 0
 Context: server, stream
 ```
@@ -116,7 +116,7 @@ proxy_download_rate $rate;
 ## proxy_half_close
 
 ```
-Syntax:  on | off
+Syntax:  proxy_half_close on | off;
 Default: off
 Context: server, stream
 ```
@@ -128,7 +128,7 @@ Context: server, stream
 ## proxy_next_upstream
 
 ```
-Syntax:  on | off
+Syntax:  proxy_next_upstream on | off;
 Default: on
 Context: server, stream
 ```
@@ -140,7 +140,7 @@ Context: server, stream
 ## proxy_next_upstream_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_next_upstream_timeout время;
 Default: 0
 Context: server, stream
 ```
@@ -150,7 +150,7 @@ Context: server, stream
 ## proxy_next_upstream_tries
 
 ```
-Syntax:  число
+Syntax:  proxy_next_upstream_tries число;
 Default: 0
 Context: server, stream
 ```
@@ -160,7 +160,7 @@ Context: server, stream
 ## proxy_pass
 
 ```
-Syntax:  адрес
+Syntax:  proxy_pass адрес;
 Default: 
 Context: server
 ```
@@ -190,7 +190,7 @@ proxy_pass $upstream;
 ## proxy_protocol
 
 ```
-Syntax:  on | off
+Syntax:  proxy_protocol on | off;
 Default: off
 Context: server, stream
 ```
@@ -202,7 +202,7 @@ Context: server, stream
 ## proxy_requests
 
 ```
-Syntax:  число
+Syntax:  proxy_requests число;
 Default: 0
 Context: server, stream
 ```
@@ -214,7 +214,7 @@ Context: server, stream
 ## proxy_responses
 
 ```
-Syntax:  число
+Syntax:  proxy_responses число;
 Default: 
 Context: server, stream
 ```
@@ -228,7 +228,7 @@ Context: server, stream
 ## proxy_session_drop
 
 ```
-Syntax:  on | off
+Syntax:  proxy_session_drop on | off;
 Default: off
 Context: server, stream
 ```
@@ -242,7 +242,7 @@ Context: server, stream
 ## proxy_socket_keepalive
 
 ```
-Syntax:  on | off
+Syntax:  proxy_socket_keepalive on | off;
 Default: off
 Context: server, stream
 ```
@@ -254,7 +254,7 @@ Context: server, stream
 ## proxy_ssl
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl on | off;
 Default: off
 Context: server, stream
 ```
@@ -264,7 +264,7 @@ Context: server, stream
 ## proxy_ssl_certificate
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_certificate файл;
 Default: 
 Context: server, stream
 ```
@@ -276,7 +276,7 @@ Context: server, stream
 ## proxy_ssl_certificate_cache
 
 ```
-Syntax:  max=N [inactive=время] [valid=время]
+Syntax:  proxy_ssl_certificate_cache max=N [inactive=время] [valid=время];
 Default: off
 Context: server, stream
 ```
@@ -317,7 +317,7 @@ proxy_ssl_certificate_cache max=1000 inactive=20s valid=1m;
 ## proxy_ssl_certificate_key
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_certificate_key файл;
 Default: 
 Context: server, stream
 ```
@@ -331,7 +331,7 @@ Context: server, stream
 ## proxy_ssl_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  proxy_ssl_ciphers шифры;
 Default: DEFAULT
 Context: server, stream
 ```
@@ -343,7 +343,7 @@ Context: server, stream
 ## proxy_ssl_conf_command
 
 ```
-Syntax:  имя значение
+Syntax:  proxy_ssl_conf_command имя значение;
 Default: 
 Context: server, stream
 ```
@@ -362,7 +362,7 @@ Context: server, stream
 ## proxy_ssl_crl
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_crl файл;
 Default: 
 Context: server, stream
 ```
@@ -372,7 +372,7 @@ Context: server, stream
 ## proxy_ssl_key_log
 
 ```
-Syntax:  путь
+Syntax:  proxy_ssl_key_log путь;
 Default: 
 Context: server, stream
 ```
@@ -386,7 +386,7 @@ Context: server, stream
 ## proxy_ssl_name
 
 ```
-Syntax:  имя
+Syntax:  proxy_ssl_name имя;
 Default: хост из proxy_pass
 Context: server, stream
 ```
@@ -398,7 +398,7 @@ Context: server, stream
 ## proxy_ssl_password_file
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_password_file файл;
 Default: 
 Context: server, stream
 ```
@@ -408,7 +408,7 @@ Context: server, stream
 ## proxy_ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: server, stream
 ```
@@ -421,7 +421,7 @@ Context: server, stream
 ## proxy_ssl_server_name
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_server_name on | off;
 Default: off
 Context: server, stream
 ```
@@ -431,7 +431,7 @@ Context: server, stream
 ## proxy_ssl_session_reuse
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_session_reuse on | off;
 Default: on
 Context: server, stream
 ```
@@ -441,7 +441,7 @@ Context: server, stream
 ## proxy_ssl_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  proxy_ssl_trusted_certificate файл;
 Default: 
 Context: server, stream
 ```
@@ -451,7 +451,7 @@ Context: server, stream
 ## proxy_ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  proxy_ssl_verify on | off;
 Default: off
 Context: server, stream
 ```
@@ -461,7 +461,7 @@ Context: server, stream
 ## proxy_ssl_verify_depth
 
 ```
-Syntax:  число
+Syntax:  proxy_ssl_verify_depth число;
 Default: 1
 Context: server, stream
 ```
@@ -471,7 +471,7 @@ Context: server, stream
 ## proxy_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_timeout время;
 Default: 10m
 Context: server, stream
 ```
@@ -481,7 +481,7 @@ Context: server, stream
 ## proxy_upload_rate
 
 ```
-Syntax:  скорость
+Syntax:  proxy_upload_rate скорость;
 Default: 0
 Context: server, stream
 ```

@@ -45,7 +45,7 @@ mail {
 ## ssl
 
 ```
-Syntax:  on | off
+Syntax:  ssl on | off;
 Default: off
 Context: server, mail
 ```
@@ -55,7 +55,7 @@ Context: server, mail
 ## ssl_certificate
 
 ```
-Syntax:  файл
+Syntax:  ssl_certificate файл;
 Default: 
 Context: server, mail
 ```
@@ -88,7 +88,7 @@ server {
 ## ssl_certificate_compression
 
 ```
-Syntax:  on | off
+Syntax:  ssl_certificate_compression on | off;
 Default: off
 Context: server, mail
 ```
@@ -106,7 +106,7 @@ Context: server, mail
 ## ssl_certificate_key
 
 ```
-Syntax:  файл
+Syntax:  ssl_certificate_key файл;
 Default: 
 Context: server, mail
 ```
@@ -122,7 +122,7 @@ Context: server, mail
 ## ssl_ciphers
 
 ```
-Syntax:  шифры
+Syntax:  ssl_ciphers шифры;
 Default: HIGH:!aNULL:!MD5
 Context: server, mail
 ```
@@ -140,7 +140,7 @@ ssl_ciphers ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
 ## ssl_client_certificate
 
 ```
-Syntax:  файл
+Syntax:  ssl_client_certificate файл;
 Default: 
 Context: server, mail
 ```
@@ -154,7 +154,7 @@ Context: server, mail
 ## ssl_conf_command
 
 ```
-Syntax:  имя значение
+Syntax:  ssl_conf_command имя значение;
 Default: 
 Context: server, mail
 ```
@@ -180,7 +180,7 @@ ssl_conf_command Ciphersuites TLS_CHACHA20_POLY1305_SHA256;
 ## ssl_crl
 
 ```
-Syntax:  файл
+Syntax:  ssl_crl файл;
 Default: 
 Context: server, mail
 ```
@@ -192,7 +192,7 @@ Context: server, mail
 ## ssl_dhparam
 
 ```
-Syntax:  файл
+Syntax:  ssl_dhparam файл;
 Default: 
 Context: server, mail
 ```
@@ -208,7 +208,7 @@ Context: server, mail
 ## ssl_ecdh_curve
 
 ```
-Syntax:  кривая
+Syntax:  ssl_ecdh_curve кривая;
 Default: auto
 Context: server, mail
 ```
@@ -236,7 +236,7 @@ ssl_ecdh_curve prime256v1:secp384r1;
 ## ssl_password_file
 
 ```
-Syntax:  файл
+Syntax:  ssl_password_file файл;
 Default: 
 Context: server, mail
 ```
@@ -270,7 +270,7 @@ mail {
 ## ssl_prefer_server_ciphers
 
 ```
-Syntax:  on | off
+Syntax:  ssl_prefer_server_ciphers on | off;
 Default: off
 Context: server, mail
 ```
@@ -280,7 +280,7 @@ Context: server, mail
 ## ssl_protocols
 
 ```
-Syntax:  [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3]
+Syntax:  ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];
 Default: TLSv1.2 TLSv1.3
 Context: server, mail
 ```
@@ -298,7 +298,7 @@ Context: server, mail
 ## ssl_session_cache
 
 ```
-Syntax:  off | none | [builtin[:размер]] [shared:название:размер]
+Syntax:  ssl_session_cache off | none | [builtin[:размер]] [shared:название:размер];
 Default: none
 Context: server, mail
 ```
@@ -343,7 +343,7 @@ ssl_session_cache builtin:1000 shared:SSL:10m;
 ## ssl_session_ticket_key
 
 ```
-Syntax:  файл
+Syntax:  ssl_session_ticket_key файл;
 Default: 
 Context: server, mail
 ```
@@ -370,7 +370,7 @@ openssl rand 80 > ticket.key
 ## ssl_session_tickets
 
 ```
-Syntax:  on | off
+Syntax:  ssl_session_tickets on | off;
 Default: on
 Context: server, mail
 ```
@@ -382,7 +382,7 @@ Context: server, mail
 ## ssl_session_timeout
 
 ```
-Syntax:  время
+Syntax:  ssl_session_timeout время;
 Default: 5m
 Context: server, mail
 ```
@@ -392,7 +392,7 @@ Context: server, mail
 ## ssl_trusted_certificate
 
 ```
-Syntax:  файл
+Syntax:  ssl_trusted_certificate файл;
 Default: 
 Context: server, mail
 ```
@@ -406,7 +406,7 @@ Context: server, mail
 ## ssl_verify_client
 
 ```
-Syntax:  on | off | optional | optional_no_ca
+Syntax:  ssl_verify_client on | off | optional | optional_no_ca;
 Default: off
 Context: server, mail
 ```
@@ -422,7 +422,7 @@ Context: server, mail
 ## ssl_verify_depth
 
 ```
-Syntax:  число
+Syntax:  ssl_verify_depth число;
 Default: 1
 Context: server, mail
 ```
@@ -434,7 +434,7 @@ Context: server, mail
 ## starttls
 
 ```
-Syntax:  on | off | only
+Syntax:  starttls on | off | only;
 Default: off
 Context: server, mail
 ```

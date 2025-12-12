@@ -8,7 +8,7 @@
 ## absolute_redirect
 
 ```
-Syntax:  on | off
+Syntax:  absolute_redirect on | off;
 Default: on
 Context: location, http, server
 ```
@@ -22,7 +22,7 @@ See also [server_name_in_redirect](#server_name_in_redirect) and [port_in_redire
 ## aio
 
 ```
-Syntax:  on | off | threads[=pool]
+Syntax:  aio on | off | threads[=pool];
 Default: off
 Context: location, http, server
 ```
@@ -94,7 +94,7 @@ See also the [sendfile](#sendfile) directive.
 ## aio_write
 
 ```
-Syntax:  on | off
+Syntax:  aio_write on | off;
 Default: off
 Context: location, http, server
 ```
@@ -106,7 +106,7 @@ If [aio](#aio) is enabled, specifies whether it is used for writing files. Curre
 ## alias
 
 ```
-Syntax:  path
+Syntax:  alias path;
 Default: 
 Context: location
 ```
@@ -150,7 +150,7 @@ location /images/ {
 ## auth_delay
 
 ```
-Syntax:  time
+Syntax:  auth_delay time;
 Default: 0s
 Context: location, http, server
 ```
@@ -162,7 +162,7 @@ Delays processing of unauthorized requests with 401 response code to prevent tim
 ## chunked_transfer_encoding
 
 ```
-Syntax:  on | off
+Syntax:  chunked_transfer_encoding on | off;
 Default: on
 Context: location, http, server
 ```
@@ -172,7 +172,7 @@ Allows disabling chunked transfer encoding in HTTP/1.1. It may come in handy whe
 ## client_body_buffer_size
 
 ```
-Syntax:  size
+Syntax:  client_body_buffer_size size;
 Default: 8k|16k
 Context: location, http, server
 ```
@@ -182,7 +182,7 @@ Sets buffer size for reading client request body. In case the request body is la
 ## client_body_in_file_only
 
 ```
-Syntax:  on | clean | off
+Syntax:  client_body_in_file_only on | clean | off;
 Default: off
 Context: location, http, server
 ```
@@ -196,7 +196,7 @@ The value `clean` will cause the temporary files left after request processing t
 ## client_body_in_single_buffer
 
 ```
-Syntax:  on | off
+Syntax:  client_body_in_single_buffer on | off;
 Default: off
 Context: location, http, server
 ```
@@ -206,7 +206,7 @@ Determines whether nginx should save the entire client request body in a single 
 ## client_body_temp_path
 
 ```
-Syntax:  path [level1 [level2 [level3]]]
+Syntax:  client_body_temp_path path [level1 [level2 [level3]]];
 Default: client_body_temp
 Context: location, http, server
 ```
@@ -226,7 +226,7 @@ a path to a temporary file might look like this:
 ## client_body_timeout
 
 ```
-Syntax:  time
+Syntax:  client_body_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -236,7 +236,7 @@ Defines a timeout for reading client request body. The timeout is set only for a
 ## client_header_buffer_size
 
 ```
-Syntax:  size
+Syntax:  client_header_buffer_size size;
 Default: 1k
 Context: server, http
 ```
@@ -248,7 +248,7 @@ If the directive is specified on the [server](#server) level, the value from the
 ## client_header_timeout
 
 ```
-Syntax:  time
+Syntax:  client_header_timeout time;
 Default: 60s
 Context: server, http
 ```
@@ -258,7 +258,7 @@ Defines a timeout for reading client request header. If a client does not transm
 ## client_max_body_size
 
 ```
-Syntax:  size
+Syntax:  client_max_body_size size;
 Default: 1m
 Context: location, http, server
 ```
@@ -268,7 +268,7 @@ Sets the maximum allowed size of the client request body. If the size in a reque
 ## connection_pool_size
 
 ```
-Syntax:  size
+Syntax:  connection_pool_size size;
 Default: 256|512
 Context: server, http
 ```
@@ -280,7 +280,7 @@ Allows accurate tuning of per-connection memory allocations. This directive has 
 ## default_type
 
 ```
-Syntax:  mime-type
+Syntax:  default_type mime-type;
 Default: text/plain
 Context: location, http, server
 ```
@@ -290,7 +290,7 @@ Defines the default MIME type of a response. Mapping of file name extensions to 
 ## directio
 
 ```
-Syntax:  size | off
+Syntax:  directio size | off;
 Default: off
 Context: location, http, server
 ```
@@ -308,7 +308,7 @@ or when using [aio](#aio) on Linux.
 ## directio_alignment
 
 ```
-Syntax:  size
+Syntax:  directio_alignment size;
 Default: 512
 Context: location, http, server
 ```
@@ -320,7 +320,7 @@ Sets the alignment for [directio](#directio) . In most cases, a 512-byte alignme
 ## disable_symlinks
 
 ```
-Syntax:  on | if_not_owner [from=part]
+Syntax:  disable_symlinks on | if_not_owner [from=part];
 Default: off
 Context: location, http, server
 ```
@@ -376,7 +376,7 @@ and [ngx_http_dav_module](ngx_http_dav_module.xml) modules currently ignore this
 ## early_hints
 
 ```
-Syntax:  string ...
+Syntax:  early_hints string ...;
 Default: 
 Context: location, http, server
 ```
@@ -402,7 +402,7 @@ server {
 ## error_page
 
 ```
-Syntax:  code ... [=[response]] uri
+Syntax:  error_page code ... [=[response]] uri;
 Default: 
 Context: if in location, http, server, location
 ```
@@ -463,7 +463,7 @@ These directives are inherited from the previous configuration level if and only
 ## etag
 
 ```
-Syntax:  on | off
+Syntax:  etag on | off;
 Default: on
 Context: location, http, server
 ```
@@ -475,7 +475,7 @@ Enables or disables automatic generation of the `ETag` response header field for
 ## http
 
 ```
-Syntax:  
+Syntax:  http { ... }
 Default: 
 Context: main
 ```
@@ -485,7 +485,7 @@ Provides the configuration file context in which the HTTP server directives are 
 ## if_modified_since
 
 ```
-Syntax:  off | exact | before
+Syntax:  if_modified_since off | exact | before;
 Default: exact
 Context: location, http, server
 ```
@@ -507,7 +507,7 @@ less than or equal to the time in the `If-Modified-Since` request header field.
 ## ignore_invalid_headers
 
 ```
-Syntax:  on | off
+Syntax:  ignore_invalid_headers on | off;
 Default: on
 Context: server, http
 ```
@@ -519,7 +519,7 @@ If the directive is specified on the [server](#server) level, the value from the
 ## internal
 
 ```
-Syntax:  
+Syntax:  internal;
 Default: 
 Context: location
 ```
@@ -552,7 +552,7 @@ can be seen in the error log.
 ## keepalive_disable
 
 ```
-Syntax:  none | browser ...
+Syntax:  keepalive_disable none | browser ...;
 Default: msie6
 Context: location, http, server
 ```
@@ -566,7 +566,7 @@ keep-alive connections with them were disabled by default.
 ## keepalive_min_timeout
 
 ```
-Syntax:  timeout
+Syntax:  keepalive_min_timeout timeout;
 Default: 0
 Context: location, http, server
 ```
@@ -578,7 +578,7 @@ Sets a timeout during which a keep-alive client connection will not be closed on
 ## keepalive_requests
 
 ```
-Syntax:  number
+Syntax:  keepalive_requests number;
 Default: 1000
 Context: location, http, server
 ```
@@ -594,7 +594,7 @@ Closing connections periodically is necessary to free per-connection memory allo
 ## keepalive_time
 
 ```
-Syntax:  time
+Syntax:  keepalive_time time;
 Default: 1h
 Context: location, http, server
 ```
@@ -606,7 +606,7 @@ Limits the maximum time during which requests can be processed through one keep-
 ## keepalive_timeout
 
 ```
-Syntax:  timeout [header_timeout]
+Syntax:  keepalive_timeout timeout [header_timeout];
 Default: 75s
 Context: location, http, server
 ```
@@ -618,7 +618,7 @@ The `Keep-Alive: timeout=` header field is recognized by Mozilla and Konqueror. 
 ## large_client_header_buffers
 
 ```
-Syntax:  number size
+Syntax:  large_client_header_buffers number size;
 Default: 4 8k
 Context: server, http
 ```
@@ -630,7 +630,7 @@ If the directive is specified on the [server](#server) level, the value from the
 ## limit_except
 
 ```
-Syntax:  method ...
+Syntax:  limit_except method ... { ... }
 Default: 
 Context: location
 ```
@@ -649,7 +649,7 @@ Please note that this will limit access to all methods *except* GET and HEAD.
 ## limit_rate
 
 ```
-Syntax:  rate
+Syntax:  limit_rate rate;
 Default: 0
 Context: if in location, http, server, location
 ```
@@ -685,7 +685,7 @@ Rate limit can also be set in the `X-Accel-Limit-Rate` header field of a proxied
 ## limit_rate_after
 
 ```
-Syntax:  size
+Syntax:  limit_rate_after size;
 Default: 0
 Context: if in location, http, server, location
 ```
@@ -707,7 +707,7 @@ location /flv/ {
 ## lingering_close
 
 ```
-Syntax:  off | on | always
+Syntax:  lingering_close off | on | always;
 Default: on
 Context: location, http, server
 ```
@@ -727,7 +727,7 @@ To control closing [HTTP/2](ngx_http_v2_module.xml) connections, the directive m
 ## lingering_time
 
 ```
-Syntax:  time
+Syntax:  lingering_time time;
 Default: 30s
 Context: location, http, server
 ```
@@ -737,7 +737,7 @@ When [lingering_close](#lingering_close) is in effect, this directive specifies 
 ## lingering_timeout
 
 ```
-Syntax:  time
+Syntax:  lingering_timeout time;
 Default: 5s
 Context: location, http, server
 ```
@@ -747,7 +747,7 @@ When [lingering_close](#lingering_close) is in effect, this directive specifies 
 ## listen
 
 ```
-Syntax:  unix:path [default_server] [ssl] [http2 | quic] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen unix:path [default_server] [ssl] [http2 | quic] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [accept_filter=filter] [deferred] [bind] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: *:80 | *:8000
 Context: server
 ```
@@ -908,7 +908,7 @@ listen 127.0.0.1 default_server accept_filter=dataready backlog=1024;
 ## location
 
 ```
-Syntax:  @name
+Syntax:  location @name { ... }
 Default: 
 Context: location, server
 ```
@@ -977,7 +977,7 @@ location = /user {
 ## log_not_found
 
 ```
-Syntax:  on | off
+Syntax:  log_not_found on | off;
 Default: on
 Context: location, http, server
 ```
@@ -987,7 +987,7 @@ Enables or disables logging of errors about not found files into [error_log](../
 ## log_subrequest
 
 ```
-Syntax:  on | off
+Syntax:  log_subrequest on | off;
 Default: off
 Context: location, http, server
 ```
@@ -997,7 +997,7 @@ Enables or disables logging of subrequests into [access_log](ngx_http_log_module
 ## max_ranges
 
 ```
-Syntax:  number
+Syntax:  max_ranges number;
 Default: 
 Context: location, http, server
 ```
@@ -1009,7 +1009,7 @@ Limits the maximum allowed number of ranges in byte-range requests. Requests tha
 ## merge_slashes
 
 ```
-Syntax:  on | off
+Syntax:  merge_slashes on | off;
 Default: on
 Context: server, http
 ```
@@ -1033,7 +1033,7 @@ If the directive is specified on the [server](#server) level, the value from the
 ## msie_padding
 
 ```
-Syntax:  on | off
+Syntax:  msie_padding on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1043,7 +1043,7 @@ Enables or disables adding comments to responses for MSIE clients with status gr
 ## msie_refresh
 
 ```
-Syntax:  on | off
+Syntax:  msie_refresh on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1053,7 +1053,7 @@ Enables or disables issuing refreshes instead of redirects for MSIE clients.
 ## open_file_cache
 
 ```
-Syntax:  max=N [inactive=time]
+Syntax:  open_file_cache max=N [inactive=time];
 Default: off
 Context: location, http, server
 ```
@@ -1092,7 +1092,7 @@ open_file_cache_errors   on;
 ## open_file_cache_errors
 
 ```
-Syntax:  on | off
+Syntax:  open_file_cache_errors on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1102,7 +1102,7 @@ Enables or disables caching of file lookup errors by [open_file_cache](#open_fil
 ## open_file_cache_min_uses
 
 ```
-Syntax:  number
+Syntax:  open_file_cache_min_uses number;
 Default: 1
 Context: location, http, server
 ```
@@ -1112,7 +1112,7 @@ Sets the minimum `number` of file accesses during the period configured by the `
 ## open_file_cache_valid
 
 ```
-Syntax:  time
+Syntax:  open_file_cache_valid time;
 Default: 60s
 Context: location, http, server
 ```
@@ -1122,7 +1122,7 @@ Sets a time after which [open_file_cache](#open_file_cache) elements should be v
 ## output_buffers
 
 ```
-Syntax:  number size
+Syntax:  output_buffers number size;
 Default: 2 32k
 Context: location, http, server
 ```
@@ -1134,7 +1134,7 @@ Sets the `number` and `size` of the buffers used for reading a response from a d
 ## port_in_redirect
 
 ```
-Syntax:  on | off
+Syntax:  port_in_redirect on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1146,7 +1146,7 @@ The use of the primary server name in redirects is controlled by the [server_nam
 ## postpone_output
 
 ```
-Syntax:  size
+Syntax:  postpone_output size;
 Default: 1460
 Context: location, http, server
 ```
@@ -1156,7 +1156,7 @@ If possible, the transmission of client data will be postponed until nginx has a
 ## read_ahead
 
 ```
-Syntax:  size
+Syntax:  read_ahead size;
 Default: 0
 Context: location, http, server
 ```
@@ -1170,7 +1170,7 @@ On FreeBSD, the `fcntl(O_READAHEAD,` `size` `)` system call, supported since Fre
 ## recursive_error_pages
 
 ```
-Syntax:  on | off
+Syntax:  recursive_error_pages on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1180,7 +1180,7 @@ Enables or disables doing several redirects using the [error_page](#error_page) 
 ## request_pool_size
 
 ```
-Syntax:  size
+Syntax:  request_pool_size size;
 Default: 4k
 Context: server, http
 ```
@@ -1190,7 +1190,7 @@ Allows accurate tuning of per-request memory allocations. This directive has min
 ## reset_timedout_connection
 
 ```
-Syntax:  on | off
+Syntax:  reset_timedout_connection on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1202,7 +1202,7 @@ It should be noted that timed out keep-alive connections are closed normally.
 ## resolver
 
 ```
-Syntax:  address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone]
+Syntax:  resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
 Default: 
 Context: location, http, server
 ```
@@ -1241,7 +1241,7 @@ The optional `status_zone` parameter (1.17.1) enables [collection](ngx_http_api_
 ## resolver_timeout
 
 ```
-Syntax:  time
+Syntax:  resolver_timeout time;
 Default: 30s
 Context: location, http, server
 ```
@@ -1255,7 +1255,7 @@ resolver_timeout 5s;
 ## root
 
 ```
-Syntax:  path
+Syntax:  root path;
 Default: html
 Context: if in location, http, server, location
 ```
@@ -1277,7 +1277,7 @@ A path to the file is constructed by merely adding a URI to the value of the `ro
 ## satisfy
 
 ```
-Syntax:  all | any
+Syntax:  satisfy all | any;
 Default: all
 Context: location, http, server
 ```
@@ -1301,7 +1301,7 @@ location / {
 ## send_lowat
 
 ```
-Syntax:  size
+Syntax:  send_lowat size;
 Default: 0
 Context: location, http, server
 ```
@@ -1313,7 +1313,7 @@ This directive is ignored on Linux, Solaris, and Windows.
 ## send_timeout
 
 ```
-Syntax:  time
+Syntax:  send_timeout time;
 Default: 60s
 Context: location, http, server
 ```
@@ -1323,7 +1323,7 @@ Sets a timeout for transmitting a response to the client. The timeout is set onl
 ## sendfile
 
 ```
-Syntax:  on | off
+Syntax:  sendfile on | off;
 Default: off
 Context: if in location, http, server, location
 ```
@@ -1347,7 +1347,7 @@ In this configuration, `sendfile()` is called with the SF_NODISKIO flag which ca
 ## sendfile_max_chunk
 
 ```
-Syntax:  size
+Syntax:  sendfile_max_chunk size;
 Default: 2m
 Context: location, http, server
 ```
@@ -1359,7 +1359,7 @@ Limits the amount of data that can be transferred in a single `sendfile()` call.
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: http
 ```
@@ -1369,7 +1369,7 @@ Sets configuration for a virtual server. There is no clear separation between IP
 ## server_name
 
 ```
-Syntax:  name ...
+Syntax:  server_name name ...;
 Default: ""
 Context: server
 ```
@@ -1479,7 +1479,7 @@ Detailed description of server names is provided in a separate document.
 ## server_name_in_redirect
 
 ```
-Syntax:  on | off
+Syntax:  server_name_in_redirect on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1491,7 +1491,7 @@ The use of a port in redirects is controlled by the [port_in_redirect](#port_in_
 ## server_names_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  server_names_hash_bucket_size size;
 Default: 32|64|128
 Context: http
 ```
@@ -1501,7 +1501,7 @@ Sets the bucket size for the server names hash tables. The default value depends
 ## server_names_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  server_names_hash_max_size size;
 Default: 512
 Context: http
 ```
@@ -1511,7 +1511,7 @@ Sets the maximum `size` of the server names hash tables. The details of setting 
 ## server_tokens
 
 ```
-Syntax:  on | off | build | string
+Syntax:  server_tokens on | off | build | string;
 Default: on
 Context: location, http, server
 ```
@@ -1525,7 +1525,7 @@ Additionally, as part of our [commercial subscription](https://nginx.com/product
 ## subrequest_output_buffer_size
 
 ```
-Syntax:  size
+Syntax:  subrequest_output_buffer_size size;
 Default: 4k|8k
 Context: location, http, server
 ```
@@ -1539,7 +1539,7 @@ The directive is applicable only for subrequests with response bodies saved into
 ## tcp_nodelay
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nodelay on | off;
 Default: on
 Context: location, http, server
 ```
@@ -1549,7 +1549,7 @@ Enables or disables the use of the TCP_NODELAY option. The option is enabled whe
 ## tcp_nopush
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nopush on | off;
 Default: off
 Context: location, http, server
 ```
@@ -1563,7 +1563,7 @@ on Linux and FreeBSD 4.*;
 ## try_files
 
 ```
-Syntax:  file ... =code
+Syntax:  try_files file ... =code;
 Default: 
 Context: location, server
 ```
@@ -1692,7 +1692,7 @@ location @wordpress {
 ## types
 
 ```
-Syntax:  
+Syntax:  types { ... }
 Default: text/html  html;
     image/gif  gif;
     image/jpeg jpg;
@@ -1723,7 +1723,7 @@ location /download/ {
 ## types_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  types_hash_bucket_size size;
 Default: 64
 Context: location, http, server
 ```
@@ -1736,7 +1736,7 @@ the default value depended on the size of the processor’s cache line.
 ## types_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  types_hash_max_size size;
 Default: 1024
 Context: location, http, server
 ```
@@ -1746,7 +1746,7 @@ Sets the maximum `size` of the types hash tables. The details of setting up hash
 ## underscores_in_headers
 
 ```
-Syntax:  on | off
+Syntax:  underscores_in_headers on | off;
 Default: off
 Context: server, http
 ```
@@ -1758,7 +1758,7 @@ If the directive is specified on the [server](#server) level, the value from the
 ## variables_hash_bucket_size
 
 ```
-Syntax:  size
+Syntax:  variables_hash_bucket_size size;
 Default: 64
 Context: http
 ```
@@ -1768,7 +1768,7 @@ Sets the bucket size for the variables hash table. The details of setting up has
 ## variables_hash_max_size
 
 ```
-Syntax:  size
+Syntax:  variables_hash_max_size size;
 Default: 1024
 Context: http
 ```

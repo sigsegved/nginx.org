@@ -55,7 +55,7 @@ stream {
 ## listen
 
 ```
-Syntax:  адрес:порт [default_server] [ssl] [udp] [proxy_protocol] [setfib=число] [fastopen=число] [backlog=число] [rcvbuf=размер] [sndbuf=размер] [accept_filter=фильтр] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]]
+Syntax:  listen адрес:порт [default_server] [ssl] [udp] [proxy_protocol] [setfib=число] [fastopen=число] [backlog=число] [rcvbuf=размер] [sndbuf=размер] [accept_filter=фильтр] [deferred] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];
 Default: 
 Context: server
 ```
@@ -203,7 +203,7 @@ so_keepalive=30m::10
 ## preread_buffer_size
 
 ```
-Syntax:  размер
+Syntax:  preread_buffer_size размер;
 Default: 16k
 Context: server, stream
 ```
@@ -215,7 +215,7 @@ Context: server, stream
 ## preread_timeout
 
 ```
-Syntax:  время
+Syntax:  preread_timeout время;
 Default: 30s
 Context: server, stream
 ```
@@ -227,7 +227,7 @@ Context: server, stream
 ## proxy_protocol_timeout
 
 ```
-Syntax:  время
+Syntax:  proxy_protocol_timeout время;
 Default: 30s
 Context: server, stream
 ```
@@ -239,7 +239,7 @@ Context: server, stream
 ## resolver
 
 ```
-Syntax:  адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона]
+Syntax:  resolver адрес ... [valid=время] [ipv4=on|off] [ipv6=on|off] [status_zone=зона];
 Default: 
 Context: server, stream
 ```
@@ -272,7 +272,7 @@ resolver 127.0.0.1 [::1]:5353 valid=30s;
 ## resolver_timeout
 
 ```
-Syntax:  время
+Syntax:  resolver_timeout время;
 Default: 30s
 Context: server, stream
 ```
@@ -290,7 +290,7 @@ resolver_timeout 5s;
 ## server
 
 ```
-Syntax:  
+Syntax:  server { ... }
 Default: 
 Context: stream
 ```
@@ -300,7 +300,7 @@ Context: stream
 ## server_name
 
 ```
-Syntax:  имя ...
+Syntax:  server_name имя ...;
 Default: ""
 Context: server
 ```
@@ -378,7 +378,7 @@ server {
 ## server_names_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  server_names_hash_bucket_size размер;
 Default: 32|64|128
 Context: stream
 ```
@@ -390,7 +390,7 @@ Context: stream
 ## server_names_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  server_names_hash_max_size размер;
 Default: 512
 Context: stream
 ```
@@ -402,7 +402,7 @@ Context: stream
 ## stream
 
 ```
-Syntax:  
+Syntax:  stream { ... }
 Default: 
 Context: main
 ```
@@ -412,7 +412,7 @@ Context: main
 ## tcp_nodelay
 
 ```
-Syntax:  on | off
+Syntax:  tcp_nodelay on | off;
 Default: on
 Context: server, stream
 ```
@@ -424,7 +424,7 @@ Context: server, stream
 ## variables_hash_bucket_size
 
 ```
-Syntax:  размер
+Syntax:  variables_hash_bucket_size размер;
 Default: 64
 Context: stream
 ```
@@ -436,7 +436,7 @@ Context: stream
 ## variables_hash_max_size
 
 ```
-Syntax:  размер
+Syntax:  variables_hash_max_size размер;
 Default: 1024
 Context: stream
 ```

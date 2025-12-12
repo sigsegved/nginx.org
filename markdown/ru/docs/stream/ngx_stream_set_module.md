@@ -19,7 +19,7 @@ server {
 ## set
 
 ```
-Syntax:  $переменная значение
+Syntax:  set $переменная значение;
 Default: 
 Context: server
 ```

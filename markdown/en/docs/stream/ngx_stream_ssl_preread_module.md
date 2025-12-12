@@ -70,7 +70,7 @@ server {
 ## ssl_preread
 
 ```
-Syntax:  on | off
+Syntax:  ssl_preread on | off;
 Default: off
 Context: server, stream
 ```

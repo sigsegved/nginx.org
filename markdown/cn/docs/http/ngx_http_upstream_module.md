@@ -30,7 +30,7 @@ server {
 ## upstream
 
 ```
-Syntax:  name
+Syntax:  upstream name { ... }
 Default: 
 Context: http
 ```
@@ -52,7 +52,7 @@ upstream backend {
 ## server
 
 ```
-Syntax:  address [parameters]
+Syntax:  server address [parameters];
 Default: 
 Context: upstream
 ```
@@ -99,7 +99,7 @@ upstream backend {
 ## ip_hash
 
 ```
-Syntax:  
+Syntax:  ip_hash;
 Default: 
 Context: upstream
 ```
@@ -128,7 +128,7 @@ upstream backend {
 ## keepalive
 
 ```
-Syntax:  connections
+Syntax:  keepalive connections;
 Default: 
 Context: upstream
 ```
@@ -213,7 +213,7 @@ server {
 ## least_conn
 
 ```
-Syntax:  
+Syntax:  least_conn;
 Default: 
 Context: upstream
 ```

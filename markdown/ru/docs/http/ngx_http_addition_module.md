@@ -19,7 +19,7 @@ location / {
 ## add_before_body
 
 ```
-Syntax:  uri
+Syntax:  add_before_body uri;
 Default: 
 Context: location, http, server
 ```
@@ -29,7 +29,7 @@ Context: location, http, server
 ## add_after_body
 
 ```
-Syntax:  uri
+Syntax:  add_after_body uri;
 Default: 
 Context: location, http, server
 ```
@@ -39,7 +39,7 @@ Context: location, http, server
 ## addition_types
 
 ```
-Syntax:  mime-тип ...
+Syntax:  addition_types mime-тип ...;
 Default: text/html
 Context: location, http, server
 ```

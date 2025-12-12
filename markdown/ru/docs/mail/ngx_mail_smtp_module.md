@@ -8,7 +8,7 @@
 ## smtp_auth
 
 ```
-Syntax:  метод ...
+Syntax:  smtp_auth метод ...;
 Default: plain login
 Context: server, mail
 ```
@@ -36,7 +36,7 @@ Context: server, mail
 ## smtp_capabilities
 
 ```
-Syntax:  расширение ...
+Syntax:  smtp_capabilities расширение ...;
 Default: 
 Context: server, mail
 ```
@@ -50,7 +50,7 @@ Context: server, mail
 ## smtp_client_buffer
 
 ```
-Syntax:  размер
+Syntax:  smtp_client_buffer размер;
 Default: 4k|8k
 Context: server, mail
 ```
@@ -60,7 +60,7 @@ Context: server, mail
 ## smtp_greeting_delay
 
 ```
-Syntax:  время
+Syntax:  smtp_greeting_delay время;
 Default: 0
 Context: server, mail
 ```

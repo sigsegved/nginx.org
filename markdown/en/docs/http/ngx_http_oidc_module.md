@@ -41,7 +41,7 @@ The example assumes that the “ `https://<nginx-host>/oidc_callback` ” Redire
 ## oidc_provider
 
 ```
-Syntax:  name
+Syntax:  oidc_provider name { ... }
 Default: 
 Context: http
 ```
@@ -51,7 +51,7 @@ Defines an OpenID Provider for use with the [auth_oidc](#auth_oidc) directive.
 ## auth_oidc
 
 ```
-Syntax:  name | off
+Syntax:  auth_oidc name | off;
 Default: off
 Context: location, http, server
 ```
@@ -65,7 +65,7 @@ The special value `off` cancels the effect of the `auth_oidc` directive inherite
 ## issuer
 
 ```
-Syntax:  URL
+Syntax:  issuer URL;
 Default: 
 Context: oidc_provider
 ```
@@ -75,7 +75,7 @@ Sets the Issuer Identifier URL of the OpenID Provider; required directive. The U
 ## client_id
 
 ```
-Syntax:  string
+Syntax:  client_id string;
 Default: 
 Context: oidc_provider
 ```
@@ -85,7 +85,7 @@ Specifies the client ID of the Relying Party; required directive.
 ## client_secret
 
 ```
-Syntax:  string
+Syntax:  client_secret string;
 Default: 
 Context: oidc_provider
 ```
@@ -95,7 +95,7 @@ Specifies a secret value used to authenticate the Relying Party with the OpenID 
 ## config_url
 
 ```
-Syntax:  URL
+Syntax:  config_url URL;
 Default: <issuer>/.well-known/openid-configuration
 Context: oidc_provider
 ```
@@ -105,7 +105,7 @@ Sets a custom URL to retrieve the OpenID Provider metadata.
 ## cookie_name
 
 ```
-Syntax:  name
+Syntax:  cookie_name name;
 Default: NGX_OIDC_SESSION
 Context: oidc_provider
 ```
@@ -115,7 +115,7 @@ Sets the name of a session cookie.
 ## extra_auth_args
 
 ```
-Syntax:  string
+Syntax:  extra_auth_args string;
 Default: 
 Context: oidc_provider
 ```
@@ -129,7 +129,7 @@ extra_auth_args "display=page&prompt=login";
 ## frontchannel_logout_uri
 
 ```
-Syntax:  uri
+Syntax:  frontchannel_logout_uri uri;
 Default: 
 Context: oidc_provider
 ```
@@ -141,7 +141,7 @@ Defines the URI path for triggering [front-channel logout](https://openid.net/sp
 ## pkce
 
 ```
-Syntax:  on | off
+Syntax:  pkce on | off;
 Default: 
 Context: oidc_provider
 ```
@@ -153,7 +153,7 @@ Explicitly enables or disables PKCE. By default, PKCE is automatically enabled b
 ## redirect_uri
 
 ```
-Syntax:  uri
+Syntax:  redirect_uri uri;
 Default: /oidc_callback
 Context: oidc_provider
 ```
@@ -165,7 +165,7 @@ Absolute “ `https` ” URIs are supported since 1.29.0.
 ## logout_uri
 
 ```
-Syntax:  uri
+Syntax:  logout_uri uri;
 Default: 
 Context: oidc_provider
 ```
@@ -177,7 +177,7 @@ Defines the URI path for initiating session logout. Upon session termination, th
 ## post_logout_uri
 
 ```
-Syntax:  uri
+Syntax:  post_logout_uri uri;
 Default: 
 Context: oidc_provider
 ```
@@ -208,7 +208,7 @@ http {
 ## logout_token_hint
 
 ```
-Syntax:  on | off
+Syntax:  logout_token_hint on | off;
 Default: off
 Context: oidc_provider
 ```
@@ -220,7 +220,7 @@ Adds the [`id_token_hint`](https://openid.net/specs/openid-connect-rpinitiated-1
 ## scope
 
 ```
-Syntax:  scope ...
+Syntax:  scope scope ...;
 Default: openid
 Context: oidc_provider
 ```
@@ -230,7 +230,7 @@ Sets requested scopes. The `openid` scope is always required by OIDC.
 ## session_store
 
 ```
-Syntax:  name
+Syntax:  session_store name;
 Default: 
 Context: oidc_provider
 ```
@@ -243,7 +243,7 @@ to prevent session reuse across providers.
 ## session_timeout
 
 ```
-Syntax:  time
+Syntax:  session_timeout time;
 Default: 8h
 Context: oidc_provider
 ```
@@ -253,7 +253,7 @@ Sets a timeout after which the session is deleted, unless it was [refreshed](htt
 ## ssl_crl
 
 ```
-Syntax:  file
+Syntax:  ssl_crl file;
 Default: 
 Context: oidc_provider
 ```
@@ -263,7 +263,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to ver
 ## ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  ssl_trusted_certificate file;
 Default: system CA bundle
 Context: oidc_provider
 ```
@@ -273,7 +273,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to verify
 ## userinfo
 
 ```
-Syntax:  on | off
+Syntax:  userinfo on | off;
 Default: off
 Context: oidc_provider
 ```

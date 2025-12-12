@@ -28,7 +28,7 @@ stream {
 ## limit_conn
 
 ```
-Syntax:  zone number
+Syntax:  limit_conn zone number;
 Default: 
 Context: server, stream
 ```
@@ -53,7 +53,7 @@ These directives are inherited from the previous configuration level if and only
 ## limit_conn_dry_run
 
 ```
-Syntax:  on | off
+Syntax:  limit_conn_dry_run on | off;
 Default: off
 Context: server, stream
 ```
@@ -65,7 +65,7 @@ Enables the dry run mode. In this mode, the number of connections is not limited
 ## limit_conn_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_conn_log_level info | notice | warn | error;
 Default: error
 Context: server, stream
 ```
@@ -75,7 +75,7 @@ Sets the desired logging level for cases when the server limits the number of co
 ## limit_conn_zone
 
 ```
-Syntax:  key zone=name:size
+Syntax:  limit_conn_zone key zone=name:size;
 Default: 
 Context: stream
 ```

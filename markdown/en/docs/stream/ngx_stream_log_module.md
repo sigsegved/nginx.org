@@ -20,7 +20,7 @@ access_log /spool/logs/nginx-access.log basic buffer=32k;
 ## access_log
 
 ```
-Syntax:  off
+Syntax:  access_log off;
 Default: off
 Context: server, stream
 ```
@@ -65,7 +65,7 @@ The `if` parameter enables conditional logging. A session will not be logged if 
 ## log_format
 
 ```
-Syntax:  name [escape=default|json|none] string ...
+Syntax:  log_format name [escape=default|json|none] string ...;
 Default: 
 Context: stream
 ```
@@ -88,7 +88,7 @@ For `json` escaping, all characters not allowed in JSON [strings](https://datatr
 ## open_log_file_cache
 
 ```
-Syntax:  off
+Syntax:  open_log_file_cache off;
 Default: off
 Context: server, stream
 ```

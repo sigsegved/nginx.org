@@ -22,7 +22,7 @@ real_ip_recursive on;
 ## set_real_ip_from
 
 ```
-Syntax:  адрес | CIDR | unix:
+Syntax:  set_real_ip_from адрес | CIDR | unix:;
 Default: 
 Context: location, http, server
 ```
@@ -34,7 +34,7 @@ Context: location, http, server
 ## real_ip_header
 
 ```
-Syntax:  поле | X-Real-IP | X-Forwarded-For | proxy_protocol
+Syntax:  real_ip_header поле | X-Real-IP | X-Forwarded-For | proxy_protocol;
 Default: X-Real-IP
 Context: location, http, server
 ```
@@ -48,7 +48,7 @@ Context: location, http, server
 ## real_ip_recursive
 
 ```
-Syntax:  on | off
+Syntax:  real_ip_recursive on | off;
 Default: off
 Context: location, http, server
 ```

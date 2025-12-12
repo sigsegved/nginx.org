@@ -32,7 +32,7 @@ mgmt {
 ## mgmt
 
 ```
-Syntax:  
+Syntax:  mgmt { ... }
 Default: 
 Context: main
 ```
@@ -42,7 +42,7 @@ Provides the configuration file context in which usage reporting and license man
 ## enforce_initial_report
 
 ```
-Syntax:  on | off
+Syntax:  enforce_initial_report on | off;
 Default: on
 Context: mgmt
 ```
@@ -56,7 +56,7 @@ The initial usage report is sent immediately upon nginx first start after instal
 ## license_token
 
 ```
-Syntax:  file
+Syntax:  license_token file;
 Default: license.jwt
 Context: mgmt
 ```
@@ -68,7 +68,7 @@ Specifies a JWT license `file` . By default, the `license.jwt` file is expected 
 ## proxy
 
 ```
-Syntax:  host:port
+Syntax:  proxy host:port;
 Default: 
 Context: mgmt
 ```
@@ -80,7 +80,7 @@ Sets the HTTP CONNECT proxy used for sending the usage report.
 ## proxy_username
 
 ```
-Syntax:  string
+Syntax:  proxy_username string;
 Default: 
 Context: mgmt
 ```
@@ -92,7 +92,7 @@ Sets the user name used for authentication on the [proxy](#proxy) .
 ## proxy_password
 
 ```
-Syntax:  string
+Syntax:  proxy_password string;
 Default: 
 Context: mgmt
 ```
@@ -126,7 +126,7 @@ stream {
 ## resolver
 
 ```
-Syntax:  address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone]
+Syntax:  resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
 Default: 
 Context: mgmt
 ```
@@ -138,7 +138,7 @@ See [resolver](http/ngx_http_core_module.xml#resolver) for details.
 ## ssl_crl
 
 ```
-Syntax:  file
+Syntax:  ssl_crl file;
 Default: 
 Context: mgmt
 ```
@@ -148,7 +148,7 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 ## ssl_trusted_certificate
 
 ```
-Syntax:  file
+Syntax:  ssl_trusted_certificate file;
 Default: system CA bundle
 Context: mgmt
 ```
@@ -158,7 +158,7 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 ## ssl_verify
 
 ```
-Syntax:  on | off
+Syntax:  ssl_verify on | off;
 Default: on
 Context: mgmt
 ```
@@ -170,7 +170,7 @@ Enables or disables verification of the usage reporting endpoint certificate.
 ## state_path
 
 ```
-Syntax:  path
+Syntax:  state_path path;
 Default: 
 Context: mgmt
 ```
@@ -182,7 +182,7 @@ Defines a directory for storing state files ( `nginx-mgmt-*` ) created by the `n
 ## usage_report
 
 ```
-Syntax:  [endpoint=address] [interval=time]
+Syntax:  usage_report [endpoint=address] [interval=time];
 Default: endpoint=product.connect.nginx.com interval=1h
 Context: mgmt
 ```

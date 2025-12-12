@@ -36,7 +36,7 @@ The example implements [per-user](https://datatracker.ietf.org/doc/html/rfc7519#
 ## internal_redirect
 
 ```
-Syntax:  uri
+Syntax:  internal_redirect uri;
 Default: 
 Context: location, server
 ```

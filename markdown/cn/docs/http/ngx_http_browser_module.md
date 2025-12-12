@@ -54,7 +54,7 @@ if ($ancient_browser) {
 ## ancient_browser
 
 ```
-Syntax:  string ...
+Syntax:  ancient_browser string ...;
 Default: 
 Context: location, http, server
 ```
@@ -64,7 +64,7 @@ Context: location, http, server
 ## ancient_browser_value
 
 ```
-Syntax:  string
+Syntax:  ancient_browser_value string;
 Default: 1
 Context: location, http, server
 ```
@@ -74,7 +74,7 @@ Context: location, http, server
 ## modern_browser
 
 ```
-Syntax:  unlisted
+Syntax:  modern_browser unlisted;
 Default: 
 Context: location, http, server
 ```
@@ -88,7 +88,7 @@ Context: location, http, server
 ## modern_browser_value
 
 ```
-Syntax:  string
+Syntax:  modern_browser_value string;
 Default: 1
 Context: location, http, server
 ```

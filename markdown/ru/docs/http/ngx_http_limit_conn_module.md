@@ -29,7 +29,7 @@ http {
 ## limit_conn
 
 ```
-Syntax:  зона число
+Syntax:  limit_conn зона число;
 Default: 
 Context: location, http, server
 ```
@@ -68,7 +68,7 @@ server {
 ## limit_conn_dry_run
 
 ```
-Syntax:  on | off
+Syntax:  limit_conn_dry_run on | off;
 Default: off
 Context: location, http, server
 ```
@@ -80,7 +80,7 @@ Context: location, http, server
 ## limit_conn_log_level
 
 ```
-Syntax:  info | notice | warn | error
+Syntax:  limit_conn_log_level info | notice | warn | error;
 Default: error
 Context: location, http, server
 ```
@@ -92,7 +92,7 @@ Context: location, http, server
 ## limit_conn_status
 
 ```
-Syntax:  код
+Syntax:  limit_conn_status код;
 Default: 503
 Context: location, http, server
 ```
@@ -104,7 +104,7 @@ Context: location, http, server
 ## limit_conn_zone
 
 ```
-Syntax:  ключ zone=название:размер
+Syntax:  limit_conn_zone ключ zone=название:размер;
 Default: 
 Context: http
 ```
@@ -126,7 +126,7 @@ limit_conn_zone $binary_remote_addr zone=addr:10m;
 ## limit_zone
 
 ```
-Syntax:  название $переменная размер
+Syntax:  limit_zone название $переменная размер;
 Default: 
 Context: http
 ```

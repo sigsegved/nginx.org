@@ -20,7 +20,7 @@ set_real_ip_from  2001:0db8::/32;
 ## set_real_ip_from
 
 ```
-Syntax:  адрес | CIDR | unix:
+Syntax:  set_real_ip_from адрес | CIDR | unix:;
 Default: 
 Context: server, mail
 ```

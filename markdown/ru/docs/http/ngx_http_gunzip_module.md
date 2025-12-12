@@ -21,7 +21,7 @@ location /storage/ {
 ## gunzip
 
 ```
-Syntax:  on | off
+Syntax:  gunzip on | off;
 Default: off
 Context: location, http, server
 ```
@@ -31,7 +31,7 @@ Context: location, http, server
 ## gunzip_buffers
 
 ```
-Syntax:  число размер
+Syntax:  gunzip_buffers число размер;
 Default: 32 4k|16 8k
 Context: location, http, server
 ```

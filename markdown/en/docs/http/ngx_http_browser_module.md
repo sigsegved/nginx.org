@@ -55,7 +55,7 @@ if ($ancient_browser) {
 ## ancient_browser
 
 ```
-Syntax:  string ...
+Syntax:  ancient_browser string ...;
 Default: 
 Context: location, http, server
 ```
@@ -65,7 +65,7 @@ If any of the specified substrings is found in the `User-Agent` request header f
 ## ancient_browser_value
 
 ```
-Syntax:  string
+Syntax:  ancient_browser_value string;
 Default: 1
 Context: location, http, server
 ```
@@ -75,7 +75,7 @@ Sets a value for the `$ancient_browser` variables.
 ## modern_browser
 
 ```
-Syntax:  unlisted
+Syntax:  modern_browser unlisted;
 Default: 
 Context: location, http, server
 ```
@@ -89,7 +89,7 @@ The special value `unlisted` specifies to consider a browser as modern if it was
 ## modern_browser_value
 
 ```
-Syntax:  string
+Syntax:  modern_browser_value string;
 Default: 1
 Context: location, http, server
 ```

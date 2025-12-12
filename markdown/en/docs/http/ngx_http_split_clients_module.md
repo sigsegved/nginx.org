@@ -25,7 +25,7 @@ http {
 ## split_clients
 
 ```
-Syntax:  string $variable
+Syntax:  split_clients string $variable { ... }
 Default: 
 Context: http
 ```

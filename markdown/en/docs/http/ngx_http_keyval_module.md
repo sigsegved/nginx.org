@@ -33,7 +33,7 @@ http {
 ## keyval
 
 ```
-Syntax:  key $variable zone=name
+Syntax:  keyval key $variable zone=name;
 Default: 
 Context: http
 ```
@@ -43,7 +43,7 @@ Creates a new `$variable` whose value is looked up by the `key` in the key-value
 ## keyval_zone
 
 ```
-Syntax:  zone=name:size [state=file] [timeout=time] [type=string|ip|prefix] [sync]
+Syntax:  keyval_zone zone=name:size [state=file] [timeout=time] [type=string|ip|prefix] [sync];
 Default: 
 Context: http
 ```

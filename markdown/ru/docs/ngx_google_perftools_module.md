@@ -22,7 +22,7 @@ google_perftools_profiles /path/to/profile;
 ## google_perftools_profiles
 
 ```
-Syntax:  файл
+Syntax:  google_perftools_profiles файл;
 Default: 
 Context: main
 ```

@@ -34,7 +34,7 @@ location = /empty {
 ## image_filter
 
 ```
-Syntax:  crop ширина высота
+Syntax:  image_filter crop ширина высота;
 Default: off
 Context: location
 ```
@@ -89,7 +89,7 @@ Context: location
 ## image_filter_buffer
 
 ```
-Syntax:  размер
+Syntax:  image_filter_buffer размер;
 Default: 1M
 Context: location, http, server
 ```
@@ -99,7 +99,7 @@ Context: location, http, server
 ## image_filter_interlace
 
 ```
-Syntax:  on | off
+Syntax:  image_filter_interlace on | off;
 Default: off
 Context: location, http, server
 ```
@@ -111,7 +111,7 @@ Context: location, http, server
 ## image_filter_jpeg_quality
 
 ```
-Syntax:  качество
+Syntax:  image_filter_jpeg_quality качество;
 Default: 75
 Context: location, http, server
 ```
@@ -121,7 +121,7 @@ Context: location, http, server
 ## image_filter_sharpen
 
 ```
-Syntax:  процент
+Syntax:  image_filter_sharpen процент;
 Default: 0
 Context: location, http, server
 ```
@@ -131,7 +131,7 @@ Context: location, http, server
 ## image_filter_transparency
 
 ```
-Syntax:  on|off
+Syntax:  image_filter_transparency on|off;
 Default: on
 Context: location, http, server
 ```
@@ -141,7 +141,7 @@ Context: location, http, server
 ## image_filter_webp_quality
 
 ```
-Syntax:  качество
+Syntax:  image_filter_webp_quality качество;
 Default: 80
 Context: location, http, server
 ```

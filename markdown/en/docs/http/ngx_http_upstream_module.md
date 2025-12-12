@@ -55,7 +55,7 @@ server {
 ## upstream
 
 ```
-Syntax:  name
+Syntax:  upstream name { ... }
 Default: 
 Context: http
 ```
@@ -79,7 +79,7 @@ By default, requests are distributed between the servers using a weighted round-
 ## server
 
 ```
-Syntax:  address [parameters]
+Syntax:  server address [parameters];
 Default: 
 Context: upstream
 ```
@@ -194,7 +194,7 @@ are ignored, and such a server will never be considered unavailable.
 ## zone
 
 ```
-Syntax:  name [size]
+Syntax:  zone name [size];
 Default: 
 Context: upstream
 ```
@@ -212,7 +212,7 @@ handled by [upstream_conf](ngx_http_upstream_conf_module.xml#upstream_conf) .
 ## state
 
 ```
-Syntax:  file
+Syntax:  state file;
 Default: 
 Context: upstream
 ```
@@ -237,7 +237,7 @@ The state is currently limited to the list of servers with their parameters. The
 ## hash
 
 ```
-Syntax:  key [consistent]
+Syntax:  hash key [consistent];
 Default: 
 Context: upstream
 ```
@@ -251,7 +251,7 @@ If the `consistent` parameter is specified, the [ketama](https://www.metabrew.co
 ## ip_hash
 
 ```
-Syntax:  
+Syntax:  ip_hash;
 Default: 
 Context: upstream
 ```
@@ -281,7 +281,7 @@ servers using the `ip_hash` load balancing method.
 ## keepalive
 
 ```
-Syntax:  connections
+Syntax:  keepalive connections;
 Default: 
 Context: upstream
 ```
@@ -372,7 +372,7 @@ server {
 ## keepalive_requests
 
 ```
-Syntax:  number
+Syntax:  keepalive_requests number;
 Default: 1000
 Context: upstream
 ```
@@ -388,7 +388,7 @@ Closing connections periodically is necessary to free per-connection memory allo
 ## keepalive_time
 
 ```
-Syntax:  time
+Syntax:  keepalive_time time;
 Default: 1h
 Context: upstream
 ```
@@ -400,7 +400,7 @@ Limits the maximum time during which requests can be processed through one keepa
 ## keepalive_timeout
 
 ```
-Syntax:  timeout
+Syntax:  keepalive_timeout timeout;
 Default: 60s
 Context: upstream
 ```
@@ -412,7 +412,7 @@ Sets a timeout during which an idle keepalive connection to an upstream server w
 ## ntlm
 
 ```
-Syntax:  
+Syntax:  ntlm;
 Default: 
 Context: upstream
 ```
@@ -451,7 +451,7 @@ the `ntlm` directive.
 ## least_conn
 
 ```
-Syntax:  
+Syntax:  least_conn;
 Default: 
 Context: upstream
 ```
@@ -463,7 +463,7 @@ Specifies that a group should use a load balancing method where a request is pas
 ## least_time
 
 ```
-Syntax:  header | last_byte [inflight]
+Syntax:  least_time header | last_byte [inflight];
 Default: 
 Context: upstream
 ```
@@ -481,7 +481,7 @@ If the `header` parameter is specified, time to receive the [response header](#v
 ## queue
 
 ```
-Syntax:  number [timeout=time]
+Syntax:  queue number [timeout=time];
 Default: 
 Context: upstream
 ```
@@ -501,7 +501,7 @@ the `queue` directive.
 ## random
 
 ```
-Syntax:  [two [method]]
+Syntax:  random [two [method]];
 Default: 
 Context: upstream
 ```
@@ -519,7 +519,7 @@ The `least_time` method passes a request to a server with the least average resp
 ## resolver
 
 ```
-Syntax:  address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone]
+Syntax:  resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
 Default: 
 Context: upstream
 ```
@@ -553,7 +553,7 @@ this directive was available only as part of our [commercial subscription](https
 ## resolver_timeout
 
 ```
-Syntax:  time
+Syntax:  resolver_timeout time;
 Default: 30s
 Context: upstream
 ```
@@ -572,7 +572,7 @@ this directive was available only as part of our [commercial subscription](https
 ## sticky
 
 ```
-Syntax:  learn create=$variable lookup=$variable zone=name:size [timeout=time] [header] [sync]
+Syntax:  sticky learn create=$variable lookup=$variable zone=name:size [timeout=time] [header] [sync];
 Default: 
 Context: upstream
 ```
@@ -703,7 +703,7 @@ The `sync` parameter (1.13.8) enables [synchronization](../stream/ngx_stream_zon
 ## sticky_cookie_insert
 
 ```
-Syntax:  name [expires=time] [domain=domain] [path=path]
+Syntax:  sticky_cookie_insert name [expires=time] [domain=domain] [path=path];
 Default: 
 Context: upstream
 ```

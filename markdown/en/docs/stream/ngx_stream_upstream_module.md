@@ -55,7 +55,7 @@ server {
 ## upstream
 
 ```
-Syntax:  name
+Syntax:  upstream name { ... }
 Default: 
 Context: stream
 ```
@@ -80,7 +80,7 @@ By default, connections are distributed between the servers using a weighted rou
 ## server
 
 ```
-Syntax:  address [parameters]
+Syntax:  server address [parameters];
 Default: 
 Context: upstream
 ```
@@ -179,7 +179,7 @@ are ignored, and such a server will never be considered unavailable.
 ## zone
 
 ```
-Syntax:  name [size]
+Syntax:  zone name [size];
 Default: 
 Context: upstream
 ```
@@ -195,7 +195,7 @@ handled by [upstream_conf](../http/ngx_http_upstream_conf_module.xml#upstream_co
 ## state
 
 ```
-Syntax:  file
+Syntax:  state file;
 Default: 
 Context: upstream
 ```
@@ -220,7 +220,7 @@ The state is currently limited to the list of servers with their parameters. The
 ## hash
 
 ```
-Syntax:  key [consistent]
+Syntax:  hash key [consistent];
 Default: 
 Context: upstream
 ```
@@ -238,7 +238,7 @@ If the `consistent` parameter is specified, the [ketama](https://www.metabrew.co
 ## least_conn
 
 ```
-Syntax:  
+Syntax:  least_conn;
 Default: 
 Context: upstream
 ```
@@ -248,7 +248,7 @@ Specifies that a group should use a load balancing method where a connection is 
 ## least_time
 
 ```
-Syntax:  connect | first_byte | last_byte [inflight]
+Syntax:  least_time connect | first_byte | last_byte [inflight];
 Default: 
 Context: upstream
 ```
@@ -265,7 +265,7 @@ incomplete connections were taken into account by default.
 ## random
 
 ```
-Syntax:  [two [method]]
+Syntax:  random [two [method]];
 Default: 
 Context: upstream
 ```
@@ -283,7 +283,7 @@ The `least_time` method passes a connection to a server with the least average t
 ## resolver
 
 ```
-Syntax:  address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone]
+Syntax:  resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];
 Default: 
 Context: upstream
 ```
@@ -317,7 +317,7 @@ this directive was available only as part of our [commercial subscription](https
 ## resolver_timeout
 
 ```
-Syntax:  time
+Syntax:  resolver_timeout time;
 Default: 30s
 Context: upstream
 ```

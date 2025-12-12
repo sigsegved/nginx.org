@@ -21,7 +21,7 @@ userid_p3p     'policyref="/w3c/p3p.xml", CP="CUR ADM OUR NOR STA NID"';
 ## userid
 
 ```
-Syntax:  on | v1 | log | off
+Syntax:  userid on | v1 | log | off;
 Default: off
 Context: location, http, server
 ```
@@ -46,7 +46,7 @@ Context: location, http, server
 ## userid_domain
 
 ```
-Syntax:  имя | none
+Syntax:  userid_domain имя | none;
 Default: none
 Context: location, http, server
 ```
@@ -56,7 +56,7 @@ Context: location, http, server
 ## userid_expires
 
 ```
-Syntax:  время | max | off
+Syntax:  userid_expires время | max | off;
 Default: off
 Context: location, http, server
 ```
@@ -66,7 +66,7 @@ Context: location, http, server
 ## userid_flags
 
 ```
-Syntax:  off | флаг ...
+Syntax:  userid_flags off | флаг ...;
 Default: off
 Context: location, http, server
 ```
@@ -78,7 +78,7 @@ Context: location, http, server
 ## userid_mark
 
 ```
-Syntax:  буква | цифра | = | off
+Syntax:  userid_mark буква | цифра | = | off;
 Default: off
 Context: location, http, server
 ```
@@ -90,7 +90,7 @@ Context: location, http, server
 ## userid_name
 
 ```
-Syntax:  имя
+Syntax:  userid_name имя;
 Default: uid
 Context: location, http, server
 ```
@@ -100,7 +100,7 @@ Context: location, http, server
 ## userid_p3p
 
 ```
-Syntax:  строка | none
+Syntax:  userid_p3p строка | none;
 Default: none
 Context: location, http, server
 ```
@@ -110,7 +110,7 @@ Context: location, http, server
 ## userid_path
 
 ```
-Syntax:  путь
+Syntax:  userid_path путь;
 Default: /
 Context: location, http, server
 ```
@@ -120,7 +120,7 @@ Context: location, http, server
 ## userid_service
 
 ```
-Syntax:  номер
+Syntax:  userid_service номер;
 Default: IP-адрес сервера
 Context: location, http, server
 ```
