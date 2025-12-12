@@ -12,6 +12,27 @@ The nginx.org repository includes a Python-based tool (`tools/xml2md.py`) that c
 - Easy reading and editing in text editors
 - Version control diffs that are easier to read
 
+## Automated Generation with GitHub Actions
+
+The repository includes a GitHub Actions workflow that **automatically regenerates markdown files** when XML sources are updated. This ensures the markdown files always stay in sync with the XML sources.
+
+### How it works
+
+- **On push to main/master:** When XML files or the converter script are modified, the workflow automatically regenerates markdown files and commits them back to the repository.
+- **On pull requests:** When a PR modifies XML files, the workflow creates a separate PR with the updated markdown files for review.
+- **Manual trigger:** You can manually run the workflow from the GitHub Actions tab at any time.
+
+### Manual workflow execution
+
+1. Go to the **Actions** tab in the GitHub repository
+2. Select **"Generate Markdown from XML"** workflow
+3. Click **"Run workflow"**
+4. Select the branch and click **"Run workflow"** button
+
+This is useful when you want to regenerate all markdown files without making changes to XML sources.
+
+For more details, see [.github/workflows/README.md](.github/workflows/README.md).
+
 ## Quick Start
 
 ### Generate English Documentation
