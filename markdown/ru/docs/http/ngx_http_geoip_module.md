@@ -1,0 +1,146 @@
+# Модуль ngx_http_geoip_module
+
+**Revision:** 5  
+**Language:** ru
+
+Модуль `ngx_http_geoip_module` (0.8.6+) создаёт переменные, значения которых зависят от IP-адреса клиента, используя готовые базы данных [MaxMind](http://www.maxmind.com) .
+
+При использовании баз данных с поддержкой IPv6 (1.3.12, 1.2.7) IPv4-адреса ищутся отображёнными на IPv6.
+
+По умолчанию этот модуль не собирается, его сборку необходимо разрешить с помощью конфигурационного параметра `--with-http_geoip_module` .
+
+> **Note:** Для сборки и работы этого модуля нужна библиотека [MaxMind GeoIP](http://www.maxmind.com/app/c) .
+
+# Пример конфигурации {#example}
+
+```
+http {
+    geoip_country         GeoIP.dat;
+    geoip_city            GeoLiteCity.dat;
+    geoip_proxy           192.168.100.0/24;
+    geoip_proxy           2001:0db8::/32;
+    geoip_proxy_recursive on;
+    ...
+```
+
+# Директивы {#directives}
+
+## geoip_country
+
+```
+Syntax:  geoip_country файл;
+Default: 
+Context: http
+```
+
+Задаёт базу данных для определения страны в зависимости от значения IP-адреса клиента. При использовании этой базы данных доступны следующие переменные:
+
+**`$geoip_country_code`**  
+  двухбуквенный код страны, например,
+“ `RU` ”, “ `US` ”.
+
+**`$geoip_country_code3`**  
+  трёхбуквенный код страны, например,
+“ `RUS` ”, “ `USA` ”.
+
+**`$geoip_country_name`**  
+  название страны, например,
+“ `Russian Federation` ”, “ `United States` ”.
+
+## geoip_city
+
+```
+Syntax:  geoip_city файл;
+Default: 
+Context: http
+```
+
+Задаёт базу данных для определения страны, региона и города в зависимости от значения IP-адреса клиента. При использовании этой базы данных доступны следующие переменные:
+
+**`$geoip_area_code`**  
+  телефонный код области (только для США).
+
+> **Note:** Данная переменная может содержать неактуальную информацию, т.к.
+соответствующее поле базы данных объявлено устаревшим.
+
+**`$geoip_city_continent_code`**  
+  двухбуквенный код континента, например,
+“ `EU` ”, “ `NA` ”.
+
+**`$geoip_city_country_code`**  
+  двухбуквенный код страны, например,
+“ `RU` ”, “ `US` ”.
+
+**`$geoip_city_country_code3`**  
+  трёхбуквенный код страны, например,
+“ `RUS` ”, “ `USA` ”.
+
+**`$geoip_city_country_name`**  
+  название страны, например,
+“ `Russian Federation` ”, “ `United States` ”.
+
+**`$geoip_dma_code`**  
+  DMA-код региона в США (также известный как “код агломерации”), согласно [геотаргетингу](https://developers.google.com/adwords/api/docs/appendix/cities-DMAregions) Google AdWords API.
+
+**`$geoip_latitude`**  
+  широта.
+
+**`$geoip_longitude`**  
+  долгота.
+
+**`$geoip_region`**  
+  двухсимвольный код региона страны (область, край, штат,
+провинция, федеральная земля и тому подобное), например,
+“ `48` ”, “ `DC` ”.
+
+**`$geoip_region_name`**  
+  название региона страны (область, край, штат,
+провинция, федеральная земля и тому подобное), например,
+“ `Moscow City` ”, “ `District of Columbia` ”.
+
+**`$geoip_city`**  
+  название города, например,
+“ `Moscow` ”, “ `Washington` ”.
+
+**`$geoip_postal_code`**  
+  почтовый индекс.
+
+## geoip_org
+
+```
+Syntax:  geoip_org файл;
+Default: 
+Context: http
+```
+
+*This directive appeared in version 1.0.3.*
+
+Задаёт базу данных для определения названия организации в зависимости от значения IP-адреса клиента. При использовании этой базы данных доступна следующая переменная:
+
+**`$geoip_org`**  
+  название организации, например, “The University of Melbourne”.
+
+## geoip_proxy
+
+```
+Syntax:  geoip_proxy адрес | CIDR;
+Default: 
+Context: http
+```
+
+*This directive appeared in version 1.2.1.*
+
+Задаёт доверенные адреса, при запросе с которых будет использоваться адрес в переданном поле заголовка запроса `X-Forwarded-For` .
+
+## geoip_proxy_recursive
+
+```
+Syntax:  geoip_proxy_recursive on | off;
+Default: off
+Context: http
+```
+
+*This directive appeared in version 1.2.1.*
+
+При выключенном рекурсивном поиске вместо исходного адреса клиента, совпадающего с одним из доверенных адресов, будет использоваться последний адрес, переданный в `X-Forwarded-For` . При включённом рекурсивном поиске вместо исходного адреса клиента, совпадающего с одним из доверенных адресов, будет использоваться последний не доверенный адрес, переданный в `X-Forwarded-For` .
+
